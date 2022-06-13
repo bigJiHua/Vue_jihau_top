@@ -2,15 +2,9 @@
   <div id="" class="right_box">
   <div class="RightMoudle" ref="RightMoudle">
     <AboutM></AboutM>
-    <ArtList></ArtList>
-    <!-- <van-calendar
-      title="日历"
-      :poppable="false"
-      :show-confirm="false"
-      :style="{ height: '500px' }"
-    /> -->
   </div>
     <div class="icpArea" ref="RightArea">
+      <ArtList></ArtList>
       <Footer></Footer>
     </div>
   </div>
