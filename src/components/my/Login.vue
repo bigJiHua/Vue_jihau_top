@@ -1,13 +1,152 @@
 <template>
-$END$
+  <div id="logonCon" class="container">
+    <div class="login_conten_box">
+      <img
+        class="login_img"
+        src="http://127.0.0.1/uploads/undraw_Login_re_4vu2.png"
+      />
+      <div class="user_input_eara">
+        <h2>登录 <small>Login</small></h2>
+        <form
+          class="form-horizontal"
+        >
+          <label for="al_title" class="login_lable"> 用户名:</label>
+          <input
+            type="text"
+            v-model="username"
+            class="form-control login_input"
+            placeholder="请输入用户名"
+            require
+          />
+          <label for="al_title" class="login_lable"> 密码:</label>
+          <input
+            type="password"
+            class="form-control login_input"
+            placeholder="请输入密码"
+            required
+            v-model="password"
+            @keydown.enter="login"
+          />
+        </form>
+        <div class="btnmenu">
+          <van-button @click="login" v-show="!loading">登录</van-button>
+          <van-button loading type="primary" loading-text="登录中..." v-show="loading"/>
+
+          <van-button @click="register" >注册</van-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-name: "Login.vue"
+  data () {
+    return {
+      username: '',
+      password: '',
+      loading: false
+    }
+  },
+  methods: {
+    login () {
+      this.loading = !this.loading
+      console.log(this.username, this.password)
+    },
+    register () {
+      this.$router.push('/register')
+    }
+  },
+  name: 'LoginPage'
 }
 </script>
 
 <style scoped>
+#logonCon{
+  width: 100%;background-image: linear-gradient(to right top, #caf8ec, #94e1e2, #5ac7df, #18acdf, #008dd9, #5f80dd, #966dd3, #c254b9, #ff5495, #ff7468, #ffa63c, #f6d92a);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
 
+.login_conten_box {
+  margin: 20vh auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (min-width: 755px) {
+  .login_conten_box {
+    background-color: rgba(244, 244, 244, 0.4);
+    width: 55vw;
+    border-radius: 12px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .login_img {
+    width: 50%;
+    border-radius: 12px 0 0 12px;
+  }
+
+  .user_input_eara {
+    width: 50%;
+    padding: 20px 25px;
+  }
+
+  .user_input_eara > h2 {
+    margin-bottom: 15px;
+    font-weight: bolder;
+    color: rgb(240, 239, 244);
+  }
+
+  .login_lable:first-child {
+    margin: 10px 0;
+  }
+
+  .login_input {
+    margin: 5px 0 20px 0;
+  }
+
+  .user_input_eara > form > [name='button'] {
+    float: right;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  .login_conten_box {
+    background-color: rgba(244, 244, 244, 0.4);
+    width: 80vw;
+    border-radius: 12px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  }
+  .login_img {
+    display: none;
+  }
+  .user_input_eara {
+    padding: 20px 25px;
+  }
+
+  .user_input_eara > h2 {
+    margin-bottom: 15px;
+    font-weight: bolder;
+    color: rgb(240, 239, 244);
+  }
+
+  .login_lable:first-child {
+    margin: 10px 0;
+  }
+
+  .login_input {
+    margin: 5px 0 20px 0;
+  }
+}
+.btnmenu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 </style>

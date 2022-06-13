@@ -4,6 +4,8 @@ import Search from '@/components/Search/Search'
 import CenterBox from '@/components/ContentArticle'
 import Yszc from '@/components/my/隐私政策'
 import Article from '@/components/Article/article'
+import Login from '@/components/my/Login'
+import Register from '@/components/my/Register'
 
 Vue.use(VueRouter)
 const routes = [
@@ -22,6 +24,14 @@ const routes = [
   {
     path: '/article/:id',
     component: Article
+  },
+  {
+    path: '/Login',
+    component: Login
+  },
+  {
+    path: '/register',
+    component: Register
   }
 ]
 const router = new VueRouter({

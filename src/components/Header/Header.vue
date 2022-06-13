@@ -49,8 +49,10 @@
             <span class="glyphicon glyphicon-search" style="font-size: 20px"  @click="closeMenu"></span>
           </router-link>
         </li>
+        <li>
+            <router-link to="/login" >登录</router-link>
+        </li>
         <li><a href="https://jihau.com/POP/">测试</a></li>
-        <!-- <li><a href="#" >返回顶部</a></li> -->
         <li><router-link to="/隐私政策"><span @click="closeMenu">隐私政策</span></router-link></li>
       </ul>
     </div>
@@ -121,7 +123,6 @@ export default {
               `position: fixed;
               top: -1px;
               z-index:999;
-              width:100vw;
               height:50px;
               `
             )
@@ -149,7 +150,7 @@ export default {
 
 <style lang="less" scoped>
 #navbar{
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bolder;
 }
 @media only screen and (min-width: 755px) {

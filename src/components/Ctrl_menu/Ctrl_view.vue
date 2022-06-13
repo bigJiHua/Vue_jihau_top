@@ -1,10 +1,10 @@
 <template>
-$END$
+  <div class="CtrlView"></div>
 </template>
 
 <script>
 export default {
-name: "Ctrl_view"
+  name: 'CtrlView'
 }
 </script>
 
