@@ -1,9 +1,13 @@
 <template>
-  <div class="CtrlView"></div>
+  <div class="CtrlView">
+  <h1>后台管理系统</h1>
+  </div>
 </template>
 
 <script>
 export default {
+  method () {
+  },
   name: 'CtrlView'
 }
 </script>

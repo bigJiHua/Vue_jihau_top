@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: 'https://api.da4.cc/data'
+  baseURL: 'http://127.0.0.1'
 })
-
 export default request

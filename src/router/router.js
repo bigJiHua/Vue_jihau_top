@@ -6,6 +6,7 @@ import Yszc from '@/components/my/隐私政策'
 import Article from '@/components/Article/article'
 import Login from '@/components/my/Login'
 import Register from '@/components/my/Register'
+import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
 
 Vue.use(VueRouter)
 const routes = [
@@ -27,17 +28,34 @@ const routes = [
   },
   {
     path: '/Login',
+    name: 'Login',
     component: Login
   },
   {
     path: '/register',
+    name: 'register',
     component: Register
+  },
+  {
+    path: '/CtrlView',
+    name: 'CtrlView',
+    component: CtrlView
   }
 ]
 const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  if (to.name === 'CtrlView') {
+    if (token) {
+      next()
+    } else {
+      next('Login')
+    }
+  } else {
+    next()
+  }
   next()
 })
 export default router

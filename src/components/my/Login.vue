@@ -31,30 +31,110 @@
         <div class="btnmenu">
           <van-button @click="login" v-show="!loading">登录</van-button>
           <van-button loading type="primary" loading-text="登录中..." v-show="loading"/>
-
           <van-button @click="register" >注册</van-button>
         </div>
       </div>
     </div>
+    <van-popup v-model="show" round class="popup">{{msg}}</van-popup>
   </div>
 </template>
 
 <script>
+import PostLogin from '../api/getArticleList'
+import bus from '../eventBus/eventBusHeader'
 export default {
   data () {
     return {
-      username: '',
-      password: '',
-      loading: false
+      username: '1111',
+      password: '123456',
+      loading: false,
+      // rules: {
+      //   username: {
+      //     rule: /^\w{6,12}$/,
+      //     msg: '用户名必须为字母开头6-12位'
+      //   },
+      //   password: {
+      //     rule: /^\w{6,32}$/,
+      //     msg: '密码不能位空，且要求为6-32位'
+      //   }
+      // },
+      rules: {
+        username: {
+          rule: /^\S/,
+          msg: '用户名不能为空!且长度为6-12位'
+        },
+        password: {
+          rule: /^\S{6,12}/,
+          msg: '密码不能为空!且长度为6-12位'
+        }
+      },
+      show: false,
+      msg: '',
+      setTime: 2000
     }
   },
   methods: {
-    login () {
-      this.loading = !this.loading
-      console.log(this.username, this.password)
+    async login () {
+      // if (this.validata('username')) {
+      //   if (!this.validata('password')) {
+      //   }
+      // }
+      if (this.validata('username')) {
+        if (this.validata('password')) {
+          this.show = true
+          this.loading = true
+          const { data: res } = await PostLogin.LoginMenu(this.username, this.password)
+          if (res.status === 200) {
+            localStorage.setItem('token', res.token)
+            if (localStorage.getItem('token')) {
+              const timer = setInterval(() => {
+                this.msg = res.message
+              }, 100)
+              setTimeout(() => {
+                clearInterval(timer)
+                this.show = false
+                this.loading = false
+                this.SendToken()
+                this.$router.push('/CtrlView')
+              }, this.setTime)
+            } else {
+              const timer = setInterval(() => {
+                this.msg = res.message
+              }, 100)
+              setTimeout(() => {
+                clearInterval(timer)
+                this.show = false
+                this.loading = false
+              }, this.setTime)
+            }
+          } else {
+            const timer = setInterval(() => {
+              this.msg = res.message
+            }, 100)
+            setTimeout(() => {
+              clearInterval(timer)
+              this.show = false
+              this.loading = false
+            }, this.setTime)
+          }
+        }
+      }
     },
     register () {
       this.$router.push('/register')
+    },
+    validata (key) {
+      let bool = true
+      if (!this.rules[key].rule.test(this[key])) {
+        this.show = true
+        this.msg = this.rules[key].msg
+        bool = false
+        return false
+      }
+      return bool
+    },
+    SendToken () {
+      bus.$emit('newtoken', localStorage.getItem('token'))
     }
   },
   name: 'LoginPage'
@@ -148,5 +228,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.popup{
+  padding: 20px 10px;
 }
 </style>

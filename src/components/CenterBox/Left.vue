@@ -25,7 +25,7 @@
 <script>
 import Lunbo from './Lunbo.vue'
 import ArticleList from './ArticleList'
-import { getArticleList } from '../api/getArticleList'
+import getArtList from '../api/getArticleList'
 
 export default {
   props: [],
@@ -40,7 +40,7 @@ export default {
   // 方法
   methods: {
     async getArtList () {
-      const { data: res } = await getArticleList()
+      const { data: res } = await getArtList.getArticleList()
       this.artlist = res.data
     }
   },

@@ -50,7 +50,9 @@
           </router-link>
         </li>
         <li>
-            <router-link to="/login" >登录</router-link>
+            <button @click="login" class="btn" v-show="!token">登录</button>
+            <button @click="login" class="btn" v-show="token">退出登录</button>
+            <button v-show="token"><router-link to="/CtrlView">后台</router-link></button>
         </li>
         <li><a href="https://jihau.com/POP/">测试</a></li>
         <li><router-link to="/隐私政策"><span @click="closeMenu">隐私政策</span></router-link></li>
@@ -60,16 +62,22 @@
 </template>
 
 <script>
-// 导入组件
-// import  from ''
+import bus from '../eventBus/eventBusHeader'
 
 export default {
   props: [],
   data () {
-    return {}
+    return {
+      token: localStorage.getItem('token')
+    }
   },
   mounted () {
     window.addEventListener('scroll', this.HeaderTop)
+  },
+  created () {
+    bus.$on('newtoken', val => {
+      this.token = val
+    })
   },
   // 方法
   methods: {
@@ -131,16 +139,18 @@ export default {
           indexHeader.removeAttribute('style')
         }
       }
+    },
+    login () {
+      if (this.token) {
+        localStorage.removeItem('token')
+        location.reload()
+      } else {
+        if (!localStorage.getItem('token')) {
+          this.$router.push('/Login')
+        }
+      }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
   name: 'HeaderM',
   components: {
     // 导入组件
