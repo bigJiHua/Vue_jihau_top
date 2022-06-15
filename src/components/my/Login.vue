@@ -7,9 +7,7 @@
       />
       <div class="user_input_eara">
         <h2>登录 <small>Login</small></h2>
-        <form
-          class="form-horizontal"
-        >
+        <form class="form-horizontal">
           <label for="al_title" class="login_lable"> 用户名:</label>
           <input
             type="text"
@@ -30,18 +28,24 @@
         </form>
         <div class="btnmenu">
           <van-button @click="login" v-show="!loading">登录</van-button>
-          <van-button loading type="primary" loading-text="登录中..." v-show="loading"/>
-          <van-button @click="register" >注册</van-button>
+          <van-button
+            loading
+            type="primary"
+            loading-text="登录中..."
+            v-show="loading"
+          />
+          <van-button @click="register">注册</van-button>
         </div>
       </div>
     </div>
-    <van-popup v-model="show" round class="popup">{{msg}}</van-popup>
+    <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
   </div>
 </template>
 
 <script>
 import PostLogin from '../api/getArticleList'
 import bus from '../eventBus/eventBusHeader'
+
 export default {
   data () {
     return {
@@ -69,7 +73,7 @@ export default {
         }
       },
       show: false,
-      msg: '',
+      msg: '正在登录',
       setTime: 2000
     }
   },
@@ -79,49 +83,53 @@ export default {
       //   if (!this.validata('password')) {
       //   }
       // }
-      if (this.validata('username')) {
-        if (this.validata('password')) {
-          this.show = true
-          this.loading = true
-          const { data: res } = await PostLogin.LoginMenu(this.username, this.password)
-          if (res.status === 200) {
-            localStorage.setItem('token', res.token)
-            if (localStorage.getItem('token')) {
-              const timer = setInterval(() => {
-                this.msg = res.message
-              }, 100)
-              setTimeout(() => {
-                clearInterval(timer)
-                this.show = false
-                this.loading = false
-                this.SendToken()
-                this.$router.push('/CtrlView')
-              }, this.setTime)
+      // 验证是否已经拥有token
+      if (!localStorage.getItem('token')) {
+        // 验证输入的用户名是否合法
+        if (this.validata('username')) {
+          // 验证输入的密码是否合法
+          if (this.validata('password')) {
+            // 发起请求
+            const { data: res } = await PostLogin.LoginMenu(
+              this.username,
+              this.password
+            )
+            // 打开开关
+            this.show = true
+            this.loading = true
+            // 判断返回状态码是否成功
+            if (res.status === 200) {
+              localStorage.setItem('token', res.token)
+              // 判断是否真实写入了token
+              if (localStorage.getItem('token')) {
+                const timer = setInterval(() => {
+                  this.msg = res.message
+                }, 100)
+                setTimeout(() => {
+                  clearInterval(timer)
+                  this.show = false
+                  this.loading = false
+                  this.SendToken(res.User.username, res.User.useridentity, res.token, res.User)
+                  this.$router.push('/CtrlView')
+                }, this.setTime)
+              } else {
+                this.showPopup(res.message)
+                localStorage.removeItem('token')
+                this.$router.push('/Login')
+                location.reload()
+              }
             } else {
-              const timer = setInterval(() => {
-                this.msg = res.message
-              }, 100)
-              setTimeout(() => {
-                clearInterval(timer)
-                this.show = false
-                this.loading = false
-              }, this.setTime)
+              this.showPopup(res.message)
             }
-          } else {
-            const timer = setInterval(() => {
-              this.msg = res.message
-            }, 100)
-            setTimeout(() => {
-              clearInterval(timer)
-              this.show = false
-              this.loading = false
-            }, this.setTime)
           }
         }
+      } else {
+        this.showPopup('已经登录啦！请勿重复提交表单！')
       }
     },
     register () {
-      this.$router.push('/register')
+      // this.$router.push('/register')
+      this.showPopup('当前不可用')
     },
     validata (key) {
       let bool = true
@@ -133,8 +141,22 @@ export default {
       }
       return bool
     },
-    SendToken () {
-      bus.$emit('newtoken', localStorage.getItem('token'))
+    SendToken (username, useridentity, token, User) {
+      bus.$emit('newtoken', token)
+      bus.$emit('Usersdata', User)
+      document.cookie = 'Username=' + username
+      document.cookie = 'Useridentity=' + useridentity
+    },
+    showPopup (msg) {
+      const timer = setInterval(() => {
+        this.show = true
+        this.msg = msg
+      }, 100)
+      setTimeout(() => {
+        clearInterval(timer)
+        this.show = false
+        this.loading = false
+      }, this.setTime)
     }
   },
   name: 'LoginPage'
@@ -142,8 +164,23 @@ export default {
 </script>
 
 <style scoped>
-#logonCon{
-  width: 100%;background-image: linear-gradient(to right top, #caf8ec, #94e1e2, #5ac7df, #18acdf, #008dd9, #5f80dd, #966dd3, #c254b9, #ff5495, #ff7468, #ffa63c, #f6d92a);
+#logonCon {
+  width: 100%;
+  background-image: linear-gradient(
+    to right top,
+    #caf8ec,
+    #94e1e2,
+    #5ac7df,
+    #18acdf,
+    #008dd9,
+    #5f80dd,
+    #966dd3,
+    #c254b9,
+    #ff5495,
+    #ff7468,
+    #ffa63c,
+    #f6d92a
+  );
 }
 * {
   margin: 0;
@@ -224,12 +261,9 @@ export default {
     margin: 5px 0 20px 0;
   }
 }
-.btnmenu{
+.btnmenu {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.popup{
-  padding: 20px 10px;
 }
 </style>

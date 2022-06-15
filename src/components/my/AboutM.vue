@@ -17,7 +17,7 @@
           <a href="https://about.jihau.top">JiHua</a>
         </div>
       </div>
-      <div class="phone_Viewset introduce_doc" id="introduce_doc">
+      <div class="introduce_doc" id="introduce_doc">
         <p>站长简介</p>
         <p>
           你好，我是此网站的站长吉华(<a
@@ -111,10 +111,5 @@ export default {
 }
 .introduce_doc > p:nth-child(3) {
   text-indent: 3.6rem;
-}
-.phone_Viewset{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 </style>

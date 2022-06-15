@@ -7,6 +7,7 @@ import Article from '@/components/Article/article'
 import Login from '@/components/my/Login'
 import Register from '@/components/my/Register'
 import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
+import Users from '@/components/Ctrl_menu/menu/Users'
 
 Vue.use(VueRouter)
 const routes = [
@@ -39,7 +40,11 @@ const routes = [
   {
     path: '/CtrlView',
     name: 'CtrlView',
-    component: CtrlView
+    component: CtrlView,
+    redirect: '/CtrlView/Users',
+    children: [
+      { path: 'Users', component: Users }
+    ]
   }
 ]
 const router = new VueRouter({
@@ -47,7 +52,8 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
-  if (to.name === 'CtrlView') {
+  const address = to.path
+  if (address.match(/^\/CtrlView\//)) {
     if (token) {
       next()
     } else {

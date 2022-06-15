@@ -12,7 +12,6 @@ const LoginMenu = function (username, password) {
     }
   })
 }
-
 export default {
   getArticleList,
   LoginMenu

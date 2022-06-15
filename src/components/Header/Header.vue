@@ -24,8 +24,12 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse" ref="menubox" @mouseout="closeMenu">
       <ul class="nav navbar-nav">
-        <li><router-link to="/" ><span @click="closeMenu">主页</span></router-link></li>
-        <li><a href="https://about.jihau.top"><span @click="closeMenu">关于</span></a></li>
+        <li>
+          <router-link to="/"><span @click="closeMenu">主页</span></router-link>
+        </li>
+        <li>
+          <a href="https://about.jihau.top"><span @click="closeMenu">关于</span></a>
+        </li>
         <li class="dropdown">
           <a
             class="dropdown-toggle"
@@ -40,22 +44,29 @@
           <ul class="dropdown-menu" ref="dropdown_menu">
             <li><a href="https://www.jihau.com">主站博客页面</a></li>
             <li><a href="https://d0tc.com">C语言程序与设计</a></li>
+            <li><router-link to="/隐私政策"><span @click="closeMenu">隐私政策</span></router-link></li>
+            <li><a href="https://jihau.com/POP/">测试</a></li>
           </ul>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right right_btn">
         <li>
           <router-link to="/Search">
-            <span class="glyphicon glyphicon-search" style="font-size: 20px"  @click="closeMenu"></span>
+            <span
+              class="glyphicon glyphicon-search"
+              style="font-size: 20px"
+              @click="closeMenu"
+            ></span>
           </router-link>
         </li>
+        <li><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
         <li>
-            <button @click="login" class="btn" v-show="!token">登录</button>
-            <button @click="login" class="btn" v-show="token">退出登录</button>
-            <button v-show="token"><router-link to="/CtrlView">后台</router-link></button>
+          <button @click="login" class="btn" v-show="!token">登录</button>
+          <button @click="login" class="btn" v-show="token">退出登录</button>
+          <button v-show="token" class="btn">
+            <router-link to="/CtrlView">后台</router-link>
+          </button>
         </li>
-        <li><a href="https://jihau.com/POP/">测试</a></li>
-        <li><router-link to="/隐私政策"><span @click="closeMenu">隐私政策</span></router-link></li>
       </ul>
     </div>
   </div>
@@ -68,14 +79,18 @@ export default {
   props: [],
   data () {
     return {
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      User: '',
+      Useridentity: ''
     }
   },
   mounted () {
     window.addEventListener('scroll', this.HeaderTop)
+    this.User = this.getCookie('Username')
+    this.Useridentity = this.getCookie('Useridentity')
   },
   created () {
-    bus.$on('newtoken', val => {
+    bus.$on('newtoken', (val) => {
       this.token = val
     })
   },
@@ -123,17 +138,19 @@ export default {
     HeaderTop () {
       const indexHeader = this.$refs.headertotop
       if (indexHeader) {
-        const scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+        const scrollTop =
+          document.documentElement.scrollTop ||
+          window.pageYOffset ||
+          document.body.scrollTop
         if (scrollTop >= 10) {
-          indexHeader
-            .setAttribute(
-              'style',
-              `position: fixed;
+          indexHeader.setAttribute(
+            'style',
+            `position: fixed;
               top: -1px;
               z-index:999;
               height:50px;
               `
-            )
+          )
         }
         if (scrollTop === 0) {
           indexHeader.removeAttribute('style')
@@ -147,8 +164,16 @@ export default {
       } else {
         if (!localStorage.getItem('token')) {
           this.$router.push('/Login')
+          document.cookie = 'Username= '
+          document.cookie = 'Useridentity= '
+          this.getCookie('Username')
         }
       }
+    },
+    getCookie (name) {
+      const arr = document.cookie.match(new RegExp('(^|)' + name + '=([^;]*)(;|$)'))
+      if (arr != null) return unescape(arr[2])
+      return null
     }
   },
   name: 'HeaderM',
@@ -159,7 +184,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#navbar{
+#navbar {
   font-size: 1.5rem;
   font-weight: bolder;
 }

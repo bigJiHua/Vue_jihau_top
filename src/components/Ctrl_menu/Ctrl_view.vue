@@ -1,11 +1,15 @@
 <template>
   <div class="CtrlView">
-  <h1>后台管理系统</h1>
+  <ctrl-view-aside></ctrl-view-aside>
+  <router-view class="rightView"></router-view>
   </div>
 </template>
 
 <script>
+import CtrlViewAside from './CtrlViewAside.vue'
+
 export default {
+  components: { CtrlViewAside },
   method () {
   },
   name: 'CtrlView'
@@ -13,5 +17,11 @@ export default {
 </script>
 
 <style scoped>
-
+.CtrlView{
+  display: flex;
+  justify-content: space-between;
+}
+.rightView{
+  flex: 2;
+}
 </style>
