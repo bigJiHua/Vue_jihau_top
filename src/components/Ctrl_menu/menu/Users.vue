@@ -28,11 +28,11 @@
           <div class="tab-pane" id="cagUsers">
             <p><span class="userheader">名字:</span>  <span class="userdata">{{cagUser.username}}</span></p>
             <p><span class="userheader">身份:</span>  <span class="userdata">{{cagUser.useridentity}}</span></p>
-            <p><span class="userheader">用户名:</span><input class="userdata" v-model="cagUser.nickname" @keyup.enter="cagdata"></p>
-            <p><span class="userheader">生日:</span> <input type="date" value="" v-model="cagUser.birthday"></p>
-            <p><span class="userheader">城市:</span>
-            <input class="userdata" v-model="cagUser.city">
-            <select name="" class="form-control" v-model="cagUser.city">
+            <p class="selectcity"><span class="userheader ">用户名:</span><input class="userdata form-control" v-model="cagUser.nickname" @keyup.enter="cagdata"></p>
+            <p><span class="userheader ">生日:</span> <input type="date" value="" v-model="cagUser.birthday"></p>
+            <p class="selectcity"><span class="userheader">城市:</span>
+            <input class="userdata form-control" v-model="cagUser.city" >
+            <select name="" class="form-control select_city" v-model="cagUser.city">
               <option v-for="(item,index) in city" :key="index">{{item}}</option>
             </select>
             </p>
@@ -44,8 +44,8 @@
               <input type="radio" name="sex" value="女" v-model="cagUser.sex" />女
             </label>
             </p>
-            <p><span class="userheader">邮箱:</span>  <input class="userdata" v-model="cagUser.email" type="email"   @keyup.enter="cagdata"></p>
-            <p><span class="userheader">个性签名:</span><br><textarea class="usercontent" :value="cagUser.user_content" maxlength="255"></textarea></p>
+            <p class="selectcity"><span class="userheader">邮箱:</span>  <input class="userdata form-control" v-model="cagUser.email" type="email"   @keyup.enter="cagdata"></p>
+            <p><span class="userheader">个性签名:</span><br><textarea class="usercontent form-control" v-model="cagUser.user_content" maxlength="255"></textarea></p>
             <van-button type="primary" @click="cagdata">提交更改</van-button>
             &nbsp;&nbsp;&nbsp;
             <van-button type="danger">取消更改</van-button>
@@ -56,12 +56,12 @@
           </div>
         </div>
       </div>
-    <!-- <van-popup v-model="show" round class="popup">{{ msg }}</van-popup> -->
+    <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
     <van-overlay :show="showup" @click="showup = false">
       <div class="wrapper" @click.stop>
         <div class="cagarea">
           <h1>上传头像</h1>
-          <input type="file" accept="image/*" ref="imgfile">
+          <input type="file" accept="image/*" ref="imgfile" class="fileup">
           <van-button @click="cag_pic">确认修改头像</van-button>
         </div>
       </div>
@@ -91,13 +91,6 @@ export default {
   method () {
   },
   methods: {
-    getCookie (name) {
-      const arr = document.cookie.match(
-        new RegExp('(^|)' + name + '=([^;]*)(;|$)')
-      )
-      if (arr != null) return unescape(arr[2])
-      return null
-    },
     async getUsersdata () {
       const username = this.getCookie('Username')
       const { data: res } = await GetUData.GetUserData(username)
@@ -105,8 +98,10 @@ export default {
       this.cagUser = res.data
       this.showPopup(res.message)
     },
-    cagdata () {
-      console.log(this.cagUser)
+    async cagdata () {
+      const data = this.cagUser
+      const { data: res } = await GetUData.CagUserData(data)
+      this.showPopup(res.message)
     },
     cag_pic () {
       this.showup = !this.showup
@@ -135,6 +130,13 @@ export default {
         clearInterval(timer)
         this.show = false
       }, 1000)
+    },
+    getCookie (name) {
+      const arr = document.cookie.match(
+        new RegExp('(^|)' + name + '=([^;]*)(;|$)')
+      )
+      if (arr != null) return unescape(arr[2])
+      return null
     }
   },
   name: 'UsersM',
@@ -203,5 +205,22 @@ export default {
   width: 60vw;
   height: 45vh;
   background-color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  .fileup{
+    width: 100%;
+    height: 70%;
+    border: 136px rgba(0, 45, 207, 0.8) ridge;
+  }
+}
+.selectcity{
+  display: inline-flex;
+}
+.select_city{
+  width: 12vw;
+  height: 4rem;
+}
+.userdata{
+  max-width: 15vw;
 }
 </style>

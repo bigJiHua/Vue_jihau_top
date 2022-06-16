@@ -52,16 +52,9 @@ export default {
       username: '1111',
       password: '123456',
       loading: false,
-      // rules: {
-      //   username: {
-      //     rule: /^\w{6,12}$/,
-      //     msg: '用户名必须为字母开头6-12位'
-      //   },
-      //   password: {
-      //     rule: /^\w{6,32}$/,
-      //     msg: '密码不能位空，且要求为6-32位'
-      //   }
-      // },
+      show: false,
+      msg: '正在登录',
+      setTime: 2000,
       rules: {
         username: {
           rule: /^\S/,
@@ -71,18 +64,11 @@ export default {
           rule: /^\S{6,12}/,
           msg: '密码不能为空!且长度为6-12位'
         }
-      },
-      show: false,
-      msg: '正在登录',
-      setTime: 2000
+      }
     }
   },
   methods: {
     async login () {
-      // if (this.validata('username')) {
-      //   if (!this.validata('password')) {
-      //   }
-      // }
       // 验证是否已经拥有token
       if (!localStorage.getItem('token')) {
         // 验证输入的用户名是否合法
@@ -111,6 +97,7 @@ export default {
                   this.loading = false
                   this.SendToken(res.User.username, res.User.useridentity, res.token, res.User)
                   this.$router.push('/CtrlView')
+                  location.reload()
                 }, this.setTime)
               } else {
                 this.showPopup(res.message)
@@ -128,8 +115,11 @@ export default {
       }
     },
     register () {
-      // this.$router.push('/register')
-      this.showPopup('当前不可用')
+      if (localStorage.getItem('token')) {
+        this.showPopup('已经登录啦！')
+      } else {
+        this.$router.push('/register')
+      }
     },
     validata (key) {
       let bool = true
@@ -210,7 +200,7 @@ export default {
   }
 
   .user_input_eara {
-    width: 50%;
+    width: 100%;
     padding: 20px 25px;
   }
 
@@ -244,6 +234,7 @@ export default {
     display: none;
   }
   .user_input_eara {
+    flex: 1;
     padding: 20px 25px;
   }
 

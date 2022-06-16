@@ -62,7 +62,7 @@
         <li><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
         <li>
           <button @click="login" class="btn" v-show="!token">登录</button>
-          <button @click="login" class="btn" v-show="token">退出登录</button>
+          <button @click="outlogin" class="btn" v-show="token">退出登录</button>
           <button v-show="token" class="btn">
             <router-link to="/CtrlView">后台</router-link>
           </button>
@@ -159,16 +159,16 @@ export default {
     },
     login () {
       if (this.token) {
-        localStorage.removeItem('token')
-        location.reload()
+        this.$router.push('/CtrlView')
       } else {
-        if (!localStorage.getItem('token')) {
-          this.$router.push('/Login')
-          document.cookie = 'Username= '
-          document.cookie = 'Useridentity= '
-          this.getCookie('Username')
-        }
+        this.$router.push('/Login')
       }
+    },
+    outlogin () {
+      localStorage.removeItem('token')
+      location.reload()
+      document.cookie = 'Username= '
+      document.cookie = 'Useridentity= '
     },
     getCookie (name) {
       const arr = document.cookie.match(new RegExp('(^|)' + name + '=([^;]*)(;|$)'))

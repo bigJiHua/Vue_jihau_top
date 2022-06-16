@@ -18,7 +18,6 @@ Vue.use(Vant)
 Vue.use(Meta)
 
 Vue.config.productionTip = true
-
 new Vue({
   router,
   render: h => h(App)
