@@ -13,6 +13,9 @@
       <div class="col-md-10">
         <div id="myTabContent" class="tab-content">
           <div class="tab-pane fade in active" id="User">
+            <div class="userpic">
+                <img :src="Users.user_pic" alt="头像"  class="pic" v-show="Users.user_pic">
+            </div>
             <p><span class="userheader">名字:</span><span class="userdata">{{Users.username}}</span></p>
             <p><span class="userheader">身份:</span><span class="userdata">{{Users.useridentity}}</span></p>
             <p><span class="userheader">用户名:</span><span class="userdata">{{Users.nickname}}</span></p>
@@ -21,11 +24,12 @@
             <p><span class="userheader">性别:</span><span class="userdata">{{Users.sex}}</span></p>
             <p><span class="userheader">邮箱:</span><span class="userdata">{{Users.email}}</span></p>
             <p class="usercontent"><span class="userheader">个性签名:</span><span class="userdata">{{Users.user_content}}</span></p>
-            <div class="userpic">
-                <img :src="Users.user_pic" alt="头像"  class="pic" v-show="Users.user_pic">
-            </div>
           </div>
           <div class="tab-pane" id="cagUsers">
+            <div class="userpic"  @click="cag_pic">
+                <img :src="cagUser.user_pic" alt="头像"  class="pic" v-show="Users.user_pic" >
+            </div>
+                <button class="cagpic" @click="cag_pic">更换头像</button>
             <p><span class="userheader">名字:</span>  <span class="userdata">{{cagUser.username}}</span></p>
             <p><span class="userheader">身份:</span>  <span class="userdata">{{cagUser.useridentity}}</span></p>
             <p class="selectcity"><span class="userheader ">用户名:</span><input class="userdata form-control" v-model="cagUser.nickname" @keyup.enter="cagdata"></p>
@@ -49,10 +53,6 @@
             <van-button type="primary" @click="cagdata">提交更改</van-button>
             &nbsp;&nbsp;&nbsp;
             <van-button type="danger">取消更改</van-button>
-            <div class="userpic">
-                <img :src="cagUser.user_pic" alt="头像"  class="pic" v-show="Users.user_pic" >
-            </div>
-            <button class="cagpic" @click="cag_pic">更换头像</button>
           </div>
         </div>
       </div>
@@ -147,6 +147,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
+@media only screen and (min-width: 755px) {
 #User,#cagUsers{
   position: relative;
   padding-top: 20px;
@@ -222,5 +224,80 @@ export default {
 }
 .userdata{
   max-width: 15vw;
+}
+
+}
+@media only screen and (max-width: 755px) {
+#User,#cagUsers{
+  >p>span{
+    font-size: 2rem;
+  }
+  .userheader{
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    width: 12rem;
+  }
+  .usercontent{
+    background-color: rgba(220, 124, 124, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+  }
+  .userpic{
+    height: 100px;
+    width: 100px;
+    padding: 15px 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(220, 220, 220, 0.8);
+    .pic{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .cagpic{
+    height: 40px;
+    width:  100px;
+    border-radius: 12px;
+    top: 100px;
+    right: 5vw;
+    background-color: rgba(220, 220, 220, 0.8);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+  .pic:hover .userheader{
+    color: red;
+  }
+}
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.cagarea {
+  width: 60vw;
+  height: 45vh;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  .fileup{
+    width: 100%;
+    height: 70%;
+    border: 136px rgba(0, 45, 207, 0.8) ridge;
+  }
+}
+.selectcity{
+  display: inline-flex;
+}
+.select_city{
+  width: 12vw;
+  height: 4rem;
+}
+.userdata{
+  max-width: 15vw;
+}
+
 }
 </style>

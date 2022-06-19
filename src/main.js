@@ -3,6 +3,7 @@ import App from './App.vue'
 import Vant from 'vant'
 import router from '@/router/router'
 import Meta from 'vue-meta'
+import store from './store'
 import HeaderM from '@/components/Header/Header'
 import ArtList from '../src/components/Module/Artlist.vue'
 import RightM from '@/components/CenterBox/Right.vue'
@@ -20,5 +21,6 @@ Vue.use(Meta)
 Vue.config.productionTip = true
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

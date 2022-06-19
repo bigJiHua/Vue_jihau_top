@@ -1,29 +1,22 @@
 <template>
-  <div id="" class="Article">
-  <h1>{{title}}</h1>
-  <router-view @cagpage="cagtitle"></router-view>
-  </div>
+  <div id="" class=""></div>
 </template>
 
 <script>
+// 导入组件
+// import  from ''
 
 export default {
   props: [],
   data () {
-    return {
-      title: '文章管理'
-    }
+    return {}
   },
   // 生命周期初始化函数
-  // created () {
+  // created: {
   //
   // },
   // 方法
-  methods: {
-    cagtitle (val) {
-      this.title = val
-    }
-  },
+  methods: {},
   // 监听器
   watch: {},
   // 当前组件的计算属性
@@ -32,7 +25,7 @@ export default {
   filters: {},
   // Vue 中自定义属性
   directives: {},
-  name: 'ArticleM',
+  name: 'CollectionM',
   components: {
     // 导入组件
   }
@@ -40,14 +33,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.table_area {
-  width: 62vw;
-  overflow: scroll;
-}
-.thovs{
-  width: 60px;
-  height: 20px;
-}
-.tdovs{
-}
 </style>
