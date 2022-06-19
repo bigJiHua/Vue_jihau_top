@@ -1,10 +1,11 @@
-import request from '../requst/requst'
-
+import request from '../../requst/requst'
+// 获取用户信息
 const GetUserData = function (username) {
   const params = new URLSearchParams()
   params.append('username', username)
   return request.get('/users/' + username)
 }
+// 修改用户信息
 const CagUserData = function (data) {
   const params = new URLSearchParams()
   params.append('id', data.id)
@@ -18,6 +19,7 @@ const CagUserData = function (data) {
   params.append('username', data.username)
   return request.patch('/users/cagUser', params)
 }
+// 新增用户
 const UpnewUser = function (userdata) {
   const params = new URLSearchParams()
   params.append('username', userdata.username)
@@ -34,11 +36,7 @@ const UpnewUser = function (userdata) {
   } else if (userdata.user_pic) {
     params.append('user_pic', userdata.user_pic)
   }
-  return request.post('/my/reguser', params, {
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded'
-    }
-  })
+  return request.post('/my/reguser', params)
 }
 export default {
   GetUserData,

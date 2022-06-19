@@ -15,6 +15,7 @@ import Setting from '@/components/Ctrl_menu/menu/Setting'
 import Collection from '@/components/Ctrl_menu/menu/Collection'
 import ArticleIndex from '@/components/Ctrl_menu/menu/Article_elpage/Article_index'
 import cagArticle from '@/components/Ctrl_menu/menu/Article_elpage/cagArticle'
+import addArticle from '@/components/Ctrl_menu/menu/Article_elpage/addArticle'
 
 Vue.use(VueRouter)
 const routes = [
@@ -70,6 +71,13 @@ const routes = [
           {
             path: '/cagArticle',
             component: cagArticle,
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/addArticle',
+            component: addArticle,
             meta: {
               requireAuth: true
             }

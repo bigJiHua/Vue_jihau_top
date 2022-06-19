@@ -1,6 +1,9 @@
 <template>
   <div id="" class="Article">
-  <h1>{{title}}</h1>
+  <div class="minheader">
+    <h1>{{title}}</h1>
+    <van-button @click="comback" >{{btntags}}</van-button>
+  </div>
   <router-view @cagpage="cagtitle"></router-view>
   </div>
 </template>
@@ -11,7 +14,9 @@ export default {
   props: [],
   data () {
     return {
-      title: '文章管理'
+      title: '文章管理',
+      btntags: '新增文章',
+      isGo: false
     }
   },
   // 生命周期初始化函数
@@ -22,6 +27,18 @@ export default {
   methods: {
     cagtitle (val) {
       this.title = val
+    },
+    comback () {
+      this.isGo = !this.isGo
+      if (this.isGo) {
+        this.title = '新增文章'
+        this.btntags = '返回'
+        this.$router.push('/addArticle')
+      } else {
+        this.title = '文章管理'
+        this.btntags = '新增文章'
+        this.$router.push('/ArticleIndex')
+      }
     }
   },
   // 监听器
@@ -40,14 +57,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.table_area {
-  width: 62vw;
-  overflow: scroll;
-}
-.thovs{
-  width: 60px;
-  height: 20px;
-}
-.tdovs{
+.minheader{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
 }
 </style>

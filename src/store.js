@@ -6,11 +6,12 @@ export default new Vuex.Store({
   // 状态 全局数据 调用this.$store.state.***
   state: {
     Userdata: [],
+    ArticleData: [],
     token: localStorage.getItem('token')
   },
   mutations: {
-    addUserdata (state, userdata) {
-      state.User = userdata
+    cagArtData (state, ArticleData) {
+      state.ArticleData = ArticleData
     }
   },
   actions: {

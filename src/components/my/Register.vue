@@ -103,7 +103,7 @@
             loading-text="注册中..."
             v-show="loading"
           />
-          <van-button>返回</van-button>
+          <van-button @click="comback">返回</van-button>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
 </template>
 
 <script>
-import PostNewUser from '../api/UserData'
+import PostNewUser from '../api/Ctrl_menuAPI/UserData'
 export default {
   data () {
     return {
@@ -120,7 +120,7 @@ export default {
       showup: false,
       show: false,
       msg: '',
-      elsepassword: '123456',
+      elsepassword: '',
       pic: 'http://127.0.0.1/uploads/undraw_Login_re_4vu2.png',
       newUser: {
         username: '',
@@ -225,6 +225,9 @@ export default {
         this.show = false
         this.loading = false
       }, 2000)
+    },
+    comback () {
+      this.$router.back()
     }
   },
   name: 'RegisterPage'

@@ -73,26 +73,18 @@
 </template>
 
 <script>
-import bus from '../eventBus/eventBusHeader'
 
 export default {
   props: [],
   data () {
     return {
       token: localStorage.getItem('token'),
-      User: '',
-      Useridentity: ''
+      User: localStorage.getItem('Username'),
+      Useridentity: localStorage.getItem('Useridentity')
     }
   },
   mounted () {
     window.addEventListener('scroll', this.HeaderTop)
-    this.User = this.getCookie('Username')
-    this.Useridentity = this.getCookie('Useridentity')
-  },
-  created () {
-    bus.$on('newtoken', (val) => {
-      this.token = val
-    })
   },
   // 方法
   methods: {
@@ -166,14 +158,9 @@ export default {
     },
     outlogin () {
       localStorage.removeItem('token')
+      localStorage.removeItem('Username')
+      localStorage.removeItem('Useridentity')
       location.reload()
-      document.cookie = 'Username= '
-      document.cookie = 'Useridentity= '
-    },
-    getCookie (name) {
-      const arr = document.cookie.match(new RegExp('(^|)' + name + '=([^;]*)(;|$)'))
-      if (arr != null) return unescape(arr[2])
-      return null
     }
   },
   name: 'HeaderM',

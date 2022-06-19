@@ -43,8 +43,7 @@
 </template>
 
 <script>
-import PostLogin from '../api/getArticleList'
-import bus from '../eventBus/eventBusHeader'
+import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
 
 export default {
   data () {
@@ -86,6 +85,8 @@ export default {
             // 判断返回状态码是否成功
             if (res.status === 200) {
               localStorage.setItem('token', res.token)
+              localStorage.setItem('Username', res.User.username)
+              localStorage.setItem('Useridentity', res.User.useridentity)
               // 判断是否真实写入了token
               if (localStorage.getItem('token')) {
                 const timer = setInterval(() => {
@@ -95,7 +96,6 @@ export default {
                   clearInterval(timer)
                   this.show = false
                   this.loading = false
-                  this.SendToken(res.User.username, res.User.useridentity, res.token, res.User)
                   this.$router.push('/CtrlView')
                   location.reload()
                 }, this.setTime)
@@ -130,12 +130,6 @@ export default {
         return false
       }
       return bool
-    },
-    SendToken (username, useridentity, token, User) {
-      bus.$emit('newtoken', token)
-      bus.$emit('Usersdata', User)
-      document.cookie = 'Username=' + username
-      document.cookie = 'Useridentity=' + useridentity
     },
     showPopup (msg) {
       const timer = setInterval(() => {

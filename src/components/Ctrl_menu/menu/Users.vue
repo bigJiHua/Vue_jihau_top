@@ -2,7 +2,7 @@
   <div id="" class="Users">
       <div class="col-md-2">
         <ul id="myTab" class="nav">
-          <li class="active nav-tabs">
+          <li class="active nav-tabs" @click="getUsersdata">
             <a href="#User" data-toggle="tab">基本信息</a>
           </li>
           <li class="nav-tabs">
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import GetUData from '@/components/api/UserData'
+import GetUData from '@/components/api/Ctrl_menuAPI/UserData'
 
 export default {
   props: [],
@@ -86,14 +86,13 @@ export default {
   },
   // 生命周期初始化函数
   created () {
-    this.getUsersdata()
+    this.getUsersdata(localStorage.getItem('Username'))
   },
   method () {
   },
   methods: {
-    async getUsersdata () {
-      const username = this.getCookie('Username')
-      const { data: res } = await GetUData.GetUserData(username)
+    async getUsersdata (User) {
+      const { data: res } = await GetUData.GetUserData(User)
       this.Users = res.data
       this.cagUser = res.data
       this.showPopup(res.message)
@@ -130,13 +129,6 @@ export default {
         clearInterval(timer)
         this.show = false
       }, 1000)
-    },
-    getCookie (name) {
-      const arr = document.cookie.match(
-        new RegExp('(^|)' + name + '=([^;]*)(;|$)')
-      )
-      if (arr != null) return unescape(arr[2])
-      return null
     }
   },
   name: 'UsersM',
@@ -235,8 +227,7 @@ export default {
   .userheader{
     display: inline-block;
     padding: 5px 10px;
-    margin-right: 10px;
-    width: 12rem;
+    width: 11rem;
   }
   .usercontent{
     background-color: rgba(220, 124, 124, 0.8);
@@ -292,11 +283,11 @@ export default {
   display: inline-flex;
 }
 .select_city{
-  width: 12vw;
+  width: 19vw;
   height: 4rem;
 }
 .userdata{
-  max-width: 15vw;
+  max-width: 22vw;
 }
 
 }

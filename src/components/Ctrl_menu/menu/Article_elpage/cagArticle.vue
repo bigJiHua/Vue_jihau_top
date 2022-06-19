@@ -1,29 +1,54 @@
 <template>
   <div id="" class="cagArticle">
-  <van-button @click="comback" type="danger">取消编辑</van-button>
-  <van-button type="primary">主要按钮</van-button>
-<van-button type="success">成功按钮</van-button>
-<van-button type="default">默认按钮</van-button>
-<van-button type="warning">警告按钮</van-button>
-<van-button type="danger">危险按钮</van-button>
-
+    <van-button @click="comback" type="danger" size="small"
+      >取消编辑</van-button
+    >
+    <van-button color="#1989FA" size="small">主要按钮</van-button>
+    <div class="cagArea">
+      <aside :class="{ cagAside: !Asidestate.isChange, 'opAside': Asidestate.isChange}">
+      <div class="astate" @click="cagastate">
+        <i :class="{ 'glyphicon glyphicon-chevron-left': !Asidestate.isChange, 'glyphicon glyphicon-resize-horizontal': Asidestate.isChange } "></i>
+      </div>
+        <h1 class="title">
+          标题:<input type="text" v-model="Article.data.title" class="form-control"/>
+        </h1>
+        <h4>作者:{{ Article.data.username }}</h4>
+        <h4>发表日期:{{ Article.data.pub_date }}</h4>
+        <h4>
+          标签:<input type="text" v-model="Article.data.lable" class="form-control"/>
+        </h4>
+        <h4>
+          关键词:<input type="text" v-model="Article.data.keyword" class="form-control"/>
+        </h4>
+      </aside>
+      <div class="cagcontent"></div>
+    </div>
   </div>
 </template>
 
 <script>
-// 导入组件
-// import  from ''
-
 export default {
   props: [],
   data () {
-    return {}
+    return {
+      Article: {
+        data: [],
+        newdata: []
+      },
+      Asidestate: {
+        isChange: false
+      }
+    }
   },
   // 生命周期初始化函数
   created () {
+    this.Article.data = this.$store.state.ArticleData
   },
   // 方法
   methods: {
+    cagastate () {
+      this.Asidestate.isChange = !this.Asidestate.isChange
+    },
     comback () {
       const cagpage = '文章管理'
       this.$emit('cagpage', cagpage)
@@ -46,4 +71,42 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.cagArea {
+  display: flex;
+}
+.cagAside {
+  flex: 0.5;
+  background-color: rgb(5, 0, 105);
+  color: white;
+  padding: 5px;
+  position: relative;
+  max-width: 16vw;
+}
+.opAside {
+  background-color: rgb(5, 0, 105);
+  color: white;
+  width: 3.5rem;
+  overflow: hidden;
+  position: relative;
+  animation: down 0.5s;
+}
+@keyframes down {
+  from {
+    width: 16vw;
+  }
+  to {
+    width: 3rem;
+  }
+}
+.cagcontent {
+  flex: 2;
+  background-color: rgb(209, 184, 184);
+}
+.astate{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 3rem;
+}
 </style>

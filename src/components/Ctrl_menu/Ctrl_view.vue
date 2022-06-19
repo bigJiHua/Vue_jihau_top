@@ -19,9 +19,9 @@ export default {
 <style scoped>
 .CtrlView{
   display: flex;
-  justify-content: space-between;
 }
 .rightView{
-  flex: 2;
+  min-width: 64vw;
+  max-width: 67vw;
 }
 </style>

@@ -35,7 +35,7 @@ export default {
   // 方法
   methods: {
     UserUidState () {
-      const state = this.getCookie('Useridentity')
+      const state = localStorage.getItem('Useridentity')
       switch (state) {
         case '用户':
           this.UidState = false
@@ -43,13 +43,6 @@ export default {
         case '管理员':
           this.UidState = true
       }
-    },
-    getCookie (name) {
-      const arr = document.cookie.match(
-        new RegExp('(^|)' + name + '=([^;]*)(;|$)')
-      )
-      if (arr != null) return unescape(arr[2])
-      return null
     }
   },
   // 监听器
