@@ -2,7 +2,7 @@
   <div class="ararc">
     <p class="ararc_title Cookie">文章归档</p>
     <div class="ararc_list">
-      <span class="list_year" @click.prevent="listod()">2021年</span>
+      <span class="list_year" @click.prevent="listod()">2022年</span>
       <div :class="{ list_down: isOpen,'list_open': !isOpen }" id="new_article_list_m">
         <div class="month" v-for="(art, index) in monthlist" :key="index">
           <Articlezkm
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import axios from '@/axios/axios'
 import Articlezkm from './article_zk_m.vue'
+import getArc from '../api/getArticleList'
 
 export default {
   props: [],
@@ -39,7 +39,7 @@ export default {
       this.isOpen = !this.isOpen
     },
     async getdata () {
-      const { data: res } = await axios.get('https://api.da4.cc/uploads/data.json')
+      const { data: res } = await getArc.getArchive()
       const newres = res.data
       const articleList = [...new Set(newres.map((word) => word.month))]
       const newalist = []

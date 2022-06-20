@@ -3,7 +3,7 @@
     <span class="mnumber" @click="mdod()">{{ art }}</span>
     <ul v-for="(obj, index) in newList[index]" :key="index">
       <li :class="{ daylists: misOpen, daylist: !misOpen }">
-        <a :href="obj.hurl">
+        <a @click="to(obj.hurl)">
           {{ obj.title }}
         </a>
       </li>
@@ -43,6 +43,9 @@ export default {
     },
     gettt () {
       console.log(this)
+    },
+    to (url) {
+      this.$router.push('/article/' + url)
     }
   },
   name: 'articleListZk',

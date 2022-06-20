@@ -1,27 +1,53 @@
 <template>
   <div id="" class="cagArticle">
-    <van-button @click="comback" type="danger" size="small"
-      >取消编辑</van-button
-    >
-    <van-button color="#1989FA" size="small">主要按钮</van-button>
+    <div class="btn">
+      <van-button @click="comback" type="danger" size="small"
+        >取消编辑</van-button
+      >
+      <van-button color="#1989FA" size="small" @click="saveArticle">保存</van-button>
+    </div>
     <div class="cagArea">
-      <aside :class="{ cagAside: !Asidestate.isChange, 'opAside': Asidestate.isChange}">
-      <div class="astate" @click="cagastate">
-        <i :class="{ 'glyphicon glyphicon-chevron-left': !Asidestate.isChange, 'glyphicon glyphicon-resize-horizontal': Asidestate.isChange } "></i>
-      </div>
+      <aside
+        :class="{
+          cagAside: !Asidestate.isChange,
+          opAside: Asidestate.isChange,
+        }"
+      >
+        <div class="astate" @click="cagastate">
+          <i
+            :class="{
+              'glyphicon glyphicon-chevron-left': !Asidestate.isChange,
+              'glyphicon glyphicon-resize-horizontal': Asidestate.isChange,
+            }"
+          ></i>
+        </div>
         <h1 class="title">
-          标题:<input type="text" v-model="Article.data.title" class="form-control"/>
+          标题:<input
+            type="text"
+            v-model="Article.data.title"
+            class="form-control"
+          />
         </h1>
         <h4>作者:{{ Article.data.username }}</h4>
         <h4>发表日期:{{ Article.data.pub_date }}</h4>
         <h4>
-          标签:<input type="text" v-model="Article.data.lable" class="form-control"/>
+          标签:<input
+            type="text"
+            v-model="Article.data.lable"
+            class="form-control"
+          />
         </h4>
         <h4>
-          关键词:<input type="text" v-model="Article.data.keyword" class="form-control"/>
+          关键词:<input
+            type="text"
+            v-model="Article.data.keyword"
+            class="form-control"
+          />
         </h4>
       </aside>
-      <div class="cagcontent"></div>
+      <div class="cagcontent">
+        <ckeditor v-model="Article.data.content" :config="editorConfig" :editor-url="editorUrl"></ckeditor>
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +63,16 @@ export default {
       },
       Asidestate: {
         isChange: false
-      }
+      },
+      editorConfig: {
+        // The configuration of the editor.
+        height: 450,
+        skin: 'moono-lisa',
+        extraPlugins: ['quicktable', 'codesnippet', 'button'],
+        removePlugins: 'easyimage,cloudservices,exportpdf',
+        codeSnippet_theme: 'monokai_sublime'
+      },
+      editorUrl: '../ckeditor/ckeditor.js'
     }
   },
   // 生命周期初始化函数
@@ -53,6 +88,9 @@ export default {
       const cagpage = '文章管理'
       this.$emit('cagpage', cagpage)
       this.$router.push('/ArticleIndex')
+    },
+    saveArticle () {
+      console.log(this.$store.state.ArticleData)
     }
   },
   // 监听器
@@ -102,7 +140,7 @@ export default {
   flex: 2;
   background-color: rgb(209, 184, 184);
 }
-.astate{
+.astate {
   position: absolute;
   top: 0;
   right: 0;

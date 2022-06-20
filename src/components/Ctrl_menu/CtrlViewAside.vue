@@ -66,7 +66,7 @@ export default {
   background-color: rgba(214, 210, 210, 0.2);
   min-height: 92vh;
   margin-right: 3vw;
-  width: 11vw;
+  min-width: 11vw;
 }
 
 @media only screen and (max-width: 755px) {

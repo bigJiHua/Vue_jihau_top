@@ -3,24 +3,28 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th v-for="(item,index) in article.thead" :key="index"  class="thovs">{{item}}</th>
+          <th v-for="(item, index) in article.thead" :key="index" class="thovs">
+            {{ item }}
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr  v-for="(item,index) in article.list" :key="index">
-          <td class="tdovs">{{item.id}}</td>
-          <td class="tdovs">{{item.username}}</td>
-          <td class="tdovs">{{item.title}}</td>
-          <td class="tdovs">{{item.pub_date}}</td>
-          <td class="tdovs">{{item.goodnum}}</td>
-          <td class="tdovs">{{item.artLookCount}}</td>
-          <td class="tdovs">{{item.lable}}</td>
-          <td class="tdovs">{{item.keyword}}</td>
-          <td class="tdovs">{{item.is_top}}</td>
-          <td class="tdovs">{{item.state}}</td>
+        <tr v-for="(item, index) in article.list" :key="index">
+          <td class="tdovs">{{ item.id }}</td>
+          <td class="tdovs">{{ item.username }}</td>
+          <td class="tdovs">{{ item.title }}</td>
+          <td class="tdovs">{{ item.pub_date }}</td>
+          <td class="tdovs">{{ item.goodnum }}</td>
+          <td class="tdovs">{{ item.artLookCount }}</td>
+          <td class="tdovs">{{ item.lable }}</td>
+          <td class="tdovs">{{ item.keyword }}</td>
+          <td class="tdovs">{{ item.is_top }}</td>
+          <td class="tdovs">{{ item.state }}</td>
           <td class="btn">
-          <van-button @click="comback(item)" color="#1989FA" size="small">编辑</van-button>
-          <van-button type="danger" size="small">删除</van-button>
+            <van-button @click="comback(item)" color="#1989FA" size="small"
+              >编辑</van-button
+            >
+            <van-button type="danger" size="small">删除</van-button>
           </td>
         </tr>
       </tbody>
@@ -35,7 +39,19 @@ export default {
   data () {
     return {
       article: {
-        thead: ['文章ID', '作者', '标题', '发表日期', '点赞数', '浏览次数', '标签', '关键词', '是否置顶', '状态', '操作'],
+        thead: [
+          '文章ID',
+          '作者',
+          '标题',
+          '发表日期',
+          '点赞数',
+          '浏览次数',
+          '标签',
+          '关键词',
+          '是否置顶',
+          '状态',
+          '操作'
+        ],
         list: []
       }
     }
@@ -74,10 +90,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.thovs{
+@media only screen and (max-width: 755px) {
+  .table_area {
+    overflow: scroll;
+  }
+}
+.thovs {
   text-align: center;
 }
-.btn{
+.btn {
   display: flex;
   justify-content: space-between;
 }

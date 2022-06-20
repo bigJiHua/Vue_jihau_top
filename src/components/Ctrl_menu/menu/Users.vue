@@ -93,9 +93,17 @@ export default {
   methods: {
     async getUsersdata (User) {
       const { data: res } = await GetUData.GetUserData(User)
-      this.Users = res.data
-      this.cagUser = res.data
-      this.showPopup(res.message)
+      if (res.status === 401) {
+        alert('登录超时，请重新登录')
+        localStorage.removeItem('token')
+        localStorage.removeItem('Username')
+        localStorage.removeItem('Useridentity')
+        this.$router.push('/Login')
+      } else {
+        this.Users = res.data
+        this.cagUser = res.data
+        this.showPopup(res.message)
+      }
     },
     async cagdata () {
       const data = this.cagUser
@@ -107,11 +115,6 @@ export default {
       const picfile = this.$refs.imgfile
       const _this = this
       picfile.addEventListener('change', function () {
-        // 当没选中图片时，清除预览
-        if (this.files.length === 0) {
-          _this.Users.user_pic = _this.cagUser.user_pic
-          return
-        }
         // 实例化一个FileReader
         const reader = new FileReader()
         reader.onload = function (e) {

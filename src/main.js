@@ -11,12 +11,14 @@ import 'vant/lib/index.css'
 import '@/assets/css/index.css'
 import '@/assets/css/typeface.css'
 import '@/assets/js/index.js'
+import CKEditor from 'ckeditor4-vue'
 
 Vue.component('ArtList', ArtList)
 Vue.component('HeaderM', HeaderM)
 Vue.component('RightM', RightM)
 Vue.use(Vant)
 Vue.use(Meta)
+Vue.use(CKEditor)
 
 Vue.config.productionTip = true
 new Vue({
