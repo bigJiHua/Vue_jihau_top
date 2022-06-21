@@ -5,6 +5,7 @@
         >取消编辑</van-button
       >
       <van-button color="#1989FA" size="small" @click="saveArticle">保存</van-button>
+      <van-button @click="getimg">获取图库</van-button>
     </div>
     <div class="cagArea">
       <aside
@@ -49,17 +50,42 @@
         <ckeditor v-model="Article.data.content" :config="editorConfig" :editor-url="editorUrl"></ckeditor>
       </div>
     </div>
+    <div class="imgarea" v-show="isOpenimg">
+    <div class="close" @click="isOpenimg = false"><i class="glyphicon glyphicon-remove"></i></div>
+      <p class="atitle">图库</p>
+      <div class="tip">
+      <h4>{{Article.tip}}</h4>
+      <ul v-if="Article.img" class="kuimgarea">
+        <li v-for="(item,index) in Article.img" :key="index">
+          <div class="imgcopy">
+          <img :src="item.userimage" alt="" class="kuimg">
+          <input type="text" :value="item.userimage">
+          </div>
+        </li>
+      </ul>
+        <div class="upload">
+          <h3>上传文件</h3>
+          <input type="file" accept="image/*" ref="imgfile" class="fileup">
+          <van-button @click="up_pic">上传</van-button>
+          <p><strong>⚠上传结果请等待消息提示，如果未提示上传成功请刷新页面重新上传</strong></p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import getdata from '@/components/api/Ctrl_menuAPI/getPicAPI'
+
 export default {
   props: [],
   data () {
     return {
       Article: {
         data: [],
-        newdata: []
+        newdata: [],
+        img: [],
+        tip: ''
       },
       Asidestate: {
         isChange: false
@@ -72,7 +98,8 @@ export default {
         removePlugins: 'easyimage,cloudservices,exportpdf',
         codeSnippet_theme: 'monokai_sublime'
       },
-      editorUrl: '../ckeditor/ckeditor.js'
+      editorUrl: '../ckeditor/ckeditor.js',
+      isOpenimg: false
     }
   },
   // 生命周期初始化函数
@@ -91,6 +118,29 @@ export default {
     },
     saveArticle () {
       console.log(this.$store.state.ArticleData)
+    },
+    async getimg () {
+      this.isOpenimg = !this.isOpenimg
+      const usdata = this.Article.data.username
+      const { data: res } = await getdata.getImage(usdata)
+      this.Article.tip = res.message
+      this.$toast({
+        message: res.message,
+        position: 'top'
+      })
+      this.Article.img = res.data
+    },
+    up_pic () {
+      const picfile = this.$refs.imgfile
+      picfile.addEventListener('change', async (e) => {
+        console.log('object')
+        const file = e.target.files[0]
+        const { data: res } = await getdata.upImage(file, localStorage.getItem('Username'))
+        this.$toast({
+          message: res.message,
+          position: 'top'
+        })
+      })
     }
   },
   // 监听器
@@ -146,5 +196,32 @@ export default {
   right: 0;
   padding: 5px;
   font-size: 3rem;
+}
+.imgarea{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px;
+  height: 500px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  .atitle{
+    font-size: 3rem;
+    font-weight: bolder;
+    border-bottom: 2px gray solid;
+  }
+}
+.kuimgarea{
+  display: flex;
+  .imgcopy{
+    display: flex;
+    flex-direction: column;
+  }
+  .kuimg{
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+  }
 }
 </style>

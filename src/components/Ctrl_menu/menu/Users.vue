@@ -14,7 +14,7 @@
         <div id="myTabContent" class="tab-content">
           <div class="tab-pane fade in active" id="User">
             <div class="userpic">
-                <img :src="Users.user_pic" alt="头像"  class="pic" v-show="Users.user_pic">
+                <img :src="Users.user_pic" alt="头像"  class="pic">
             </div>
             <p><span class="userheader">名字:</span><span class="userdata">{{Users.username}}</span></p>
             <p><span class="userheader">身份:</span><span class="userdata">{{Users.useridentity}}</span></p>
@@ -27,7 +27,7 @@
           </div>
           <div class="tab-pane" id="cagUsers">
             <div class="userpic"  @click="cag_pic">
-                <img :src="cagUser.user_pic" alt="头像"  class="pic" v-show="Users.user_pic" >
+                <img :src="cagUser.user_pic" alt="头像"  class="pic">
             </div>
                 <button class="cagpic" @click="cag_pic">更换头像</button>
             <p><span class="userheader">名字:</span>  <span class="userdata">{{cagUser.username}}</span></p>
@@ -86,13 +86,13 @@ export default {
   },
   // 生命周期初始化函数
   created () {
-    this.getUsersdata(localStorage.getItem('Username'))
+    this.getUsersdata()
   },
   method () {
   },
   methods: {
-    async getUsersdata (User) {
-      const { data: res } = await GetUData.GetUserData(User)
+    async getUsersdata () {
+      const { data: res } = await GetUData.GetUserData(localStorage.getItem('Username'))
       if (res.status === 401) {
         alert('登录超时，请重新登录')
         localStorage.removeItem('token')
