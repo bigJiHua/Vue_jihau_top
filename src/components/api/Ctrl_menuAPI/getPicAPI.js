@@ -17,8 +17,9 @@ const upImage = function (file, user) {
 }
 const delImage = function (data) {
   const params = new URLSearchParams()
-  params.append('picusername', data)
-  return request.post('/article/imgdel/', params)
+  params.append('picusername', data.picusername)
+  params.append('id', data.id)
+  return request.post('/article/imgdel', params)
 }
 
 export default {

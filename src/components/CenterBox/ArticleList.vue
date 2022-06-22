@@ -6,13 +6,11 @@
       </p>
       <div class="article_area">
         <div class="article_img">
-          <img class="article_img_item" src="https://jihau.top/img/logo.png" />
+          <img class="article_img_item" :src="coverImg" />
         </div>
         <div class="article_doc">
           <p class="article_doc_txt">
-            {{
-              content
-            }}
+            <span v-html="content"></span>
           </p>
         </div>
       </div>

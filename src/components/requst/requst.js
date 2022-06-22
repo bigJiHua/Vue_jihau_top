@@ -20,7 +20,6 @@ axios.interceptors.response.use(function (response) {
 
 const request = axios.create({
   baseURL: 'http://127.0.0.1',
-  timeout: 3000,
   headers: {
     'content-type': 'application/x-www-form-urlencoded',
     Authorization: localStorage.getItem('token')

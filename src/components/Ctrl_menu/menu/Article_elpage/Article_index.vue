@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in article.list" :key="index">
-          <td class="tdovs">{{ item.id }}</td>
+          <td class="tdovs"><a @click="togo(item.article_id)">{{ item.article_id }}</a></td>
           <td class="tdovs">{{ item.username }}</td>
           <td class="tdovs">{{ item.title }}</td>
           <td class="tdovs">{{ item.pub_date }}</td>
@@ -21,10 +21,10 @@
           <td class="tdovs">{{ item.is_top }}</td>
           <td class="tdovs">{{ item.state }}</td>
           <td class="btn">
-            <van-button @click="comback(item)" color="#1989FA" size="small"
+            <van-button @click="cagArticle(item)" color="#1989FA" size="small"
               >编辑</van-button
             >
-            <van-button type="danger" size="small">删除</van-button>
+            <van-button type="danger" size="small" @click="delArticle(item.id)">删除</van-button>
           </td>
         </tr>
       </tbody>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import UArticlelist from '@/components/api/Ctrl_menuAPI/ArticleAPI'
+import Articleset from '@/components/api/Ctrl_menuAPI/ArticleAPI'
 
 export default {
   data () {
@@ -63,15 +63,34 @@ export default {
   // 方法
   methods: {
     async getarticle (username) {
-      const { data: res } = await UArticlelist.UsergetArticle(username)
+      const { data: res } = await Articleset.UsergetArticle(username)
       const article = res.data
       this.article.list = article
+      this.$toast({
+        message: res.message,
+        position: 'top'
+      })
     },
-    comback (data) {
+    cagArticle (data) {
       const cagpage = '编辑文章'
       this.$emit('cagpage', cagpage)
       this.$store.commit('cagArtData', data)
       this.$router.push('/cagArticle')
+    },
+    async delArticle (id) {
+      const condel = confirm('确认删除这篇文章吗？')
+      const _this = this
+      if (condel) {
+        const { data: res } = await Articleset.UserdelArticle(id)
+        this.$toast({
+          message: res.message,
+          position: 'top'
+        })
+        _this.getarticle(localStorage.getItem('Username'))
+      }
+    },
+    togo (path) {
+      this.$router.push('/article/' + path)
     }
   },
   // 监听器

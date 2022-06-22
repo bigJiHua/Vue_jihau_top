@@ -4,24 +4,26 @@
       <van-button @click="comback" type="danger" size="small"
         >取消编辑</van-button
       >
-      <van-button color="#1989FA" size="small" @click="saveArticle">保存</van-button>
+      <van-button color="#1989FA" size="small" @click="saveArticle"
+        >保存</van-button
+      >
       <van-button @click="getimg">获取图库</van-button>
     </div>
     <div class="cagArea">
+      <div class="astate" @click="cagastate">
+        <i
+          :class="{
+            'glyphicon glyphicon-chevron-left': !Asidestate.isChange,
+            'glyphicon glyphicon-resize-horizontal': Asidestate.isChange,
+          }"
+        ></i>
+      </div>
       <aside
         :class="{
           cagAside: !Asidestate.isChange,
           opAside: Asidestate.isChange,
         }"
       >
-        <div class="astate" @click="cagastate">
-          <i
-            :class="{
-              'glyphicon glyphicon-chevron-left': !Asidestate.isChange,
-              'glyphicon glyphicon-resize-horizontal': Asidestate.isChange,
-            }"
-          ></i>
-        </div>
         <h1 class="title">
           标题:<input
             type="text"
@@ -45,29 +47,48 @@
             class="form-control"
           />
         </h4>
+        <h4>
+          封面：
+          <input
+            type="text"
+            v-model="Article.data.cover_img"
+            class="imgurl form-control"
+          />
+          预览
+          <img :src="Article.data.cover_img" alt="文章封面" class="pvimg" />
+        </h4>
+        <p>⚠ 图片嵌入 需要点击获取图片才能查阅已经上传的本账户内的图片</p>
       </aside>
       <div class="cagcontent">
-        <ckeditor v-model="Article.data.content" :config="editorConfig" :editor-url="editorUrl"></ckeditor>
+        <ckeditor
+          v-model="Article.data.content"
+          :config="editorConfig"
+          :editor-url="editorUrl"
+        ></ckeditor>
       </div>
     </div>
     <div class="imgarea" v-show="isOpenimg">
-    <div class="close" @click="isOpenimg = false"><i class="glyphicon glyphicon-remove"></i></div>
+      <div class="close" @click="isOpenimg = false">
+        <i class="glyphicon glyphicon-remove"></i>
+      </div>
       <p class="atitle">图库</p>
       <div class="tip">
-      <h4>{{Article.tip}}</h4>
-      <ul v-if="Article.img" class="kuimgarea">
-        <li v-for="(item,index) in Article.img" :key="index">
-          <div class="imgcopy">
-          <img :src="item.userimage" alt="" class="kuimg">
-          <input type="text" :value="item.userimage">
-          </div>
-        </li>
-      </ul>
+        <ul v-if="Article.img" class="kuimgarea">
+          <li v-for="(item, index) in Article.img" :key="index">
+              <van-button @click="delimg(item.id)">
+              <i class="glyphicon glyphicon-trash"></i>
+              </van-button>
+              <img :src="item.userimage" alt="" class="kuimg" />
+              <input type="text" :value="item.userimage" class="form-control"/>
+          </li>
+        </ul>
         <div class="upload">
           <h3>上传文件</h3>
-          <input type="file" accept="image/*" ref="imgfile" class="fileup">
+          <input type="file" accept="image/*" ref="imgfile" class="fileup" />
           <van-button @click="up_pic">上传</van-button>
-          <p><strong>⚠上传结果请等待消息提示，如果未提示上传成功请刷新页面重新上传</strong></p>
+          <p>
+            <strong>⚠如果没反应，未提示上传成功消息，请刷新页面重新上传</strong>
+          </p>
         </div>
       </div>
     </div>
@@ -75,7 +96,8 @@
 </template>
 
 <script>
-import getdata from '@/components/api/Ctrl_menuAPI/getPicAPI'
+import setdata from '@/components/api/Ctrl_menuAPI/getPicAPI'
+import setArticle from '@/components/api/Ctrl_menuAPI/ArticleAPI'
 
 export default {
   props: [],
@@ -83,16 +105,14 @@ export default {
     return {
       Article: {
         data: [],
-        newdata: [],
-        img: [],
-        tip: ''
+        img: []
       },
       Asidestate: {
         isChange: false
       },
       editorConfig: {
-        // The configuration of the editor.
-        height: 450,
+        // 编辑器设定.
+        height: 500,
         skin: 'moono-lisa',
         extraPlugins: ['quicktable', 'codesnippet', 'button'],
         removePlugins: 'easyimage,cloudservices,exportpdf',
@@ -115,15 +135,21 @@ export default {
       const cagpage = '文章管理'
       this.$emit('cagpage', cagpage)
       this.$router.push('/ArticleIndex')
+      this.$store.commit('cagArtData', '')
     },
-    saveArticle () {
-      console.log(this.$store.state.ArticleData)
+    async saveArticle () {
+      const data = this.Article.data
+      const { data: res } = await setArticle.UsercagArticle(data)
+      this.$toast({
+        message: res.message,
+        position: 'top'
+      })
+      console.log(res.data)
     },
     async getimg () {
       this.isOpenimg = !this.isOpenimg
       const usdata = this.Article.data.username
-      const { data: res } = await getdata.getImage(usdata)
-      this.Article.tip = res.message
+      const { data: res } = await setdata.getImage(usdata)
       this.$toast({
         message: res.message,
         position: 'top'
@@ -135,32 +161,112 @@ export default {
       picfile.addEventListener('change', async (e) => {
         console.log('object')
         const file = e.target.files[0]
-        const { data: res } = await getdata.upImage(file, localStorage.getItem('Username'))
+        const { data: res } = await setdata.upImage(
+          file,
+          localStorage.getItem('Username')
+        )
         this.$toast({
           message: res.message,
           position: 'top'
         })
+        this.getimg()
       })
+    },
+    async delimg (id) {
+      const condel = confirm('确认删除这张图片吗？')
+      const data = {
+        picusername: localStorage.getItem('Username'),
+        id: id
+      }
+      if (condel) {
+        const { data: res } = await setdata.delImage(data)
+        this.$toast({
+          message: res.message,
+          position: 'top'
+        })
+        this.getimg()
+        this.isOpenimg = true
+      }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
-  name: 'cagArticle',
-  components: {
-    // 导入组件
-  }
+  name: 'cagArticle'
 }
 </script>
 
 <style lang="less" scoped>
-.cagArea {
+@media only screen and (min-width: 755px) {
+  .cagArea {
+    display: flex;
+    position: relative;
+  }
+  .cagAside {
+    max-width: 16vw;
+  }
+.imgarea {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: scroll;
+  .atitle {
+    font-size: 3rem;
+    font-weight: bolder;
+    border-bottom: 2px gray solid;
+  }
+}
+.kuimgarea {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  .imgcopy {
+    display: flex;
+    flex-direction: column;
+  }
+  .kuimg {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+  }
+}
+}
+@media only screen and (max-width: 755px) {
+  .cagArea {
+    position: relative;
+  }
+.imgarea {
+    position: absolute;
+    top: 22%;
+    left: 33%;
+    transform: translate(-30%, -30%);
+    width: 365px;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    overflow: scroll;
+  .atitle {
+    font-size: 3rem;
+    font-weight: bolder;
+    border-bottom: 2px gray solid;
+  }
+}
+.kuimgarea {
+  display: flex;
+  overflow: scroll;
+  width: 100%;
+  .imgcopy {
+    display: flex;
+    flex-direction: column;
+  }
+  .kuimg {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+  }
+}
 }
 .cagAside {
   flex: 0.5;
@@ -168,14 +274,15 @@ export default {
   color: white;
   padding: 5px;
   position: relative;
-  max-width: 16vw;
+  overflow: hidden;
 }
 .opAside {
   background-color: rgb(5, 0, 105);
   color: white;
-  width: 3.5rem;
   overflow: hidden;
   position: relative;
+  width: 0px;
+  height: 0px;
   animation: down 0.5s;
 }
 @keyframes down {
@@ -183,7 +290,7 @@ export default {
     width: 16vw;
   }
   to {
-    width: 3rem;
+    width: 0px;
   }
 }
 .cagcontent {
@@ -197,31 +304,17 @@ export default {
   padding: 5px;
   font-size: 3rem;
 }
-.imgarea{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 700px;
-  height: 500px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  .atitle{
-    font-size: 3rem;
-    font-weight: bolder;
-    border-bottom: 2px gray solid;
-  }
-}
-.kuimgarea{
+.btn {
   display: flex;
-  .imgcopy{
-    display: flex;
-    flex-direction: column;
-  }
-  .kuimg{
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-  }
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+.imgurl {
+  color: black;
+}
+.pvimg {
+  width: 80%;
+  max-height: 100px;
 }
 </style>
