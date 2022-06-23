@@ -2,21 +2,21 @@
   <div id="index_article_items">
     <div class="article_item">
       <p class="article_doc_title">
-        {{ title }}
+        {{ article.title }}
       </p>
       <div class="article_area">
-        <div class="article_img">
-          <img class="article_img_item" :src="coverImg" />
+        <div class="article_img" v-show="article.cover_img">
+          <img class="article_img_item" :src="article.cover_img" />
         </div>
         <div class="article_doc">
           <p class="article_doc_txt">
-            <span v-html="content"></span>
+            {{article.content | newcontent(article.content)}}
           </p>
         </div>
       </div>
       <div class="artmethod">
         <div class="shareBox">
-          <van-button type="info" @click="Goto">开始阅读</van-button>
+          <van-button type="info" @click="Goto(article.article_id)">阅读</van-button>
           <van-popover
             v-model="showPopover"
             trigger="click"
@@ -30,9 +30,9 @@
           </van-popover>
         </div>
         <div class="article_span_time">
-          <span>作者:{{ authorId }}</span>
+          <span>作者:{{ article.username }}</span>
           &nbsp;
-          <span>{{ pubDate }}</span>
+          <span>时间:{{ article.pub_date }}</span>
         </div>
       </div>
     </div>
@@ -40,38 +40,14 @@
 </template>
 
 <script>
-// 导入组件
-// import  from ''
 
 export default {
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    authorId: {
-      type: [Number, String],
-      default: ''
-    },
-    content: {
-      type: String,
-      default: ''
-    },
-    goodnum: {
-      type: Number,
-      default: 0
-    },
-    pubDate: {
-      type: [Number, String],
-      default: ''
-    },
-    coverImg: {
-      type: String,
-      default: ''
-    },
-    articleId: {
-      type: [Number, String],
-      default: ''
+    article: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   data () {
@@ -108,18 +84,22 @@ export default {
       }
       this.showShare = false
     },
-    Goto () {
-      console.log(this)
-      console.log(this.$router)
-      console.log(this.articleId)
-      const id = this.articleId
+    Goto (id) {
       this.$router.push(`/article/${id}`)
     }
   },
-  name: 'ArticleList',
-  components: {
-    // 导入组件
-  }
+  filters: {
+    newcontent (content) {
+      const newArr = []
+      for (const k in content) {
+        if (content[k].match(/\p{sc=Han}/gu)) {
+          newArr.push(content[k])
+        }
+      }
+      return newArr.join('')
+    }
+  },
+  name: 'ArticleList'
 }
 </script>
 
@@ -131,5 +111,23 @@ export default {
   align-items: center;
   justify-content: space-between;
   align-items: center;
+}
+@media only screen and (min-width: 755px) {
+  .shareBox{
+  button {
+    margin-left: 15px;
+  }
+}
+}
+@media only screen and (max-width: 755px) {
+  .shareBox{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    button {
+      margin-left: 10px;
+    }
+  }
 }
 </style>

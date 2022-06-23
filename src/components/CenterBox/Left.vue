@@ -9,13 +9,7 @@
       <ArticleList
         v-for="article in artlist"
         :key="article.id"
-        :title="article.title"
-        :authorId="article.author_id"
-        :content="article.content"
-        :goodnum="article.goodnum"
-        :pubDate="article.pub_date"
-        :coverImg="article.cover_img"
-        :articleId='article.article_id'
+        :article="article"
       >
       </ArticleList>
     </div>

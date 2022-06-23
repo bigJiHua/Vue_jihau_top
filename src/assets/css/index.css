@@ -86,9 +86,10 @@ html {
 	.article_doc_txt {
 		font-size: 1.8rem;
 		margin: 0;
+		height: 100px;
 	}
 	.article_span_time {
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 	}
 	/* 文章动效 */
 	.article_img_item:hover {
@@ -100,7 +101,6 @@ html {
 		justify-content: space-between;
 		align-items: baseline;
 	}
-
 	.phone_Viewset {
 		display: flex;
 		align-items: center;
