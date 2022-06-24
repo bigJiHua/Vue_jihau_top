@@ -35,6 +35,19 @@
           <span :class="{selc:this.Active.collect}"><i class="glyphicon glyphicon-star-empty"></i></span
         ></van-button>
       </div>
+      <div class="commentArea">
+      <p>评论</p>
+      <div class="textarea">
+      <textarea
+      name=""
+      id="comtext"
+      placeholder="友善发言，留下美好瞬间   (最多输入150个字符)"
+      maxlength="150" @keyup.enter="commont(Article.article_id)"
+      v-model="Active.comTXT"
+      ></textarea>
+      <van-button @click="commont(Article.article_id)">留言</van-button>
+      </div>
+      </div>
     </div>
     <RightM class="col-md-4"></RightM>
   </div>
@@ -51,7 +64,8 @@ export default {
       tab: ['标题', '作者：', '时间：', '标签：'],
       Active: {
         goodnum: false,
-        collect: false
+        collect: false,
+        comTXT: ''
       }
     }
   },
@@ -80,7 +94,7 @@ export default {
           actmenthos: 'goodnum'
         }
         const { data: res } = await UserAction.UserActive(data)
-        console.log(res.data)
+        console.log(res)
         this.$toast({
           message: res.message,
           position: 'top'
@@ -91,6 +105,7 @@ export default {
       }
     },
     async collect (artid) {
+      console.log(artid)
       if (localStorage.getItem('Username') === null) {
         this.$toast({
           message: '登录才能点赞收藏哦！',
@@ -99,7 +114,7 @@ export default {
       } else {
         const data = {
           username: localStorage.getItem('Username'),
-          article_id: artid,
+          articleid: artid,
           actmenthos: 'collect'
         }
         const { data: res } = await UserAction.UserActive(data)
@@ -109,6 +124,38 @@ export default {
         })
         if (res.status === 200) {
           this.Active.collect = !this.Active.collect
+        }
+      }
+    },
+    async commont (artid) {
+      console.log(artid)
+      if (localStorage.getItem('Username') === null) {
+        this.$toast({
+          message: '登录才能评论哦！',
+          position: 'top'
+        })
+      } else {
+        if (this.Active.comTXT === '') {
+          this.$toast({
+            message: '留言输入内容不能为空哦',
+            position: 'top'
+          })
+        } else {
+          const comtxt = this.Active.comTXT.match(/\p{sc=Han}/gu).join('')
+          const data = {
+            username: localStorage.getItem('Username'),
+            articleid: artid,
+            actmenthos: 'commont',
+            commont: comtxt
+          }
+          const { data: res } = await UserAction.UserActive(data)
+          this.$toast({
+            message: res.message,
+            position: 'top'
+          })
+          if (res.status === 200) {
+            this.Active.collect = !this.Active.collect
+          }
         }
       }
     }
@@ -176,5 +223,23 @@ export default {
 }
 .selc,.selg{
   color: red;
+}
+.commentArea{
+  margin-top: 20px;
+  padding: 10px 20px 20px 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  p{
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  #comtext{
+    border-radius: 12px;
+    border: 2px rgba(243, 245, 248, 0.8) solid;
+    padding: 5px;
+    width: 100%;
+    height: 80px;
+    resize: none;
+  }
 }
 </style>

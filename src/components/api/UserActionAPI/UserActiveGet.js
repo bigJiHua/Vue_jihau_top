@@ -6,6 +6,9 @@ const UserActive = function (data) {
   params.append('username', data.username)
   params.append('articleid', data.articleid)
   params.append('actmenthos', data.actmenthos)
+  if (data.commont.length > 0) {
+    params.append('commont', data.commont)
+  }
   return requst.get('/users/action', { params })
 }
 

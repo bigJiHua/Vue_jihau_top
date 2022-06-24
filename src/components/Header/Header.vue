@@ -9,7 +9,7 @@
         aria-expanded="false"
         aria-controls="navbar"
         ref="btn_list"
-        @mouseleave.once="closeMenu"
+        @click="closeMenu"
       >
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -22,7 +22,7 @@
         ><img src="https://www.jihau.top/img/logo.png" class="logo" alt="logo"
       /></a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse" ref="menubox" @mouseout="closeMenu">
+    <div id="navbar" class="navbar-collapse collapse" ref="menubox" >
       <ul class="nav navbar-nav">
         <li>
           <router-link to="/"><span @click="closeMenu">主页</span></router-link>
@@ -150,6 +150,7 @@ export default {
       }
     },
     login () {
+      this.closeMenu()
       if (this.token) {
         this.$router.push('/CtrlView')
       } else {
@@ -157,6 +158,7 @@ export default {
       }
     },
     outlogin () {
+      this.closeMenu()
       localStorage.removeItem('token')
       localStorage.removeItem('Username')
       localStorage.removeItem('Useridentity')
