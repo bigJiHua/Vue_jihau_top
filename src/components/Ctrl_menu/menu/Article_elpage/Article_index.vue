@@ -14,11 +14,8 @@
           <td class="tdovs">{{ item.username }}</td>
           <td class="tdovs">{{ item.title }}</td>
           <td class="tdovs">{{ item.pub_date }}</td>
-          <td class="tdovs">{{ item.goodnum }}</td>
-          <td class="tdovs">{{ item.artLookCount }}</td>
           <td class="tdovs">{{ item.lable }}</td>
           <td class="tdovs">{{ item.keyword }}</td>
-          <td class="tdovs">{{ item.is_top }}</td>
           <td class="tdovs">{{ item.state }}</td>
           <td class="btn">
             <van-button @click="cagArticle(item)" color="#1989FA" size="small"
@@ -44,11 +41,8 @@ export default {
           '作者',
           '标题',
           '发表日期',
-          '点赞数',
-          '浏览次数',
           '标签',
           '关键词',
-          '是否置顶',
           '状态',
           '操作'
         ],

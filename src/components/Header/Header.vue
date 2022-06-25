@@ -59,11 +59,11 @@
             ></span>
           </router-link>
         </li>
-        <li><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
+        <li @click="closeMenu"><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
         <li>
           <button @click="login" class="btn" v-show="!token">登录</button>
           <button @click="outlogin" class="btn" v-show="token">退出登录</button>
-          <button v-show="token" class="btn">
+          <button v-show="token" class="btn" @click="closeMenu">
             <router-link to="/CtrlView">后台</router-link>
           </button>
         </li>

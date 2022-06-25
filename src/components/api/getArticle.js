@@ -5,6 +5,18 @@ const getArchives = function (id) {
   params.append('id', id)
   return request.get('/archives/?id=' + id)
 }
+const getArticleData = function (id) {
+  const params = new URLSearchParams()
+  params.append('article_id', id)
+  return request.get('/data/artdata', { params })
+}
+const getArticleCom = function (id) {
+  const params = new URLSearchParams()
+  params.append('article_id', id)
+  return request.get('/data/artcomm', { params })
+}
 export default {
-  getArchives
+  getArchives,
+  getArticleData,
+  getArticleCom
 }

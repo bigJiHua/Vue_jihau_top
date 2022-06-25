@@ -148,7 +148,7 @@ export default {
     },
     async getimg () {
       this.isOpenimg = !this.isOpenimg
-      const usdata = this.Article.data.username
+      const usdata = localStorage.getItem('Username')
       const { data: res } = await setdata.getImage(usdata)
       this.$toast({
         message: res.message,

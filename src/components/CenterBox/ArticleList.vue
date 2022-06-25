@@ -1,17 +1,17 @@
 <template>
   <div id="index_article_items">
     <div class="article_item">
-      <p class="article_doc_title">
+      <a class="article_doc_title togolink" @click="Goto(article.article_id)">
         {{ article.title }}
-      </p>
+      </a>
       <div class="article_area">
-        <div class="article_img" v-show="article.cover_img">
+        <div class="article_img" v-if="ifcov">
           <img class="article_img_item" :src="article.cover_img" />
         </div>
         <div class="article_doc">
-          <p class="article_doc_txt">
+          <a class="article_doc_txt togolink" @click="Goto(article.article_id)">
             {{article.content | newcontent(article.content)}}
-          </p>
+          </a>
         </div>
       </div>
       <div class="artmethod">
@@ -96,7 +96,15 @@ export default {
           newArr.push(content[k])
         }
       }
-      return newArr.join('')
+      return newArr.splice(0, 100).join('')
+    }
+  },
+  computed: {
+    ifcov () {
+      if (this.article.cover_img.match(/^http/)) {
+        return true
+      }
+      return false
     }
   },
   name: 'ArticleList'
@@ -112,7 +120,13 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.togolink{
+  color: rgba(0, 0, 0, 0.692);
+}
 @media only screen and (min-width: 755px) {
+  .artmethod{
+  padding: 0 20px;
+  }
   .shareBox{
   button {
     margin-left: 15px;
@@ -121,10 +135,9 @@ export default {
 }
 @media only screen and (max-width: 755px) {
   .shareBox{
+    width: 50%;
     display: flex;
-    flex-wrap: wrap;
     align-content: center;
-    justify-content: space-between;
     button {
       margin-left: 10px;
     }
