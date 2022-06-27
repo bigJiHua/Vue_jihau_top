@@ -1,6 +1,6 @@
 <template>
   <div class="table_area">
-    <table class="table table-bordered">
+    <table class="table-hover table table-bordered table-striped tab-content">
       <thead>
         <tr>
           <th v-for="(item, index) in article.thead" :key="index" class="thovs">
@@ -73,15 +73,14 @@ export default {
     },
     async delArticle (id) {
       const condel = confirm('确认删除这篇文章吗？')
-      const _this = this
       if (condel) {
         const { data: res } = await Articleset.UserdelArticle(id)
         this.$toast({
           message: res.message,
           position: 'top'
         })
-        _this.getarticle(localStorage.getItem('Username'))
       }
+      this.getarticle(localStorage.getItem('Username'))
     },
     togo (path) {
       this.$router.push('/article/' + path)

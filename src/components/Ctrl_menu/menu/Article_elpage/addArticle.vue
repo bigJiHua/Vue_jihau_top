@@ -65,39 +65,16 @@
         ></ckeditor>
       </div>
     </div>
-    <div class="imgarea" v-show="isOpenimg">
-      <div class="close" @click="isOpenimg = false">
-        <i class="glyphicon glyphicon-remove"></i>
-      </div>
-      <p class="atitle">图库</p>
-      <div class="tip">
-        <ul v-if="Article.img" class="kuimgarea">
-          <li v-for="(item, index) in Article.img" :key="index">
-              <van-button @click="delimg(item.id)">
-              <i class="glyphicon glyphicon-trash"></i>
-              </van-button>
-              <img :src="item.userimage" alt="" class="kuimg" />
-              <input type="text" :value="item.userimage" class="form-control"/>
-          </li>
-        </ul>
-        <div class="upload">
-          <h3>上传文件</h3>
-          <input type="file" accept="image/*" ref="imgfile" class="fileup" />
-          <van-button @click="up_pic">上传</van-button>
-          <p>
-            <strong>⚠如果没反应，未提示上传成功消息，请刷新页面重新上传</strong>
-          </p>
-        </div>
-      </div>
-    </div>
+    <gallery ref="imageM"></gallery>
   </div>
 </template>
 
 <script>
-import setdata from '@/components/api/Ctrl_menuAPI/getPicAPI'
 import setArticle from '@/components/api/Ctrl_menuAPI/ArticleAPI'
+import gallery from '@/components/Module/gallery.vue'
 
 export default {
+  components: { gallery },
   props: [],
   data () {
     return {
@@ -179,46 +156,7 @@ export default {
       }
     },
     async getimg () {
-      this.isOpenimg = !this.isOpenimg
-      const usdata = localStorage.getItem('Username')
-      const { data: res } = await setdata.getImage(usdata)
-      this.$toast({
-        message: res.message,
-        position: 'top'
-      })
-      this.Article.img = res.data
-    },
-    up_pic () {
-      const picfile = this.$refs.imgfile
-      picfile.addEventListener('change', async (e) => {
-        console.log('object')
-        const file = e.target.files[0]
-        const { data: res } = await setdata.upImage(
-          file,
-          localStorage.getItem('Username')
-        )
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
-        this.getimg()
-      })
-    },
-    async delimg (id) {
-      const condel = confirm('确认删除这张图片吗？')
-      const data = {
-        picusername: localStorage.getItem('Username'),
-        id: id
-      }
-      if (condel) {
-        const { data: res } = await setdata.delImage(data)
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
-        this.getimg()
-        this.isOpenimg = true
-      }
+      this.$refs.imageM.toge()
     },
     validata (key) {
       let bool = true

@@ -30,29 +30,46 @@
                 <img :src="cagUser.user_pic" alt="头像"  class="pic">
             </div>
                 <button class="cagpic" @click="cag_pic">更换头像</button>
-            <p><span class="userheader">名字:</span>  <span class="userdata">{{cagUser.username}}</span></p>
-            <p><span class="userheader">身份:</span>  <span class="userdata">{{cagUser.useridentity}}</span></p>
-            <p class="selectcity"><span class="userheader ">用户名:</span><input class="userdata form-control" v-model="cagUser.nickname" @keyup.enter="cagdata"></p>
-            <p><span class="userheader ">生日:</span> <input type="date" value="" v-model="cagUser.birthday"></p>
-            <p class="selectcity"><span class="userheader">城市:</span>
-            <input class="userdata form-control" v-model="cagUser.city" >
-            <select name="" class="form-control select_city" v-model="cagUser.city">
-              <option v-for="(item,index) in city" :key="index">{{item}}</option>
-            </select>
+            <p>
+                <span class="userheader">名字:</span>
+                <span class="userdata">{{cagUser.username}}</span></p>
+            <p>
+                <span class="userheader">身份:</span>
+                <span class="userdata">{{cagUser.useridentity}}</span></p>
+            <p class="selectcity">
+                <span class="userheader ">用户名:</span>
+                <input class="userdata form-control" v-model="cagUser.nickname" @keyup.enter="cagdata">
             </p>
-            <p><span class="userheader">性别:</span>
-            <label class="radio-inline">
-              <input type="radio" name="sex" value="男" v-model="cagUser.sex" />男
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="sex" value="女" v-model="cagUser.sex" />女
-            </label>
+            <p>
+                <span class="userheader ">生日:</span>
+                <input type="date" value="" v-model="cagUser.birthday">
             </p>
-            <p class="selectcity"><span class="userheader">邮箱:</span>  <input class="userdata form-control" v-model="cagUser.email" type="email"   @keyup.enter="cagdata"></p>
-            <p><span class="userheader">个性签名:</span><br><textarea class="usercontent form-control" v-model="cagUser.user_content" maxlength="255"></textarea></p>
+            <p class="selectcity">
+                <span class="userheader">城市:</span>
+                <input class="userdata form-control" v-model="cagUser.city" >
+                <select name="" class="form-control select_city" v-model="cagUser.city">
+                  <option v-for="(item,index) in city" :key="index">{{item}}</option>
+                </select>
+            </p>
+            <p>
+                <span class="userheader">性别:</span>
+                <label class="radio-inline">
+                  <input type="radio" name="sex" value="男" v-model="cagUser.sex" />男
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="sex" value="女" v-model="cagUser.sex" />女
+                </label>
+            </p>
+            <p class="selectcity">
+              <span class="userheader">邮箱:</span>
+              <input class="userdata form-control" v-model="cagUser.email" type="email"   @keyup.enter="cagdata"></p>
+            <p>
+              <span class="userheader">个性签名:</span><br>
+              <textarea class="usercontent form-control" v-model="cagUser.user_content" maxlength="255"></textarea>
+            </p>
             <van-button type="primary" @click="cagdata">提交更改</van-button>
             &nbsp;&nbsp;&nbsp;
-            <van-button type="danger">取消更改</van-button>
+            <van-button type="danger" @click="delUser">注销用户</van-button>
           </div>
         </div>
       </div>
@@ -62,7 +79,7 @@
         <div class="cagarea">
           <h1>上传头像</h1>
           <input type="file" accept="image/*" ref="imgfile" class="fileup">
-          <van-button @click="cag_pic">确认修改头像</van-button>
+          <van-button @click="cagdata">确认修改头像</van-button>
         </div>
       </div>
     </van-overlay>
@@ -93,17 +110,18 @@ export default {
   methods: {
     async getUsersdata () {
       const { data: res } = await GetUData.GetUserData(localStorage.getItem('Username'))
-      if (res.status === 401) {
-        alert('登录超时，请重新登录')
-        localStorage.removeItem('token')
-        localStorage.removeItem('Username')
-        localStorage.removeItem('Useridentity')
-        this.$router.push('/Login')
-      } else {
-        this.Users = res.data
-        this.cagUser = res.data
-        this.showPopup(res.message)
-      }
+      const timer = setInterval(() => {
+        if (res.status === 401) {
+          this.getUsersdata()
+        } else {
+          this.Users = res.data
+          this.cagUser = res.data
+          this.showPopup(res.message)
+        }
+      }, 100)
+      setTimeout(() => {
+        clearInterval(timer)
+      }, 100)
     },
     async cagdata () {
       const data = this.cagUser
@@ -115,13 +133,17 @@ export default {
       const picfile = this.$refs.imgfile
       const _this = this
       picfile.addEventListener('change', function () {
-        // 实例化一个FileReader
         const reader = new FileReader()
         reader.onload = function (e) {
           _this.cagUser.user_pic = e.target.result
         }
         reader.readAsDataURL(this.files[0])
       }, false)
+    },
+    async delUser () {
+      const user = this.Users.username
+      const { data: res } = await GetUData.DelUser(user)
+      this.showPopup(res.message)
     },
     showPopup (msg) {
       const timer = setInterval(() => {
@@ -157,7 +179,7 @@ export default {
     width: 12rem;
   }
   .usercontent{
-    background-color: rgba(220, 124, 124, 0.8);
+    background-color: rgba(208, 224, 237, 0.4);
     padding: 20px;
     border-radius: 12px;
   }

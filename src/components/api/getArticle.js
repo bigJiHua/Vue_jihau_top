@@ -1,5 +1,5 @@
 import request from '../requst/requst'
-// 首页获取文章
+// 获取文章内容
 const getArchives = function (id) {
   const params = new URLSearchParams()
   params.append('id', id)

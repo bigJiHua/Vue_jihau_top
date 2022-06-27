@@ -1,6 +1,6 @@
 <template>
   <div id="">
-    <span class="mnumber" @click="mdod()">{{ art }}</span>
+    <span class="mnumber" @click="mdod()">{{ art }}月</span>
     <ul v-for="(obj, index) in newList[index]" :key="index">
       <li :class="{ daylists: misOpen, daylist: !misOpen }">
         <a @click="to(obj.hurl)">
@@ -22,8 +22,8 @@ export default {
       default: -1
     },
     art: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     newList: {
       type: Array

@@ -1,7 +1,6 @@
 import requst from '../../requst/requst'
 
 const UserActive = function (data) {
-  console.log(data)
   const params = new URLSearchParams()
   params.append('username', data.username)
   params.append('articleid', data.articleid)
@@ -14,6 +13,11 @@ const UserActive = function (data) {
   return requst.get('/users/action', { params })
 }
 
+const UserActivedata = function (user) {
+  return requst.get('/users/actdata?user=' + user)
+}
+
 export default {
-  UserActive
+  UserActive,
+  UserActivedata
 }

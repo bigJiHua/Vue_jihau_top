@@ -1,58 +1,69 @@
 <template>
   <div id="" class="article container">
     <div class="leftContent col-md-8">
-      <div class="content">
-        <p v-html="Article.content"></p>
-      </div>
-      <div class="tabmenu">
-        <ul>
-          <li v-for="(item, index) in tab" :key="index">{{ item }}</li>
-        </ul>
-        <ul>
-          <li>{{ Article.title }}</li>
-          <li>{{ Article.username }}</li>
-          <li>{{ Article.pub_date }}</li>
-          <li>{{ Article.lable }}</li>
-        </ul>
-      </div>
-      <div class="btn_active">
-        <van-button
-          type="info"
-          class="goodnum"
-          @click="goodnum(Article.article_id)"
-        >
-          <span>点赞</span>
-          <span :class="{selg:this.Active.goodnum}">
-            <i class="glyphicon glyphicon-thumbs-up"></i>
-          </span>
-          <span>{{ArticleData.goodnum}}</span>
-        </van-button>
-        <van-button
-          type="info"
-          class="collect"
-          @click="collect(Article.article_id)">
-          <span>收藏</span>
-          <span :class="{selc:this.Active.collect}"><i class="glyphicon glyphicon-star-empty"></i></span>
-          <span>{{ArticleData.collect}}</span>
+      <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
+      <div v-show="!goodpage">
+        <div class="content">
+          <p v-html="Article.content"></p>
+        </div>
+        <div class="tabmenu">
+          <ul>
+            <li v-for="(item, index) in tab" :key="index">{{ item }}</li>
+          </ul>
+          <ul>
+            <li>{{ Article.title }}</li>
+            <li>{{ Article.username }}</li>
+            <li>{{ Article.pub_date }}</li>
+            <li>{{ Article.lable }}</li>
+          </ul>
+        </div>
+        <div class="btn_active">
+          <van-button
+            type="info"
+            class="goodnum"
+            @click="goodnum(Article.article_id)"
+          >
+            <span>点赞</span>
+            <span :class="{ selg: this.Active.goodnum }">
+              <i class="glyphicon glyphicon-thumbs-up"></i>
+            </span>
+            <span>{{ ArticleData.goodnum }}</span>
           </van-button>
-      </div>
-      <div class="commentArea">
-      <p>评论</p>
-      <div class="comment" v-for="(item,index) in ArticleData.commont" :key="index">
-          <p class="comment_user">用户:{{item.username}} 评论：</p>
-          <p class="comment_text">{{item.comment}}</p>
-          <p class="comment_time">时间:{{item.pub_date}}</p>
-      </div>
-      <div class="textarea">
-      <textarea
-      name=""
-      id="comtext"
-      placeholder="友善发言，留下美好瞬间   (最多输入150个字符)"
-      maxlength="150" @keyup.enter="commont(Article.article_id)"
-      v-model="Active.comTXT"
-      ></textarea>
-      <van-button @click="commont(Article.article_id)">留言</van-button>
-      </div>
+          <van-button
+            type="info"
+            class="collect"
+            @click="collect(Article.article_id)"
+          >
+            <span>收藏</span>
+            <span :class="{ selc: this.Active.collect }"
+              ><i class="glyphicon glyphicon-star-empty"></i
+            ></span>
+            <span>{{ ArticleData.collect }}</span>
+          </van-button>
+        </div>
+        <div class="commentArea">
+          <p>评论</p>
+          <div
+            class="comment"
+            v-for="(item, index) in ArticleData.commont"
+            :key="index"
+          >
+            <p class="comment_user">用户:{{ item.username }} 评论：</p>
+            <p class="comment_text">{{ item.comment }}</p>
+            <p class="comment_time">时间:{{ item.pub_date }}</p>
+          </div>
+          <div class="textarea">
+            <textarea
+              name=""
+              id="comtext"
+              placeholder="友善发言，留下美好瞬间   (最多输入150个字符)"
+              maxlength="150"
+              @keyup.enter="commont(Article.article_id)"
+              v-model="Active.comTXT"
+            ></textarea>
+            <van-button @click="commont(Article.article_id)">留言</van-button>
+          </div>
+        </div>
       </div>
     </div>
     <RightM class="col-md-4"></RightM>
@@ -77,7 +88,8 @@ export default {
         goodnum: '',
         collect: '',
         commont: []
-      }
+      },
+      goodpage: false
     }
   },
   created () {
@@ -86,19 +98,29 @@ export default {
   methods: {
     async getArticle (id) {
       const { data: res } = await getArticle.getArchives(id)
-      this.Article = res.data
-      const { data: res0 } = await getArticle.getArticleData(id)
-      if (res0.data.goodnum !== 0) {
-        const goodnum = res0.data.reduce((sum, item) => sum + parseInt(item.goodnum), 0)
-        const collect = res0.data.reduce((sum, item) => sum + parseInt(item.collect), 0)
-        this.ArticleData.goodnum = goodnum
-        this.ArticleData.collect = collect
+      if (res.status !== 404) {
+        this.Article = res.data
+        const { data: res0 } = await getArticle.getArticleData(id)
+        if (res0.data.goodnum !== 0) {
+          const goodnum = res0.data.reduce(
+            (sum, item) => sum + parseInt(item.goodnum),
+            0
+          )
+          const collect = res0.data.reduce(
+            (sum, item) => sum + parseInt(item.collect),
+            0
+          )
+          this.ArticleData.goodnum = goodnum
+          this.ArticleData.collect = collect
+        } else {
+          this.ArticleData.goodnum = 0
+          this.ArticleData.collect = 0
+        }
+        const { data: res1 } = await getArticle.getArticleCom(id)
+        this.ArticleData.commont = res1.data
       } else {
-        this.ArticleData.goodnum = 0
-        this.ArticleData.collect = 0
+        this.goodpage = !this.goodpage
       }
-      const { data: res1 } = await getArticle.getArticleCom(id)
-      this.ArticleData.commont = res1.data
       this.$toast({
         message: res.message,
         position: 'top'
@@ -113,7 +135,7 @@ export default {
       } else {
         if (artid === undefined) {
           this.$toast({
-            message: '获取文章id错误，请刷新当前页面',
+            message: 'Page ID undefine',
             position: top
           })
         } else {
@@ -145,7 +167,7 @@ export default {
       } else {
         if (artid === undefined) {
           this.$toast({
-            message: '获取文章id错误，请刷新当前页面',
+            message: 'Page ID undefine',
             position: top
           })
         } else {
@@ -186,7 +208,9 @@ export default {
               position: 'top'
             })
           } else {
-            const comtxt = this.Active.comTXT.match(/((\p{sc=Han})|([a-zA-Z]))/gu).join('')
+            const comtxt = this.Active.comTXT
+              .match(/((\p{sc=Han})|([a-zA-Z]))/gu)
+              .join('')
             const data = {
               username: localStorage.getItem('Username'),
               articleid: artid,
@@ -268,19 +292,20 @@ export default {
 .collect {
   letter-spacing: 5px;
 }
-.selc,.selg{
+.selc,
+.selg {
   color: red;
 }
-.commentArea{
+.commentArea {
   margin-top: 20px;
   padding: 10px 20px 20px 20px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.9);
-  p{
+  p {
     font-size: 2rem;
     font-weight: bolder;
   }
-  #comtext{
+  #comtext {
     border-radius: 12px;
     border: 2px rgba(243, 245, 248, 0.8) solid;
     padding: 5px;
@@ -288,23 +313,23 @@ export default {
     height: 80px;
     resize: none;
   }
-  .comment{
+  .comment {
     background-color: rgba(201, 227, 243, 0.4);
     border-radius: 4px;
     padding: 5px;
     margin-bottom: 10px;
-    p{
+    p {
       margin: 0;
       color: rgba(6, 52, 122, 0.8);
     }
-    .comment_user{
+    .comment_user {
       font-size: 1.3rem;
     }
-    .comment_text{
+    .comment_text {
       font-size: 1.6rem;
       margin: 2px;
     }
-    .comment_time{
+    .comment_time {
       font-size: 1rem;
       text-align: right;
     }

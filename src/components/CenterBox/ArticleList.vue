@@ -1,17 +1,19 @@
 <template>
   <div id="index_article_items">
     <div class="article_item">
-      <a class="article_doc_title togolink" @click="Goto(article.article_id)">
-        {{ article.title }}
-      </a>
+      <p class="article_doc_title">
+        <router-link class="togolink" :to='{path:"/article/"+ article.article_id}'>
+          {{ article.title }}
+        </router-link>
+      </p>
       <div class="article_area">
         <div class="article_img" v-if="ifcov">
           <img class="article_img_item" :src="article.cover_img" />
         </div>
         <div class="article_doc">
-          <a class="article_doc_txt togolink" @click="Goto(article.article_id)">
+          <router-link class="article_doc_txt togolink" :to='{path:"/article/"+ article.article_id}'>
             {{article.content | newcontent(article.content)}}
-          </a>
+          </router-link>
         </div>
       </div>
       <div class="artmethod">
@@ -95,6 +97,9 @@ export default {
         if (content[k].match(/\p{sc=Han}/gu)) {
           newArr.push(content[k])
         }
+      }
+      if (newArr.length === 0) {
+        newArr.push(content)
       }
       return newArr.splice(0, 100).join('')
     }

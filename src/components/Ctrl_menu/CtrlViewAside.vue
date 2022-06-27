@@ -11,7 +11,7 @@
         <router-link to="/CtrlView/article">文章管理</router-link>
       </li>
       <li class="menu-item">
-        <router-link to="/CtrlView/Collection">我的收藏</router-link>
+        <router-link to="/CtrlView/Collection">我的消息</router-link>
       </li>
       <li class="menu-item">
         <router-link to="/CtrlView/Setting">系统设置</router-link>

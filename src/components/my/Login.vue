@@ -3,7 +3,7 @@
     <div class="login_conten_box">
       <img
         class="login_img"
-        src="http://127.0.0.1/uploads/undraw_Login_re_4vu2.png"
+        src="http://api.da4.cc/api/uploads/undraw_Login_re_4vu2.png"
       />
       <div class="user_input_eara">
         <h2>登录 <small>Login</small></h2>
