@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in article.list" :key="index">
-          <td class="tdovs"><a @click="togo(item.article_id)">{{ item.article_id }}</a></td>
+          <td class="tdovs"><router-link :to="'/article/' + item.article_id">{{ item.article_id }}</router-link></td>
           <td class="tdovs">{{ item.username }}</td>
           <td class="tdovs">{{ item.title }}</td>
           <td class="tdovs">{{ item.pub_date }}</td>
@@ -81,9 +81,6 @@ export default {
         })
       }
       this.getarticle(localStorage.getItem('Username'))
-    },
-    togo (path) {
-      this.$router.push('/article/' + path)
     }
   },
   // 监听器

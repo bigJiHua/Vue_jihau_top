@@ -11,17 +11,11 @@ const UpnewUser = function (userdata) {
   params.append('username', userdata.username)
   params.append('password', userdata.password)
   params.append('email', userdata.email)
-  if (userdata.birthday) {
-    params.append('birthday', userdata.birthday)
-  } else if (userdata.sex) {
-    params.append('sex', userdata.sex)
-  } else if (userdata.city) {
-    params.append('city', userdata.city)
-  } else if (userdata.my_content) {
-    params.append('my_content', userdata.my_content)
-  } else if (userdata.user_pic) {
-    params.append('user_pic', userdata.user_pic)
-  }
+  params.append('birthday', userdata.birthday ? userdata.birthday : '')
+  params.append('sex', userdata.sex ? userdata.sex : '男')
+  params.append('city', userdata.city ? userdata.city : '')
+  params.append('user_content', userdata.user_content ? userdata.user_content : '')
+  params.append('user_pic', userdata.user_pic ? userdata.user_pic : '')
   return request.post('/my/reguser', params)
 }
 // 删除用户

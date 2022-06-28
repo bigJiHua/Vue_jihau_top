@@ -2,7 +2,7 @@
   <div id="" class="itemarea">
     <ul class="card_area">
       <li v-for="(item,index) in item" :key="index" >
-        <div class="close" @click="toge(item.id)">
+        <div class="close" @click="delgcc(item.article_id,item.id)">
         <i class="glyphicon glyphicon-remove"></i>
         </div>
         <div class="card">
@@ -10,9 +10,9 @@
             <img :src="item.cover_img" alt="文章图片">
           </div>
           <p class="card_title">
-            文章：<router-link :to='{path:"/active/"+ item.article_id}'>{{item.title}}</router-link>
+            <span v-if="istrue">在</span>文章：<router-link :to='{path:"/article/"+ item.article_id}'>{{item.title}}</router-link>
           </p>
-          <article>
+          <article v-if="!istrue">
           {{ item.content | newcontent(item.content) }}...
           </article>
           <p v-if="istrue">留言:</p>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import delAction from '@/components/api/UserActionAPI/UserActiveGet'
 
 export default {
   props: {
@@ -37,10 +38,67 @@ export default {
     istrue: {
       type: Boolean,
       default: false
+    },
+    met: {
+      type: String,
+      default: ''
     }
   },
-  data () {
-    return {}
+  methods: {
+    async delgcc (artid, id) {
+      if (this.met === 'gdn') {
+        const condel = confirm('真的要取消点赞吗？')
+        if (condel) {
+          const data = {
+            username: localStorage.getItem('Username'),
+            articleid: artid,
+            actmenthos: 'goodnum'
+          }
+          const { data: res } = await delAction.UserActive(data)
+          this.$toast({
+            message: res.message,
+            position: 'top'
+          })
+          if (res.status === 200) {
+            location.reload()
+          }
+        }
+      } else if (this.met === 'cols') {
+        const condel = confirm('真的要取消收藏吗？')
+        if (condel) {
+          const data = {
+            username: localStorage.getItem('Username'),
+            articleid: artid,
+            actmenthos: 'collect'
+          }
+          const { data: res } = await delAction.UserActive(data)
+          this.$toast({
+            message: res.message,
+            position: 'top'
+          })
+          if (res.status === 200) {
+            location.reload()
+          }
+        }
+      } else if (this.met === 'comm') {
+        const condel = confirm('真的要删除这条留言吗？')
+        if (condel) {
+          const data = {
+            id: id,
+            username: localStorage.getItem('Username'),
+            article_id: artid
+          }
+          const { data: res } = await delAction.UserActiveDel(data)
+          this.$toast({
+            message: res.message,
+            position: 'top'
+          })
+          if (res.status === 200) {
+            location.reload()
+          }
+        }
+      }
+    }
   },
   filters: {
     newcontent (content) {

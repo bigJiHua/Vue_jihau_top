@@ -12,7 +12,7 @@
         </div>
         <div class="article_doc">
           <router-link class="article_doc_txt togolink" :to='{path:"/article/"+ article.article_id}'>
-            {{article.content | newcontent(article.content)}}
+            {{article.content | newcontent(article.content,article.title,article.keyword)}}
           </router-link>
         </div>
       </div>
@@ -58,8 +58,11 @@ export default {
       actions: [
         { text: '微信', icon: 'wechat', id: 1 },
         { text: '复制链接', icon: 'link', id: 2 }
-      ]
+      ],
+      cz: true
     }
+  },
+  created () {
   },
   mounted () {
     window.onload = () => {
@@ -91,7 +94,7 @@ export default {
     }
   },
   filters: {
-    newcontent (content) {
+    newcontent (content, title, keyword) {
       const newArr = []
       for (const k in content) {
         if (content[k].match(/\p{sc=Han}/gu)) {
@@ -99,7 +102,7 @@ export default {
         }
       }
       if (newArr.length === 0) {
-        newArr.push(content)
+        newArr.push(content.replace(/(<([^>]+)>)/ig, '').replace(/[\r\n]/g, '').replace('&nbsp;', ''))
       }
       return newArr.splice(0, 100).join('')
     }

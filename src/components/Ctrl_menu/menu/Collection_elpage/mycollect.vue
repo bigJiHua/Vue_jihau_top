@@ -1,6 +1,6 @@
 <template>
   <div id="" class="">
-  <CardM :item="collect"></CardM>
+  <CardM :item="collect" :met="'cols'"></CardM>
   </div>
 </template>
 

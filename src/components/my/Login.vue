@@ -79,7 +79,6 @@ export default {
               this.username,
               this.password
             )
-            console.log(res)
             // 打开开关
             this.show = true
             this.loading = true

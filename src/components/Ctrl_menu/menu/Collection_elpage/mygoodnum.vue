@@ -1,6 +1,6 @@
 <template>
   <div id="" class="">
-  <CardM :item="goodnum"></CardM>
+  <CardM :item="goodnum" :met="'gdn'"></CardM>
   </div>
 </template>
 

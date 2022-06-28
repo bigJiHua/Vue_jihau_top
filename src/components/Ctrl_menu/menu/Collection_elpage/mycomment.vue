@@ -1,6 +1,6 @@
 <template>
   <div id="" class="">
-  <CardM :item="comment" :istrue="true"></CardM>
+  <CardM :item="comment" :istrue="true"  :met="'comm'"></CardM>
   </div>
 </template>
 

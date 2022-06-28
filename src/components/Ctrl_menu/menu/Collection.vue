@@ -9,7 +9,7 @@
           <a href="#collent" data-toggle="tab">我的收藏({{Data.collects}})</a>
         </li>
         <li class="nav-tabs">
-          <a href="#comment" data-toggle="tab">我的评论({{Data.comments}}）</a>
+          <a href="#comment" data-toggle="tab">我的评论({{Data.comments}})</a>
         </li>
       </ul>
     </div>
@@ -39,15 +39,16 @@ export default {
   props: [],
   data () {
     return {
-      Data: []
+      Data: [],
+      numCount: []
     }
   },
   created () {
-    this.getdata(localStorage.getItem('Username'))
+    this.getdata()
   },
   methods: {
-    async getdata (user) {
-      const { data: res } = await getdata.UserActivedata(user)
+    async getdata () {
+      const { data: res } = await getdata.UserActivedata(localStorage.getItem('Username'))
       this.$toast({
         message: res.message,
         position: 'top'

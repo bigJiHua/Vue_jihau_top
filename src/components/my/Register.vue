@@ -76,7 +76,7 @@
           <p class="newuser"> 个性签名:</p>
           <textarea
             class="usercontent form-control"
-            v-model="newUser.my_content"
+            v-model="newUser.user_content"
             maxlength="255"
           ></textarea>
           <p class="newuser">头像</p>
@@ -90,6 +90,7 @@
                   accept="image/*"
                   ref="imgfile"
                   class="fileup"
+                  @click="up_pic"
                 />
                 <van-button @click="up_pic">确认上传头像</van-button>
               </div>
@@ -129,7 +130,7 @@ export default {
         birthday: '',
         sex: '',
         city: '',
-        my_content: '',
+        user_content: '',
         user_pic: ''
       },
       city: [
@@ -178,6 +179,7 @@ export default {
           reader.onload = function (e) {
             _this.newUser.user_pic = e.target.result
             _this.pic = e.target.result
+            console.log(_this.pic)
           }
           reader.readAsDataURL(this.files[0])
         },
