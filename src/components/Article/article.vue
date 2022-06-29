@@ -24,7 +24,7 @@
             @click="goodnum(ArticleData.article.article_id)"
           >
             <span>点赞</span>
-            <span >
+            <span :class="{selg:this.Move.goodnum}">
               <i class="glyphicon glyphicon-thumbs-up"></i>
             </span>
             <span>{{ ArticleData.goodnum }}</span>
@@ -35,7 +35,7 @@
             @click="collect(ArticleData.article.article_id)"
           >
             <span>收藏</span>
-            <span>
+            <span :class="{selc:this.Move.collect}">
             <i class="glyphicon glyphicon-star-empty">
             </i></span>
             <span>{{ ArticleData.collect }}</span>
@@ -89,7 +89,11 @@ export default {
         commont: []
       },
       goodpage: false,
-      page: this.$route.params.id
+      page: this.$route.params.id,
+      Move: {
+        goodnum: false,
+        collect: false
+      }
     }
   },
   created () {
@@ -103,6 +107,8 @@ export default {
         this.ArticleData.goodnum = res.data.goodnum
         this.ArticleData.collect = res.data.collect
         this.ArticleData.commont = res.data.comment
+        this.Move.goodnum = res.data.acgoodnum
+        this.Move.collect = res.data.accollect
       } else {
         this.goodpage = !this.goodpage
       }
@@ -135,13 +141,18 @@ export default {
             position: 'top'
           })
           if (res.status === 200) {
-            location.reload()
+            if (this.Move.goodnum === false) {
+              this.ArticleData.goodnum += 1
+              this.Move.goodnum = !this.Move.goodnum
+            } else if (this.Move.goodnum === true) {
+              this.ArticleData.goodnum -= 1
+              this.Move.goodnum = !this.Move.goodnum
+            }
           }
         }
       }
     },
     async collect (artid) {
-      console.log(artid)
       if (localStorage.getItem('Username') === null) {
         this.$toast({
           message: '登录才能点赞收藏哦！',
@@ -165,7 +176,13 @@ export default {
             position: 'top'
           })
           if (res.status === 200) {
-            location.reload()
+            if (this.Move.collect === false) {
+              this.ArticleData.collect += 1
+              this.Move.collect = !this.Move.collect
+            } else if (this.Move.collect === true) {
+              this.ArticleData.collect -= 1
+              this.Move.collect = !this.Move.collect
+            }
           }
         }
       }
@@ -280,6 +297,9 @@ export default {
 .goodnum,
 .collect {
   letter-spacing: 5px;
+}
+.selc,.selg{
+  color: red;
 }
 .commentArea {
   margin-top: 20px;

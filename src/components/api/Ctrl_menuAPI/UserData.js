@@ -1,9 +1,9 @@
-import request from '../../requst/requst'
+import requst from '../../requst/requst'
 // 获取用户信息
 const GetUserData = function (username) {
   const params = new URLSearchParams()
   params.append('username', username)
-  return request.get('/users/' + username)
+  return requst.get('/users/' + username)
 }
 // 新增用户
 const UpnewUser = function (userdata) {
@@ -16,11 +16,11 @@ const UpnewUser = function (userdata) {
   params.append('city', userdata.city ? userdata.city : '')
   params.append('user_content', userdata.user_content ? userdata.user_content : '')
   params.append('user_pic', userdata.user_pic ? userdata.user_pic : '')
-  return request.post('/my/reguser', params)
+  return requst.post('/my/reguser', params)
 }
 // 删除用户
-const DelUser = function (user) {
-  return request('/users/delUser?user=' + user)
+const DelUser = function (user, deluser) {
+  return requst.get('/users/delUser?user=' + user + '&deluser=' + deluser)
 }
 // 修改用户信息
 const CagUserData = function (data) {
@@ -34,7 +34,7 @@ const CagUserData = function (data) {
   params.append('user_content', data.user_content)
   params.append('user_pic', data.user_pic)
   params.append('username', data.username)
-  return request.patch('/users/cagUser', params)
+  return requst.patch('/users/cagUser', params)
 }
 export default {
   GetUserData,

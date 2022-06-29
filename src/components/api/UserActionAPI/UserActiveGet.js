@@ -16,7 +16,7 @@ const UserActive = function (data) {
 const UserActivedata = function (user) {
   return requst.get('/users/actdata?user=' + user)
 }
-// 取消 点赞 收藏 评论
+// 取消 评论
 const UserActiveDel = function (data) {
   console.log(data)
   const params = new URLSearchParams()
