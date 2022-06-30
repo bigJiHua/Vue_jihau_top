@@ -8,7 +8,7 @@
       </p>
       <div class="article_area">
         <div class="article_img" v-if="ifcov">
-          <img class="article_img_item" :src="article.cover_img" />
+          <img class="article_img_item" :src="article.cover_img"/>
         </div>
         <div class="article_doc">
           <router-link class="article_doc_txt togolink" :to='{path:"/article/"+ article.article_id}'>
@@ -150,5 +150,9 @@ export default {
       margin-left: 10px;
     }
   }
+}
+.article_doc{
+  width: 100%;
+  overflow: hidden;
 }
 </style>

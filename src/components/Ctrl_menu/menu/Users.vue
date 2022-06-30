@@ -70,6 +70,9 @@
             <van-button type="primary" @click="cagdata">提交更改</van-button>
             &nbsp;&nbsp;&nbsp;
             <van-button type="danger" @click="delUser">注销用户</van-button>
+            <small style="color:red">⚠注销后 你的数据并不会马上删除，
+                                      可以在登录页面申请找回账号
+            </small>
           </div>
         </div>
       </div>
@@ -142,8 +145,32 @@ export default {
     },
     async delUser () {
       const user = this.Users.username
-      const { data: res } = await GetUData.DelUser(user)
-      this.showPopup(res.message)
+      const deluser = localStorage.getItem('Username')
+      if (user !== undefined && deluser !== undefined) {
+        const condel = confirm('确认注销该账户吗？')
+        if (condel) {
+          if (localStorage.getItem('Useridentity') === '管理员') {
+            const condel = confirm('确认注销你的管理员账户吗？')
+            if (condel) {
+              const { data: res } = await GetUData.DelUser(user, deluser)
+              this.showPopup(res.message)
+              localStorage.removeItem('token')
+              localStorage.removeItem('Username')
+              localStorage.removeItem('Useridentity')
+              location.reload()
+            }
+          } else {
+            const { data: res } = await GetUData.DelUser(user, deluser)
+            this.showPopup(res.message)
+            localStorage.removeItem('token')
+            localStorage.removeItem('Username')
+            localStorage.removeItem('Useridentity')
+            location.reload()
+          }
+        }
+      } else {
+        alert('无法获取用户名，请刷新页面后再试')
+      }
     },
     showPopup (msg) {
       const timer = setInterval(() => {

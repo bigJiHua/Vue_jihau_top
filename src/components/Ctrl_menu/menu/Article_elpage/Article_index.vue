@@ -11,8 +11,8 @@
       <tbody>
         <tr v-for="(item, index) in article.list" :key="index">
           <td class="tdovs"><router-link :to="'/article/' + item.article_id">{{ item.article_id }}</router-link></td>
-          <td class="tdovs">{{ item.username }}</td>
           <td class="tdovs">{{ item.title }}</td>
+          <td class="tdovs">{{ item.username }}</td>
           <td class="tdovs">{{ item.pub_date }}</td>
           <td class="tdovs">{{ item.lable }}</td>
           <td class="tdovs">{{ item.keyword }}</td>
@@ -38,8 +38,8 @@ export default {
       article: {
         thead: [
           '文章ID',
-          '作者',
           '标题',
+          '作者',
           '发表日期',
           '标签',
           '关键词',

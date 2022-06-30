@@ -149,6 +149,7 @@ export default {
                   message: res.message,
                   position: 'top'
                 })
+                this.$router.push('/article/' + res.article)
               }
             }
           }

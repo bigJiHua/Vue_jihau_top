@@ -34,6 +34,7 @@ const CagUserData = function (data) {
   params.append('user_content', data.user_content)
   params.append('user_pic', data.user_pic)
   params.append('username', data.username)
+  params.append('useridentity', data.useridentity)
   return requst.patch('/users/cagUser', params)
 }
 export default {

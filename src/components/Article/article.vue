@@ -265,6 +265,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.article{
+  word-wrap: break-word
+}
 @media only screen and (min-width: 755px) {
   .article {
     display: flex;
