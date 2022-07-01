@@ -2,7 +2,7 @@
   <div id="" class="Users">
       <div class="col-md-2">
         <ul id="myTab" class="nav">
-          <li class="active nav-tabs" @click="getUsersdata">
+          <li class="active nav-tabs">
             <a href="#User" data-toggle="tab">基本信息</a>
           </li>
           <li class="nav-tabs">
@@ -112,9 +112,11 @@ export default {
   },
   methods: {
     async getUsersdata () {
-      const { data: res } = await GetUData.GetUserData(localStorage.getItem('Username'))
+      const user = localStorage.getItem('Username')
+      const { data: res } = await GetUData.GetUserData(user)
       const timer = setInterval(() => {
         if (res.status === 401) {
+          location.reload()
           this.getUsersdata()
         } else {
           this.Users = res.data
@@ -132,6 +134,7 @@ export default {
       this.showPopup(res.message)
     },
     cag_pic () {
+      debugger
       this.showup = !this.showup
       const picfile = this.$refs.imgfile
       const _this = this

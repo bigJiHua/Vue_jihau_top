@@ -99,10 +99,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@media only screen and (max-width: 755px) {
-  .table_area {
-    overflow: scroll;
-  }
+.table_area {
+  overflow: overlay;
+  max-height: 70vh;
 }
 .thovs {
   text-align: center;

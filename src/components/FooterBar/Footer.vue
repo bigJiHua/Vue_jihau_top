@@ -58,13 +58,15 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .footer {
   width: 100%;
   text-align: center;
   color: white;
   font-size: 15px;
-  background-color: rgb(37, 51, 62);
+  background-color: rgba(37, 51, 62, 0.9);
+  padding: 5px;
+  border-radius: 5px;
   .top {
     right: 15px;
     position: fixed;
@@ -74,35 +76,8 @@ export default {
     height: auto;
     text-align: center;
   }
-  .nonetop{
+  .nonetop {
     display: none;
   }
 }
 </style>
-
-<!--
-
-.footer {
-  margin: 0 auto;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  color: white;
-  font-size: 15px;
-  background-color: rgb(37, 51, 62);
-  .top {
-    right: 15px;
-    position: fixed;
-    bottom: 100px;
-    z-index: 99;
-    width: 50px;
-    height: auto;
-    text-align: center;
-  }
-  .nonetop{
-    display: none;
-  }
-}
-
--->

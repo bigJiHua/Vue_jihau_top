@@ -52,18 +52,19 @@ export default {
     margin-top: 20px;
   }
 }
-@media only screen and (min-width: 755px) {
   .article_alltitle {
     font-weight: bolder;
+    font-size: 3rem;
+  }
+@media only screen and (min-width: 755px) {
+  .left_box{
+    width: 100%;
   }
   .article_alltitle span:nth-child(2) {
     top: 18px;
   }
 }
 @media only screen and (max-width: 755px) {
-  .article_alltitle {
-    font-weight: bolder;
-  }
   .article_alltitle span:nth-child(2) {
     top: 18px;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div id="index_article_items">
+  <div class="index_article_items">
     <div class="article_item">
       <p class="article_doc_title">
         <router-link class="togolink" :to='{path:"/article/"+ article.article_id}'>
@@ -149,6 +149,9 @@ export default {
     button {
       margin-left: 10px;
     }
+  }
+  .article_item{
+    padding: 8px;
   }
 }
 .article_doc{

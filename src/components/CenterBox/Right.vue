@@ -1,9 +1,9 @@
 <template>
   <div id="" class="right_box">
-  <div class="RightMoudle" ref="RightMoudle">
-    <AboutM></AboutM>
-  </div>
-    <div class="icpArea" ref="RightArea">
+    <div class="RightMoudle" ref="RightMoudle">
+      <AboutM></AboutM>
+    </div>
+    <div :class="['icpArea', { icpAreatop: istop }]" ref="RightArea">
       <ArtList></ArtList>
       <Footer></Footer>
     </div>
@@ -17,7 +17,9 @@ import AboutM from '../my/AboutM.vue'
 export default {
   props: [],
   data () {
-    return {}
+    return {
+      istop: false
+    }
   },
   mounted () {
     window.addEventListener('scroll', this.RightBox)
@@ -32,18 +34,10 @@ export default {
         const docWidth = document.body.clientWidth || document.body.offsetWidth || document.body.scrollWidth
         if (docWidth > 970) {
           if (scrollTop >= boxHeight.clientHeight) {
-            RightBox
-              .setAttribute(
-                'style',
-              `position: fixed;
-              top: 56px;
-              z-index:999;
-              max-width:360px
-              `
-              )
+            this.istop = true
           }
           if (scrollTop <= boxHeight.clientHeight) {
-            RightBox.removeAttribute('style')
+            this.istop = false
           }
         }
       }
@@ -66,4 +60,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.right_box{
+  width: 100%;
+}
+.icpArea{
+  width: 100%;
+}
+.icpAreatop{
+  position: fixed;
+  top: 56px;
+  z-index:999;
+  max-width: 25.5%;
+}
 </style>

@@ -70,7 +70,7 @@ export default {
 <style lang="less" scoped>
 .ararc{
   min-height: 120px;
-  background-color: rgba(240, 243, 246, 0.8);
+  background-color: rgba(240, 243, 246, 0.5);
   margin: 10px 0 15px 0;
   border-radius: 12px;
 }

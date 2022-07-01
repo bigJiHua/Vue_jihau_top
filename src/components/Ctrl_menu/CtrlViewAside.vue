@@ -99,4 +99,7 @@ export default {
     }
   }
 }
+.menu-item a{
+  font-size: 1.8rem !important;
+}
 </style>

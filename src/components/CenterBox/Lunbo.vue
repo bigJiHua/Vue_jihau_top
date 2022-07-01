@@ -33,16 +33,25 @@ export default {
 
 <style lang="less" scoped>
 @media only screen and (min-width: 755px) {
-  .my-swipe {
-    width: 720px;
-    height: 350px;
-  }
   .article_alltitle {
     font-weight: bolder;
   }
   .article_alltitle span:nth-child(2) {
     top: 18px;
   }
+  .lunbo_img {
+    width: 100%;
+    height: 250px;
+  }
+.lunbo_box {
+  height: 250px;
+  .my-swipe {
+    color: #fff;
+    font-size: 20px;
+    height: 100%;
+    text-align: center;
+  }
+}
 }
 .lunbo_img {
   width: 100%;
@@ -52,11 +61,8 @@ export default {
   .my-swipe {
     color: #fff;
     font-size: 20px;
-    line-height: 150px;
+    height: 100%;
     text-align: center;
-  }
-  /deep/.van-swipe__indicator{
-    background-color: rgb(224, 182, 182);
   }
 }
 </style>

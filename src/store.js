@@ -7,11 +7,15 @@ export default new Vuex.Store({
   state: {
     Userdata: [],
     ArticleData: [],
+    bgc: '',
     token: localStorage.getItem('token')
   },
   mutations: {
     cagArtData (state, ArticleData) {
       state.ArticleData = ArticleData
+    },
+    cagColor (state, bgc) {
+      state.bgc = bgc
     }
   },
   actions: {

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <HeaderM></HeaderM>
     <router-view></router-view>
   </div>
@@ -58,11 +58,26 @@ export default {
   padding: 0;
   margin: 0;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  position: relative;
+@media only screen and (min-width: 755px) {
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    position: relative;
+    width: 80vw;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 755px) {
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    position: relative;
+    width: 90vw;
+    margin: 0 auto;
+  }
 }
 </style>

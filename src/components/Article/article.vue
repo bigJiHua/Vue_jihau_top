@@ -1,6 +1,6 @@
 <template>
-  <div id="" class="article container">
-    <div class="leftContent col-md-8">
+  <div id="" class="article">
+    <div class="leftContent">
       <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
       <div v-show="!goodpage">
         <div class="content">
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <RightM class="col-md-4"></RightM>
+    <RightM class=""></RightM>
   </div>
 </template>
 
@@ -272,16 +272,22 @@ export default {
   .article {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
   }
   .leftContent {
-    background-color: rgba(243, 245, 248, 0.8);
+    background-color: rgba(243, 245, 248, 0.5);
     padding: 20px;
     border-radius: 12px;
-    margin: 30px;
+    margin-right:20px;
+    min-width: 67%;
+    max-width: 67%;
   }
 }
 
 @media only screen and (max-width: 755px) {
+  .article{
+    margin-top: 20px;
+  }
   .leftContent {
     background-color: rgba(243, 245, 248, 0.8);
     padding: 20px;
@@ -314,15 +320,16 @@ export default {
     font-weight: bolder;
   }
   #comtext {
-    border-radius: 12px;
+    border-radius: 8px;
     border: 2px rgba(243, 245, 248, 0.8) solid;
+    background-color: rgba(32, 141, 236, 0.3);
     padding: 5px;
     width: 100%;
     height: 80px;
     resize: none;
   }
   .comment {
-    background-color: rgba(201, 227, 243, 0.4);
+    background-color: rgb(122, 181, 217);
     border-radius: 4px;
     padding: 5px;
     margin-bottom: 10px;

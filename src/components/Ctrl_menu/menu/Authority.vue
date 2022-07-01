@@ -56,6 +56,7 @@
     ></cag-user-data>
     <div class="countpage">
       <van-button @click="updo('up')">上一页</van-button>
+      <span>第{{page}}页</span>&nbsp;
       <span>共{{ length | lengthcount(this.length)}}页</span>
       <van-button @click="updo('next')">下一页</van-button>
     </div>
@@ -93,7 +94,8 @@ export default {
         item: []
       },
       n: 0,
-      length: 0
+      length: 0,
+      page: 1
     }
   },
   // 生命周期初始化函数
@@ -162,10 +164,12 @@ export default {
         if (this.n === 0) {
           alert('这就是第一页！')
         } else {
+          this.page -= 1
           this.n -= 5
           this.getUserinfo(this.n)
         }
       } else if (mes === 'next') {
+        this.page += 1
         this.n += 5
         this.getUserinfo(this.n)
       }

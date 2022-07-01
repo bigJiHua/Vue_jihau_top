@@ -1,5 +1,7 @@
 <template>
-  <div class="navbar-default container" id="indexHeader" ref="headertotop">
+  <div
+  :class="['navbar-default','Ctrldemo', {header: istop} ]"
+  id="indexHeader" ref="headertotop">
     <div class="navbar-header coker">
       <button
         type="button"
@@ -62,7 +64,7 @@
         <li @click="closeMenu"><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
         <li>
           <button @click="login" class="btn" v-show="!token">登录</button>
-          <button @click="outlogin" class="btn" v-show="token">退出登录</button>
+          <button @click="outlogin" class="btn" v-show="token"><a>退出登录</a></button>
           <button v-show="token" class="btn" @click="closeMenu">
             <router-link to="/CtrlView">后台</router-link>
           </button>
@@ -73,18 +75,77 @@
 </template>
 
 <script>
-
 export default {
   props: [],
   data () {
     return {
       token: localStorage.getItem('token'),
       User: localStorage.getItem('Username'),
-      Useridentity: localStorage.getItem('Useridentity')
+      Useridentity: localStorage.getItem('Useridentity'),
+      istop: false
     }
   },
   mounted () {
     window.addEventListener('scroll', this.HeaderTop)
+    const getTag = (roots, map = {}) => {
+      if (!roots?.length) return []
+      Array.from(roots).forEach(node => {
+        map[node.tagName] = ''
+        getTag(node.children, map)
+      })
+      return Object.keys(map)
+    }
+    setTimeout(() => {
+      setInterval(() => {
+        const Ctrldemo = document.getElementsByClassName('Ctrldemo')
+        const style = localStorage.getItem('bgc')
+        // 本地值不存在且未发生改变
+        if (!style && this.$store.state.bgc !== '' && this.$store.state.bgc !== undefined) {
+          console.log(this.$store.state.bgc)
+          for (let i = 0; i < Ctrldemo.length; i++) {
+            Ctrldemo[i].style.background = `${this.$store.state.bgc}`
+            const alldemo = getTag(document.getElementsByTagName('html'))
+            for (let i = 0; i < alldemo.length; i++) {
+              const alldemom = alldemo[i].toLowerCase()
+              // eslint-disable-next-line no-empty
+              if (alldemom === 'input' || alldemom === 'textarea' || alldemom === 'button' || alldemom === 'a' || alldemom === 'p' || alldemom === 'h1' || alldemom === 'li') {
+                const demo = document.getElementsByTagName(`${alldemom}`)
+                const demobtn = document.getElementsByTagName('button')
+                for (let i = 0; i < demo.length; i++) {
+                  demo[i].style.color = 'rgb(255,255,255)'
+                }
+                for (let i = 0; i < demobtn.length; i++) {
+                  demobtn[i].style.background = `${this.$store.state.bgc}`
+                }
+              }
+            }
+          } // 本地值存在 优先处理本地值
+        } else if (style) {
+          for (let i = 0; i < Ctrldemo.length; i++) {
+            Ctrldemo[i].style.background = `${localStorage.getItem('bgc')}`
+            const alldemo = getTag(document.getElementsByTagName('html'))
+            for (let i = 0; i < alldemo.length; i++) {
+              const alldemom = alldemo[i].toLowerCase()
+              if (alldemom === 'p' || alldemom === 'input' || alldemom === 'textarea' || alldemom === 'button') {
+                const demo = document.getElementsByTagName(`${alldemom}`)
+                const demobtn = document.getElementsByTagName('button')
+                for (let i = 0; i < demo.length; i++) {
+                  demo[i].style.color = 'rgb(0,0,0)'
+                }
+                for (let i = 0; i < demobtn.length; i++) {
+                  demobtn[i].style.background = `${localStorage.getItem('bgc')}`
+                }
+              } else if (alldemom === 'h1' || alldemom === 'li' || alldemom === 'a' || alldemom === 'span') {
+                const demo = document.getElementsByTagName(`${alldemom}`)
+                for (let i = 0; i < demo.length; i++) {
+                  demo[i].style.color = 'rgb(255,255,255)'
+                }
+              }
+            }
+          }
+        }
+      }, 200)
+    }, 200)
   },
   // 方法
   methods: {
@@ -135,17 +196,10 @@ export default {
           window.pageYOffset ||
           document.body.scrollTop
         if (scrollTop >= 10) {
-          indexHeader.setAttribute(
-            'style',
-            `position: fixed;
-              top: -1px;
-              z-index:999;
-              height:50px;
-              `
-          )
+          this.istop = true
         }
         if (scrollTop === 0) {
-          indexHeader.removeAttribute('style')
+          this.istop = false
         }
       }
     },
@@ -177,6 +231,13 @@ export default {
   font-size: 1.5rem;
   font-weight: bolder;
 }
+.header{
+  position: fixed;
+  top: -1px;
+  z-index:999;
+  height:50px;
+  width: 81%;
+}
 @media only screen and (min-width: 755px) {
   .logo {
     width: 45px;
@@ -190,6 +251,13 @@ export default {
   }
 }
 @media only screen and (max-width: 755px) {
+.header{
+  position: fixed;
+  top: -1px;
+  z-index:999;
+  height:50px;
+  width: 90%;
+}
   .logo {
     width: 34px;
     height: 28px;
@@ -204,7 +272,7 @@ export default {
     position: absolute;
     z-index: 999;
     background-color: rgba(255, 255, 255, 0.9);
-    width: 100vw;
+    width: 100%;
   }
 }
 </style>
