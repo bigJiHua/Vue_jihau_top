@@ -1,43 +1,47 @@
 <template>
-    <div class="countpage">
-      <van-button @click="updo('up')">上一页</van-button>
-      <span>共{{ length | lengthcount(length)}}页</span>
-      <van-button @click="updo('next')">下一页</van-button>
+  <div id="" class="itemarea">
+    <div class="card">
+      <p class="card_title">
+        文章：<router-link :to='{path:"/article/"+ item.article_id}'>{{item.title}}</router-link>
+      </p>
+      <article>
+      {{ item.content | newcontent(item.content) }}...
+      </article>
+      <div class="details">
+        <p >作者:{{item.username}}</p>
+        <p >标签:{{item.lable}}</p>
+        <p >关键词:{{item.keyword}}</p>
+        <p >时间:{{item.pub_date}}</p>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
+
 export default {
   props: {
-    length: {
-      type: Number, String
-    }
-  },
-  data () {
-    return {}
-  },
-  methods: {
-    updo (mes) {
-      if (mes === 'up') {
-        if (this.n === 0) {
-          alert('这就是第一页！')
-        } else {
-          this.n -= 5
-          this.getUserinfo(this.n)
-        }
-      } else if (mes === 'next') {
-        this.n += 5
-        this.getUserinfo(this.n)
+    item: {
+      type: Object,
+      default () {
+        return {}
       }
     }
   },
-  computed: {},
+  methods: {
+  },
   filters: {
-    lengthcount (le) {
-      return le / 5
+    newcontent (content) {
+      const newArr = []
+      for (const k in content) {
+        if (content[k].match(/\p{sc=Han}/gu)) {
+          newArr.push(content[k])
+        }
+      }
+      return newArr.splice(0, 30).join('')
     }
   },
-  name: 'pageUadM',
+  name: 'PageuadM',
   components: {
     // 导入组件
   }
@@ -45,4 +49,35 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@media only screen and (min-width: 755px) {
+  .card{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(240,240,240,0.4);
+    margin: 5px;
+  }
+  .details{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    p{
+      margin-right: 5px;
+    }
+  }
+}
+@media only screen and (max-width: 755px) {
+  .card{
+    border-radius: 10px;
+    background-color: rgba(240,240,240,0.8);
+    margin: 8px 0;
+  }
+  .details{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    p{
+      color: black;
+    }
+  }
+}
 </style>

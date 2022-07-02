@@ -1,27 +1,39 @@
 <template>
   <div id="" class="lunbo_box">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="image in images" :key="image">
-        <img :src="image" class="lunbo_img" />
+      <van-swipe-item v-for="(image,index) in images" :key="index">
+        <img :src="image | setimg(image)" class="lunbo_img" />
       </van-swipe-item>
     </van-swipe>
   </div>
 </template>
 
 <script>
-// 导入组件
-// import  from ''
+import getLunbo from '../api/getSetting'
 
 export default {
   data () {
     return {
-      images: [
-        'https://d.da4.cc/img/3color.png',
-        'https://d.da4.cc/img/c.png',
-        'https://d.da4.cc/img/sjcxsj.png',
-        'https://d.da4.cc/img/jihaucom.png',
-        'https://d.da4.cc/img/3wwwcom.png'
-      ]
+      images: []
+    }
+  },
+  created () {
+    this.getLunbotu()
+  },
+  methods: {
+    async getLunbotu () {
+      const val = 'Lunbo'
+      const { data: res } = await getLunbo.getSetting(val)
+      this.images = res.data
+    }
+  },
+  filters: {
+    setimg (val) {
+      if (val.set_change === '0' && val.set_change !== '') {
+        return val.set_difault
+      } else {
+        return val.set_change
+      }
     }
   },
   name: 'LunBO',
@@ -40,7 +52,7 @@ export default {
     top: 18px;
   }
   .lunbo_img {
-    width: 100%;
+    width: 52vw !important;
     height: 250px;
   }
 .lunbo_box {

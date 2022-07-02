@@ -189,7 +189,7 @@ export default {
       }
     },
     lengthcount (le) {
-      return le / 5
+      return Math.ceil(le / 5)
     }
   },
   // Vue 中自定义属性

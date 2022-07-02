@@ -64,7 +64,7 @@ export default {
 .aside {
   border-right: 2px rgba(214, 210, 210, 0.9) solid;
   background-color: rgba(214, 210, 210, 0.2);
-  min-height: 92vh;
+  min-height: 89vh;
   margin-right: 3vw;
   min-width: 11vw;
 }
@@ -74,7 +74,7 @@ export default {
   border-right: 2px rgba(214, 210, 210, 0.9) solid;
   background-color: rgba(214, 210, 210, 0.2);
   flex: 0.5;
-  min-height: 92vh;
+  min-height: 89vh;
   margin-right: 3vw;
   min-width: 23vw;
 }

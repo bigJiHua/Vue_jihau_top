@@ -63,19 +63,14 @@ export default {
 .daylist {
   display: none;
 }
-.daylists {
-  display: block;
-  list-style: none;
-  line-height: 2rem;
-  text-indent: 2.5rem;
-}
 .daylists a {
   text-decoration: none;
   color: rgb(38, 130, 221);
   font-weight: bolder;
 }
-.daylists a li:hover {
+.daylists:hover {
   background-color: rgb(148, 171, 194);
+  color: white;
 }
 .daylist {
   display: none;
@@ -94,13 +89,5 @@ export default {
   text-decoration: none;
   color: rgb(38, 130, 221);
   font-weight: bolder;
-}
-
-.daylists li {
-  padding-left: 2rem;
-}
-
-.daylists a li:hover {
-  background-color: rgb(148, 171, 194);
 }
 </style>

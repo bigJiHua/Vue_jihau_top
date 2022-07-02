@@ -322,14 +322,13 @@ export default {
   #comtext {
     border-radius: 8px;
     border: 2px rgba(243, 245, 248, 0.8) solid;
-    background-color: rgba(32, 141, 236, 0.3);
     padding: 5px;
     width: 100%;
     height: 80px;
     resize: none;
   }
   .comment {
-    background-color: rgb(122, 181, 217);
+    background-color: rgba(201,227,243,.4);
     border-radius: 4px;
     padding: 5px;
     margin-bottom: 10px;

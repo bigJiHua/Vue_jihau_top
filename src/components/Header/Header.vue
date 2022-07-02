@@ -11,7 +11,6 @@
         aria-expanded="false"
         aria-controls="navbar"
         ref="btn_list"
-        @click="closeMenu"
       >
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -24,13 +23,13 @@
         ><img src="https://www.jihau.top/img/logo.png" class="logo" alt="logo"
       /></a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse" ref="menubox" >
+    <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox" >
       <ul class="nav navbar-nav">
-        <li>
-          <router-link to="/"><span @click="closeMenu">主页</span></router-link>
+        <li @click="closeMenu">
+          <router-link to="/">主页</router-link>
         </li>
-        <li>
-          <a href="https://about.jihau.top"><span @click="closeMenu">关于</span></a>
+        <li @click="closeMenu">
+          <a href="https://about.jihau.top">关于</a>
         </li>
         <li class="dropdown">
           <a
@@ -52,7 +51,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right right_btn">
-        <li>
+        <li @click="closeMenu">
           <router-link to="/Search">
             <span
               class="glyphicon glyphicon-search"
@@ -62,7 +61,7 @@
           </router-link>
         </li>
         <li @click="closeMenu"><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
-        <li>
+        <li >
           <button @click="login" class="btn" v-show="!token">登录</button>
           <button @click="outlogin" class="btn" v-show="token"><a>退出登录</a></button>
           <button v-show="token" class="btn" @click="closeMenu">
@@ -87,61 +86,40 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.HeaderTop)
-    const getTag = (roots, map = {}) => {
-      if (!roots?.length) return []
-      Array.from(roots).forEach(node => {
-        map[node.tagName] = ''
-        getTag(node.children, map)
-      })
-      return Object.keys(map)
+    const setcolor = (demo, color) => {
+      const demos = document.querySelectorAll(`${demo}`)
+      for (let i = 0; i < demos.length; i++) {
+        demos[i].style.color = `${color}`
+      }
     }
+    // 设置主题样式
     setTimeout(() => {
       setInterval(() => {
-        const Ctrldemo = document.getElementsByClassName('Ctrldemo')
+        const Ctrldemo = document.querySelectorAll('.Ctrldemo')
         const style = localStorage.getItem('bgc')
-        // 本地值不存在且未发生改变
-        if (!style && this.$store.state.bgc !== '' && this.$store.state.bgc !== undefined) {
-          console.log(this.$store.state.bgc)
+        const bgc = this.$store.state.bgc
+        if (style) {
           for (let i = 0; i < Ctrldemo.length; i++) {
-            Ctrldemo[i].style.background = `${this.$store.state.bgc}`
-            const alldemo = getTag(document.getElementsByTagName('html'))
-            for (let i = 0; i < alldemo.length; i++) {
-              const alldemom = alldemo[i].toLowerCase()
-              // eslint-disable-next-line no-empty
-              if (alldemom === 'input' || alldemom === 'textarea' || alldemom === 'button' || alldemom === 'a' || alldemom === 'p' || alldemom === 'h1' || alldemom === 'li') {
-                const demo = document.getElementsByTagName(`${alldemom}`)
-                const demobtn = document.getElementsByTagName('button')
-                for (let i = 0; i < demo.length; i++) {
-                  demo[i].style.color = 'rgb(255,255,255)'
-                }
-                for (let i = 0; i < demobtn.length; i++) {
-                  demobtn[i].style.background = `${this.$store.state.bgc}`
-                }
-              }
-            }
-          } // 本地值存在 优先处理本地值
-        } else if (style) {
+            Ctrldemo[i].style.background = `${style}`
+            setcolor('h1', 'rgb(240,240,240)')
+            setcolor('.menu-item > a', 'rgb(240,240,240)')
+            setcolor('.article_alltitle > span', 'rgb(240,240,240)')
+            setcolor('.nav > li > a', 'rgb(240,240,240)')
+            setcolor('#User > p > span', 'rgb(240,240,240)')
+            setcolor('#cagUsers > p > span', 'rgb(240,240,240)')
+            setcolor('.ararc_title', 'rgb(240,240,240)')
+          }
+        } else if (!style && bgc !== '' && bgc !== null) {
           for (let i = 0; i < Ctrldemo.length; i++) {
-            Ctrldemo[i].style.background = `${localStorage.getItem('bgc')}`
-            const alldemo = getTag(document.getElementsByTagName('html'))
-            for (let i = 0; i < alldemo.length; i++) {
-              const alldemom = alldemo[i].toLowerCase()
-              if (alldemom === 'p' || alldemom === 'input' || alldemom === 'textarea' || alldemom === 'button') {
-                const demo = document.getElementsByTagName(`${alldemom}`)
-                const demobtn = document.getElementsByTagName('button')
-                for (let i = 0; i < demo.length; i++) {
-                  demo[i].style.color = 'rgb(0,0,0)'
-                }
-                for (let i = 0; i < demobtn.length; i++) {
-                  demobtn[i].style.background = `${localStorage.getItem('bgc')}`
-                }
-              } else if (alldemom === 'h1' || alldemom === 'li' || alldemom === 'a' || alldemom === 'span') {
-                const demo = document.getElementsByTagName(`${alldemom}`)
-                for (let i = 0; i < demo.length; i++) {
-                  demo[i].style.color = 'rgb(255,255,255)'
-                }
-              }
-            }
+            Ctrldemo[i].style.background = `${bgc}`
+            setcolor('h1', 'rgb(240,240,240)')
+            setcolor('.menu-item > a', 'rgb(240,240,240)')
+            setcolor('.article_alltitle > span', 'rgb(240,240,240)')
+            setcolor('.nav > li > a', 'rgb(240,240,240)')
+            setcolor('#User > p > span', 'rgb(240,240,240)')
+            setcolor('#cagUsers > p > span', 'rgb(240,240,240)')
+            setcolor('.ararc_title', 'rgb(240,240,240)')
+            setcolor('#introduce_doc > p', 'rgb(240,240,240)')
           }
         }
       }, 200)
