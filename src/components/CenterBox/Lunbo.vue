@@ -1,8 +1,9 @@
 <template>
   <div id="" class="lunbo_box">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(image,index) in images" :key="index">
+      <van-swipe-item v-for="(image,index) in images" :key="index" class="LunboArea">
         <img :src="image | setimg(image)" class="lunbo_img" />
+        <a :href="image.set_url" class="Lunbo_title">{{image.set_title}}</a>
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -45,6 +46,9 @@ export default {
 
 <style lang="less" scoped>
 @media only screen and (min-width: 755px) {
+  .my-swipe{
+    width: 100%;
+  }
   .article_alltitle {
     font-weight: bolder;
   }
@@ -76,5 +80,18 @@ export default {
     height: 100%;
     text-align: center;
   }
+}
+
+.LunboArea {
+  position: relative;
+}
+.Lunbo_title{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 4rem;
+  color: rgba(11, 87, 227, 0.8);
+  display: inline-block;
+  background-color: #fff;
 }
 </style>

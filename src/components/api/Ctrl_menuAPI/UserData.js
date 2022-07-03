@@ -3,7 +3,7 @@ import requst from '../../requst/requst'
 const GetUserData = function (username) {
   const params = new URLSearchParams()
   params.append('username', username)
-  return requst.get('/users/' + username)
+  return requst.post('/users/', params)
 }
 // 新增用户
 const UpnewUser = function (userdata) {
@@ -37,9 +37,14 @@ const CagUserData = function (data) {
   params.append('useridentity', data.useridentity)
   return requst.patch('/users/cagUser', params)
 }
+// 修改密码
+const CagPassword = function (oldpwd, newpwd) {
+  console.log(oldpwd, newpwd)
+}
 export default {
   GetUserData,
   CagUserData,
   UpnewUser,
-  DelUser
+  DelUser,
+  CagPassword
 }

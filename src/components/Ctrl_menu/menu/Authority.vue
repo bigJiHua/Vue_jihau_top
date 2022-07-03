@@ -1,5 +1,6 @@
 <template>
-  <div id="" class="userinfo">
+  <div id="" class="userinfo" v-if="isg">
+  <h1>用户管理</h1>
     <table
       class="table-hover table table-bordered table-striped tab-content userinfotable"
     >
@@ -43,7 +44,7 @@
               class="tdbtn"
               @click="delUser(item.username, item.useridentity,item.state)"
             >
-              {{ item.state | state(item.state) }}
+              {{ item.state | btnstate(item.state) }}
             </van-button>
           </td>
         </tr>
@@ -95,7 +96,8 @@ export default {
       },
       n: 0,
       length: 0,
-      page: 1
+      page: 1,
+      isg: false
     }
   },
   // 生命周期初始化函数
@@ -109,16 +111,18 @@ export default {
         const { data: res } = await Userinfo.getUserinfo(
           localStorage.getItem('Username'), n
         )
-        this.Userinfo.list = res.data
-        this.length = res.length
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
         if (res.status === 403) {
-          this.$router.push('/')
+          this.isg = false
           localStorage.setItem('Useridentity', '用户')
           location.reload()
+        } else if (res.status === 200) {
+          this.isg = true
+          this.Userinfo.list = res.data
+          this.length = res.length
+          this.$toast({
+            message: res.message,
+            position: 'top'
+          })
         }
         if (res.message === '404') {
           this.n -= 5
@@ -181,9 +185,16 @@ export default {
   computed: {},
   // 过滤器
   filters: {
-    state (st) {
+    btnstate (st) {
       if (st === 0) {
         return '注销'
+      } else {
+        return '已注销'
+      }
+    },
+    state (st) {
+      if (st === 0) {
+        return '正常'
       } else {
         return '已注销'
       }
@@ -205,6 +216,7 @@ export default {
 <style lang="less" scoped>
 .userinfo {
   overflow: overlay;
+  padding: 20px;
   userinfotable {
     width: 100%;
     height: 100%;
@@ -231,8 +243,3 @@ export default {
   }
 }
 </style>
-<!--
-  /deep/.van-button {
-  margin-left: 8px;
-}
--->

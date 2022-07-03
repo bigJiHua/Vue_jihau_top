@@ -21,8 +21,7 @@ export default {
   display: flex;
 }
 .rightView{
-  min-width: 64vw;
-  max-width: 67vw;
+  width: 70vw;
   background-color: rgba(214, 210, 210, 0.2);
 }
 </style>

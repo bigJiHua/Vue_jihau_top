@@ -65,7 +65,6 @@ export default {
   border-right: 2px rgba(214, 210, 210, 0.9) solid;
   background-color: rgba(214, 210, 210, 0.2);
   min-height: 89vh;
-  margin-right: 3vw;
   min-width: 11vw;
 }
 

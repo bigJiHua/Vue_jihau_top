@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.Article{
+  padding: 20px;
+}
 .minheader{
   display: flex;
   align-items: center;

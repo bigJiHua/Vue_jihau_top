@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import CagpanelColor from './Setting_lpage/CagpanelColor.vue'
-import CagLunbo from './Setting_lpage/CagLunbo.vue'
+import CagpanelColor from './Setting_elpage/CagpanelColor.vue'
+import CagLunbo from './Setting_elpage/CagLunbo.vue'
 // 导入组件
 // import  from ''
 
@@ -32,10 +32,12 @@ export default {
 <style lang="less" scoped>
 @media only screen and (min-width: 755px) {
   .Scard {
-    width: 350px;
     padding: 10px;
     border-radius: 5px;
     margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     background-color: rgba(255, 255, 255, 0.4);
     p {
       text-align: center;

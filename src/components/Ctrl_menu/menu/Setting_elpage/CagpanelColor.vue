@@ -1,6 +1,6 @@
 <template>
   <div class="Scard">
-    <p>设置面板颜色</p>
+    <p class="title">设置面板颜色</p>
     <div class="select_color">
       <input type="color" v-model="rgb" />
       <div
@@ -110,6 +110,10 @@ export default {
     height: 25px;
     border: 3px white solid;
     margin-left: 5px;
+  }
+  p.title{
+    font-size: 2.5rem;
+    text-align: center;
   }
 }
 @media only screen and (max-width: 755px) {
