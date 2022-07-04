@@ -59,6 +59,7 @@ export default {
 <style lang="less" scoped>
 .Article{
   padding: 20px;
+  overflow: scroll;
 }
 .minheader{
   display: flex;

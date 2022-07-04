@@ -188,7 +188,6 @@ export default {
       }
     },
     async commont (artid) {
-      console.log(artid)
       if (localStorage.getItem('Username') === null) {
         this.$toast({
           message: '登录才能评论哦！',
@@ -207,9 +206,7 @@ export default {
               position: 'top'
             })
           } else {
-            const comtxt = this.Active.comTXT
-              .match(/((\p{sc=Han})|([a-zA-Z]))/gu)
-              .join('')
+            const comtxt = this.Active.comTXT.match(/((\p{sc=Han})|([a-zA-Z0-9]))/gu).join('')
             const data = {
               username: localStorage.getItem('Username'),
               articleid: artid,
@@ -223,7 +220,7 @@ export default {
             })
             if (res.status === 200) {
               this.Active.collect = !this.Active.collect
-              location.reload()
+              this.getArticle(this.$route.params.id)
             }
           }
         }

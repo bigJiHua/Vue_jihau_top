@@ -67,7 +67,7 @@
 <script>
 import Userinfo from '@/components/api/main/GetUserInfo'
 import GetUData from '@/components/api/Ctrl_menuAPI/UserData'
-import CagUserData from '@/components/Module/cagUserData.vue'
+import CagUserData from '@/components/Ctrl_menu/menu/Authority_elpage/cagUserData.vue'
 
 export default {
   props: [],
@@ -126,6 +126,7 @@ export default {
         }
         if (res.message === '404') {
           this.n -= 5
+          this.page -= 1
           this.getUserinfo(this.n)
           alert('已经是最大限度了！')
         }
@@ -179,10 +180,6 @@ export default {
       }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
   // 过滤器
   filters: {
     btnstate (st) {
@@ -203,12 +200,9 @@ export default {
       return Math.ceil(le / 5)
     }
   },
-  // Vue 中自定义属性
-  directives: {},
   name: 'AuthorityM',
   components: {
     CagUserData
-    // 导入组件
   }
 }
 </script>

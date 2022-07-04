@@ -45,18 +45,7 @@ export default {
       }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
-  name: 'CtrlViewAside',
-  components: {
-    // 导入组件
-  }
+  name: 'CtrlViewAside'
 }
 </script>
 
@@ -64,8 +53,8 @@ export default {
 .aside {
   border-right: 2px rgba(214, 210, 210, 0.9) solid;
   background-color: rgba(214, 210, 210, 0.2);
-  min-height: 89vh;
-  min-width: 11vw;
+  height: 84vh;
+  min-width: 15vw;
 }
 
 @media only screen and (max-width: 755px) {

@@ -67,7 +67,7 @@
         ></ckeditor>
       </div>
     </div>
-      <gallery ref="imageM"></gallery>
+    <gallery ref="imageM"></gallery>
   </div>
 </template>
 
@@ -138,42 +138,42 @@ export default {
   .cagAside {
     max-width: 16vw;
   }
-.imgarea {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 700px;
-  height: 500px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  overflow: scroll;
-  .atitle {
-    font-size: 3rem;
-    font-weight: bolder;
-    border-bottom: 2px gray solid;
+  .imgarea {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    overflow: scroll;
+    .atitle {
+      font-size: 3rem;
+      font-weight: bolder;
+      border-bottom: 2px gray solid;
+    }
   }
-}
-.kuimgarea {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  .imgcopy {
+  .kuimgarea {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    .imgcopy {
+      display: flex;
+      flex-direction: column;
+    }
+    .kuimg {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+    }
   }
-  .kuimg {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-  }
-}
 }
 @media only screen and (max-width: 755px) {
   .cagArea {
     position: relative;
   }
-.imgarea {
+  .imgarea {
     position: absolute;
     top: 22%;
     left: 33%;
@@ -183,26 +183,26 @@ export default {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     overflow: scroll;
-  .atitle {
-    font-size: 3rem;
-    font-weight: bolder;
-    border-bottom: 2px gray solid;
+    .atitle {
+      font-size: 3rem;
+      font-weight: bolder;
+      border-bottom: 2px gray solid;
+    }
   }
-}
-.kuimgarea {
-  display: flex;
-  overflow: scroll;
-  width: 100%;
-  .imgcopy {
+  .kuimgarea {
     display: flex;
-    flex-direction: column;
+    overflow: scroll;
+    width: 100%;
+    .imgcopy {
+      display: flex;
+      flex-direction: column;
+    }
+    .kuimg {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+    }
   }
-  .kuimg {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-  }
-}
 }
 .cagAside {
   flex: 0.5;
@@ -211,23 +211,15 @@ export default {
   padding: 5px;
   position: relative;
   overflow: hidden;
+  transform: scaleY(1);
+  transition: transform 0.5s;
+  transform-origin: top center;
 }
 .opAside {
-  background-color: rgb(5, 0, 105);
-  color: white;
-  overflow: hidden;
-  position: relative;
-  width: 0px;
-  height: 0px;
-  animation: down 0.5s;
-}
-@keyframes down {
-  from {
-    width: 16vw;
-  }
-  to {
-    width: 0px;
-  }
+  transform: scaleY(0);
+  transition: transform 0.2s;
+  transform-origin: top center;
+  width: 0;
 }
 .cagcontent {
   flex: 2;

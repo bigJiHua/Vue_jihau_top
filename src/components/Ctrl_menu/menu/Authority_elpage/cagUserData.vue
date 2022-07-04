@@ -102,7 +102,6 @@ export default {
         message: res.message,
         position: 'top'
       })
-      location.reload()
     },
     async cagdata () {
       const data = this.cagUser
@@ -111,7 +110,6 @@ export default {
         message: res.message,
         position: 'top'
       })
-      location.reload()
     },
     toge () {
       this.$emit('toge', false)

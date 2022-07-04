@@ -1,18 +1,19 @@
 <template>
   <div id="" class="">
-    <div class="deluser">
-      <div class="cagpwd">
+    <div class="cagArea">
+      <div class="cagpwd cagAreabox">
         <label for="oldpwd">旧密码</label>
-        <input type="password" id="oldpwd" v-model="oldpwd" class="form-control" @input="checkpwd">
+        <input type="password" id="oldpwd" v-model.lazy="oldpwd" class="form-control">
         <label for="newpwd">新密码</label>
         <input type="password" id="newpwd" v-model="newpwd" class="form-control">
-        <van-button>确认修改</van-button>
+        <van-button @click="cagPwd">确认修改</van-button>
       </div>
-      <van-button type="danger" @click="delUser">注销用户</van-button>
-      &nbsp;&nbsp;&nbsp;
-      <small style="color: red"
-        >⚠注销后 你的数据并不会马上删除， 可以在登录页面申请找回账号
-      </small>
+      <div class="delUser cagAreabox">
+        <van-button type="danger" @click="delUser">注销用户</van-button>
+        <p style="color: red;margin-top: 10px;">
+        <small>⚠注销后 你的数据并不会马上删除， 可以在登录页面申请找回账号</small>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -64,19 +65,18 @@ export default {
         alert('无法获取用户名，请刷新页面后再试')
       }
     },
-    async cagpwd () {
-      const { data: res } = await GetUData.CagPassword()
+    async cagPwd () {
+      const { data: res } = await GetUData.CagPassword(this.oldpwd, this.newpwd)
       this.$toast({
         message: res.message,
         position: 'top'
       })
-    },
-    checkpwd () {
-      // TODO 修改密码
-      this.n += 1
-      setTimeout(() => {
-        console.log(this.n)
-      }, 5000)
+      if (res.status === 200) {
+        localStorage.removeItem('token')
+        localStorage.removeItem('Username')
+        localStorage.removeItem('Useridentity')
+        location.reload()
+      }
     }
   },
   // 监听器
@@ -90,10 +90,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.cagpwd > input {
+  display: block;
+  margin-bottom: 15px;
+}
 .colpwd{
   margin-bottom: 20px;
 }
 #oldpwd,#newpwd{
   width: 20vw;
+}
+.cagAreabox{
+  margin-bottom: 25px;
 }
 </style>

@@ -4,6 +4,7 @@ import Yszc from '@/components/my/隐私政策'
 import Article from '@/components/Article/article'
 import Login from '@/components/my/Login'
 import Register from '@/components/my/Register'
+import DevProcess from '@/components/my/DevProcess'
 import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
 import Users from '@/components/Ctrl_menu/menu/Users'
 import Authority from '@/components/Ctrl_menu/menu/Authority'
@@ -35,6 +36,11 @@ export default [
     path: '/Login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/DevProcess',
+    name: 'DevProcess',
+    component: DevProcess
   },
   {
     path: '/register',

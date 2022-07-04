@@ -21,7 +21,9 @@ export default {
   display: flex;
 }
 .rightView{
+  padding: 15px;
   width: 70vw;
+  height: 84vh;
   background-color: rgba(214, 210, 210, 0.2);
 }
 </style>

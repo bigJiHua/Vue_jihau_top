@@ -30,6 +30,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.setting{
+  width: 100%;
+  overflow: auto;
+}
 @media only screen and (min-width: 755px) {
   .Scard {
     padding: 10px;

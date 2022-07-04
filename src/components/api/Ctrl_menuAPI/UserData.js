@@ -1,9 +1,8 @@
 import requst from '../../requst/requst'
 // 获取用户信息
-const GetUserData = function (username) {
-  const params = new URLSearchParams()
-  params.append('username', username)
-  return requst.post('/users/', params)
+const GetUserData = function () {
+  const user = localStorage.getItem('Username')
+  return requst.get('/users/?user=' + user)
 }
 // 新增用户
 const UpnewUser = function (userdata) {
@@ -39,7 +38,11 @@ const CagUserData = function (data) {
 }
 // 修改密码
 const CagPassword = function (oldpwd, newpwd) {
-  console.log(oldpwd, newpwd)
+  const params = new URLSearchParams()
+  params.append('oldpwd', oldpwd)
+  params.append('newpwd', newpwd)
+  params.append('username', localStorage.getItem('Username'))
+  return requst.patch('/users/cagpwd', params)
 }
 export default {
   GetUserData,

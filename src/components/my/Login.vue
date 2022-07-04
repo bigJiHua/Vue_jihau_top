@@ -87,24 +87,17 @@ export default {
               localStorage.setItem('token', res.token)
               localStorage.setItem('Username', res.User.username)
               localStorage.setItem('Useridentity', res.User.useridentity)
-              // 判断是否真实写入了token
-              if (localStorage.getItem('token')) {
-                const timer = setInterval(() => {
-                  this.msg = res.message
-                }, 100)
-                setTimeout(() => {
-                  clearInterval(timer)
-                  this.show = false
-                  this.loading = false
-                  this.$router.push('/CtrlView')
-                  location.reload()
-                }, this.setTime)
-              } else {
-                this.showPopup(res.message)
-                localStorage.removeItem('token')
-                this.$router.push('/Login')
+              this.$store.commit('cagUserData', res.User)
+              const timer = setInterval(() => {
+                this.msg = res.message
+              }, 100)
+              setTimeout(() => {
+                clearInterval(timer)
+                this.show = false
+                this.loading = false
+                this.$router.push('/CtrlView')
                 location.reload()
-              }
+              }, this.setTime)
             } else {
               this.showPopup(res.message)
             }
@@ -117,6 +110,7 @@ export default {
     register () {
       if (localStorage.getItem('token')) {
         this.showPopup('已经登录啦！')
+        this.$router.push('/CtrlView/Users')
       } else {
         this.$router.push('/register')
       }

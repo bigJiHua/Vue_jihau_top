@@ -35,34 +35,27 @@ export default {
   props: [],
   data () {
     return {
-      Users: []
+      Users: this.$store.state.Userdata
     }
   },
   // 生命周期初始化函数
   created () {
-    this.getUsersdata()
+    if (this.Users.length === 0) {
+      this.getUsersdata()
+    }
   },
   method () {
   },
   methods: {
     async getUsersdata () {
-      const user = localStorage.getItem('Username')
-      const { data: res } = await GetUData.GetUserData(user)
-      const timer = setInterval(() => {
-        if (res.status === 401) {
-          console.error('错误')
-        } else {
-          this.Users = res.data
-          this.cagUser = res.data
-          this.$toast({
-            message: res.message,
-            position: 'top'
-          })
-        }
-      }, 100)
-      setTimeout(() => {
-        clearInterval(timer)
-      }, 100)
+      const { data: res } = await GetUData.GetUserData()
+      this.cagUser = res.data
+      this.$store.commit('cagUserData', res.data)
+      this.Users = this.$store.state.Userdata
+      this.$toast({
+        message: res.message,
+        position: 'top'
+      })
     }
   },
   name: 'UsersM',

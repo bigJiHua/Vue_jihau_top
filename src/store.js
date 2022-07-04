@@ -14,6 +14,9 @@ export default new Vuex.Store({
     cagArtData (state, ArticleData) {
       state.ArticleData = ArticleData
     },
+    cagUserData (state, Userdata) {
+      state.Userdata = Userdata
+    },
     cagColor (state, bgc) {
       state.bgc = bgc
     }

@@ -1,13 +1,16 @@
 <template>
   <div class="Scard" v-if="isg">
-      <p class="title">设置轮播图</p>
-      <div class="Lunbo_item">
+      <div class="header">
+        <p class="title">设置轮播图</p>
+        <div @click="to_top"><p :class="{ icon_up: isup , 'isdn': !isup }"></p></div>
+      </div>
+      <div :class="{ Lunbo_item: isup , 'Lunbo_down': !isup }">
         <div class="setitem" v-for="(item,index) in item" :key="index">
         <p>封面：<img :src="item.set_difault" alt="" class="LunboImg"></p>
         <p>更换：<input type="link" v-model="item.set_difault"></p>
         <p>标题：<input type="text" v-model="item.set_title"></p>
         <p>链接：<input type="link" v-model="item.set_url"></p>
-        <van-button @click="cagLunbo(item)">确认修改</van-button>
+        <van-button @click="cagLunbo(item)" class="cli_btn">确认修改</van-button>
         </div>
       </div>
   </div>
@@ -21,7 +24,8 @@ export default {
   data () {
     return {
       item: [],
-      isg: false
+      isg: false,
+      isup: false
     }
   },
   // 生命周期初始化函数
@@ -45,37 +49,68 @@ export default {
         message: res.message,
         position: 'top'
       })
+    },
+    to_top () {
+      this.isup = !this.isup
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
-  name: 'CagLumbo',
-  components: {
-    // 导入组件
-  }
+  name: 'CagLumbo'
 }
 </script>
 
 <style lang="less" scoped>
+.header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.icon_up{
+  width: 20px;
+  height: 20px;
+  border-left: 4px black solid;
+  border-top: 4px black solid;
+  transition: all 0.3s;
+  transform: rotate(45deg);
+  float: right;
+  margin: -6px 25px 0 0;
+}
+.isdn{
+  width: 20px;
+  height: 20px;
+  border-left: 4px black solid;
+  border-top: 4px black solid;
+  transition: all 0.3s;
+  transform: rotate(-135deg);
+  float: right;
+  margin: -6px 25px 0 0;
+}
+.Lunbo_down{
+  transform: scaleY(0);
+  transition: transform 0.2s;
+  transform-origin: top center;
+  height: 0;
+}
   p.title{
     font-size: 2.5rem;
     text-align: center;
   }
   .setitem{
-    margin-right: 15px;
+    margin: 15px;
   }
   .Lunbo_item{
     display: flex;
     flex-wrap: wrap;
+    transform: scaleY(1);
+    transition: transform 0.2s;
+    transform-origin: top center;
   }
   .LunboImg{
     width: 100px;
     height: 60px;
+  }
+  .cli_btn{
+    margin-left: 42px;
   }
 </style>

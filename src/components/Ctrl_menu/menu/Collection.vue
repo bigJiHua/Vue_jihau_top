@@ -1,5 +1,5 @@
 <template>
-  <div id="" class="collection">
+  <div id="" class="collection" ref="coll">
     <div class="col-md-2">
       <ul id="myTab" class="nav">
         <li class="nav-tabs">
@@ -13,17 +13,15 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-10">
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="goodnum">
-          <mygoodnum :goodnum="Data.goodnum"></mygoodnum>
-        </div>
-        <div class="tab-pane" id="collent">
-          <mycollect :collect="Data.collect"></mycollect>
-        </div>
-        <div class="tab-pane" id="comment">
-          <mycomment :comment="Data.comment"></mycomment>
-        </div>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="goodnum">
+        <mygoodnum :goodnum="Data.goodnum"></mygoodnum>
+      </div>
+      <div class="tab-pane" id="collent">
+        <mycollect :collect="Data.collect"></mycollect>
+      </div>
+      <div class="tab-pane" id="comment">
+        <mycomment :comment="Data.comment"></mycomment>
       </div>
     </div>
   </div>
@@ -77,5 +75,9 @@ export default {
 <style lang="less" scoped>
 .collection{
   padding: 20px 5px;
+}
+#myTabContent{
+  height: 100%;
+  overflow: overlay;
 }
 </style>

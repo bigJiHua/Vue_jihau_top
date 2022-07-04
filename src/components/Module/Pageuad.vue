@@ -41,10 +41,7 @@ export default {
       return newArr.splice(0, 30).join('')
     }
   },
-  name: 'PageuadM',
-  components: {
-    // 导入组件
-  }
+  name: 'PageuadM'
 }
 </script>
 

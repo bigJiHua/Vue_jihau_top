@@ -60,6 +60,10 @@ export default {
             position: 'top'
           })
           if (res.status === 200) {
+            this.$toast({
+              message: '取消点赞成功',
+              position: 'top'
+            })
             location.reload()
           }
         }
@@ -77,6 +81,10 @@ export default {
             position: 'top'
           })
           if (res.status === 200) {
+            this.$toast({
+              message: '取消收藏成功',
+              position: 'top'
+            })
             location.reload()
           }
         }
@@ -94,6 +102,10 @@ export default {
             position: 'top'
           })
           if (res.status === 200) {
+            this.$toast({
+              message: '删除评论成功',
+              position: 'top'
+            })
             location.reload()
           }
         }

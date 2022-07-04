@@ -31,6 +31,9 @@
         <li @click="closeMenu">
           <a href="https://about.jihau.top">关于</a>
         </li>
+        <li @click="closeMenu">
+          <router-link to="/DevProcess">发展历程</router-link>
+        </li>
         <li class="dropdown">
           <a
             class="dropdown-toggle"
