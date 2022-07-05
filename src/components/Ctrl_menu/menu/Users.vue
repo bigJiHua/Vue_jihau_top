@@ -35,7 +35,8 @@ export default {
   props: [],
   data () {
     return {
-      Users: this.$store.state.Userdata
+      Users: this.$store.state.Userdata,
+      count: 0
     }
   },
   // 生命周期初始化函数
@@ -56,6 +57,18 @@ export default {
         message: res.message,
         position: 'top'
       })
+      if (res.status === 401) {
+        this.getUsersdata()
+        this.count += 1
+        if (this.count >= 5) {
+          alert('身份验证已过期，请重新登录')
+          this.count = 0
+          localStorage.removeItem('token')
+          localStorage.removeItem('Username')
+          localStorage.removeItem('Useridentity')
+          location.reload()
+        }
+      }
     }
   },
   name: 'UsersM',

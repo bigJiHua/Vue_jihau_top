@@ -27,6 +27,7 @@ export default {
     width: 80vw;
   }
   .left{
+    min-width: 50vw;
     width: 66%;
     margin-right: 2vw;
   }

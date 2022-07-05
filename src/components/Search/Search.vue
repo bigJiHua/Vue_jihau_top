@@ -29,7 +29,7 @@
 
 <script>
 import getArticle from '../api/getArticleList'
-import Pageuad from '../Module/Pageuad.vue'
+import Pageuad from '../Module/PageCad.vue'
 
 export default {
   props: [],

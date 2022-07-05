@@ -126,5 +126,8 @@ export default {
     border: 3px white solid;
     margin-left: 5px;
   }
+  p.title{
+    font-size: 2rem;
+  }
 }
 </style>

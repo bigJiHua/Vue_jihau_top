@@ -1,12 +1,12 @@
 <template>
   <div class="Scard" v-if="isg">
-      <div class="header">
+      <div class="header" @click="to_top">
         <p class="title">设置轮播图</p>
         <div @click="to_top"><p :class="{ icon_up: isup , 'isdn': !isup }"></p></div>
       </div>
       <div :class="{ Lunbo_item: isup , 'Lunbo_down': !isup }">
         <div class="setitem" v-for="(item,index) in item" :key="index">
-        <p>封面：<img :src="item.set_difault" alt="" class="LunboImg"></p>
+        <p>封面：{{index+1}}<img :src="item.set_difault" alt="" class="LunboImg"></p>
         <p>更换：<input type="link" v-model="item.set_difault"></p>
         <p>标题：<input type="text" v-model="item.set_title"></p>
         <p>链接：<input type="link" v-model="item.set_url"></p>
@@ -93,7 +93,7 @@ export default {
   height: 0;
 }
   p.title{
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
   }
   .setitem{

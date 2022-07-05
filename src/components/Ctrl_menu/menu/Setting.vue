@@ -2,12 +2,14 @@
   <div class="setting">
   <cagpanel-color></cagpanel-color>
   <CagLunbo></CagLunbo>
+  <CagDevP></CagDevP>
   </div>
 </template>
 
 <script>
 import CagpanelColor from './Setting_elpage/CagpanelColor.vue'
 import CagLunbo from './Setting_elpage/CagLunbo.vue'
+import CagDevP from './Setting_elpage/CagDevP.vue'
 // 导入组件
 // import  from ''
 
@@ -22,9 +24,10 @@ export default {
   // Vue 中自定义属性
   directives: {},
   name: 'SettingM',
-  components: { // 导入组件
+  components: {
     CagpanelColor,
-    CagLunbo
+    CagLunbo,
+    CagDevP
   }
 }
 </script>
@@ -54,9 +57,7 @@ export default {
 }
 @media only screen and (max-width: 755px) {
   .Scard {
-    padding: 10px;
     border-radius: 5px;
-    margin: 15px;
     background-color: rgba(255, 255, 255, 0.4);
     p {
       text-align: center;

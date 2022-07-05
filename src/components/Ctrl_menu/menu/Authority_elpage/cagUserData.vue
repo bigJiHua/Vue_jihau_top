@@ -115,18 +115,7 @@ export default {
       this.$emit('toge', false)
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
-  name: 'cagUserData',
-  components: {
-    // 导入组件
-  }
+  name: 'cagUserData'
 }
 </script>
 

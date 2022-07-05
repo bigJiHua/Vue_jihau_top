@@ -1,6 +1,6 @@
 <template>
   <div id="" class="left_box">
-    <Lunbo class="lunbo_box"></Lunbo>
+    <Lunbo></Lunbo>
     <div class="article_ListView">
       <p class="article_alltitle st">
         <span>最新文章</span>
