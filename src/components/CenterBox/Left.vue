@@ -30,6 +30,11 @@ export default {
   },
   created () {
     this.getArtList()
+    if (this.artlist.length === 0) {
+      setTimeout(() => {
+        this.getArtList()
+      }, 200)
+    }
   },
   // 方法
   methods: {
@@ -65,6 +70,9 @@ export default {
   }
 }
 @media only screen and (max-width: 755px) {
+  .left_box{
+    margin-top: 56px;
+  }
   .article_alltitle span:nth-child(2) {
     top: 18px;
   }

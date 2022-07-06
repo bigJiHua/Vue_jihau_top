@@ -1,7 +1,7 @@
 import Search from '@/components/Search/Search'
 import CenterBox from '@/components/ContentArticle'
-import Yszc from '@/components/my/隐私政策'
 import Article from '@/components/Article/article'
+import Page from '@/components/Page/Page'
 import Login from '@/components/my/Login'
 import Register from '@/components/my/Register'
 import DevProcess from '@/components/my/DevProcess'
@@ -25,8 +25,8 @@ export default [
     component: Search
   },
   {
-    path: '/隐私政策',
-    component: Yszc
+    path: '/page/:id',
+    component: Page
   },
   {
     path: '/article/:id',

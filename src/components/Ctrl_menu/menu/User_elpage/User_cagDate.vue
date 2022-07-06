@@ -1,5 +1,5 @@
 <template>
-  <div id="" class="">
+  <div id="" class="UserselfArea">
     <div class="userpic" @click="cag_pic">
       <img :src="cagUser.user_pic" alt="头像" class="pic" />
     </div>

@@ -143,7 +143,10 @@ export default {
 
 <style scoped>
 #logonCon {
+  position: fixed;
+  top: 50px;
   width: 100%;
+  height: 100vh;
   background-image: linear-gradient(
     to right top,
     #caf8ec,

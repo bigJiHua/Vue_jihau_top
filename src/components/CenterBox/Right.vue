@@ -43,14 +43,6 @@ export default {
       }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
   name: 'RightBox',
   components: {
     Footer,
@@ -60,16 +52,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.right_box{
-  width: 100%;
-}
 .icpArea{
   width: 100%;
 }
-.icpAreatop{
-  position: fixed;
-  top: 56px;
-  z-index:999;
-  max-width: 25.5%;
+
+@media only screen and (min-width: 755px) {
+  .right_box{
+    width: 28vw;
+  }
+  .icpAreatop{
+    position: fixed;
+    top: 56px;
+    z-index:999;
+    width: 28vw;
+  }
 }
 </style>

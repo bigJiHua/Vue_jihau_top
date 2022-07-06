@@ -1,7 +1,7 @@
 <template>
   <div id="" class="center_box">
     <Left class="left"></Left>
-    <RightM class="right"></RightM>
+    <RightM class="right" :isOpen="true"></RightM>
   </div>
 </template>
 
@@ -24,15 +24,16 @@ export default {
     margin-top: 20px;
     padding: 0;
     display: flex;
+    position: relative;
     width: 80vw;
+    margin: 0 auto;
   }
   .left{
-    min-width: 50vw;
-    width: 66%;
+    width: 50vw;
     margin-right: 2vw;
   }
   .right{
-    width: 33%;
+    width: 30vw;
   }
 }
 @media only screen and (max-width: 755px) {

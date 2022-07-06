@@ -13,6 +13,8 @@ import '@/assets/css/index.css'
 import '@/assets/css/typeface.css'
 import '@/assets/js/index.js'
 import CKEditor from 'ckeditor4-vue'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/monokai-sublime.css'
 
 Vue.component('ArtList', ArtList)
 Vue.component('HeaderM', HeaderM)
@@ -21,6 +23,14 @@ Vue.component('CardM', Card)
 Vue.use(Vant)
 Vue.use(Meta)
 Vue.use(CKEditor)
+
+// 自定义一个代码高亮指令
+Vue.directive('highlight', function (el) {
+  const highlight = el.querySelectorAll('pre code')
+  highlight.forEach((block) => {
+    hljs.highlightBlock(block)
+  })
+})
 
 Vue.config.productionTip = true
 new Vue({

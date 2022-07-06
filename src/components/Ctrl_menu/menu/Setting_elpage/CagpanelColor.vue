@@ -1,5 +1,5 @@
 <template>
-  <div class="Scard">
+  <div class="Scard card">
     <p class="title">设置面板颜色</p>
     <div class="select_color">
       <input type="color" v-model="rgb" />

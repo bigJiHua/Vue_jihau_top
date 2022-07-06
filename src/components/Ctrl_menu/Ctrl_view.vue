@@ -1,7 +1,7 @@
 <template>
   <div class="CtrlView">
-  <ctrl-view-aside></ctrl-view-aside>
-  <router-view class="rightView"></router-view>
+    <ctrl-view-aside></ctrl-view-aside>
+    <router-view class="rightView"></router-view>
   </div>
 </template>
 
@@ -19,19 +19,20 @@ export default {
 <style scoped>
 .CtrlView{
   display: flex;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 .rightView{
   padding: 15px;
-  width: 70vw;
-  height: 84vh;
-  background-color: rgba(214, 210, 210, 0.2);
+  width: 85vw;
+  height: 100%;
+  overflow: overlay;
 }
-
-@media only screen and (max-width: 755px) {
-  .rightView{
-    width: 70vw;
-    height: 84vh;
-    background-color: rgba(214, 210, 210, 0.2);
-  }
+.rightView::-webkit-scrollbar {
+  display: none;
 }
 </style>
+<!-- background-color: rgb(240,242,245); -->

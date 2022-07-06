@@ -1,6 +1,6 @@
 <template>
   <div id="" class="DevProcess">
-    <van-switch v-model="checked" class="check-btn" v-if="isEdick"/>
+    <van-switch v-model="checked" class="check-btn" v-if="isEdicks"/>
     <div class="Tree">
       <div class="Tree_dome" v-for="(item,index) in item" :key="index">
         <div class="Tree_Area">
@@ -29,7 +29,8 @@ export default {
       cagArea: {
         isOpen: false,
         item: {}
-      }
+      },
+      isEdicks: false
     }
   },
   created () {
@@ -41,9 +42,21 @@ export default {
       const { data: res } = await getDevP.getSetting('DevP')
       this.item = res.data
     },
-    isEdick () {
-      if (localStorage.getItem('Username') === '管理员') {
-        this.isEdick = true
+    async isEdick () {
+      // TODO 鉴别管理员
+      if (localStorage.getItem('token')) {
+        if (localStorage.getItem('Useridentity') === '管理员') {
+          const { data: res } = await getDevP.getSettingDevP('get', localStorage.getItem('Username'))
+          if (res.status !== 404) {
+            this.isEdicks = true
+          } else {
+            this.$toast({
+              message: res.message,
+              position: 'top'
+            })
+            localStorage.setItem('Useridentity', '用户')
+          }
+        }
       }
     },
     OpenEdit (item) {
@@ -94,7 +107,8 @@ export default {
   }
   .set_time{
     float: right;
-    font-size: 2rem;
+    margin-left: 8px;
+    font-size: 1.5rem;
     color: #657ddd;
     font-weight: bolder;
   }
@@ -118,6 +132,9 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
+  .Tree{
+    margin: 50px 0;
+  }
   .Tree_dome {
     padding: 15px;
     border-radius: 60px;

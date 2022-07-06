@@ -1,6 +1,6 @@
 <template>
   <div class="Scard" v-if="isg">
-      <div class="header" @click="to_top">
+      <div class="header card" @click="to_top">
         <p class="title">设置轮播图</p>
         <div @click="to_top"><p :class="{ icon_up: isup , 'isdn': !isup }"></p></div>
       </div>
@@ -59,39 +59,39 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-}
-.icon_up{
-  width: 20px;
-  height: 20px;
-  border-left: 4px black solid;
-  border-top: 4px black solid;
-  transition: all 0.3s;
-  transform: rotate(45deg);
-  float: right;
-  margin: -6px 25px 0 0;
-}
-.isdn{
-  width: 20px;
-  height: 20px;
-  border-left: 4px black solid;
-  border-top: 4px black solid;
-  transition: all 0.3s;
-  transform: rotate(-135deg);
-  float: right;
-  margin: -6px 25px 0 0;
-}
-.Lunbo_down{
-  transform: scaleY(0);
-  transition: transform 0.2s;
-  transform-origin: top center;
-  height: 0;
-}
+  .header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+  }
+  .icon_up{
+    width: 20px;
+    height: 20px;
+    border-left: 4px black solid;
+    border-top: 4px black solid;
+    transition: all 0.3s;
+    transform: rotate(45deg);
+    float: right;
+    margin: -6px 25px 0 0;
+  }
+  .isdn{
+    width: 20px;
+    height: 20px;
+    border-left: 4px black solid;
+    border-top: 4px black solid;
+    transition: all 0.3s;
+    transform: rotate(-135deg);
+    float: right;
+    margin: -6px 25px 0 0;
+  }
+  .Lunbo_down{
+    transform: scaleY(0);
+    transition: transform 0.2s;
+    transform-origin: top center;
+    height: 0;
+  }
   p.title{
     font-size: 2rem;
     text-align: center;
@@ -113,4 +113,10 @@ export default {
   .cli_btn{
     margin-left: 42px;
   }
+@media only screen and (max-width: 755px) {
+  .setitem{
+    margin: 15px;
+    width: 100%;
+  }
+}
 </style>

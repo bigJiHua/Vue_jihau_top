@@ -1,6 +1,6 @@
 <template>
   <div
-  :class="['navbar-default','Ctrldemo', {header: istop} ]"
+  :class="['navbar-default','Ctrldemo', {header: istop, 'nheader': !istop} ]"
   id="indexHeader" ref="headertotop">
     <div class="navbar-header coker">
       <button
@@ -48,7 +48,7 @@
           <ul class="dropdown-menu" ref="dropdown_menu">
             <li><a href="https://www.jihau.com">主站博客页面</a></li>
             <li><a href="https://d0tc.com">C语言程序与设计</a></li>
-            <li><router-link to="/隐私政策"><span @click="closeMenu">隐私政策</span></router-link></li>
+            <li><router-link to="/page/YSZC"><span @click="closeMenu">隐私政策</span></router-link></li>
             <li><a href="https://jihau.com/POP/">测试</a></li>
           </ul>
         </li>
@@ -111,6 +111,8 @@ export default {
             setcolor('#User > p > span', 'rgb(240,240,240)')
             setcolor('#cagUsers > p > span', 'rgb(240,240,240)')
             setcolor('.ararc_title', 'rgb(240,240,240)')
+            setcolor('.UserselfArea > p', 'rgb(240,240,240)')
+            setcolor('.card > p', 'rgb(240,240,240)')
           }
         } else if (!style && bgc !== '' && bgc !== null) {
           for (let i = 0; i < Ctrldemo.length; i++) {
@@ -123,6 +125,8 @@ export default {
             setcolor('#cagUsers > p > span', 'rgb(240,240,240)')
             setcolor('.ararc_title', 'rgb(240,240,240)')
             setcolor('#introduce_doc > p', 'rgb(240,240,240)')
+            setcolor('.UserselfArea > p', 'rgb(240,240,240)')
+            setcolor('.card > p', 'rgb(240,240,240)')
           }
         }
       }, 200)
@@ -211,15 +215,12 @@ export default {
 #navbar {
   font-size: 1.5rem;
   font-weight: bolder;
-}
-.header{
-  position: fixed;
-  top: -1px;
-  z-index:999;
-  height:50px;
-  width: 81%;
+  background-color: rgba(255,255,255,0);
 }
 @media only screen and (min-width: 755px) {
+  #indexHeader{
+    transition: all 0.5s;
+  }
   .logo {
     width: 45px;
     height: 40px;
@@ -230,15 +231,35 @@ export default {
     padding: 0;
     margin: 0;
   }
+  .right_btn{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .nheader{
+    background-color: rgba(255,255,255,0);
+    width: 98vw;
+    margin: 0 auto;
+  }
+  .header{
+    position: fixed;
+    top: -1px;
+    z-index:999;
+    height:50px;
+    left: 9.5vw;
+    width: 80vw;
+    background-color: #f8f8f8;
+  }
 }
 @media only screen and (max-width: 755px) {
-.header{
-  position: fixed;
-  top: -1px;
-  z-index:999;
-  height:50px;
-  width: 90%;
-}
+  #indexHeader{
+    position: fixed;
+    width: 100vw;
+    z-index: 999;
+    top: 0;
+    left: 0;
+  }
   .logo {
     width: 34px;
     height: 28px;
@@ -254,6 +275,14 @@ export default {
     z-index: 999;
     background-color: rgba(255, 255, 255, 0.9);
     width: 100%;
+  }
+  .header{
+    position: fixed;
+    top: -1px;
+    left: 0;
+    z-index:999;
+    height:50px;
+    width: 100vw;
   }
 }
 </style>

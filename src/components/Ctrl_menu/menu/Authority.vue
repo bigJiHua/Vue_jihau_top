@@ -209,20 +209,7 @@ export default {
 
 <style lang="less" scoped>
 .userinfo {
-  overflow: overlay;
   padding: 20px;
-  userinfotable {
-    width: 100%;
-    height: 100%;
-  }
-  .thovs {
-    min-width: 120px;
-    max-width: 130px;
-    text-align: center;
-  }
-  .tdval {
-    width: 130px;
-  }
 }
 .countpage{
   display: flex;

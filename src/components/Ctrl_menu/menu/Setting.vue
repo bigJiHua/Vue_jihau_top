@@ -34,9 +34,12 @@ export default {
 
 <style lang="less" scoped>
 .setting{
-  width: 100%;
   overflow: auto;
 }
+.setting::-webkit-scrollbar {
+  display: none;
+}
+
 @media only screen and (min-width: 755px) {
   .Scard {
     padding: 10px;
@@ -59,6 +62,8 @@ export default {
   .Scard {
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.4);
+    padding: 5px;
+    margin-bottom: 20px;
     p {
       text-align: center;
       font-size: 2rem;

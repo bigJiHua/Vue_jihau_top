@@ -4,7 +4,7 @@
       <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
       <div v-show="!goodpage">
         <div class="content">
-          <p v-html="ArticleData.article.content"></p>
+          <p v-html="ArticleData.article.content" v-highlight></p>
         </div>
         <div class="tabmenu">
           <ul>
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <RightM class=""></RightM>
+    <RightM></RightM>
   </div>
 </template>
 
@@ -263,21 +263,21 @@ export default {
 
 <style lang="less" scoped>
 .article{
-  word-wrap: break-word
+  word-wrap: break-word;
 }
 @media only screen and (min-width: 755px) {
   .article {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    width: 80vw;
+    margin: 20px auto;
   }
   .leftContent {
     background-color: rgba(243, 245, 248, 0.5);
     padding: 20px;
     border-radius: 12px;
     margin-right:20px;
-    min-width: 67%;
-    max-width: 67%;
+    width: 50vw;
   }
 }
 

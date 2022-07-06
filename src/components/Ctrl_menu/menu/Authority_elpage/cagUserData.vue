@@ -121,6 +121,9 @@ export default {
 
 <style lang="less" scoped>
 
+.cagArea::-webkit-scrollbar {
+  display: none;
+}
 @media only screen and (min-width: 755px) {
   .cagArea {
     width: 60vw;
@@ -134,6 +137,7 @@ export default {
     border-radius: 12px;
     color: rgba(9, 52, 178, 0.648);
     padding: 20px;
+    overflow: scroll;
     .title{
       font-size: 2rem;
       font-weight: 600;
@@ -142,7 +146,6 @@ export default {
     .cag{
       width: 100%;
       height: 100%;
-      overflow: scroll;
       padding: 0 20px;
     }
     .userheader{
@@ -177,6 +180,7 @@ export default {
     border-radius: 12px;
     color: rgba(9, 52, 178, 0.648);
     padding: 20px;
+    overflow: scroll;
     .title{
       font-size: 2rem;
       font-weight: 600;
@@ -185,7 +189,6 @@ export default {
     .cag{
       width: 100%;
       height: 100%;
-      overflow: scroll;
       padding: 0 20px;
     }
     .userheader{

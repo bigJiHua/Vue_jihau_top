@@ -14,16 +14,11 @@ export default {
   props: [],
   data () {
     return {
-      title: '文章管理',
+      title: '我的文章',
       btntags: '新增文章',
       isGo: false
     }
   },
-  // 生命周期初始化函数
-  // created () {
-  //
-  // },
-  // 方法
   methods: {
     cagtitle (val) {
       this.title = val
@@ -35,31 +30,19 @@ export default {
         this.btntags = '返回'
         this.$router.push('/addArticle')
       } else {
-        this.title = '文章管理'
+        this.title = '我的文章'
         this.btntags = '新增文章'
         this.$router.push('/ArticleIndex')
       }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
-  name: 'ArticleM',
-  components: {
-    // 导入组件
-  }
+  name: 'ArticleM'
 }
 </script>
 
 <style lang="less" scoped>
 .Article{
   padding: 20px;
-  overflow: scroll;
 }
 .minheader{
   display: flex;

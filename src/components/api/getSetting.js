@@ -1,5 +1,5 @@
 import requst from '../requst/requst'
-// 首页获取轮播
+// 首页获取轮播和发展历程
 const getSetting = function (val) {
   return requst.get('/data/Setting?value=' + val)
 }

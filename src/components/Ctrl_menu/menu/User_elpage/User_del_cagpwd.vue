@@ -1,10 +1,10 @@
 <template>
   <div id="" class="">
     <div class="cagArea">
-      <div class="cagpwd cagAreabox">
-        <label for="oldpwd">旧密码</label>
+      <div class="cagpwd cagAreabox UserselfArea">
+        <p for="oldpwd">旧密码</p>
         <input type="password" id="oldpwd" v-model.lazy="oldpwd" class="form-control">
-        <label for="newpwd">新密码</label>
+        <p for="newpwd">新密码</p>
         <input type="password" id="newpwd" v-model="newpwd" class="form-control">
         <van-button @click="cagPwd">确认修改</van-button>
       </div>
@@ -102,5 +102,11 @@ export default {
 }
 .cagAreabox{
   margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 755px) {
+  #oldpwd,#newpwd{
+    width: 100%;
+  }
 }
 </style>

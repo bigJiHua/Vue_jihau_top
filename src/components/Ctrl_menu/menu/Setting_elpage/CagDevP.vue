@@ -1,6 +1,6 @@
 <template>
   <div id="" class="Scard" v-if="isg">
-    <div class="header" @click="to_top">
+    <div class="header card" @click="to_top">
       <p class="title">添加修改历程</p>
       <div @click="to_top"><p :class="{ icon_up: isup, isdn: !isup }"></p></div>
     </div>
@@ -195,6 +195,7 @@ p.title {
     padding-bottom: 10px;
     margin: 10px 0;
     border-bottom: 1px grey solid;
+    width: 100%;
   }
   .setinput{
     width: 100%;

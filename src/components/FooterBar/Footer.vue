@@ -62,9 +62,9 @@ export default {
 .footer {
   width: 100%;
   text-align: center;
-  color: white;
+  color: rgb(153,162,180);
   font-size: 15px;
-  background-color: rgba(37, 51, 62, 0.9);
+  background-color: rgb(246,246,246);
   padding: 5px;
   border-radius: 5px;
   .top {

@@ -12,9 +12,9 @@
           <p class="card_title">
             <span v-if="istrue">在</span>文章：<router-link :to='{path:"/article/"+ item.article_id}'>{{item.title}}</router-link>
           </p>
-          <article v-if="!istrue">
+          <p v-if="!istrue">
           {{ item.content | newcontent(item.content) }}...
-          </article>
+          </p>
           <p v-if="istrue">留言:</p>
           <p class="card_comment" v-if="istrue">{{item.comment}}</p>
           <p class="card_pubdate" v-if="istrue">时间:{{item.pub_date}}</p>

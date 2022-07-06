@@ -1,20 +1,20 @@
 <template>
   <div id="" class="search">
     <div class="centerbox">
-    <p>让我康康</p>
-    <div class="search_area">
-      <input type="text"
-        v-model="k"
-        id="search_input"
-        placeholder="让我康康"
-        @click="search"
-        >
-      <button class="search_btn" @click="search">
-        <span
-          class="glyphicon glyphicon-search"
-          style="font-size: 20px ;color: black"
-        ></span>
-      </button>
+      <p>让我康康</p>
+      <div class="search_area">
+        <input type="text"
+          v-model="k"
+          id="search_input"
+          placeholder="让我康康"
+          @click="search"
+          >
+        <button class="search_btn" @click="search">
+          <span
+            class="glyphicon glyphicon-search"
+            style="font-size: 20px ;color: black"
+          ></span>
+        </button>
     </div>
     <div class="value_area">
     <ul>
@@ -99,7 +99,7 @@ export default {
     overflow: hidden;
   }
   .centerbox{
-    padding: 20px;
+    padding: 0 18vw;
     p:first-child{
       text-align: center;
       font-size: 16rem;
@@ -107,6 +107,7 @@ export default {
     }
   }
   .search_area {
+    padding: 0 18vw;
     border-radius: 12px;
     display: flex;
     justify-content: space-around;
@@ -142,20 +143,15 @@ export default {
 
   @media only screen and (max-width: 755px) {
   .search{
-    position: relative;
     width: 100%;
-    height: 87vh;
+    height: 100%;
     overflow: hidden;
   }
   .centerbox{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 95vw;
-    height: 75vh;
+    height: 100vh;
     background-color: rgba(240,240,240,0.4);
     padding: 20px;
+    margin-top: 70px;
     p:first-child{
       font-weight: 600;
       text-align: center;
@@ -189,7 +185,7 @@ export default {
     overflow: overlay;
     padding: 10px 20px;
     margin: 7px 0;
-    max-height: 53vh;
+    max-height: 70vh;
   }
 }
 </style>

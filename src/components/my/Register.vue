@@ -1,10 +1,6 @@
 <template>
   <div id="logonCon" class="container">
     <div class="login_conten_box">
-      <img
-        class="login_img"
-        :src="pic"
-      />
       <div class="user_input_eara">
         <h2>注册 <small>Register</small></h2>
           <p class="newuser"> 用户名:<small class="wran">⚠必填</small></p>
@@ -122,7 +118,6 @@ export default {
       show: false,
       msg: '',
       elsepassword: '',
-      pic: 'http://127.0.0.1/uploads/undraw_Login_re_4vu2.png',
       newUser: {
         username: '',
         password: '',
@@ -178,8 +173,6 @@ export default {
           const reader = new FileReader()
           reader.onload = function (e) {
             _this.newUser.user_pic = e.target.result
-            _this.pic = e.target.result
-            console.log(_this.pic)
           }
           reader.readAsDataURL(this.files[0])
         },
@@ -255,36 +248,18 @@ export default {
     #f6d92a
   );
 }
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.login_conten_box {
-  margin: 20vh auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 @media only screen and (min-width: 755px) {
   .login_conten_box {
+  margin: 20vh auto;
+    width: 60vw;
     background-color: rgba(244, 244, 244, 0.4);
-    width: 55vw;
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .login_img {
-    width: 50%;
-    border-radius: 12px 0 0 12px;
   }
 
   .user_input_eara {
-    width: 50%;
     padding: 20px 25px;
+    width: 100%;
   }
 
   .user_input_eara > h2 {
@@ -313,11 +288,8 @@ export default {
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
-  .login_img {
-    display: none;
-  }
   .user_input_eara {
-    flex: 1;
+    margin-top: 60px;
     padding: 20px 25px;
   }
 
