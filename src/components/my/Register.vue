@@ -8,7 +8,7 @@
             type="text"
             v-model="newUser.username"
             class="form-control login_input"
-            placeholder="请输入用户名 (3-12位且唯一)"
+            placeholder="请输入用户名 (6-12位且唯一)"
             required
           />
           <p class="newuser"> 密码:<small class="wran">⚠必填</small></p>
@@ -36,7 +36,7 @@
             v-model="newUser.email"
           />
           <p class="newuser">生日:</p>
-          <input type="date" value="" v-model="newUser.birthday">
+          <input type="date" class="select" v-model="newUser.birthday">
           <p class="newuser"> 性别:</p>
           <p>
             <label class="radio-inline selectsex">
@@ -75,7 +75,7 @@
             v-model="newUser.user_content"
             maxlength="255"
           ></textarea>
-          <p class="newuser">头像</p>
+          <p class="newuser" @click="up_pic">头像</p>
           <van-button @click="up_pic">上传头像</van-button>
           <van-overlay :show="showup" @click="showup = false">
             <div class="wrapper" @click.stop>
@@ -173,6 +173,10 @@ export default {
           const reader = new FileReader()
           reader.onload = function (e) {
             _this.newUser.user_pic = e.target.result
+            _this.$toast({
+              message: '上传成功',
+              position: 'top'
+            })
           }
           reader.readAsDataURL(this.files[0])
         },
@@ -222,7 +226,10 @@ export default {
       }, 2000)
     },
     comback () {
-      this.$router.back()
+      const condel = confirm('放弃注册吗？')
+      if (condel) {
+        this.$router.back()
+      }
     }
   },
   name: 'RegisterPage'
@@ -231,7 +238,11 @@ export default {
 
 <style scoped>
 #logonCon {
-  width: 100%;
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
   background-image: linear-gradient(
     to right top,
     #caf8ec,
@@ -279,12 +290,19 @@ export default {
   .user_input_eara > form > [name='button'] {
     float: right;
   }
+  .select_city {
+    width: 8vw;
+  }
+  .fileup {
+    width: 100%;
+    height: 70%;
+    border: 136px rgba(0, 45, 207, 0.8) ridge;
+  }
 }
 
 @media only screen and (max-width: 755px) {
   .login_conten_box {
     background-color: rgba(244, 244, 244, 0.4);
-    width: 80vw;
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
@@ -300,6 +318,14 @@ export default {
   }
   .login_input {
     margin: 5px 0 20px 0;
+  }
+  .select_city, .select{
+    width: 35vw;
+  }
+  .fileup {
+    width: 100%;
+    height: 70%;
+    border: 123px rgba(0, 45, 207, 0.8) ridge;
   }
 }
 .newuser{
@@ -323,9 +349,6 @@ export default {
 .selectcity {
   display: flex;
 }
-.select_city {
-  width: 8vw;
-}
 .wrapper {
   position: absolute;
   left: 50%;
@@ -338,10 +361,5 @@ export default {
   background-color: #fff;
   text-align: center;
   border-radius: 12px;
-}
-.fileup {
-  width: 100%;
-  height: 70%;
-  border: 136px rgba(0, 45, 207, 0.8) ridge;
 }
 </style>

@@ -1,7 +1,7 @@
 import requst from '../requst/requst'
 // 首页获取文章
-const getArticleList = function () {
-  return requst.get('/data/list')
+const getArticleList = function (page) {
+  return requst.get('/data/list?page=' + page)
 }
 
 // 文章归档

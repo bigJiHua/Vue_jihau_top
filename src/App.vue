@@ -47,8 +47,6 @@ export default {
         content: '#275D2B'
       }
     ]
-  },
-  components: {
   }
 }
 </script>

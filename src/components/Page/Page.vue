@@ -87,6 +87,8 @@ export default {
 <style lang="less" scoped>
 .article{
   word-wrap: break-word;
+  width: 80vw;
+  margin: 0 auto;
 }
 @media only screen and (min-width: 755px) {
   .article {

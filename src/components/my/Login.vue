@@ -145,7 +145,8 @@ export default {
 #logonCon {
   position: fixed;
   top: 50px;
-  width: 100%;
+  left: 0;
+  width: 100vw;
   height: 100vh;
   background-image: linear-gradient(
     to right top,

@@ -6,12 +6,16 @@
         <span>最新文章</span>
         <span>New article</span>
       </p>
+    <van-pull-refresh v-model="isLoading" :disabled="finished" @refresh="onRefresh">
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <ArticleList
-        v-for="article in artlist"
-        :key="article.id"
+        v-for="(article,index) in artlist"
+        :key="index"
         :article="article"
       >
       </ArticleList>
+      </van-list>
+    </van-pull-refresh>
     </div>
   </div>
 </template>
@@ -25,7 +29,15 @@ export default {
   props: [],
   data () {
     return {
-      artlist: []
+      // 页码值
+      page: 0,
+      // 每页显示多少条数据
+      artlist: [],
+      loading: true,
+      // 所有数据是否加载完毕了，如果没有更多数据了，一定要把 finished 改成 true
+      finished: false,
+      // 是否正在下拉刷新
+      isLoading: false
     }
   },
   created () {
@@ -38,9 +50,32 @@ export default {
   },
   // 方法
   methods: {
-    async getArtList () {
-      const { data: res } = await getArtList.getArticleList()
-      this.artlist = res.data
+    async getArtList (isRefresh) {
+      const { data: res } = await getArtList.getArticleList(this.page)
+      if (res.status === 406) {
+        this.isLoading = false
+        this.finished = true
+      } else {
+        if (isRefresh) {
+          this.artlist = [...res.data, ...this.artlist]
+          this.isLoading = false
+        } else {
+          this.artlist = [...this.artlist, ...res.data]
+          this.loading = false
+        }
+      }
+    },
+    onLoad () {
+      setTimeout(() => {
+        this.page += 10
+        this.getArtList()
+      }, 800)
+    },
+    onRefresh () {
+      setTimeout(() => {
+        this.page += 10
+        this.getArtList(true)
+      }, 800)
     }
   },
   name: 'LeftBox',
