@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#项目已部署，点击下方访问jihau.top
+See (https://jihau.top).
