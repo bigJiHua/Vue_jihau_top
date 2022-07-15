@@ -32,7 +32,7 @@ Vue.directive('highlight', function (el) {
   })
 })
 
-Vue.config.productionTip = true
+Vue.config.productionTip = false
 new Vue({
   router,
   store,

@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     async Article () {
-      const { data: res } = await getArticle.getArticleList()
+      const { data: res } = await getArticle.getArticleList('all')
       this.Articles = res.data
     },
     search (key) {

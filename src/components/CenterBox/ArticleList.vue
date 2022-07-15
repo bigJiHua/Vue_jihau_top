@@ -1,5 +1,5 @@
 <template>
-  <div class="article_item">
+  <div :class="[{article_demo: isdemo, 'article_demos': !isdemo }, 'article_item']">
     <p class="article_doc_title">
       <router-link
         class="togolink"
@@ -67,20 +67,14 @@ export default {
       //   { text: '微信', icon: 'wechat', id: 1 },
       //   { text: '复制链接', icon: 'link', id: 2 }
       // ],
-      cz: true
+      cz: true,
+      isdemo: false
     }
   },
-  created () {},
   mounted () {
-    window.onload = () => {
-      const docWidth =
-        document.body.clientWidth ||
-        document.body.offsetWidth ||
-        document.body.scrollWidth
-      if (docWidth >= 970) {
-        this.window = true
-      } else this.window = true
-    }
+    setTimeout(() => {
+      this.demotodo()
+    }, 200)
   },
   methods: {
     // onSelect (option) {
@@ -98,6 +92,9 @@ export default {
     // },
     Goto (id) {
       this.$router.push(`/article/${id}`)
+    },
+    demotodo () {
+      this.isdemo = true
     }
   },
   filters: {
@@ -146,6 +143,7 @@ export default {
   border-radius: 0 0 12px 12px;
   max-height: 226px;
   padding: 8px;
+  top: 10px;
 }
 .article_doc_txt {
   text-indent: 3.6rem;
@@ -260,6 +258,13 @@ export default {
   }
   .article_item {
     padding: 8px;
+  }
+  .article_demos{
+    margin-top: 80px;
+  }
+  .article_demo{
+    margin-top: 8px;
+    transition: all 0.3s;
   }
 }
 .article_doc {

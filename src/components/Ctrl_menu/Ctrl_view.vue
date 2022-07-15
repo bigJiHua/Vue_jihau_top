@@ -17,19 +17,39 @@ export default {
 </script>
 
 <style scoped>
-.CtrlView{
-  display: flex;
-  position: fixed;
-  top: 50px;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+
+@media only screen and (max-width: 755px) {
+  .CtrlView{
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    overflow: overlay;
+  }
+  .rightView{
+    min-height: 80vh;
+    width: 100%;
+    padding: 15px;
+    overflow: overlay;
+  }
+
 }
-.rightView{
-  padding: 15px;
-  width: 85vw;
-  height: 100%;
-  overflow: overlay;
+@media only screen and (min-width: 755px) {
+  .CtrlView{
+    display: flex;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  .rightView{
+    height: 100%;
+    padding: 15px;
+    width: 100vw;
+    overflow: overlay;
+  }
 }
 .rightView::-webkit-scrollbar {
   display: none;

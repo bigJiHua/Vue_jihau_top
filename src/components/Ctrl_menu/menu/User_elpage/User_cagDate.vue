@@ -61,8 +61,10 @@
     <van-overlay :show="showup" @click="showup = false">
       <div class="wrapper" @click.stop>
         <div class="cagarea">
-          <h1>上传头像</h1>
+          <h2>上传头像</h2>
           <input type="file" accept="image/*" ref="imgfile" class="fileup" />
+          <h2>填写头像URL</h2>
+          <input type="text" v-model="cagUser.user_pic" class="fileup" @keyup.enter="cagdata">
           <van-button @click="cagdata">确认修改头像</van-button>
         </div>
       </div>
@@ -102,6 +104,7 @@ export default {
         message: res.message,
         position: 'top'
       })
+      this.showup = !this.showup
     },
     cag_pic () {
       this.showup = !this.showup
@@ -176,72 +179,6 @@ export default {
   .pic:hover .userheader {
     color: red;
   }
-}
-.wrapper {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-.cagarea {
-  width: 60vw;
-  height: 45vh;
-  background-color: #fff;
-  text-align: center;
-  border-radius: 12px;
-  .fileup {
-    width: 100%;
-    height: 70%;
-    border: 136px rgba(0, 45, 207, 0.8) ridge;
-  }
-}
-.selectcity {
-  display: inline-flex;
-}
-.select_city {
-  width: 12vw;
-  height: 4rem;
-}
-.userdata {
-  max-width: 15vw;
-}
-@media only screen and (max-width: 755px) {
-    .userheader {
-      display: inline-block;
-      padding: 5px 10px;
-      width: 11rem;
-    }
-    .usercontent {
-      background-color: rgba(220, 124, 124, 0.8);
-      padding: 20px;
-      border-radius: 12px;
-    }
-    .userpic {
-      height: 100px;
-      width: 100px;
-      padding: 15px 10px;
-      border-radius: 50%;
-      overflow: hidden;
-      background-color: rgba(220, 220, 220, 0.8);
-      .pic {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .cagpic {
-      height: 40px;
-      width: 100px;
-      border-radius: 12px;
-      top: 100px;
-      right: 5vw;
-      background-color: rgba(220, 220, 220, 0.8);
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bolder;
-    }
-    .pic:hover .userheader {
-      color: red;
-    }
   .wrapper {
     position: absolute;
     left: 50%;
@@ -258,6 +195,73 @@ export default {
       width: 100%;
       height: 70%;
       border: 136px rgba(0, 45, 207, 0.8) ridge;
+    }
+  }
+  .selectcity {
+    display: inline-flex;
+  }
+  .select_city {
+    width: 12vw;
+    height: 4rem;
+  }
+  .userdata {
+    max-width: 15vw;
+  }
+}
+@media only screen and (max-width: 755px) {
+  .userheader {
+    display: inline-block;
+    padding: 5px 10px;
+    width: 11rem;
+  }
+  .usercontent {
+    background-color: rgba(220, 124, 124, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+  }
+  .userpic {
+    height: 100px;
+    width: 100px;
+    padding: 15px 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(220, 220, 220, 0.8);
+    .pic {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .cagpic {
+    height: 40px;
+    width: 100px;
+    border-radius: 12px;
+    top: 100px;
+    right: 5vw;
+    background-color: rgba(220, 220, 220, 0.8);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+  .pic:hover .userheader {
+    color: red;
+  }
+  .wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .cagarea {
+    width: 80vw;
+    height: 60vh;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    padding: 15px;
+    .fileup {
+      width: 90%;
+      margin: 10px;
+      height: 3rem;
     }
   }
   .selectcity {

@@ -80,4 +80,12 @@ export default {
   height: 100%;
   overflow: overlay;
 }
+@media only screen and (max-width: 755px) {
+  #myTab{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 </style>

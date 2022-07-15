@@ -71,8 +71,9 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     position: relative;
-    width: 90vw;
+    width: 95vw;
     margin: 0 auto;
+    padding-top: 60px;
   }
 }
 </style>

@@ -146,8 +146,8 @@ export default {
           msg: '用户名必须为字母开头6-12位'
         },
         password: {
-          rule: /^\w{6,12}$/,
-          msg: '密码不能位空，且要求为6-12位'
+          rule: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
+          msg: '密码不能位空,必须为8-16位非空、非纯字符密码'
         },
         email: {
           rule: /^\w+@\w+\.\w+$/g,
@@ -241,7 +241,7 @@ export default {
   position: fixed;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow: scroll;
   background-image: linear-gradient(
     to right top,
@@ -302,13 +302,15 @@ export default {
 
 @media only screen and (max-width: 755px) {
   .login_conten_box {
+    margin: 10px 20px;
+    min-height: 1000px;
     background-color: rgba(244, 244, 244, 0.4);
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
   .user_input_eara {
-    margin-top: 60px;
-    padding: 20px 25px;
+    height: 100%;
+    padding: 10px 25px;
   }
 
   .user_input_eara > h2 {

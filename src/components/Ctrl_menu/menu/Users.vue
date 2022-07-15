@@ -108,6 +108,9 @@ export default {
   }
   #myTab{
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 </style>

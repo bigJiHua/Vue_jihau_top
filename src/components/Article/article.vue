@@ -67,13 +67,16 @@
       </div>
     </div>
     <RightM></RightM>
+    <Login @close="close" v-if="this.showLogin"></Login>
   </div>
 </template>
 
 <script>
 import getArticle from '@/components/api/getArticle'
 import UserAction from '@/components/api/UserActionAPI/UserActiveGet'
+import Login from './ArticleLogin/ArticleLogin.vue'
 export default {
+  props: ['isdemo'],
   data () {
     return {
       tab: ['标题', '作者：', '时间：', '标签：'],
@@ -93,11 +96,13 @@ export default {
       Move: {
         goodnum: false,
         collect: false
-      }
+      },
+      showLogin: false
     }
   },
   created () {
     this.getArticle(this.$route.params.id)
+    this.todo()
   },
   methods: {
     async getArticle (id) {
@@ -123,6 +128,8 @@ export default {
           message: '登录才能点赞哦！',
           position: 'top'
         })
+        this.showLogin = true
+        localStorage.setItem('met', 'goodnum')
       } else {
         if (artid === undefined) {
           this.$toast({
@@ -158,6 +165,8 @@ export default {
           message: '登录才能点赞收藏哦！',
           position: 'top'
         })
+        this.showLogin = true
+        localStorage.setItem('met', 'collect')
       } else {
         if (artid === undefined) {
           this.$toast({
@@ -193,6 +202,9 @@ export default {
           message: '登录才能评论哦！',
           position: 'top'
         })
+        this.showLogin = true
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
       } else {
         if (artid === undefined) {
           this.$toast({
@@ -225,6 +237,9 @@ export default {
           }
         }
       }
+    },
+    close (val) {
+      this.showLogin = val
     }
   },
   metaInfo () {
@@ -257,13 +272,15 @@ export default {
       }
     }
   },
-  name: 'ArticleM'
+  name: 'ArticleM',
+  components: { Login }
 }
 </script>
 
 <style lang="less" scoped>
 .article{
   word-wrap: break-word;
+  position: relative;
 }
 @media only screen and (min-width: 755px) {
   .article {
@@ -282,12 +299,9 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
-  .article{
-    margin-top: 20px;
-  }
   .leftContent {
     background-color: rgba(243, 245, 248, 0.8);
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     margin-bottom: 30px;
   }

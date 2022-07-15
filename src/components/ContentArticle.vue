@@ -38,7 +38,6 @@ export default {
 }
 @media only screen and (max-width: 755px) {
   .center_box {
-    margin-top: 20px;
     padding: 0;
   }
 }

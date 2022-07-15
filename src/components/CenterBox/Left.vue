@@ -9,8 +9,8 @@
     <van-pull-refresh v-model="isLoading" :disabled="finished" @refresh="onRefresh">
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <ArticleList
-        v-for="(article,index) in artlist"
-        :key="index"
+        v-for="article in artlist"
+        :key="article.id"
         :article="article"
       >
       </ArticleList>
@@ -41,14 +41,12 @@ export default {
     }
   },
   created () {
-    this.getArtList()
     if (this.artlist.length === 0) {
       setTimeout(() => {
         this.getArtList()
       }, 200)
     }
   },
-  // 方法
   methods: {
     async getArtList (isRefresh) {
       const { data: res } = await getArtList.getArticleList(this.page)
@@ -92,10 +90,10 @@ export default {
     margin-top: 20px;
   }
 }
-  .article_alltitle {
-    font-weight: bolder;
-    font-size: 3rem;
-  }
+.article_alltitle {
+  font-weight: bolder;
+  font-size: 3rem;
+}
 @media only screen and (min-width: 755px) {
   .left_box{
     width: 100%;
@@ -105,9 +103,6 @@ export default {
   }
 }
 @media only screen and (max-width: 755px) {
-  .left_box{
-    margin-top: 56px;
-  }
   .article_alltitle span:nth-child(2) {
     top: 18px;
   }

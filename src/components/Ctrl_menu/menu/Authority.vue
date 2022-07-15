@@ -17,19 +17,19 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in Userinfo.list" :key="index">
-          <td style="text-align: center;">{{ item.id }}</td>
-          <td>{{ item.username }}</td>
-          <td>{{ item.nickname }}</td>
-          <td>{{ item.useridentity }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.sex }}</td>
-          <td>{{ item.birthday }}</td>
-          <td>{{ item.city }}</td>
+          <td style="text-align: center;" class="tdval">{{ item.id }}</td>
+          <td class="tdval">{{ item.username }}</td>
+          <td class="tdval">{{ item.nickname }}</td>
+          <td class="tdval">{{ item.useridentity }}</td>
+          <td class="tdval">{{ item.email }}</td>
+          <td class="tdval">{{ item.sex }}</td>
+          <td class="tdval">{{ item.birthday }}</td>
+          <td class="tdval">{{ item.city }}</td>
           <td class="tdval">
             <img :src="item.user_pic" alt="" style="width: 50px" />
           </td>
-          <td>{{ item.user_content }}</td>
-          <td>{{ item.state | state(item.state) }}</td>
+          <td class="tdval">{{ item.user_content }}</td>
+          <td class="tdval">{{ item.state | state(item.state) }}</td>
           <td class="tdval">
             <van-button
               color="#1989FA"
@@ -209,7 +209,7 @@ export default {
 
 <style lang="less" scoped>
 .userinfo {
-  padding: 20px;
+  position: relative;
 }
 .countpage{
   display: flex;
@@ -221,6 +221,18 @@ export default {
   }
   button:last-child{
     margin-left: 8px;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  .thovs,.tdval{
+    height: 50px !important;
+    width: 50px !important;
+  }
+  .countpage{
+    position: absolute;
+    right: 0;
+    top: 33px;
   }
 }
 </style>

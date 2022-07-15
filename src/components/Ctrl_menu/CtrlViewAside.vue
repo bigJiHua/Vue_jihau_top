@@ -1,6 +1,10 @@
 <template>
   <div id="" class="aside">
-    <ul class="user-select-none menu">
+    <div class="menudemo" @click="to_top">
+      <span class="title">设置菜单</span>
+      <div><p :class="{ icon_up: isup , 'isdn': !isup }" @click="to_top"></p></div>
+    </div>
+    <ul :class="[{ ismenu: isup , 'menu': !isup },'user-select-none']" >
       <li class="menu-item">
         <router-link to="/CtrlView/users" class="tolink">个人信息</router-link>
       </li>
@@ -25,7 +29,8 @@ export default {
   props: [],
   data () {
     return {
-      UidState: false
+      UidState: false,
+      isup: false
     }
   },
   // 生命周期初始化函数
@@ -43,6 +48,9 @@ export default {
         case '管理员':
           this.UidState = true
       }
+    },
+    to_top () {
+      this.isup = !this.isup
     }
   },
   name: 'CtrlViewAside'
@@ -50,18 +58,68 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.aside {
-  border-right: 2px rgba(214, 210, 210, 0.9) solid;
-  height: 100%;
-  width: 15vw;
+@media only screen and (min-width: 755px) {
+  .aside {
+    border-right: 2px rgba(214, 210, 210, 0.9) solid;
+    height: 100%;
+    width: 15vw;
+  }
+  .menudemo{
+    display: none;
+  }
 }
-
 @media only screen and (max-width: 755px) {
-.aside {
-  border-right: 2px rgba(214, 210, 210, 0.9) solid;
-  min-height: 89vh;
-  min-width: 23vw;
-}
+  .aside {
+    width: 100vw;
+    position: relative;
+  }
+  .menudemo{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  span.title{
+    font-size: 2rem;
+    font-weight: bolder;
+    }
+  .user-select-none{
+    position: absolute;
+    top: 30px;
+    background-color: rgb(240,240,240);
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .menu-item{
+    width: 30vw;
+  }
+  .icon_up{
+    width: 20px;
+    height: 20px;
+    border-left: 4px black solid;
+    border-top: 4px black solid;
+    transition: all 0.3s;
+    transform: rotate(45deg);
+    float: right;
+    margin: 8px 25px 0 0;
+  }
+  .isdn{
+    width: 20px;
+    height: 20px;
+    border-left: 4px black solid;
+    border-top: 4px black solid;
+    transition: all 0.3s;
+    transform: rotate(-135deg);
+    float: right;
+    margin: -6px 25px 0 0;
+  }
+  .menu{
+    transform: scaleY(0);
+    transition: transform 0.2s;
+    transform-origin: top center;
+    height: 0;
+  }
 }
 .user-select-none {
   padding: 0;

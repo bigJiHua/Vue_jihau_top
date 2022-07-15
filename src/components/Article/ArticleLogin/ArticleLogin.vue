@@ -1,49 +1,54 @@
 <template>
-  <div id="logonCon" class="container">
-    <div class="login_conten_box">
-      <img
-        class="login_img"
-        src="https://jihau.top/api/public/uploads/undraw_Login_re_4vu2.png"
-      />
-      <div class="user_input_eara">
-        <h2>登录 <small>Login</small></h2>
-        <form class="form-horizontal">
-          <label for="al_title" class="login_lable"> 用户名:</label>
-          <input
-            type="text"
-            v-model="username"
-            class="form-control login_input"
-            placeholder="请输入用户名"
-            require
-          />
-          <label for="al_title" class="login_lable"> 密码:</label>
-          <input
-            type="password"
-            class="form-control login_input"
-            placeholder="请输入密码"
-            required
-            v-model="password"
-            @keydown.enter="login"
-          />
-        </form>
-        <div class="btnmenu">
-          <van-button @click="login" v-show="!loading">登录</van-button>
-          <van-button
-            loading
-            type="primary"
-            loading-text="登录中..."
-            v-show="loading"
-          />
-          <van-button @click="register">注册</van-button>
+  <div id="" class="showLogin">
+    <div id="logonCon" class="container">
+      <div class="close" @click="close">
+      <i class="glyphicon glyphicon-remove"></i>
+      </div>
+      <div class="login_conten_box">
+        <img
+          class="login_img"
+          src="https://jihau.top/api/public/uploads/undraw_Login_re_4vu2.png"
+        />
+        <div class="user_input_eara">
+          <h2>登录 <small>Login</small></h2>
+          <form class="form-horizontal">
+            <label for="al_title" class="login_lable"> 用户名:</label>
+            <input
+              type="text"
+              v-model="username"
+              class="form-control login_input"
+              placeholder="请输入用户名"
+              require
+            />
+            <label for="al_title" class="login_lable"> 密码:</label>
+            <input
+              type="password"
+              class="form-control login_input"
+              placeholder="请输入密码"
+              required
+              v-model="password"
+              @keydown.enter="login"
+            />
+          </form>
+          <div class="btnmenu">
+            <van-button @click="login" v-show="!loading">登录</van-button>
+            <van-button
+              loading
+              type="primary"
+              loading-text="登录中..."
+              v-show="loading"
+            />
+            <van-button @click="register">注册</van-button>
+          </div>
         </div>
       </div>
+      <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
     </div>
-    <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
   </div>
 </template>
 
 <script>
-import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
+import PostLogin from '@/components/api/Ctrl_menuAPI/LoginAPI'
 
 export default {
   data () {
@@ -95,7 +100,7 @@ export default {
                 clearInterval(timer)
                 this.show = false
                 this.loading = false
-                this.$router.push('/CtrlView')
+                this.close()
                 location.reload()
               }, this.setTime)
             } else {
@@ -110,7 +115,8 @@ export default {
     register () {
       if (localStorage.getItem('token')) {
         this.showPopup('已经登录啦！')
-        this.$router.push('/CtrlView/Users')
+        this.close()
+        location.reload()
       } else {
         this.$router.push('/register')
       }
@@ -135,19 +141,21 @@ export default {
         this.show = false
         this.loading = false
       }, this.setTime)
+    },
+    close () {
+      this.$emit('close', false)
     }
   },
-  name: 'LoginPage'
+  name: 'ArticleLogin'
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+
 #logonCon {
-  position: fixed;
-  top: 50px;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  padding: 0 10px;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(
     to right top,
     #caf8ec,
@@ -170,16 +178,23 @@ export default {
 }
 
 .login_conten_box {
-  margin: 20vh auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 @media only screen and (min-width: 755px) {
+  .showLogin {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 50vh;
+  }
   .login_conten_box {
     background-color: rgba(244, 244, 244, 0.4);
-    width: 55vw;
+    width: 100%;
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -216,9 +231,18 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
+  .showLogin {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 50vh;
+  }
   .login_conten_box {
     background-color: rgba(244, 244, 244, 0.4);
-    width: 80vw;
+    width: 100%;
+    padding: 10px;
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
