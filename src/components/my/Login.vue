@@ -60,7 +60,7 @@ export default {
           msg: '用户名不能为空!且长度为6-12位'
         },
         password: {
-          rule: /^\S{6,12}/,
+          rule: /^\S/,
           msg: '密码不能为空!且长度为6-12位'
         }
       }

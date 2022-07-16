@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Articlezkm from './Article_zk_m.vue'
+import Articlezkm from './article_zk_m.vue'
 import getArc from '../api/getArticleList'
 
 export default {
