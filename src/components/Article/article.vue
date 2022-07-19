@@ -24,7 +24,7 @@
             @click="goodnum(ArticleData.article.article_id)"
           >
             <span>点赞</span>
-            <span :class="{selg:this.Move.goodnum}">
+            <span :class="{ selg: this.Move.goodnum }">
               <i class="glyphicon glyphicon-thumbs-up"></i>
             </span>
             <span>{{ ArticleData.goodnum }}</span>
@@ -35,9 +35,9 @@
             @click="collect(ArticleData.article.article_id)"
           >
             <span>收藏</span>
-            <span :class="{selc:this.Move.collect}">
-            <i class="glyphicon glyphicon-star-empty">
-            </i></span>
+            <span :class="{ selc: this.Move.collect }">
+              <i class="glyphicon glyphicon-star-empty"> </i
+            ></span>
             <span>{{ ArticleData.collect }}</span>
           </van-button>
         </div>
@@ -61,7 +61,9 @@
               @keyup.enter="commont(ArticleData.article.article_id)"
               v-model="Active.comTXT"
             ></textarea>
-            <van-button @click="commont(ArticleData.article.article_id)">留言</van-button>
+            <van-button @click="commont(ArticleData.article.article_id)"
+              >留言</van-button
+            >
           </div>
         </div>
       </div>
@@ -102,7 +104,6 @@ export default {
   },
   created () {
     this.getArticle(this.$route.params.id)
-    this.todo()
   },
   methods: {
     async getArticle (id) {
@@ -218,7 +219,9 @@ export default {
               position: 'top'
             })
           } else {
-            const comtxt = this.Active.comTXT.match(/((\p{sc=Han})|([a-zA-Z0-9]))/gu).join('')
+            const comtxt = this.Active.comTXT
+              .match(/((\p{sc=Han})|([a-zA-Z0-9]))/gu)
+              .join('')
             const data = {
               username: localStorage.getItem('Username'),
               articleid: artid,
@@ -278,9 +281,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.article{
+.article {
   word-wrap: break-word;
   position: relative;
+}
+.leftContent {
+  overflow: hidden;
+}
+.content > p > p > img {
+  max-width: 350px;
 }
 @media only screen and (min-width: 755px) {
   .article {
@@ -293,7 +302,7 @@ export default {
     background-color: rgba(243, 245, 248, 0.5);
     padding: 20px;
     border-radius: 12px;
-    margin-right:20px;
+    margin-right: 20px;
     width: 50vw;
   }
 }
@@ -318,7 +327,8 @@ export default {
 .collect {
   letter-spacing: 5px;
 }
-.selc,.selg{
+.selc,
+.selg {
   color: red;
 }
 .commentArea {
@@ -339,7 +349,7 @@ export default {
     resize: none;
   }
   .comment {
-    background-color: rgba(201,227,243,.4);
+    background-color: rgba(201, 227, 243, 0.4);
     border-radius: 4px;
     padding: 5px;
     margin-bottom: 10px;

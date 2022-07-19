@@ -1,12 +1,4 @@
 <template>
-  <!-- <div id="" class="lunbo_box">
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(image,index) in images" :key="index" class="LunboArea">
-        <img :src="image | setimg(image)" class="lunbo_img" />
-        <a :href="image.set_url" class="Lunbo_title">{{image.set_title}}</a>
-      </van-swipe-item>
-    </van-swipe>
-  </div> -->
   <div class="lunbo_box">
     <div class="swiper-container">
       <div class="swiper-wrapper">

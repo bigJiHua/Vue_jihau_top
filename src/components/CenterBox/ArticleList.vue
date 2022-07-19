@@ -10,7 +10,7 @@
     </p>
     <div class="article_area">
       <div class="article_img" v-if="ifcov">
-        <img class="article_img_item" :src="article.cover_img" />
+        <img class="article_img_item" :src="article.cover_img" >
       </div>
       <div class="article_doc">
         <router-link
@@ -98,7 +98,7 @@ export default {
     }
   },
   filters: {
-    newcontent (content, title, keyword) {
+    newcontent (content) {
       const newArr = []
       for (const k in content) {
         if (content[k].match(/\p{sc=Han}/gu)) {
