@@ -1,4 +1,4 @@
-import requst from '../requst/requst'
+import request from '../request/request'
 // 获取文章内容
 const getArchives = function (id) {
   const params = new URLSearchParams()
@@ -6,7 +6,7 @@ const getArchives = function (id) {
   if (localStorage.getItem('Username')) {
     params.append('user', localStorage.getItem('Username'))
   }
-  return requst.get('/archives/', { params })
+  return request.get('/archives/', { params })
 }
 
 export default {

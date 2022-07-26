@@ -1,7 +1,7 @@
-import requst from '../../requst/requst'
+import request from '../../request/request'
 
 const UsergetArticle = function (username) {
-  return requst.get('/article/?username=' + username)
+  return request.get('/article/?username=' + username)
 }
 const UseraddArticle = function (data) {
   const params = new URLSearchParams()
@@ -11,12 +11,12 @@ const UseraddArticle = function (data) {
   params.append('cover_img', data.cover_img)
   params.append('lable', data.lable)
   params.append('keyword', data.keyword)
-  return requst.post('/article/addart', params)
+  return request.post('/article/addart', params)
 }
 const UserdelArticle = function (id) {
   const params = new URLSearchParams()
   params.append('id', id)
-  return requst.post('/article/delart', params)
+  return request.post('/article/delart', params)
 }
 const UsercagArticle = function (data) {
   const params = new URLSearchParams()
@@ -28,7 +28,7 @@ const UsercagArticle = function (data) {
   params.append('lable', data.lable)
   params.append('keyword', data.keyword)
   params.append('article_id', data.article_id)
-  return requst.post('/article/cagart', params)
+  return request.post('/article/cagart', params)
 }
 export default {
   UseraddArticle,

@@ -1,7 +1,7 @@
-import requst from '../../requst/requst'
+import request from '../../request/request'
 
 const getUserinfo = function (user, n) {
-  return requst.get('/users/getUinfo?user=' + user + '&n=' + n)
+  return request.get('/users/getUinfo?user=' + user + '&n=' + n)
 }
 export default {
   getUserinfo

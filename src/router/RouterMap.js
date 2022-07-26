@@ -5,6 +5,7 @@ import Page from '@/components/Page/Page'
 import Login from '@/components/my/Login'
 import Register from '@/components/my/Register'
 import DevProcess from '@/components/my/DevProcess'
+import SpsList from '@/components/my/SpsList'
 import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
 import Users from '@/components/Ctrl_menu/menu/Users'
 import Authority from '@/components/Ctrl_menu/menu/Authority'
@@ -41,6 +42,11 @@ export default [
     path: '/DevProcess',
     name: 'DevProcess',
     component: DevProcess
+  },
+  {
+    path: '/SpsList',
+    name: 'SpsList',
+    component: SpsList
   },
   {
     path: '/register',

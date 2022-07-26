@@ -1,8 +1,8 @@
-import requst from '../../requst/requst'
+import request from '../../request/request'
 // 获取用户信息
 const GetUserData = function () {
   const user = localStorage.getItem('Username')
-  return requst.get('/users/?user=' + user)
+  return request.get('/users/?user=' + user)
 }
 // 新增用户
 const UpnewUser = function (userdata) {
@@ -15,11 +15,11 @@ const UpnewUser = function (userdata) {
   params.append('city', userdata.city ? userdata.city : '')
   params.append('user_content', userdata.user_content ? userdata.user_content : '')
   params.append('user_pic', userdata.user_pic ? userdata.user_pic : '')
-  return requst.post('/my/reguser', params)
+  return request.post('/my/reguser', params)
 }
 // 删除用户
 const DelUser = function (user, deluser) {
-  return requst.get('/users/delUser?user=' + user + '&deluser=' + deluser)
+  return request.get('/users/delUser?user=' + user + '&deluser=' + deluser)
 }
 // 修改用户信息
 const CagUserData = function (data) {
@@ -34,7 +34,7 @@ const CagUserData = function (data) {
   params.append('user_pic', data.user_pic)
   params.append('username', data.username)
   params.append('useridentity', data.useridentity)
-  return requst.patch('/users/cagUser', params)
+  return request.patch('/users/cagUser', params)
 }
 // 修改密码
 const CagPassword = function (oldpwd, newpwd) {
@@ -42,7 +42,7 @@ const CagPassword = function (oldpwd, newpwd) {
   params.append('oldpwd', oldpwd)
   params.append('newpwd', newpwd)
   params.append('username', localStorage.getItem('Username'))
-  return requst.patch('/users/cagpwd', params)
+  return request.patch('/users/cagpwd', params)
 }
 export default {
   GetUserData,

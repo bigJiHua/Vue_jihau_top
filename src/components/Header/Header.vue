@@ -29,10 +29,13 @@
           <router-link to="/">主页</router-link>
         </li>
         <li @click="closeMenu">
-          <a href="https://about.jihau.top">关于</a>
+          <a href="http://jihua.me">关于</a>
         </li>
         <li @click="closeMenu">
           <router-link to="/DevProcess">发展历程</router-link>
+        </li>
+        <li @click="closeMenu">
+          <router-link to="/SpsList">赞助·友链</router-link>
         </li>
         <li class="dropdown">
           <a

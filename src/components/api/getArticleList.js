@@ -1,12 +1,12 @@
-import requst from '../requst/requst'
+import request from '../request/request'
 // 首页获取文章
 const getArticleList = function (page) {
-  return requst.get('/data/list?page=' + page)
+  return request.get('/data/list?page=' + page)
 }
 
 // 文章归档
 const getArchive = function () {
-  return requst.get('/data/archive')
+  return request.get('/data/archive')
 }
 
 export default {

@@ -1,4 +1,4 @@
-import requst from '../../requst/requst'
+import request from '../../request/request'
 // 进行点赞 收藏 评论
 const UserActive = function (data) {
   const params = new URLSearchParams()
@@ -10,11 +10,11 @@ const UserActive = function (data) {
       params.append('comment', data.comment)
     }
   }
-  return requst.get('/users/action', { params })
+  return request.get('/users/action', { params })
 }
 // 获取点赞 收藏 评论
 const UserActivedata = function (user) {
-  return requst.get('/users/actdata?user=' + user)
+  return request.get('/users/actdata?user=' + user)
 }
 // 取消 评论
 const UserActiveDel = function (data) {
@@ -23,7 +23,7 @@ const UserActiveDel = function (data) {
   params.append('id', data.id)
   params.append('username', data.username)
   params.append('article_id', data.article_id)
-  return requst.get('/users/delact', { params })
+  return request.get('/users/delact', { params })
 }
 
 export default {

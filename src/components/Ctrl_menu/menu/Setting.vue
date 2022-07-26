@@ -1,8 +1,9 @@
 <template>
   <div class="setting">
-  <cagpanel-color></cagpanel-color>
-  <CagLunbo></CagLunbo>
-  <CagDevP></CagDevP>
+    <cagpanel-color></cagpanel-color>
+    <CagLunbo></CagLunbo>
+    <CagDevP></CagDevP>
+    <CagSpsListVue></CagSpsListVue>
   </div>
 </template>
 
@@ -10,14 +11,12 @@
 import CagpanelColor from './Setting_elpage/CagpanelColor.vue'
 import CagLunbo from './Setting_elpage/CagLunbo.vue'
 import CagDevP from './Setting_elpage/CagDevP.vue'
-// 导入组件
-// import  from ''
+import CagSpsListVue from './Setting_elpage/CagSpsList.vue'
 
 export default {
   props: [],
   data () {
-    return {
-    }
+    return {}
   },
   // 过滤器
   filters: {},
@@ -27,13 +26,14 @@ export default {
   components: {
     CagpanelColor,
     CagLunbo,
-    CagDevP
+    CagDevP,
+    CagSpsListVue
   }
 }
 </script>
 
 <style lang="less" scoped>
-.setting{
+.setting {
   overflow: auto;
 }
 .setting::-webkit-scrollbar {
