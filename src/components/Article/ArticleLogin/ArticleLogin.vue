@@ -2,7 +2,7 @@
   <div id="" class="showLogin">
     <div id="logonCon" class="container">
       <div class="close" @click="close">
-      <i class="glyphicon glyphicon-remove"></i>
+        <i class="glyphicon glyphicon-remove"></i>
       </div>
       <div class="login_conten_box">
         <img
@@ -151,7 +151,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 #logonCon {
   padding: 0 10px;
   width: 100%;
@@ -185,12 +184,13 @@ export default {
 
 @media only screen and (min-width: 755px) {
   .showLogin {
-    position: absolute;
-    top: 15%;
+    position: fixed;
+    top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60vw;
     height: 50vh;
+    z-index: 9999;
   }
   .login_conten_box {
     background-color: rgba(244, 244, 244, 0.4);
@@ -232,12 +232,13 @@ export default {
 
 @media only screen and (max-width: 755px) {
   .showLogin {
-    position: absolute;
-    top: 15%;
+    position: fixed;
+    top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90vw;
     height: 50vh;
+    z-index: 9999;
   }
   .login_conten_box {
     background-color: rgba(244, 244, 244, 0.4);

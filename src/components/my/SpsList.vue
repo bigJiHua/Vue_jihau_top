@@ -3,7 +3,7 @@
     <a
       href="https://jihau.com/%e6%84%8f%e8%a7%81%e5%8f%8d%e9%a6%88"
       style="position: absolute; top: 60px; border: 0; left: 20px"
-      >如何才能上榜?</a
+      >我也要加入!</a
     >
     <a
       class="github-corner"
@@ -76,16 +76,18 @@
           </p>
           <p class="settiem" v-else>认识时间<br />{{ item.set_time }}</p>
           <a :href="item.set_url" class="LinkBtn"
-            ><van-button>访问主页</van-button></a
+            ><van-button>访问 {{ item.set_title }} 的博客</van-button></a
           >
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import getSpsList from '@/components/api/getSetting'
+import Footer from '../FooterBar/Footer.vue'
 export default {
   data () {
     return {
@@ -104,7 +106,7 @@ export default {
   },
   name: 'SpsList',
   components: {
-    // 导入组件
+    Footer
   }
 }
 </script>
@@ -247,6 +249,9 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
+  .SpsList {
+    padding: 22px 0 0 0;
+  }
   /* 右侧作者设置 */
   .document_author_introduce {
     width: 100vw;

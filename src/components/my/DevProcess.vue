@@ -14,12 +14,14 @@
       </div>
     </div>
     <DevPcagPanel :Open="cagArea.isOpen" :item="cagArea.item" @toge="toge"></DevPcagPanel>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import getDevP from '@/components/api/getSetting'
 import DevPcagPanel from '@/components/Module/DevP_cagPanel'
+import Footer from '../FooterBar/Footer.vue'
 export default {
   props: [],
   data () {
@@ -73,7 +75,8 @@ export default {
   filters: {},
   name: 'DevProcess',
   components: {
-    DevPcagPanel
+    DevPcagPanel,
+    Footer
   }
 }
 </script>

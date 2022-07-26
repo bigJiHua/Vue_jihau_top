@@ -204,8 +204,6 @@ export default {
           position: 'top'
         })
         this.showLogin = true
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
       } else {
         if (artid === undefined) {
           this.$toast({
