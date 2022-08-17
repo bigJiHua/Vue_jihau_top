@@ -1,5 +1,5 @@
 # jihau_top_vue
-
+### 这是初始化模板，请转到master分支 查看第一个包或者直接下载Code
 ## Project setup
 ```
 npm install
