@@ -45,13 +45,11 @@ export default {
       this.getUsersdata()
     }
   },
-  method () {
-  },
   methods: {
     async getUsersdata () {
       const { data: res } = await GetUData.GetUserData()
-      this.cagUser = res.data
-      this.$store.commit('cagUserData', res.data)
+      this.cagUser = res.data.Users
+      this.$store.commit('cagUserData', res.data.Users)
       this.Users = this.$store.state.Userdata
       this.$toast({
         message: res.message,

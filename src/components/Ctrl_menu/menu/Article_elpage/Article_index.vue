@@ -18,7 +18,7 @@
           <td class="tdovs">{{ item.keyword }}</td>
           <td class="tdovs">{{ item.state }}</td>
           <td class="btn">
-            <van-button @click="cagArticle(item)" color="#1989FA" size="small"
+            <van-button @click="cagArticle(item.article_id)" color="#1989FA" size="small"
               >编辑</van-button
             >
             <van-button type="danger" size="small" @click="delArticle(item.id)">删除</van-button>

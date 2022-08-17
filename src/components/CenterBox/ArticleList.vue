@@ -1,5 +1,7 @@
 <template>
-  <div :class="[{article_demo: isdemo, 'article_demos': !isdemo }, 'article_item']">
+  <div
+    :class="[{ article_demo: isdemo, article_demos: !isdemo }, 'article_item']"
+  >
     <p class="article_doc_title">
       <router-link
         class="togolink"
@@ -10,7 +12,7 @@
     </p>
     <div class="article_area">
       <div class="article_img" v-if="ifcov">
-        <img class="article_img_item" :src="article.cover_img" >
+        <img class="article_img_item" :src="article.cover_img" />
       </div>
       <div class="article_doc">
         <router-link
@@ -29,7 +31,7 @@
         <van-button type="info" @click="Goto(article.article_id)"
           >阅读</van-button
         >
-        <!-- <van-popover
+        <van-popover
           v-model="showPopover"
           trigger="click"
           :actions="actions"
@@ -39,7 +41,7 @@
           <template #reference>
             <van-button type="info">分享</van-button>
           </template>
-        </van-popover> -->
+        </van-popover>
       </div>
       <div class="article_span_time">
         <span>作者:{{ article.username }}</span>
@@ -63,10 +65,9 @@ export default {
   data () {
     return {
       showPopover: false,
-      // actions: [
-      //   { text: '微信', icon: 'wechat', id: 1 },
-      //   { text: '复制链接', icon: 'link', id: 2 }
-      // ],
+      actions: [
+        { text: '复制链接', icon: 'link', id: 2 }
+      ],
       cz: true,
       isdemo: false
     }
@@ -77,19 +78,24 @@ export default {
     }, 200)
   },
   methods: {
-    // onSelect (option) {
-    //   switch (option.id) {
-    //     case 1: {
-    //       console.log(this)
-    //       break
-    //     }
-    //     case 2: {
-    //       console.log(this)
-    //       break
-    //     }
-    //   }
-    //   this.showShare = false
-    // },
+    // TODO 完成复制和分享到微信功能 还有文章的点赞数和收藏数
+    onSelect () {
+      const copyw = `https://jihau.top/article/${this.article.article_id}`
+      navigator.clipboard.writeText(copyw).then(
+        () => {
+          this.$toast.success({
+            message: '复制成功'
+          })
+        },
+        () => {
+          this.$toast.fail({
+            message: '复制失败'
+          })
+        }
+      )
+
+      this.showShare = false
+    },
     Goto (id) {
       this.$router.push(`/article/${id}`)
     },
@@ -139,7 +145,7 @@ export default {
 }
 .article_item {
   margin-bottom: 10px;
-  background-color: rgba(240,242,245,0.3);
+  background-color: rgba(240, 242, 245, 0.3);
   border-radius: 0 0 12px 12px;
   max-height: 226px;
   padding: 8px;
@@ -259,10 +265,10 @@ export default {
   .article_item {
     padding: 8px;
   }
-  .article_demos{
+  .article_demos {
     margin-top: 80px;
   }
-  .article_demo{
+  .article_demo {
     margin-top: 8px;
     transition: all 0.3s;
   }

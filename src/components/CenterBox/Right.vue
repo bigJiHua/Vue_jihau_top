@@ -1,7 +1,10 @@
 <template>
   <div id="" class="right_box">
-    <div class="RightMoudle" ref="RightMoudle">
+    <div class="RightMoudle" ref="RightMoudle" v-if="!isLogin">
       <AboutM></AboutM>
+    </div>
+    <div class="RightMoudle" ref="RightMoudle" v-else>
+      <Users></Users>
     </div>
     <div :class="['icpArea', { icpAreatop: istop }]" ref="RightArea">
       <ArtList></ArtList>
@@ -13,12 +16,14 @@
 <script>
 import Footer from '../FooterBar/Footer.vue'
 import AboutM from '../my/AboutM.vue'
+import Users from '../my/Users.vue'
 
 export default {
   props: [],
   data () {
     return {
-      istop: false
+      istop: false,
+      isLogin: localStorage.getItem('token') !== null
     }
   },
   mounted () {
@@ -46,7 +51,8 @@ export default {
   name: 'RightBox',
   components: {
     Footer,
-    AboutM
+    AboutM,
+    Users
   }
 }
 </script>
@@ -58,13 +64,13 @@ export default {
 
 @media only screen and (min-width: 755px) {
   .right_box{
-    width: 28vw;
+    width: 25vw;
   }
   .icpAreatop{
     position: fixed;
     top: 56px;
     z-index:999;
-    width: 28vw;
+    width: 25vw;
   }
 }
 </style>

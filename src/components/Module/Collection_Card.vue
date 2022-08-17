@@ -45,71 +45,83 @@ export default {
     }
   },
   methods: {
-    async delgcc (artid, id) {
+    delgcc (artid, id) {
       if (this.met === 'gdn') {
-        const condel = confirm('真的要取消点赞吗？')
-        if (condel) {
-          const data = {
-            username: localStorage.getItem('Username'),
-            articleid: artid,
-            actmenthos: 'goodnum'
-          }
-          const { data: res } = await delAction.UserActive(data)
-          this.$toast({
-            message: res.message,
-            position: 'top'
+        this.$dialog
+          .confirm({
+            message: '真的要取消点赞吗？'
           })
-          if (res.status === 200) {
+          .then(async () => {
+            const data = {
+              username: localStorage.getItem('Username'),
+              articleid: artid,
+              actmenthos: 'goodnum'
+            }
+            const { data: res } = await delAction.UserActive(data)
             this.$toast({
-              message: '取消点赞成功',
+              message: res.message,
               position: 'top'
             })
-            location.reload()
-          }
-        }
+            if (res.status === 200) {
+              this.$toast({
+                message: '取消点赞成功',
+                position: 'top'
+              })
+              this.reload()
+            }
+          })
       } else if (this.met === 'cols') {
-        const condel = confirm('真的要取消收藏吗？')
-        if (condel) {
-          const data = {
-            username: localStorage.getItem('Username'),
-            articleid: artid,
-            actmenthos: 'collect'
-          }
-          const { data: res } = await delAction.UserActive(data)
-          this.$toast({
-            message: res.message,
-            position: 'top'
+        this.$dialog
+          .confirm({
+            message: '真的要取消收藏吗？'
           })
-          if (res.status === 200) {
+          .then(async () => {
+            const data = {
+              username: localStorage.getItem('Username'),
+              articleid: artid,
+              actmenthos: 'collect'
+            }
+            const { data: res } = await delAction.UserActive(data)
             this.$toast({
-              message: '取消收藏成功',
+              message: res.message,
               position: 'top'
             })
-            location.reload()
-          }
-        }
+            if (res.status === 200) {
+              this.$toast({
+                message: '取消收藏成功',
+                position: 'top'
+              })
+              this.reload()
+            }
+          })
       } else if (this.met === 'comm') {
-        const condel = confirm('真的要删除这条留言吗？')
-        if (condel) {
-          const data = {
-            id: id,
-            username: localStorage.getItem('Username'),
-            article_id: artid
-          }
-          const { data: res } = await delAction.UserActiveDel(data)
-          this.$toast({
-            message: res.message,
-            position: 'top'
+        this.$dialog
+          .confirm({
+            message: '真的要删除这条留言吗？'
           })
-          if (res.status === 200) {
+          .then(async () => {
+            const data = {
+              id: id,
+              username: localStorage.getItem('Username'),
+              article_id: artid
+            }
+            const { data: res } = await delAction.UserActiveDel(data)
             this.$toast({
-              message: '删除评论成功',
+              message: res.message,
               position: 'top'
             })
-            location.reload()
-          }
-        }
+            if (res.status === 200) {
+              this.$toast({
+                message: '删除评论成功',
+                position: 'top'
+              })
+              this.reload()
+            }
+          })
       }
+    },
+    reload () {
+      this.$emit('reload')
     }
   },
   filters: {
@@ -123,10 +135,7 @@ export default {
       return newArr.splice(0, 30).join('')
     }
   },
-  name: 'CardM',
-  components: {
-    // 导入组件
-  }
+  name: 'CardM'
 }
 </script>
 
@@ -181,7 +190,8 @@ export default {
 }
 .card_comment{
   background-color: rgba(201, 227, 243, 0.4);
-  padding: 5px;
+  padding: 5px 5px 15px;
   border-radius: 5px;
+  overflow: overlay;
 }
 </style>

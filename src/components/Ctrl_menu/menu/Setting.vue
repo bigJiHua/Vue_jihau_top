@@ -1,9 +1,9 @@
 <template>
   <div class="setting">
-    <cagpanel-color></cagpanel-color>
-    <CagLunbo></CagLunbo>
-    <CagDevP></CagDevP>
-    <CagSpsListVue></CagSpsListVue>
+    <cagpanel-color ref="totop"></cagpanel-color>
+    <CagLunbo ref="totop"></CagLunbo>
+    <CagDevP ref="totop"></CagDevP>
+    <CagSpsListVue ref="totop"></CagSpsListVue>
   </div>
 </template>
 
@@ -18,10 +18,6 @@ export default {
   data () {
     return {}
   },
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
   name: 'SettingM',
   components: {
     CagpanelColor,

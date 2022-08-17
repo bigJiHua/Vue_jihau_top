@@ -48,7 +48,9 @@
             v-for="(item, index) in ArticleData.commont"
             :key="index"
           >
-            <p class="comment_user">{{ item.username }}用户 留言：</p>
+            <p class="comment_user">
+            <router-link to="#">{{ item.username }}</router-link>
+            用户 留言：</p>
             <p class="comment_text">{{ item.comment }}</p>
             <p class="comment_time">时间:{{ item.pub_date }}</p>
           </div>
@@ -218,7 +220,7 @@ export default {
             })
           } else {
             const comtxt = this.Active.comTXT
-              .match(/((\p{sc=Han})|([a-zA-Z0-9]))/gu)
+              .match(/((\p{sc=Han})|([a-zA-Z0-9])|([\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]))/gu)
               .join('')
             const data = {
               username: localStorage.getItem('Username'),
@@ -234,6 +236,7 @@ export default {
             if (res.status === 200) {
               this.Active.collect = !this.Active.collect
               this.getArticle(this.$route.params.id)
+              this.Active.comTXT = ''
             }
           }
         }

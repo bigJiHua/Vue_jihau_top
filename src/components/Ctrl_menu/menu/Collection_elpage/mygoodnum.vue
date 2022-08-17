@@ -1,6 +1,7 @@
 <template>
   <div id="" class="">
-  <CardM :item="goodnum" :met="'gdn'"></CardM>
+    <CardM :item="goodnum" :met="'gdn'" @reload="reload" v-if="goodnum.length > 0 ? true:false"></CardM>
+    <div v-else class="none-box"><h2>空空如也,神马也没有</h2></div>
   </div>
 </template>
 
@@ -18,20 +19,11 @@ export default {
   data () {
     return {}
   },
-  // 生命周期初始化函数
-  // created: {
-  //
-  // },
-  // 方法
-  methods: {},
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
+  methods: {
+    reload () {
+      this.$emit('reload')
+    }
+  },
   name: 'myGoodnum',
   components: {
     // 导入组件

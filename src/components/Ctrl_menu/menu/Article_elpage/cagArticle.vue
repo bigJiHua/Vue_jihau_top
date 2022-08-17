@@ -74,6 +74,7 @@
 <script>
 import setArticle from '@/components/api/Ctrl_menuAPI/ArticleAPI'
 import gallery from '@/components/Module/gallery.vue'
+import getArticleCotent from '@/components/api/getArticle'
 
 export default {
   components: { gallery },
@@ -99,12 +100,16 @@ export default {
   },
   // 生命周期初始化函数
   created () {
-    this.Article.data = this.$store.state.ArticleData
+    this.getArticle(this.$store.state.ArticleData)
   },
   // 方法
   methods: {
     cagastate () {
       this.Asidestate.isChange = !this.Asidestate.isChange
+    },
+    async getArticle (id) {
+      const { data: res } = await getArticleCotent.getArchives(id)
+      this.Article.data = res.data.article
     },
     comback () {
       const cagpage = '文章管理'

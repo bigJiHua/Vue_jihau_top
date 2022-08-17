@@ -7,8 +7,6 @@
 
 <script>
 import Left from './CenterBox/Left.vue'
-// 导入组件
-// import  from ''
 
 export default {
   name: 'Content_M',
@@ -25,11 +23,11 @@ export default {
     padding: 0;
     display: flex;
     position: relative;
-    width: 80vw;
+    width: 70vw;
     margin: 0 auto;
   }
   .left{
-    width: 50vw;
+    width: 43vw;
     margin-right: 2vw;
   }
   .right{

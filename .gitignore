@@ -6,3 +6,7 @@ node_modules
 .idea/codeStyles/codeStyleConfig.xml
 .idea/codeStyles/Project.xml
 .idea/inspectionProfiles/Project_Default.xml
+.vscode/settings.json
+.idea/workspace.xml
+dist.zip
+src/components/request/request.js

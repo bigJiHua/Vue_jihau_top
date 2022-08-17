@@ -15,13 +15,13 @@
     </div>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="goodnum">
-        <mygoodnum :goodnum="Data.goodnum"></mygoodnum>
+        <mygoodnum :goodnum="Data.goodnum" @reload="reload"></mygoodnum>
       </div>
       <div class="tab-pane" id="collent">
-        <mycollect :collect="Data.collect"></mycollect>
+        <mycollect :collect="Data.collect" @reload="reload"></mycollect>
       </div>
       <div class="tab-pane" id="comment">
-        <mycomment :comment="Data.comment"></mycomment>
+        <mycomment :comment="Data.comment" @reload="reload"></mycomment>
       </div>
     </div>
   </div>
@@ -52,22 +52,16 @@ export default {
         position: 'top'
       })
       this.Data = res.data
+    },
+    reload () {
+      this.getdata()
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
   name: 'CollectionM',
   components: {
     Mygoodnum,
     Mycollect,
     Mycomment
-    // 导入组件
   }
 }
 </script>

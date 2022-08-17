@@ -8,7 +8,8 @@ export default new Vuex.Store({
     Userdata: [],
     ArticleData: [],
     bgc: '',
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    CountNum: []
   },
   mutations: {
     cagArtData (state, ArticleData) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     cagColor (state, bgc) {
       state.bgc = bgc
+    },
+    cagCountNum (state, Num) {
+      state.CountNum = Num
     }
   },
   actions: {

@@ -23,3 +23,9 @@ html {
 }
 @media only screen and (min-width: 755px) {
 }
+
+.none-box{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}

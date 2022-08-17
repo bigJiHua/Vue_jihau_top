@@ -1,6 +1,7 @@
 <template>
   <div id="" class="">
-  <CardM :item="collect" :met="'cols'"></CardM>
+    <CardM :item="collect" :met="'cols'" @reload="reload" v-if="collect.length > 0 ? true:false"></CardM>
+    <div v-else class="none-box"><h2>空空如也,神马也没有</h2></div>
   </div>
 </template>
 
@@ -23,7 +24,11 @@ export default {
   //
   // },
   // 方法
-  methods: {},
+  methods: {
+    reload () {
+      this.$emit('reload')
+    }
+  },
   // 监听器
   watch: {},
   // 当前组件的计算属性
