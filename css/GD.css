@@ -1,0 +1,200 @@
+
+/*轮播图*/
+@media only screen and (min-width: 755px) {
+  .gd {
+    height: 16rem;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 40px;
+  }
+  .list {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    position: relative;
+  }
+
+  .item {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    position: absolute;
+    opacity: 0;
+    border-radius: 15px;
+    border: rgba(0, 0, 0, 0.4) 8px solid;
+    transition: all 2s;
+    padding: 8%;
+  }
+
+  .btn {
+    width: 35px;
+    height: 80px;
+    font-size: 3rem;
+    position: absolute;
+    top: 36%;
+    z-index: 11;
+  }
+
+  #goPre {
+    left: 0;
+    opacity: 0.3;
+  }
+
+  #goNext {
+    right: 0;
+    opacity: 0.3;
+  }
+
+  .item.active {
+    opacity: 1;
+    z-index: 10;
+  }
+  .pointList {
+    list-style: none;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+  }
+  .point {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
+    float: left;
+    margin-right: 16px;
+    border: solid 2px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+  }
+  .point.active {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /*轮播图背景图片*/
+  /* 三原色 */
+  #one_img {
+    background-image: url("https://d.da4.cc/img/3color.png");
+    background-size: cover;
+  }
+  /* C语言 */
+  #two_img {
+    background-image: url("https://d.da4.cc/img/c.png");
+    background-size: cover;
+  }
+  /* 数据程序设计 */
+  #three_img {
+    background-image: url("https://d.da4.cc/img/sjcxsj.png");
+    background-size: cover;
+  }
+  /* 主站 */
+  #four_img {
+    background-image: url("https://d.da4.cc/img/jihaucom.png");
+    background-size: cover;
+  }
+  /* 三网域主页 */
+  #five_img {
+    background-image: url("https://d.da4.cc/img/3wwwcom.png");
+    background-size: cover;
+  }
+}
+
+/*安卓设备css*/
+@media only screen and (max-width: 755px) {
+  .gd,
+  .item {
+    height: 150px;
+  }
+  .item {
+    width: 92.5%;
+  }
+  .gd {
+    width: 100%;
+    position: relative;
+    background-color: rgb(225, 225, 225);
+    margin-top: 5px;
+    padding: 0 3.6%;
+  }
+
+  .item {
+    margin: 0 auto;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    position: absolute;
+    opacity: 0;
+    transition: all 1s;
+    border: rgba(0, 0, 0, 0.4) 4px solid;
+    border-radius: 10px;
+    padding: 50px 30px;
+  }
+
+  .btn {
+    width: 18px;
+    height: 30px;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 65px;
+    z-index: 11;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  #goPre {
+    left: 0;
+    opacity: 5;
+  }
+
+  #goNext {
+    right: 0;
+  }
+
+  .item.active {
+    opacity: 1;
+    z-index: 10;
+  }
+  .pointList {
+    padding-left: 0;
+    list-style: none;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    z-index: 1000;
+  }
+  .point {
+    width: 5px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
+    float: left;
+    margin-right: 16px;
+    border: solid 2px rgba(255, 255, 255, 0.6);
+
+    cursor: pointer;
+  }
+  .point.active {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /*轮播图背景图片*/
+  #one_img {
+    background-image: url(https://d.da4.cc/img/3color.png);
+    background-size: cover;
+  }
+  #two_img {
+    background-image: url(https://d.da4.cc/img/c.png);
+    background-size: cover;
+  }
+  #three_img {
+    background-image: url(https://d.da4.cc/img/sjcxsj.png);
+    background-size: cover;
+  }
+  #four_img {
+    background-image: url(https://d.da4.cc/img/dlsc.png);
+    background-size: cover;
+  }
+  #five_img {
+    background-color: #ffc0cb;
+    background-size: cover;
+  }
+}
