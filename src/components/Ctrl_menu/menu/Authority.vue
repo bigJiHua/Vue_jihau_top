@@ -114,6 +114,7 @@ export default {
         if (res.status === 403) {
           this.isg = false
           localStorage.setItem('Useridentity', '用户')
+          alert('非法用户！请勿修改本地存储值试图变更用户身份')
           location.reload()
         } else if (res.status === 200) {
           this.isg = true
@@ -123,6 +124,7 @@ export default {
             message: res.message,
             position: 'top'
           })
+          localStorage.setItem('Useridentity', '管理员')
         }
         if (res.message === '404') {
           this.n -= 5
@@ -131,7 +133,7 @@ export default {
           alert('已经是最大限度了！')
         }
       } else {
-        alert('非法用户！')
+        alert('非法用户！请勿修改本地存储值试图变更用户身份')
       }
     },
     cagUser (user) {
@@ -144,7 +146,7 @@ export default {
         if (state !== 1) {
           if (
             localStorage.getItem('Useridentity') === '管理员' &&
-        useridtity === '用户'
+        useridtity === '管理员'
           ) {
             const user = localStorage.getItem('Username')
             const { data: res } = await GetUData.DelUser(user, deluser)
@@ -221,6 +223,9 @@ export default {
   }
   button:last-child{
     margin-left: 8px;
+  }
+  > button {
+    z-index: 1;
   }
 }
 

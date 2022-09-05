@@ -63,7 +63,9 @@ export default {
     }
   },
   created () {
-    this.getDevP()
+    if (localStorage.getItem('Useridentity') === '管理员') {
+      this.getDevP()
+    }
   },
   methods: {
     async getDevP () {
@@ -73,6 +75,11 @@ export default {
         this.isg = true
       } else {
         this.isg = false
+        this.$toast({
+          message: res.message + '  禁止修改本地用户身份造假！',
+          position: 'top'
+        })
+        localStorage.setItem('Useridentity', '用户')
       }
     },
     async cagDevP (item) {

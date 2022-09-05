@@ -144,14 +144,21 @@ export default {
           if (this.validata('lable')) {
             if (this.validata('keyword')) {
               if (this.validata('content')) {
-                const { data: res } = await setArticle.UseraddArticle(
-                  this.newArticleData
-                )
-                this.$toast({
-                  message: res.message,
-                  position: 'top'
-                })
-                this.$router.push('/article/' + res.article)
+                if (this.newArticleData.content.length <= 120) {
+                  this.$toast({
+                    message: '字数少于120，不能水文章哟!',
+                    position: 'top'
+                  })
+                } else {
+                  const { data: res } = await setArticle.UseraddArticle(
+                    this.newArticleData
+                  )
+                  this.$toast({
+                    message: res.message,
+                    position: 'top'
+                  })
+                  this.$router.push('/article/' + res.article)
+                }
               }
             }
           }

@@ -64,7 +64,7 @@
           <h2>上传头像</h2>
           <input type="file" accept="image/*" ref="imgfile" class="fileup" />
           <h2>填写头像URL</h2>
-          <input type="text" v-model="cagUser.user_pic" class="fileup" @keyup.enter="cagdata">
+          <input type="text" v-model="cagUser.user_pic" class="fileup-url" @keyup.enter="cagdata">
           <van-button @click="cagdata">确认修改头像</van-button>
         </div>
       </div>
@@ -104,7 +104,6 @@ export default {
         message: res.message,
         position: 'top'
       })
-      this.showup = !this.showup
     },
     cag_pic () {
       this.showup = !this.showup
@@ -193,12 +192,19 @@ export default {
     border-radius: 12px;
     .fileup {
       width: 100%;
-      height: 70%;
-      border: 136px rgba(0, 45, 207, 0.8) ridge;
+      max-height: 280px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .fileup-url {
+      width: 80%;
+      height: 50px;
+      margin: 15px;
+      padding: 15px;
     }
   }
   .selectcity {
     display: inline-flex;
+    width: 40rem;
   }
   .select_city {
     width: 12vw;
@@ -259,9 +265,16 @@ export default {
     border-radius: 12px;
     padding: 15px;
     .fileup {
+      width: 100%;
+      height: 90px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 2px black solid;
+    }
+    .fileup-url {
       width: 90%;
-      margin: 10px;
-      height: 3rem;
+      height: 50px;
+      margin: 15px;
+      padding: 15px;
     }
   }
   .selectcity {

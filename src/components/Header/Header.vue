@@ -1,7 +1,9 @@
 <template>
   <div
-  :class="['navbar-default','Ctrldemo', {header: istop, 'nheader': !istop} ]"
-  id="indexHeader" ref="headertotop">
+    :class="['navbar-default', 'Ctrldemo', { header: istop, nheader: !istop }]"
+    id="indexHeader"
+    ref="headertotop"
+  >
     <div class="navbar-header coker">
       <button
         type="button"
@@ -23,7 +25,7 @@
         ><img src="https://www.jihau.top/img/logo.png" class="logo" alt="logo"
       /></a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox" >
+    <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox">
       <ul class="nav navbar-nav">
         <li @click="closeMenu">
           <router-link to="/">主页</router-link>
@@ -49,9 +51,18 @@
             >更多<span class="caret"></span
           ></a>
           <ul class="dropdown-menu" ref="dropdown_menu">
+            <li>
+              <router-link to="/checkver"
+                ><span @click="closeMenu">激活账户</span></router-link
+              >
+            </li>
             <li><a href="https://www.jihau.com">主站博客页面</a></li>
             <li><a href="https://d0tc.com">C语言程序与设计</a></li>
-            <li><router-link to="/page/YSZC"><span @click="closeMenu">隐私政策</span></router-link></li>
+            <li>
+              <router-link to="/page/YSZC"
+                ><span @click="closeMenu">隐私政策</span></router-link
+              >
+            </li>
             <li><a href="https://jihau.com/POP/">测试</a></li>
           </ul>
         </li>
@@ -66,10 +77,16 @@
             ></span>
           </router-link>
         </li>
-        <li @click="closeMenu"><router-link to="/CtrlView" v-show="token">欢迎{{User}}{{Useridentity}}</router-link></li>
-        <li >
+        <li @click="closeMenu">
+          <router-link to="/CtrlView" v-show="token"
+            >欢迎{{ User }}{{ Useridentity }}</router-link
+          >
+        </li>
+        <li>
           <button @click="login" class="btn" v-show="!token">登录</button>
-          <button @click="outlogin" class="btn" v-show="token"><a>退出登录</a></button>
+          <button @click="outlogin" class="btn" v-show="token">
+            <a>退出登录</a>
+          </button>
           <button v-show="token" class="btn" @click="closeMenu">
             <router-link to="/CtrlView">后台</router-link>
           </button>
@@ -207,10 +224,7 @@ export default {
       location.reload()
     }
   },
-  name: 'HeaderM',
-  components: {
-    // 导入组件
-  }
+  name: 'HeaderM'
 }
 </script>
 
@@ -218,10 +232,10 @@ export default {
 #navbar {
   font-size: 1.5rem;
   font-weight: bolder;
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255, 255, 255, 0);
 }
 @media only screen and (min-width: 755px) {
-  #indexHeader{
+  #indexHeader {
     transition: all 0.5s;
   }
   .logo {
@@ -234,29 +248,29 @@ export default {
     padding: 0;
     margin: 0;
   }
-  .right_btn{
+  .right_btn {
     display: flex !important;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
-  .nheader{
-    background-color: rgba(255,255,255,0);
+  .nheader {
+    background-color: rgba(255, 255, 255, 0);
     width: 98vw;
     margin: 0 auto;
   }
-  .header{
+  .header {
     position: fixed;
     top: -1px;
-    z-index:999;
-    height:50px;
+    z-index: 999;
+    height: 50px;
     left: 9.5vw;
     width: 80vw;
     background-color: #f8f8f8;
   }
 }
 @media only screen and (max-width: 755px) {
-  #indexHeader{
+  #indexHeader {
     position: fixed;
     width: 100vw;
     z-index: 999;
@@ -269,7 +283,7 @@ export default {
     margin: 10px 0 10px 0;
   }
   .coker > a > h1 {
-    font-size: 2.5rem !important;
+    font-size: 2.5rem;
     padding: 0;
     margin: 0;
   }
@@ -279,13 +293,26 @@ export default {
     background-color: rgba(255, 255, 255, 0.9);
     width: 100%;
   }
-  .header{
+  .header {
     position: fixed;
     top: -1px;
     left: 0;
-    z-index:999;
-    height:50px;
+    z-index: 999;
+    height: 50px;
     width: 100vw;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .coker > a > h1{
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .logo{
+    display: none;
+  }
+  .coker > a > h1{
+    font-size: 1.6rem;
   }
 }
 </style>

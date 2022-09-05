@@ -78,7 +78,6 @@ export default {
     }, 200)
   },
   methods: {
-    // TODO 完成复制和分享到微信功能 还有文章的点赞数和收藏数
     onSelect () {
       const copyw = `https://jihau.top/article/${this.article.article_id}`
       navigator.clipboard.writeText(copyw).then(

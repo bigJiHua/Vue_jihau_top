@@ -40,6 +40,9 @@
             ></span>
             <span>{{ ArticleData.collect }}</span>
           </van-button>
+          <van-button
+            type="info"
+            class="collect" @click="share">分享</van-button>
         </div>
         <div class="commentArea">
           <p>留言</p>
@@ -206,6 +209,9 @@ export default {
           position: 'top'
         })
         this.showLogin = true
+        if (this.Active.comTXT !== '') {
+          localStorage.setItem('commont', this.Active.comTXT)
+        }
       } else {
         if (artid === undefined) {
           this.$toast({
@@ -244,6 +250,21 @@ export default {
     },
     close (val) {
       this.showLogin = val
+    },
+    share () {
+      const copyw = `https://jihau.top/article/${this.ArticleData.article.article_id}`
+      navigator.clipboard.writeText(copyw).then(
+        () => {
+          this.$toast.success({
+            message: '复制成功,赶快去分享吧!'
+          })
+        },
+        () => {
+          this.$toast.fail({
+            message: '复制失败,请刷新页面后重试吧'
+          })
+        }
+      )
     }
   },
   metaInfo () {
@@ -264,7 +285,7 @@ export default {
         },
         {
           name: 'author',
-          content: 'JiHua'
+          content: this.ArticleData.article.username
         }
       ]
     }

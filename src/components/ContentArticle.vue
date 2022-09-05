@@ -25,10 +25,12 @@ export default {
     position: relative;
     width: 70vw;
     margin: 0 auto;
+    max-width: 1200px;
   }
   .left{
     width: 43vw;
     margin-right: 2vw;
+    max-width: 700px;
   }
   .right{
     width: 30vw;

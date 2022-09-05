@@ -30,7 +30,9 @@ export default {
   },
   // 生命周期初始化函数
   created () {
-    this.getLunbotu()
+    if (localStorage.getItem('Useridentity') === '管理员') {
+      this.getLunbotu()
+    }
   },
   // 方法
   methods: {
@@ -41,6 +43,11 @@ export default {
         this.isg = true
       } else {
         this.isg = false
+        this.$toast({
+          message: res.message + '  禁止修改本地用户身份造假！',
+          position: 'top'
+        })
+        localStorage.setItem('Useridentity', '用户')
       }
     },
     async cagLunbo (item) {

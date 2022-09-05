@@ -111,11 +111,11 @@ export default {
       showup: false,
       show: false,
       msg: '',
-      elsepassword: '',
+      elsepassword: 'Asd000000',
       newUser: {
-        username: '',
-        password: '',
-        email: '',
+        username: 'Asd0000',
+        password: 'Asd000000',
+        email: '1959097664@qq.com',
         birthday: '',
         sex: '',
         city: '',
@@ -192,7 +192,13 @@ export default {
                 clearInterval(timer)
                 this.show = false
                 this.loading = false
-                this.$router.push('/Login')
+                if (res.status === 200) {
+                  this.$router.push('/Login')
+                } else {
+                  localStorage.setItem('VerCode', res.data.code)
+                  localStorage.setItem('Username', res.data.user)
+                  this.$router.push(`/checkVer/?code:${res.data.code}&user:${res.data.user}`)
+                }
               }, 2000)
             }
           } else this.showPopup('两次密码不一致，请检查')
@@ -295,7 +301,6 @@ export default {
   .fileup {
     width: 100%;
     height: 70%;
-    border: 136px rgba(0, 45, 207, 0.8) ridge;
   }
 }
 
@@ -327,7 +332,6 @@ export default {
   .fileup {
     width: 100%;
     height: 70%;
-    border: 123px rgba(0, 45, 207, 0.8) ridge;
   }
 }
 .newuser {

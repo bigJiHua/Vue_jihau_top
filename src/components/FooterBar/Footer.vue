@@ -15,7 +15,7 @@
       <p class="icp_alt">
         建议您使用Chrome、Firefox、Edge、IE10及以上版本等浏览器并把缩放倍率调整为110-125%浏览本网站
         |
-        <router-link to="/隐私政策">隐私政策</router-link>
+        <router-link to="/page/YSZC">隐私政策</router-link>
       </p>
       <a href="#" title="返回顶部" @click="totop"
         ><img

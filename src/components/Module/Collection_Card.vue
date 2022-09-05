@@ -6,7 +6,7 @@
         <i class="glyphicon glyphicon-remove"></i>
         </div>
         <div class="card">
-          <div class="card_img" v-if="!istrue">
+          <div class="card_img" v-if="item.cover_img">
             <img :src="item.cover_img" alt="文章图片">
           </div>
           <p class="card_title">

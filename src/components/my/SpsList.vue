@@ -147,6 +147,8 @@ export default {
 }
 .price {
   color: rgb(221, 78, 98);
+  overflow: scroll;
+  width: 35px;
 }
 .LinkBtn button {
   background-color: rgb(251, 114, 153);

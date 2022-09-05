@@ -21,7 +21,7 @@
         <p>站长简介</p>
         <p>
           你好,我是此网站的站长吉华(<a
-            href="http://jihua.mep"
+            href="http://jihua.me"
             class="coker"
             >JiHua</a
           >)，很高兴认识你，也很荣幸您能访问我的网站，目前网站正在陆续搭建中，更多新功能等待上线！

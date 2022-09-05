@@ -5,19 +5,19 @@
       <div><p :class="{ icon_up: isup , 'isdn': !isup }" @click="to_top"></p></div>
     </div>
     <ul :class="[{ ismenu: isup , 'menu': !isup },'user-select-none']" >
-      <li class="menu-item">
+      <li class="menu-item" @click="to_top">
         <router-link to="/CtrlView/users" class="tolink">个人信息</router-link>
       </li>
-      <li class="menu-item" v-show="UidState">
+      <li class="menu-item" v-if="UidState" @click="to_top">
         <router-link to="/CtrlView/Authority" class="tolink">权限管理</router-link>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" @click="to_top">
         <router-link to="/CtrlView/article" class="tolink">文章管理</router-link>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" @click="to_top">
         <router-link to="/CtrlView/Collection" class="tolink">我的消息</router-link>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" @click="to_top">
         <router-link to="/CtrlView/Setting" class="tolink">系统设置</router-link>
       </li>
     </ul>

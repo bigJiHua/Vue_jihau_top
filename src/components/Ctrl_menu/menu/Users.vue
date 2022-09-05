@@ -41,9 +41,7 @@ export default {
   },
   // 生命周期初始化函数
   created () {
-    if (this.Users.length === 0) {
-      this.getUsersdata()
-    }
+    this.getUsersdata()
   },
   methods: {
     async getUsersdata () {
@@ -66,6 +64,9 @@ export default {
           localStorage.removeItem('Useridentity')
           location.reload()
         }
+      }
+      if (localStorage.getItem('Useridentity') !== res.data.Users.useridentity) {
+        localStorage.setItem('Useridentity', res.data.Users.useridentity)
       }
     }
   },

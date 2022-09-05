@@ -1,11 +1,15 @@
 import Search from '@/components/Search/Search'
 import CenterBox from '@/components/ContentArticle'
 import Article from '@/components/Article/article'
+// Page
 import Page from '@/components/Page/Page'
+import checkVer from '@/components/Page/checkVer'
+// My
 import Login from '@/components/my/Login'
 import Register from '@/components/my/Register'
 import DevProcess from '@/components/my/DevProcess'
 import SpsList from '@/components/my/SpsList'
+// Ctrl_menu
 import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
 import Users from '@/components/Ctrl_menu/menu/Users'
 import Authority from '@/components/Ctrl_menu/menu/Authority'
@@ -28,6 +32,10 @@ export default [
   {
     path: '/page/:id',
     component: Page
+  },
+  {
+    path: '/checkVer/',
+    component: checkVer
   },
   {
     path: '/article/:id',

@@ -65,12 +65,14 @@ export default {
 @media only screen and (min-width: 755px) {
   .right_box{
     width: 25vw;
+    max-width: 500px;
   }
   .icpAreatop{
     position: fixed;
     top: 56px;
     z-index:999;
     width: 25vw;
+    max-width: 500px;
   }
 }
 </style>
