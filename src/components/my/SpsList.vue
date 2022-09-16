@@ -298,7 +298,7 @@ export default {
     > strong {
       font-size: 2.8rem;
       color: rgb(251, 114, 153);
-      margin: 0 20px 0 10px;
+      margin: 0 10px;
     }
     > span:nth-child(1) {
       height: 10px;
@@ -318,7 +318,7 @@ export default {
     }
     > span:nth-child(6) {
       height: 40px;
-      margin-right: 5px;
+      margin: 0 5px 0 5px;
     }
     > span:nth-child(7) {
       height: 30px;

@@ -87,14 +87,14 @@
           </div>
         </van-overlay>
         <div class="btnmenu">
-          <van-button @click="newuser" v-show="!loading">注册</van-button>
+          <button @click="comback" class="res-btn">返回</button>
           <van-button
             loading
             type="primary"
             loading-text="注册中..."
             v-show="loading"
           />
-          <van-button @click="comback">返回</van-button>
+          <button @click="newuser" v-show="!loading" class="res-btn">注册</button>
         </div>
       </div>
     </div>
@@ -197,7 +197,7 @@ export default {
                 } else {
                   localStorage.setItem('VerCode', res.data.code)
                   localStorage.setItem('Username', res.data.user)
-                  this.$router.push(`/checkVer/?code:${res.data.code}&user:${res.data.user}`)
+                  this.$router.push(`/checkVer/?code=${res.data.code}&user=${res.data.user}`)
                 }
               }, 2000)
             }
@@ -367,5 +367,10 @@ export default {
   background-color: #fff;
   text-align: center;
   border-radius: 12px;
+}
+.res-btn {
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 8px;
 }
 </style>

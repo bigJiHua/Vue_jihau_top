@@ -27,14 +27,14 @@
           />
         </form>
         <div class="btnmenu">
-          <van-button @click="login" v-show="!loading">登录</van-button>
+          <button @click="register" class="res-btn">注册</button>
           <van-button
             loading
             type="primary"
             loading-text="登录中..."
             v-show="loading"
           />
-          <van-button @click="register">注册</van-button>
+          <button @click="login" v-show="!loading" class="res-btn">登录</button>
         </div>
       </div>
     </div>
@@ -48,8 +48,8 @@ import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
 export default {
   data () {
     return {
-      username: '',
-      password: '',
+      username: 'Asd0000',
+      password: 'Asd000000',
       loading: false,
       show: false,
       msg: '正在登录',
@@ -248,5 +248,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.res-btn {
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 8px;
 }
 </style>
