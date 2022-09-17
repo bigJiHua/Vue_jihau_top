@@ -129,7 +129,10 @@ export default {
           position: 'top'
         })
       } else {
-        alert('您不能在这里修改自己的用户信息')
+        this.$toast({
+          message: '您不能在这里修改自己的用户信息',
+          position: 'top'
+        })
       }
     },
     toge () {

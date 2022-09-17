@@ -83,18 +83,7 @@ export default {
       this.getarticle(localStorage.getItem('Username'))
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
-  name: 'ArticleIndex',
-  components: {
-    // 导入组件
-  }
+  name: 'ArticleIndex'
 }
 </script>
 

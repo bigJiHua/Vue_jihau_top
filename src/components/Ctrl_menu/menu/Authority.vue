@@ -114,7 +114,10 @@ export default {
         if (res.status === 403) {
           this.isg = false
           localStorage.setItem('Useridentity', '用户')
-          alert('非法用户！请勿修改本地存储值试图变更用户身份')
+          this.$toast({
+            message: '非法用户！请勿修改本地存储值试图变更用户身份',
+            position: 'top'
+          })
           location.reload()
         } else if (res.status === 200) {
           this.isg = true
@@ -130,10 +133,16 @@ export default {
           this.n -= 5
           this.page -= 1
           this.getUserinfo(this.n)
-          alert('已经是最大限度了！')
+          this.$toast({
+            message: '已经是最大限度了！',
+            position: 'top'
+          })
         }
       } else {
-        alert('非法用户！请勿修改本地存储值试图变更用户身份')
+        this.$toast({
+          message: '非法用户！请勿修改本地存储值试图变更用户身份',
+          position: 'top'
+        })
       }
     },
     cagUser (user) {
@@ -156,10 +165,16 @@ export default {
             })
             location.reload()
           } else {
-            alert('您不能注销管理员的账号')
+            this.$toast({
+              message: '您不能注销管理员的账号',
+              position: 'top'
+            })
           }
         } else {
-          alert('用户已注销，请勿重复操作')
+          this.$toast({
+            message: '用户已注销，请勿重复操作',
+            position: 'top'
+          })
         }
       }
     },
@@ -169,7 +184,10 @@ export default {
     updo (mes) {
       if (mes === 'up') {
         if (this.n === 0) {
-          alert('这就是第一页！')
+          this.$toast({
+            message: '这就是第一页！',
+            position: 'top'
+          })
         } else {
           this.page -= 1
           this.n -= 5
