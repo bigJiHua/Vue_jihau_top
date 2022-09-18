@@ -42,12 +42,7 @@
     </p>
     <p class="selectcity">
       <span class="userheader">邮箱:</span>
-      <input
-        class="userdata form-control"
-        v-model="cagUser.email"
-        type="email"
-        @keyup.enter="cagdata"
-      />
+      <span>{{cagUser.email}}</span>
     </p>
     <p>
       <span class="userheader">个性签名:</span><br />

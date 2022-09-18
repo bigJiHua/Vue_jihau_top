@@ -53,7 +53,7 @@ export default {
         message: res.message,
         position: 'top'
       })
-      if (res.status === 401) {
+      if (res.status === 204) {
         this.getUsersdata()
         this.count += 1
         if (this.count >= 5) {

@@ -48,8 +48,8 @@ import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
 export default {
   data () {
     return {
-      username: '',
-      password: '',
+      username: 'Asd0000',
+      password: 'Asd000000',
       loading: false,
       show: false,
       msg: '正在登录',
@@ -95,8 +95,8 @@ export default {
                 clearInterval(timer)
                 this.show = false
                 this.loading = false
+                localStorage.removeItem('VerCode')
                 this.$router.push('/CtrlView')
-                location.reload()
               }, this.setTime)
             } else {
               this.showPopup(res.message)
