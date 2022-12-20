@@ -15,6 +15,14 @@ import '@/assets/js/index.js'
 import CKEditor from 'ckeditor4-vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/monokai-sublime.css'
+import VueTouch from 'vue-touch'
+VueTouch.registerCustomEvent('doubletap', {
+  taps: 2
+})
+VueTouch.registerCustomEvent('onetap', {
+  type: 'tap',
+  taps: 1
+})
 
 Vue.component('ArtList', ArtList)
 Vue.component('HeaderM', HeaderM)
@@ -23,6 +31,7 @@ Vue.component('CardM', Card)
 Vue.use(Vant)
 Vue.use(Meta)
 Vue.use(CKEditor)
+Vue.use(VueTouch, { name: 'v-touch' })
 
 // 自定义一个代码高亮指令
 Vue.directive('highlight', function (el) {

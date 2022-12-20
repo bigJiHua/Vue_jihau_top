@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderM></HeaderM>
-    <router-view></router-view>
+    <router-view id="Maxwidth"></router-view>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
       {
         name: 'keywords',
         content:
-          'JiHua,jihua,JiHua·Web和JS开发数据,JiHua的Web和JS开发数据,个人网站,C语言程序,Web语言,个人网站搭建'
+          'JiHua,jihua,JiHua的Web和JS开发数据,JiHua的Web和JS开发数据,个人网站,C语言程序,Web语言,个人网站搭建'
       },
       {
         name: 'description',
@@ -56,6 +56,7 @@ export default {
   padding: 0;
   margin: 0;
 }
+
 @media only screen and (min-width: 755px) {
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -64,6 +65,7 @@ export default {
     color: #2c3e50;
   }
 }
+
 @media only screen and (max-width: 755px) {
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -75,5 +77,9 @@ export default {
     margin: 0 auto;
     padding-top: 60px;
   }
+}
+
+#Maxwidth {
+  max-width: 1200px;
 }
 </style>

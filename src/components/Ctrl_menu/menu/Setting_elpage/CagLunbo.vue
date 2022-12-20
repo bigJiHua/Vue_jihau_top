@@ -48,6 +48,7 @@ export default {
           position: 'top'
         })
         localStorage.setItem('Useridentity', '用户')
+        location.reload()
       }
     },
     async cagLunbo (item) {

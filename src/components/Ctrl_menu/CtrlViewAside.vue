@@ -1,9 +1,11 @@
 <template>
   <div id="" class="aside">
+    <v-touch v-on:onetap="dbcagList($event)">
     <div class="menudemo" @click="to_top">
       <span class="title">设置菜单</span>
       <div><p :class="{ icon_up: isup , 'isdn': !isup }" @click="to_top"></p></div>
     </div>
+    </v-touch>
     <ul :class="[{ ismenu: isup , 'menu': !isup },'user-select-none']" >
       <li class="menu-item" @click="to_top">
         <router-link to="/CtrlView/users" class="tolink">个人信息</router-link>
@@ -51,6 +53,17 @@ export default {
     },
     to_top () {
       this.isup = !this.isup
+    },
+    dbcagList (e) {
+      const cage = e.target
+      document.addEventListener('click', (e) => {
+        const ele = e.target
+        if (ele !== cage) {
+          setTimeout(() => {
+            this.isup = false
+          }, 250)
+        }
+      })
     }
   },
   name: 'CtrlViewAside'

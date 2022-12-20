@@ -248,21 +248,6 @@ export default {
   width: 100vw;
   height: 100%;
   overflow: scroll;
-  background-image: linear-gradient(
-    to right top,
-    #caf8ec,
-    #94e1e2,
-    #5ac7df,
-    #18acdf,
-    #008dd9,
-    #5f80dd,
-    #966dd3,
-    #c254b9,
-    #ff5495,
-    #ff7468,
-    #ffa63c,
-    #f6d92a
-  );
 }
 @media only screen and (min-width: 755px) {
   .login_conten_box {
@@ -281,7 +266,6 @@ export default {
   .user_input_eara > h2 {
     margin-bottom: 15px;
     font-weight: bolder;
-    color: rgb(240, 239, 244);
   }
 
   .newuser:first-child {
@@ -320,7 +304,6 @@ export default {
   .user_input_eara > h2 {
     margin-bottom: 15px;
     font-weight: bolder;
-    color: rgb(240, 239, 244);
   }
   .login_input {
     margin: 5px 0 20px 0;

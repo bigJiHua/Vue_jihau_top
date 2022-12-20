@@ -1,5 +1,5 @@
 <template>
-  <div id="logonCon" class="container">
+  <div class="container">
     <div class="login_conten_box">
       <img
         class="login_img"
@@ -48,8 +48,8 @@ import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
 export default {
   data () {
     return {
-      username: 'Asd0000',
-      password: 'Asd000000',
+      username: '1111',
+      password: '123456',
       loading: false,
       show: false,
       msg: '正在登录',
@@ -97,6 +97,7 @@ export default {
                 this.loading = false
                 localStorage.removeItem('VerCode')
                 this.$router.push('/CtrlView')
+                location.reload()
               }, this.setTime)
             } else {
               this.showPopup(res.message)
@@ -142,38 +143,9 @@ export default {
 </script>
 
 <style scoped>
-#logonCon {
-  position: fixed;
-  top: 50px;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: linear-gradient(
-    to right top,
-    #caf8ec,
-    #94e1e2,
-    #5ac7df,
-    #18acdf,
-    #008dd9,
-    #5f80dd,
-    #966dd3,
-    #c254b9,
-    #ff5495,
-    #ff7468,
-    #ffa63c,
-    #f6d92a
-  );
-}
 * {
   margin: 0;
   padding: 0;
-}
-
-.login_conten_box {
-  margin: 20vh auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @media only screen and (min-width: 755px) {
@@ -184,6 +156,13 @@ export default {
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
 
   .login_img {
@@ -199,7 +178,6 @@ export default {
   .user_input_eara > h2 {
     margin-bottom: 15px;
     font-weight: bolder;
-    color: rgb(240, 239, 244);
   }
 
   .login_lable:first-child {
@@ -221,6 +199,7 @@ export default {
     width: 80vw;
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    margin: 15vh auto;
   }
   .login_img {
     display: none;
@@ -233,7 +212,6 @@ export default {
   .user_input_eara > h2 {
     margin-bottom: 15px;
     font-weight: bolder;
-    color: rgb(240, 239, 244);
   }
 
   .login_lable:first-child {

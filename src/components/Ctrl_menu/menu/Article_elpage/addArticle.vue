@@ -1,68 +1,40 @@
 <template>
   <div id="" class="cagArticle">
     <div class="btn">
-      <van-button @click="comback" type="danger" size="small"
-        >取消编辑</van-button
-      >
-      <van-button color="#1989FA" size="small" @click="saveArticle"
-        >确认发布</van-button
-      >
+      <van-button @click="comback" type="danger" size="small">取消编辑</van-button>
+      <van-button color="#1989FA" size="small" @click="saveArticle">确认发布</van-button>
       <van-button @click="getimg">获取图库</van-button>
     </div>
     <div class="cagArea">
       <div class="astate" @click="cagastate">
-        <i
-          :class="{
-            'glyphicon glyphicon-chevron-left': !Asidestate.isChange,
-            'glyphicon glyphicon-resize-horizontal': Asidestate.isChange,
-          }"
-        ></i>
+        <i :class="{
+          'glyphicon glyphicon-chevron-left': !Asidestate.isChange,
+          'glyphicon glyphicon-resize-horizontal': Asidestate.isChange,
+        }"></i>
       </div>
-      <aside
-        :class="{
-          cagAside: !Asidestate.isChange,
-          opAside: Asidestate.isChange,
-        }"
-      >
+      <aside :class="{
+        cagAside: !Asidestate.isChange,
+        opAside: Asidestate.isChange,
+      }">
         <h1 class="title">
-          标题:<input
-            type="text"
-            v-model="newArticleData.title"
-            class="form-control"
-          />
+          标题:<input type="text" v-model="newArticleData.title" class="form-control" />
         </h1>
         <h4>
-          标签:<input
-            type="text"
-            v-model="newArticleData.lable"
-            class="form-control"
-          />
+          标签:<input type="text" v-model="newArticleData.lable" class="form-control" />
         </h4>
         <h4>
-          关键词:<input
-            type="text"
-            v-model="newArticleData.keyword"
-            class="form-control"
-          />
+          关键词:<input type="text" v-model="newArticleData.keyword" class="form-control" />
         </h4>
         <h4>
           封面：
-          <input
-            type="text"
-            v-model="newArticleData.cover_img"
-            class="imgurl form-control"
-          />
+          <input type="text" v-model="newArticleData.cover_img" class="imgurl form-control" />
           预览
           <img :src="newArticleData.cover_img" alt="文章封面" class="pvimg" />
         </h4>
         <p>⚠ 图片嵌入 需要点击获取图片才能查阅已经上传的本账户内的图片</p>
       </aside>
       <div class="cagcontent">
-        <ckeditor
-          v-model="newArticleData.content"
-          :config="editorConfig"
-          :editor-url="editorUrl"
-        ></ckeditor>
+        <ckeditor v-model="newArticleData.content" :config="editorConfig" :editor-url="editorUrl"></ckeditor>
       </div>
     </div>
     <gallery ref="imageM"></gallery>
@@ -83,11 +55,13 @@ export default {
       },
       newArticleData: {
         username: localStorage.getItem('Username'),
-        title: '',
-        lable: '',
-        keyword: '',
-        cover_img: '',
-        content: ''
+        title: '测试后端API',
+        lable: '测试后端API',
+        keyword: '测试后端API',
+        cover_img: 'https://jihau.top/img/logo.png',
+        // eslint-disable-next-line no-irregular-whitespace
+        content: `<h1>测试后台API测试后台API测试后台API测试后台API测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API</h1>
+`
       },
       Asidestate: {
         isChange: false
@@ -153,11 +127,18 @@ export default {
                   const { data: res } = await setArticle.UseraddArticle(
                     this.newArticleData
                   )
-                  this.$toast({
-                    message: res.message,
-                    position: 'top'
-                  })
-                  this.$router.push('/article/' + res.article)
+                  if (res.status === 200) {
+                    this.$toast({
+                      message: res.message,
+                      position: 'top'
+                    })
+                    this.$router.push('/article/' + res.article)
+                  } else {
+                    this.$toast({
+                      message: res.message,
+                      position: 'top'
+                    })
+                  }
                 }
               }
             }
@@ -191,9 +172,11 @@ export default {
     display: flex;
     position: relative;
   }
+
   .cagAside {
     max-width: 16vw;
   }
+
   .imgarea {
     position: absolute;
     top: 50%;
@@ -204,20 +187,24 @@ export default {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     overflow: scroll;
+
     .atitle {
       font-size: 3rem;
       font-weight: bolder;
       border-bottom: 2px gray solid;
     }
   }
+
   .kuimgarea {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+
     .imgcopy {
       display: flex;
       flex-direction: column;
     }
+
     .kuimg {
       width: 100px;
       height: 100px;
@@ -225,10 +212,12 @@ export default {
     }
   }
 }
+
 @media only screen and (max-width: 755px) {
   .cagArea {
     position: relative;
   }
+
   .imgarea {
     position: absolute;
     top: 22%;
@@ -239,20 +228,24 @@ export default {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     overflow: scroll;
+
     .atitle {
       font-size: 3rem;
       font-weight: bolder;
       border-bottom: 2px gray solid;
     }
   }
+
   .kuimgarea {
     display: flex;
     overflow: scroll;
     width: 100%;
+
     .imgcopy {
       display: flex;
       flex-direction: column;
     }
+
     .kuimg {
       width: 100px;
       height: 100px;
@@ -260,6 +253,7 @@ export default {
     }
   }
 }
+
 .cagAside {
   flex: 0.5;
   background-color: rgb(5, 0, 105);
@@ -271,16 +265,19 @@ export default {
   transition: transform 0.5s;
   transform-origin: top center;
 }
+
 .opAside {
   transform: scaleY(0);
   transition: transform 0.2s;
   transform-origin: top center;
   width: 0;
 }
+
 .cagcontent {
   flex: 2;
   background-color: rgb(209, 184, 184);
 }
+
 .astate {
   position: absolute;
   top: 0;
@@ -288,15 +285,18 @@ export default {
   padding: 5px;
   font-size: 3rem;
 }
+
 .btn {
   display: flex;
   justify-content: space-around;
   align-content: center;
   align-items: center;
 }
+
 .imgurl {
   color: black;
 }
+
 .pvimg {
   width: 80%;
   max-height: 100px;

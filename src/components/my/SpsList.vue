@@ -1,37 +1,17 @@
 <template>
   <div class="SpsList">
-    <a
-      href="https://jihau.com/%e6%84%8f%e8%a7%81%e5%8f%8d%e9%a6%88"
-      style="position: absolute; top: 60px; border: 0; left: 20px"
-      >我也要加入!</a
-    >
-    <a
-      class="github-corner"
-      href="https://github.com/bigJiHua/Vue_jihau_top/tree/master"
-      aria-label="在 GitHub 上查看源代码"
-      target="_blank"
-      style="position: absolute; top: 50px; border: 0; right: 0"
-    >
-      <svg
-        width="80"
-        height="80"
-        viewBox="0 0 250 250"
-        aria-hidden="true"
-        fill="#151513"
-        color="#fff"
-      >
+    <a href="https://jihau.com/%e6%84%8f%e8%a7%81%e5%8f%8d%e9%a6%88"
+      style="position: absolute; top: 60px; border: 0; left: 20px">我也要加入!</a>
+    <a class="github-corner" href="https://github.com/bigJiHua/Vue_jihau_top/tree/master" aria-label="在 GitHub 上查看源代码"
+      target="_blank" style="position: absolute; top: 50px; border: 0; right: 0">
+      <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true" fill="#151513" color="#fff">
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
         <path
           d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-          fill="currentColor"
-          style="transform-origin: 130px 106px"
-          class="octo-arm"
-        ></path>
+          fill="currentColor" style="transform-origin: 130px 106px" class="octo-arm"></path>
         <path
           d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-          fill="currentColor"
-          class="octo-body"
-        ></path>
+          fill="currentColor" class="octo-body"></path>
       </svg>
     </a>
     <div class="ThanksT">
@@ -39,18 +19,14 @@
       <span></span>
       <span></span>
       <span></span>
-      <strong>鸣谢赞助·友链</strong>
+      <strong>友链 · 鸣谢赞助</strong>
       <span></span>
       <span></span>
       <span></span>
       <span></span>
     </div>
     <div id="" class="SpsListBox">
-      <div
-        class="document_author_introduce"
-        v-for="(item, index) in item"
-        :key="index"
-      >
+      <div class="document_author_introduce" v-for="(item, index) in item" :key="index">
         <div class="phone_Viewset">
           <div class="author_logoset">
             <a :href="item.set_url">
@@ -63,11 +39,11 @@
         </div>
         <div class="introduce_doc" id="introduce_doc">
           <div class="priceArea" v-if="+item.set_difault01">
-            <p class="rmbicon">好朋友 {{ item.set_title }} 赞助了 :</p>
+            <p class="rmbicon">好朋友{{ item.set_title }} 赞助了 :</p>
             <span class="price">{{ item.set_difault01 }}</span>
           </div>
           <div class="priceArea" v-else>
-            <p>我们是好朋友嗷</p>
+            <p>我们是好朋友嗷！</p>
           </div>
         </div>
         <div class="LinkBoxArea">
@@ -75,9 +51,7 @@
             赞助时间<br />{{ item.set_time }}
           </p>
           <p class="settiem" v-else>认识时间<br />{{ item.set_time }}</p>
-          <a :href="item.set_url" class="LinkBtn"
-            ><van-button>访问 {{ item.set_title }} 的博客</van-button></a
-          >
+          <a :href="item.set_url" class="LinkBtn"><van-button>访问 {{ item.set_title }} 的博客</van-button></a>
         </div>
       </div>
     </div>
@@ -118,14 +92,21 @@ export default {
   width: 95vw;
   margin: 0 auto;
 }
+
 .phone_Viewset {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
+
 .document_author_introduce {
   border-radius: 5px;
   margin: 10px;
 }
+
 .priceArea {
   display: flex;
   width: 100%;
@@ -134,35 +115,42 @@ export default {
   font-size: 2.2rem;
   margin: 15px 0;
 }
+
 .introduce_doc {
   text-align: center;
 }
+
 .author_logoset {
   overflow: hidden;
 }
+
 .rmbicon::after {
   content: '￥';
   font-size: 1.2rem;
   color: rgb(221, 78, 98);
 }
+
 .price {
   color: rgb(221, 78, 98);
-  overflow: scroll;
   width: 35px;
 }
+
 .LinkBtn button {
   background-color: rgb(251, 114, 153);
   color: white !important;
   border-radius: 8px;
 }
+
 .LinkBoxArea {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 .settiem {
   text-align: center;
 }
+
 @media only screen and (min-width: 755px) {
   .document_author_introduce {
     width: 30vw;
@@ -174,9 +162,11 @@ export default {
     border-radius: 8px;
     padding: 20px;
   }
+
   .document_author_introduce:hover {
     background-color: rgba(240, 243, 246, 0.8);
   }
+
   .author_logoset {
     width: 80px;
     height: 80px;
@@ -185,65 +175,80 @@ export default {
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     margin-right: 30px;
   }
+
   .author_logo {
     width: 100%;
     height: 100%;
   }
+
   .author_name {
     padding: 8px;
   }
-  .author_name > a {
+
+  .author_name>a {
     color: rgb(251, 114, 153);
     font-size: 5.5rem;
   }
-  .author_name > a:hover {
+
+  .author_name>a:hover {
     color: rgb(221, 78, 98);
     text-decoration: none;
   }
+
   .ThanksT {
     width: 25vw;
     margin: 0 auto;
     display: flex;
     align-items: flex-end;
-    > span {
+
+    >span {
       display: block;
       width: 6px;
       background-color: rgb(250, 195, 85);
     }
-    > strong {
-      font-size: 2.8rem;
+
+    >strong {
+      font-size: 2.5rem;
       color: rgb(251, 114, 153);
       margin: 0 20px 0 10px;
     }
-    > span:nth-child(1) {
+
+    >span:nth-child(1) {
       height: 10px;
       margin-right: 5px;
     }
-    > span:nth-child(2) {
+
+    >span:nth-child(2) {
       height: 20px;
       margin-right: 5px;
     }
-    > span:nth-child(3) {
+
+    >span:nth-child(3) {
       height: 30px;
       margin-right: 5px;
     }
-    > span:nth-child(4) {
+
+    >span:nth-child(4) {
       height: 40px;
       margin-right: 5px;
     }
-    > span:nth-child(6) {
+
+    >span:nth-child(6) {
       height: 40px;
       margin-right: 5px;
     }
-    > span:nth-child(7) {
+
+    >span:nth-child(7) {
       height: 30px;
       margin-right: 5px;
     }
-    > span:nth-child(8) {
+
+    >span:nth-child(8) {
       height: 20px;
       margin-right: 5px;
     }
-    > span:nth-child(9) {
+
+    >span:nth-child(9) {
       height: 10px;
       margin-right: 5px;
     }
@@ -254,6 +259,7 @@ export default {
   .SpsList {
     padding: 22px 0 0 0;
   }
+
   /* 右侧作者设置 */
   .document_author_introduce {
     width: 100vw;
@@ -262,6 +268,7 @@ export default {
     border-radius: 8px;
     padding: 20px;
   }
+
   .author_logoset {
     padding: 10px;
     width: 80px;
@@ -274,61 +281,75 @@ export default {
     width: 100%;
     height: 100%;
   }
+
   .author_name {
     padding: 8px;
   }
-  .author_name > a {
+
+  .author_name>a {
     color: rgb(251, 114, 153);
     font-size: 5rem;
   }
-  .author_name > a:hover {
+
+  .author_name>a:hover {
     color: rgb(251, 114, 153);
     text-decoration: none;
   }
+
   .ThanksT {
     width: 72vw;
     margin: 0 auto;
     display: flex;
     align-items: flex-end;
-    > span {
+
+    >span {
       display: block;
       width: 6px;
       background-color: rgb(241, 204, 128);
     }
-    > strong {
-      font-size: 2.8rem;
+
+    >strong {
+      font-size: 2.5rem;
       color: rgb(251, 114, 153);
       margin: 0 10px;
     }
-    > span:nth-child(1) {
+
+    >span:nth-child(1) {
       height: 10px;
       margin-right: 5px;
     }
-    > span:nth-child(2) {
+
+    >span:nth-child(2) {
       height: 20px;
       margin-right: 5px;
     }
-    > span:nth-child(3) {
+
+    >span:nth-child(3) {
       height: 30px;
       margin-right: 5px;
     }
-    > span:nth-child(4) {
+
+    >span:nth-child(4) {
       height: 40px;
       margin-right: 5px;
     }
-    > span:nth-child(6) {
+
+    >span:nth-child(6) {
       height: 40px;
       margin: 0 5px 0 5px;
     }
-    > span:nth-child(7) {
+
+    >span:nth-child(7) {
       height: 30px;
       margin-right: 5px;
     }
-    > span:nth-child(8) {
+
+    >span:nth-child(8) {
       height: 20px;
       margin-right: 5px;
     }
-    > span:nth-child(9) {
+
+    >span:nth-child(9) {
       height: 10px;
       margin-right: 5px;
     }

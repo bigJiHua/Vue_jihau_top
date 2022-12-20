@@ -108,8 +108,12 @@ export default {
       this.Asidestate.isChange = !this.Asidestate.isChange
     },
     async getArticle (id) {
-      const { data: res } = await getArticleCotent.getArchives(id)
-      this.Article.data = res.data.article
+      if (id.length === 0) {
+        this.$router.back()
+      } else {
+        const { data: res } = await getArticleCotent.getArchives(id)
+        this.Article.data = res.data.article
+      }
     },
     comback () {
       const cagpage = '文章管理'
@@ -120,11 +124,18 @@ export default {
     async saveArticle () {
       const data = this.Article.data
       const { data: res } = await setArticle.UsercagArticle(data)
-      this.$toast({
-        message: res.message,
-        position: 'top'
-      })
-      console.log(res.data)
+      if (res.status === 200) {
+        this.$toast({
+          message: res.message,
+          position: 'top'
+        })
+        this.$router.push('/article/' + this.$store.state.ArticleData)
+      } else {
+        this.$toast({
+          message: res.message,
+          position: 'top'
+        })
+      }
     },
     getimg () {
       this.$refs.imageM.toge()

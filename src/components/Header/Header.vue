@@ -83,11 +83,11 @@
           >
         </li>
         <li>
-          <button @click="login" class="btn" v-show="!token">登录</button>
-          <button @click="outlogin" class="btn" v-show="token">
+          <button @click="login" class="btn" v-if="!token">登录</button>
+          <button @click="outlogin" class="btn" v-if="token">
             <a>退出登录</a>
           </button>
-          <button v-show="token" class="btn" @click="closeMenu">
+          <button v-if="token" class="btn" @click="closeMenu">
             <router-link to="/CtrlView">后台</router-link>
           </button>
         </li>
@@ -233,6 +233,9 @@ export default {
   font-size: 1.5rem;
   font-weight: bolder;
   background-color: rgba(255, 255, 255, 0);
+}
+#indexHeader {
+  max-width: 1200px;
 }
 @media only screen and (min-width: 755px) {
   #indexHeader {

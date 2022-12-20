@@ -19,10 +19,10 @@
           class="article_doc_txt togolink"
           :to="{ path: '/article/' + article.article_id }"
         >
-          {{
-            article.content
-              | newcontent(article.content, article.title, article.keyword)
-          }}
+        {{
+          article.content
+            | newcontent(article.content, article.title, article.keyword)
+        }}
         </router-link>
       </div>
     </div>
@@ -65,9 +65,7 @@ export default {
   data () {
     return {
       showPopover: false,
-      actions: [
-        { text: '复制链接', icon: 'link', id: 2 }
-      ],
+      actions: [{ text: '复制链接', icon: 'link', id: 2 }],
       cz: true,
       isdemo: false
     }
@@ -191,7 +189,7 @@ export default {
   }
 
   .article_doc_txt {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin: 0;
   }
   /* 文章动效 */
