@@ -1,4 +1,4 @@
-import request from '../../request/request'
+import request from '../request'
 
 const UsergetArticle = function (username) {
   return request.get('/article/?username=' + username)

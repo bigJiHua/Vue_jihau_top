@@ -111,11 +111,11 @@ export default {
       showup: false,
       show: false,
       msg: '',
-      elsepassword: 'Asd000000',
+      elsepassword: '',
       newUser: {
-        username: 'Asd0000',
-        password: 'Asd000000',
-        email: 'bigjihua@outlook.com',
+        username: '',
+        password: '',
+        email: '',
         birthday: '',
         sex: '',
         city: '',
@@ -194,7 +194,7 @@ export default {
                 this.loading = false
                 if (res.status === 200) {
                   this.$router.push('/Login')
-                } else {
+                } else if (res.status !== 202) {
                   localStorage.setItem('VerCode', res.data.code)
                   localStorage.setItem('Username', res.data.user)
                   this.$router.push(`/checkVer/?code=${res.data.code}&user=${res.data.user}`)

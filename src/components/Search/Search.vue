@@ -102,7 +102,7 @@ export default {
     padding: 0 18vw;
     p:first-child{
       text-align: center;
-      font-size: 16rem;
+      font-size: 14rem;
       letter-spacing: 4rem;
     }
   }

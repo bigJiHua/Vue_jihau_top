@@ -62,11 +62,15 @@ export default {
 .footer {
   width: 100%;
   text-align: center;
-  color: rgb(153,162,180);
-  font-size: 15px;
-  background-color: rgb(246,246,246);
+  color: #99a2b4;
   padding: 5px;
   border-radius: 5px;
+  background-color: #fff;
+  margin: 10px 0 15px 0;
+  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+  border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
   .top {
     right: 15px;
     position: fixed;

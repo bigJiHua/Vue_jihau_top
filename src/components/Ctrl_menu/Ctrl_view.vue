@@ -1,6 +1,6 @@
 <template>
   <div class="CtrlView">
-    <ctrl-view-aside></ctrl-view-aside>
+    <ctrl-view-aside class="AsideMenu"></ctrl-view-aside>
     <router-view class="rightView"></router-view>
   </div>
 </template>
@@ -17,9 +17,8 @@ export default {
 </script>
 
 <style scoped>
-
 @media only screen and (max-width: 755px) {
-  .CtrlView{
+  .CtrlView {
     position: fixed;
     top: 50px;
     left: 0;
@@ -27,7 +26,8 @@ export default {
     height: 100%;
     overflow: overlay;
   }
-  .rightView{
+
+  .rightView {
     min-height: 80vh;
     width: 100%;
     padding: 15px;
@@ -35,22 +35,30 @@ export default {
   }
 
 }
+
 @media only screen and (min-width: 755px) {
-  .CtrlView{
+  .CtrlView {
     display: flex;
-    position: fixed;
-    top: 50px;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 110vw;
+    height: 90vh;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
-  .rightView{
-    height: 100%;
+
+  .AsideMenu {
+    width: 15vw;
+  }
+
+  .rightView {
     padding: 15px;
-    width: 100vw;
-    overflow: overlay;
+    width: 83vw;
+    height: 90vh;
+    overflow: scroll;
   }
 }
+
 .rightView::-webkit-scrollbar {
   display: none;
 }

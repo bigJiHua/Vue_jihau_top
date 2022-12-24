@@ -1,4 +1,4 @@
-import request from '../request/request'
+import request from './request'
 // 首页获取文章
 const getArticleList = function (page) {
   return request.get('/data/list?page=' + page)

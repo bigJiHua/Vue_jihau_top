@@ -56,13 +56,15 @@ export default {
   padding: 0;
   margin: 0;
 }
+#app {
+  background-color: #f7f7f7;
+}
 
 @media only screen and (min-width: 755px) {
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
   }
 }
 
@@ -71,7 +73,6 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
     position: relative;
     width: 95vw;
     margin: 0 auto;
@@ -81,5 +82,6 @@ export default {
 
 #Maxwidth {
   max-width: 1200px;
+
 }
 </style>

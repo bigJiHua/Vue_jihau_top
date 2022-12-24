@@ -58,21 +58,28 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.icpArea{
+.icpArea {
   width: 100%;
 }
 
+.RightMoudle {
+  background-color: rgba(240, 243, 246, 0.4);
+  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+  border-radius: 5px;
+}
+
 @media only screen and (min-width: 755px) {
-  .right_box{
+  .right_box {
     width: 25vw;
     max-width: 500px;
   }
-  .icpAreatop{
+
+  .icpAreatop {
     position: fixed;
     top: 56px;
-    z-index:999;
-    width: 25vw;
-    max-width: 500px;
+    z-index: 999;
+    width: 24vw;
+    max-width: 439px;
   }
 }
 </style>

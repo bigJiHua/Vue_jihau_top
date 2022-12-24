@@ -105,10 +105,6 @@ export default {
           id: id
         }
         const { data: res } = await getSpsList.getSettingSpsList('del', localStorage.getItem('Username'), JSON.stringify(data))
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
         if (res.status === 200) {
           this.newDevP.set_name = 'DevP'
           this.newDevP.set_title = ''

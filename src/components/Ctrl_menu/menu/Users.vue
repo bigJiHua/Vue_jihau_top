@@ -47,24 +47,9 @@ export default {
     async getUsersdata () {
       const { data: res } = await GetUData.GetUserData()
       this.cagUser = res.data.Users
+      localStorage.setItem('UserData', JSON.stringify(res.data.Users))
       this.$store.commit('cagUserData', res.data.Users)
       this.Users = this.$store.state.Userdata
-      this.$toast({
-        message: res.message,
-        position: 'top'
-      })
-      if (res.status === 204) {
-        this.getUsersdata()
-        this.count += 1
-        if (this.count >= 5) {
-          alert('身份验证已过期，请重新登录')
-          this.count = 0
-          localStorage.removeItem('token')
-          localStorage.removeItem('Username')
-          localStorage.removeItem('Useridentity')
-          location.reload()
-        }
-      }
       if (localStorage.getItem('Useridentity') !== res.data.Users.useridentity) {
         localStorage.setItem('Useridentity', res.data.Users.useridentity)
       }

@@ -1,4 +1,4 @@
-import request from '@/components/request/request'
+import request from '@/components/api/request'
 
 const checkVer = function (data) {
   const params = new URLSearchParams()

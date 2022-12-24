@@ -1,4 +1,4 @@
-import request from '../../request/request'
+import request from '../request'
 // 获取用户信息
 const GetUserData = function () {
   const user = localStorage.getItem('Username')

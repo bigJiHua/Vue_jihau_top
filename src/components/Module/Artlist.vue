@@ -3,13 +3,9 @@
     <p class="ararc_title Cookie">文章归档</p>
     <div class="ararc_list">
       <span class="list_year" @click.prevent="listod()">2022年</span>
-      <div :class="{ list_down: isOpen,'list_open': !isOpen }" id="new_article_list_m">
+      <div :class="{ list_down: isOpen, 'list_open': !isOpen }" id="new_article_list_m">
         <div class="month" v-for="(art, index) in monthlist" :key="index">
-          <Articlezkm
-          :index=index
-          :newList="newList"
-          :art="art"
-          ></Articlezkm>
+          <Articlezkm :index=index :newList="newList" :art="art"></Articlezkm>
         </div>
       </div>
     </div>
@@ -68,35 +64,46 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.ararc{
+.ararc {
   min-height: 120px;
-  background-color: rgba(240, 243, 246, 0.5);
+  background-color: #fff;
   margin: 10px 0 15px 0;
-  border-radius: 12px;
+  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+  border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
 }
+
 .ararc_title {
   text-align: center;
   font-size: 3rem;
   font-weight: bolder;
   font-family: 'songti';
 }
+
 span.list_year {
   font-size: 3rem;
   font-weight: 600;
   font-style: oblique;
   color: rgb(34, 32, 30);
 }
+
 .ararc_list {
   margin-top: 10px;
-  background-color: rgb(167 182 194 / 60%);
+  background-color: rgb(231 243 255 / 60%);
   border-radius: 11px;
   padding: 10px;
-  opacity: 0.9;
+  max-height: 265px;
+  overflow-y: auto;
+}
+.ararc_list::-webkit-scrollbar {
+  display: none;
 }
 .list_down {
   height: 0;
   overflow: hidden;
 }
+
 .list_open {
   font-weight: 500;
 }

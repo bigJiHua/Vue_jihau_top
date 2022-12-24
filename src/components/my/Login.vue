@@ -48,8 +48,8 @@ import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
 export default {
   data () {
     return {
-      username: '1111',
-      password: '123456',
+      username: '',
+      password: '',
       loading: false,
       show: false,
       msg: '正在登录',
@@ -83,7 +83,7 @@ export default {
             this.show = true
             this.loading = true
             // 判断返回状态码是否成功
-            if (res.status === 200) {
+            if (res.token !== undefined && res.token !== '') {
               localStorage.setItem('token', res.token)
               localStorage.setItem('Username', res.User.username)
               localStorage.setItem('Useridentity', res.User.useridentity)
@@ -106,6 +106,9 @@ export default {
         }
       } else {
         this.showPopup('已经登录啦！请勿重复提交表单！')
+        setTimeout(() => {
+          this.$router.push('/CtrlView/Users')
+        }, 800)
       }
     },
     register () {

@@ -88,7 +88,7 @@ export default {
             this.show = true
             this.loading = true
             // 判断返回状态码是否成功
-            if (res.status === 200) {
+            if (res.token !== undefined && res.token !== '') {
               localStorage.setItem('token', res.token)
               localStorage.setItem('Username', res.User.username)
               localStorage.setItem('Useridentity', res.User.useridentity)
@@ -101,7 +101,6 @@ export default {
                 this.show = false
                 this.loading = false
                 this.close()
-                location.reload()
               }, this.setTime)
             } else {
               this.showPopup(res.message)

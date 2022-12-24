@@ -1,4 +1,4 @@
-import request from '../request/request'
+import request from './request'
 // 首页获取轮播和发展历程
 const getSetting = function (val) {
   return request.get('/data/Setting?value=' + val)

@@ -1,4 +1,4 @@
-import request from '../../request/request'
+import request from '../request'
 // 进行点赞 收藏 评论
 const UserActive = function (data) {
   const params = new URLSearchParams()

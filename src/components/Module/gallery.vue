@@ -40,12 +40,10 @@ export default {
   },
   methods: {
     async getimg () {
-      const usdata = localStorage.getItem('Username')
+      const usdata = {
+        picusername: localStorage.getItem('Username')
+      }
       const { data: res } = await setdata.getImage(usdata)
-      this.$toast({
-        message: res.message,
-        position: 'top'
-      })
       this.Article.img = res.data
     },
     up_pic () {
@@ -56,11 +54,11 @@ export default {
           file,
           localStorage.getItem('Username')
         )
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
-        this.getimg()
+        if (res.status === 200) {
+          setTimeout(() => {
+            this.getimg()
+          }, 800)
+        }
       })
     },
     async delimg (id) {
@@ -71,11 +69,11 @@ export default {
       }
       if (condel) {
         const { data: res } = await setdata.delImage(data)
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
-        this.getimg()
+        if (res.status === 200) {
+          setTimeout(() => {
+            this.getimg()
+          }, 800)
+        }
       }
     },
     toge () {

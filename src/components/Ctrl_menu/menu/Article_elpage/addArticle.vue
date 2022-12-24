@@ -55,13 +55,12 @@ export default {
       },
       newArticleData: {
         username: localStorage.getItem('Username'),
-        title: '测试后端API',
-        lable: '测试后端API',
-        keyword: '测试后端API',
-        cover_img: 'https://jihau.top/img/logo.png',
+        title: '',
+        lable: '',
+        keyword: '',
+        cover_img: '',
         // eslint-disable-next-line no-irregular-whitespace
-        content: `<h1>测试后台API测试后台API测试后台API测试后台API测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API​​​​​​​测试后台API</h1>
-`
+        content: ''
       },
       Asidestate: {
         isChange: false

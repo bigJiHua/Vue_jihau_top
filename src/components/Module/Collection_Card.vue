@@ -63,10 +63,6 @@ export default {
               position: 'top'
             })
             if (res.status === 200) {
-              this.$toast({
-                message: '取消点赞成功',
-                position: 'top'
-              })
               this.reload()
             }
           })
@@ -82,10 +78,6 @@ export default {
               actmenthos: 'collect'
             }
             const { data: res } = await delAction.UserActive(data)
-            this.$toast({
-              message: res.message,
-              position: 'top'
-            })
             if (res.status === 200) {
               this.$toast({
                 message: '取消收藏成功',
@@ -106,10 +98,6 @@ export default {
               article_id: artid
             }
             const { data: res } = await delAction.UserActiveDel(data)
-            this.$toast({
-              message: res.message,
-              position: 'top'
-            })
             if (res.status === 200) {
               this.$toast({
                 message: '删除评论成功',

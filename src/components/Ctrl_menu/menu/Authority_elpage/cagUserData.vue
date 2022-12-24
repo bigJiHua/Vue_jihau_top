@@ -67,7 +67,7 @@
       </p>
       <van-button type="primary" @click="cagdata">提交更改</van-button>
       &nbsp;&nbsp;&nbsp;
-      <van-button type="danger" @click="delUser">注销用户</van-button>
+      <van-button type="danger" @click="delUser(cagUser.username)">注销用户</van-button>
     </div>
   </div>
 </template>
@@ -101,13 +101,11 @@ export default {
     }
   },
   methods: {
-    async delUser () {
+    async delUser (deluser) {
       if (
-        localStorage.getItem('Useridentity') === '管理员' &&
-        this.user.useridtity === '管理员'
+        localStorage.getItem('Useridentity') === '管理员'
       ) {
         const user = localStorage.getItem('Username')
-        const deluser = 0
         const { data: res } = await GetUData.DelUser(user, deluser)
         this.$toast({
           message: res.message,

@@ -1,12 +1,14 @@
 <template>
   <div id="" class="aside">
     <v-touch v-on:onetap="dbcagList($event)">
-    <div class="menudemo" @click="to_top">
-      <span class="title">设置菜单</span>
-      <div><p :class="{ icon_up: isup , 'isdn': !isup }" @click="to_top"></p></div>
-    </div>
+      <div class="menudemo" @click="to_top">
+        <span class="title">设置菜单</span>
+        <div>
+          <p :class="{ icon_up: isup, 'isdn': !isup }" @click="to_top"></p>
+        </div>
+      </div>
     </v-touch>
-    <ul :class="[{ ismenu: isup , 'menu': !isup },'user-select-none']" >
+    <ul :class="[{ ismenu: isup, 'menu': !isup }, 'user-select-none']">
       <li class="menu-item" @click="to_top">
         <router-link to="/CtrlView/users" class="tolink">个人信息</router-link>
       </li>
@@ -75,39 +77,44 @@ export default {
   .aside {
     border-right: 2px rgba(214, 210, 210, 0.9) solid;
     height: 100%;
-    width: 15vw;
   }
-  .menudemo{
+  .menudemo {
     display: none;
   }
 }
+
 @media only screen and (max-width: 755px) {
   .aside {
     width: 100vw;
     position: relative;
   }
-  .menudemo{
+
+  .menudemo {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
   }
-  span.title{
+
+  span.title {
     font-size: 2rem;
     font-weight: bolder;
-    }
-  .user-select-none{
+  }
+
+  .user-select-none {
     position: absolute;
     top: 30px;
-    background-color: rgb(240,240,240);
+    background-color: rgb(240, 240, 240);
     z-index: 999;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
   }
-  .menu-item{
+
+  .menu-item {
     width: 30vw;
   }
-  .icon_up{
+
+  .icon_up {
     width: 20px;
     height: 20px;
     border-left: 4px black solid;
@@ -117,7 +124,8 @@ export default {
     float: right;
     margin: 8px 25px 0 0;
   }
-  .isdn{
+
+  .isdn {
     width: 20px;
     height: 20px;
     border-left: 4px black solid;
@@ -127,34 +135,41 @@ export default {
     float: right;
     margin: -6px 25px 0 0;
   }
-  .menu{
+
+  .menu {
     transform: scaleY(0);
     transition: transform 0.2s;
     transform-origin: top center;
     height: 0;
   }
 }
+
 .user-select-none {
   padding: 0;
-  > li {
-    > a {
+
+  >li {
+    >a {
       text-decoration: none;
       color: rgb(0, 0, 0);
       font-size: 1.5rem;
     }
+
     display: block;
     text-align: center;
     padding: 10px;
     margin-top: 10px;
   }
-  > li:hover {
+
+  >li:hover {
     background-color: rgba(214, 210, 210, 0.5);
-    > a {
+
+    >a {
       color: white;
     }
   }
 }
-.tolink{
+
+.tolink {
   font-size: 1.8rem !important;
 }
 </style>

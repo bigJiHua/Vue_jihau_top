@@ -1,12 +1,7 @@
 <template>
-  <div
-    :class="[{ article_demo: isdemo, article_demos: !isdemo }, 'article_item']"
-  >
+  <div :class="[{ article_demo: isdemo, article_demos: !isdemo }, 'article_item']">
     <p class="article_doc_title">
-      <router-link
-        class="togolink"
-        :to="{ path: '/article/' + article.article_id }"
-      >
+      <router-link class="togolink" :to="{ path: '/article/' + article.article_id }">
         {{ article.title }}
       </router-link>
     </p>
@@ -15,31 +10,20 @@
         <img class="article_img_item" :src="article.cover_img" />
       </div>
       <div class="article_doc">
-        <router-link
-          class="article_doc_txt togolink"
-          :to="{ path: '/article/' + article.article_id }"
-        >
-        {{
-          article.content
-            | newcontent(article.content, article.title, article.keyword)
-        }}
+        <router-link class="article_doc_txt togolink" :to="{ path: '/article/' + article.article_id }">
+          {{
+              article.content
+              | newcontent(article.content, article.title, article.keyword)
+          }}
         </router-link>
       </div>
     </div>
     <div class="artmethod">
       <div class="shareBox">
-        <van-button type="info" @click="Goto(article.article_id)"
-          >阅读</van-button
-        >
-        <van-popover
-          v-model="showPopover"
-          trigger="click"
-          :actions="actions"
-          @select="onSelect"
-          placement="top"
-        >
+        <button type="info" @click="Goto(article.article_id)" class="Gobutton">阅读</button>
+        <van-popover v-model="showPopover" trigger="click" :actions="actions" @select="onSelect" placement="top">
           <template #reference>
-            <van-button type="info">分享</van-button>
+            <button type="info" class="Gobutton">分享</button>
           </template>
         </van-popover>
       </div>
@@ -136,27 +120,71 @@ export default {
   margin-top: 10px;
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
+
 .article_item {
   margin-bottom: 10px;
-  background-color: rgba(240, 242, 245, 0.3);
-  border-radius: 0 0 12px 12px;
+  background-color: #fff;
+  border-radius: 5px;
   max-height: 226px;
   padding: 8px;
   top: 10px;
 }
+
 .article_doc_txt {
   text-indent: 3.6rem;
-  font-size: 1.8rem;
+  font-size: 0.95rem;
   overflow: hidden;
 }
+
 .togolink {
   color: rgba(0, 0, 0, 0.692);
   text-decoration: none;
 }
+
+.article_doc_title {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  font-family: '微软雅黑';
+  margin: 8px;
+}
+
+.article_doc {
+  width: 100%;
+  overflow: hidden;
+}
+
+.shareBox {
+  background-color: rgb(230, 240, 253);
+  border-radius: 5px;
+  display: flex;
+  align-content: center;
+}
+
+.Gobutton {
+  border: 0;
+  padding: 8px 15px;
+  background-color: rgba(230, 240, 253, 0);
+  color: rgb(112, 171, 249);
+}
+
+.Gobutton:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.Gobutton:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.Gobutton:hover {
+  background-color: rgb(213, 231, 255);
+  color: rgb(57, 113, 186);
+}
+
 @media only screen and (min-width: 755px) {
   .article_area {
     display: flex;
@@ -164,11 +192,10 @@ export default {
   }
 
   .article_img {
-    flex: 0.5;
-    max-width: 166px;
-    max-height: 95px;
+    width: 150px;
+    height: 80px;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 5px;
   }
 
   .article_img_item {
@@ -181,97 +208,75 @@ export default {
     padding: 0 10px;
   }
 
-  .article_doc_title {
-    font-size: 2.2rem;
-    font-weight: bolder;
-    font-family: '微软雅黑';
-    margin: 8px;
-  }
-
-  .article_doc_txt {
-    font-size: 1.5rem;
-    margin: 0;
-  }
   /* 文章动效 */
   .article_img_item:hover {
     transform: scale(1.35);
     transition: 1s;
   }
+
   .right_btn {
     display: flex !important;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
+
   .artmethod {
     padding: 0 20px;
   }
-  .shareBox {
-    button {
-      margin-left: 15px;
-    }
-  }
 }
+
 @media only screen and (max-width: 755px) {
+
   /* 最新文章 */
   .article_box {
     position: relative;
   }
+
   .article_area {
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
+
   .article_img {
     padding: 0 6px;
-    height: 90px;
-    min-width: 160px;
-    max-width: 170px;
+    height: 75px;
+    width: 200px;
     overflow: hidden;
     border-radius: 12px;
     margin-bottom: 10px;
   }
+
   .article_img_item {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
   }
+
   .article_doc {
     max-height: 100px;
     min-width: 50%;
     overflow: hidden;
   }
-  .article_doc_title {
-    font-size: 2rem;
-    font-weight: bolder;
-    margin: 8px;
-  }
+
   /* 文章动效 */
   .article_img_item:hover {
     transform: scale(1.35);
     transition: 1s;
   }
-  .shareBox {
-    width: 50%;
-    display: flex;
-    align-content: center;
-    button {
-      margin-left: 10px;
-    }
-  }
+
   .article_item {
     padding: 8px;
   }
+
   .article_demos {
     margin-top: 80px;
   }
+
   .article_demo {
     margin-top: 8px;
     transition: all 0.3s;
   }
-}
-.article_doc {
-  width: 100%;
-  overflow: hidden;
 }
 </style>

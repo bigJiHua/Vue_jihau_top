@@ -1,4 +1,4 @@
-import request from '../request/request'
+import request from './request'
 // 获取文章内容
 const getArchives = function (id) {
   const params = new URLSearchParams()

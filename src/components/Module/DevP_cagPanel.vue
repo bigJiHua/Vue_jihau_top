@@ -33,10 +33,6 @@ export default {
     async cagDevP () {
       const { data: res } = await getDevP.getSettingDevP('cag', localStorage.getItem('Username'), JSON.stringify(this.cagitem))
       if (res.status === 200) {
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
         setTimeout(() => {
           this.toge()
         }, 800)

@@ -298,7 +298,7 @@ export default {
 
   .ThanksT {
     width: 72vw;
-    margin: 0 auto;
+    margin: 15px auto;
     display: flex;
     align-items: flex-end;
 

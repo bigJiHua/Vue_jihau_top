@@ -12,12 +12,12 @@
         </div>
       </div>
       <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-pagination"></div> -->
       <!-- 如果需要导航按钮 -->
-      <div class="swiper-button-prev swbtn"></div>
-      <div class="swiper-button-next swbtn"></div>
+      <!-- <div class="swiper-button-prev swbtn"></div>
+      <div class="swiper-button-next swbtn"></div> -->
       <!-- 如果需要滚动条 -->
-      <!-- <div class="swiper-scrollbar"></div> -->
+      <div class="swiper-scrollbar"></div>
     </div>
   </div>
 </template>
@@ -49,10 +49,10 @@ export default {
         el: '.swiper-pagination',
       },
       // 如果需要前进后退按钮
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      // navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
       // 如果需要滚动条
       scrollbar: {
         el: '.swiper-scrollbar',
@@ -85,24 +85,8 @@ export default {
     width: 100%;
     height: 250px;
   }
-  .lunbo_box {
-    position: relative;
-  }
-  .lunbo_img {
-    height: 100%;
-    width: 100%;
-  }
   .LunboArea {
     position: relative;
-  }
-  .Lunbo_title {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-size: 4rem;
-    color: rgba(11, 87, 227, 0.8);
-    display: inline-block;
-    background-color: #fff;
   }
 }
 @media only screen and (max-width: 755px) {
@@ -110,28 +94,27 @@ export default {
     width: 100%;
     height: 150px;
   }
-  .lunbo_box {
-    position: relative;
-  }
-  .lunbo_img {
-    height: 100%;
-    width: 100%;
-  }
-  .LunboArea {
-    position: relative;
-  }
-  .Lunbo_title {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-size: 2.8rem;
-    color: rgba(11, 87, 227, 0.8);
-    display: inline-block;
-    background-color: #fff;
-  }
-  .swbtn:after{
-    font-size: 3.0rem;
-    color: white;
-  }
+}
+.lunbo_box {
+  position: relative;
+}
+.lunbo_img {
+  height: 100%;
+  width: 100%;
+}
+.LunboArea {
+  position: relative;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.Lunbo_title {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 4rem;
+  transform: translate(-50%,-50%);
+  color: #e6f0fd;
 }
 </style>

@@ -2,12 +2,14 @@
   <div id="" class="Scard" v-if="isg">
     <div class="header card" @click="to_top">
       <p class="title">添加修改历程</p>
-      <div @click="to_top"><p :class="{ icon_up: isup, isdn: !isup }"></p></div>
+      <div @click="to_top">
+        <p :class="{ icon_up: isup, isdn: !isup }"></p>
+      </div>
     </div>
     <div :class="{ DevP_item: isup, DevP_down: !isup }">
       <div class="setitem" v-for="(item, index) in Dev" :key="index">
         <label for="set_name" class="setlable">名字</label>
-        <span>{{item.set_name}}{{index+1}}</span><br />
+        <span>{{ item.set_name }}{{ index + 1 }}</span><br />
         <label for="set_title" class="setlable">标题</label>
         <input type="text" id="set_title" class="setinput" v-model="item.set_title" /><br />
         <label for="set_url" class="setlable">链接</label>
@@ -70,10 +72,6 @@ export default {
         this.isg = true
       } else {
         this.isg = false
-        this.$toast({
-          message: res.message + '  禁止修改本地用户身份造假！',
-          position: 'top'
-        })
         localStorage.setItem('Useridentity', '用户')
         location.reload()
       }
@@ -100,10 +98,6 @@ export default {
           id: id
         }
         const { data: res } = await getDevP.getSettingDevP('del', localStorage.getItem('Username'), JSON.stringify(data))
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
         if (res.status === 200) {
           this.newDevP.set_name = 'DevP'
           this.newDevP.set_title = ''
@@ -128,12 +122,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.setlable{
+.setlable {
   width: 6vw;
 }
-.setbtn{
+
+.setbtn {
   margin-left: 6vw;
 }
+
 .header {
   width: 100%;
   display: flex;
@@ -141,6 +137,7 @@ export default {
   align-content: center;
   align-items: center;
 }
+
 .icon_up {
   width: 20px;
   height: 20px;
@@ -151,6 +148,7 @@ export default {
   float: right;
   margin: -6px 25px 0 0;
 }
+
 .isdn {
   width: 20px;
   height: 20px;
@@ -161,29 +159,35 @@ export default {
   float: right;
   margin: -6px 25px 0 0;
 }
+
 .DevP_down {
   transform: scaleY(0);
   transition: transform 0.2s;
   transform-origin: top center;
   height: 0;
 }
+
 p.title {
   font-size: 2rem;
   text-align: center;
 }
+
 .setitem {
   margin-right: 10px;
   position: relative;
 }
-.setinput{
+
+.setinput {
   width: 12vw;
 }
-.delbox{
+
+.delbox {
   padding: 0 20px 0 -20px;
   position: absolute;
   right: 0;
   top: 0;
 }
+
 .DevP_item {
   display: flex;
   flex-wrap: wrap;
@@ -193,22 +197,26 @@ p.title {
 }
 
 @media only screen and (max-width: 755px) {
-  .setlable{
+  .setlable {
     width: 100%;
   }
-  .setbtn{
+
+  .setbtn {
     margin-top: 5px;
   }
+
   .setitem {
     padding-bottom: 10px;
     margin: 10px 0;
     border-bottom: 1px grey solid;
     width: 100%;
   }
-  .setinput{
+
+  .setinput {
     width: 100%;
   }
-  .delbox{
+
+  .delbox {
     font-size: 2rem;
   }
 }

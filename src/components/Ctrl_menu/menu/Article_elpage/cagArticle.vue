@@ -125,16 +125,7 @@ export default {
       const data = this.Article.data
       const { data: res } = await setArticle.UsercagArticle(data)
       if (res.status === 200) {
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
         this.$router.push('/article/' + this.$store.state.ArticleData)
-      } else {
-        this.$toast({
-          message: res.message,
-          position: 'top'
-        })
       }
     },
     getimg () {

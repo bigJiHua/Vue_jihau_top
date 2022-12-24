@@ -48,19 +48,10 @@ export default {
       if (SendArry.code !== undefined && SendArry.user !== undefined) {
         const { data: res } = await checkMail.checkVer(data)
         if (res.status === 200) {
-          this.$toast({
-            message: res.message,
-            position: 'top'
-          })
-        } else {
-          this.$toast({
-            message: res.message,
-            position: 'top'
-          })
+          setTimeout(() => {
+            this.$router.push('/Login')
+          }, 2000)
         }
-        setTimeout(() => {
-          this.$router.push('/Login')
-        }, 2000)
       } else {
         this.$toast({
           message: '输入内容不能为空',
@@ -72,19 +63,10 @@ export default {
       if (this.data.code !== undefined && this.data.user !== undefined) {
         const { data: res } = await checkMail.checkVer(this.data)
         if (res.status === 200) {
-          this.$toast({
-            message: res.message,
-            position: 'top'
-          })
-        } else {
-          this.$toast({
-            message: res.message,
-            position: 'top'
-          })
+          setTimeout(() => {
+            this.$router.push('/Login')
+          }, 2000)
         }
-        setTimeout(() => {
-          this.$router.push('/Login')
-        }, 2000)
       } else {
         this.$toast({
           message: '输入内容不能为空',

@@ -1,9 +1,7 @@
-import request from '../../request/request'
+import request from '../request'
 
 const getImage = function (data) {
-  const params = new URLSearchParams()
-  params.append('picusername', data)
-  return request.post('/article/img/', params)
+  return request.post('/article/img', data)
 }
 const upImage = function (file, user) {
   const formData = new FormData()

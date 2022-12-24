@@ -1,16 +1,10 @@
 <template>
   <div id="" class="userinfo" v-if="isg">
-  <h1>用户管理</h1>
-    <table
-      class="table-hover table table-bordered table-striped tab-content userinfotable"
-    >
+    <h1>用户管理</h1>
+    <table class="table-hover table table-bordered table-striped tab-content userinfotable">
       <thead>
         <tr>
-          <th
-            v-for="(item, index) in Userinfo.thead"
-            :key="index"
-            class="thovs"
-          >
+          <th v-for="(item, index) in Userinfo.thead" :key="index" class="thovs">
             {{ item }}
           </th>
         </tr>
@@ -31,34 +25,20 @@
           <td class="tdval">{{ item.user_content }}</td>
           <td class="tdval">{{ item.state | state(item.state) }}</td>
           <td class="tdval">
-            <van-button
-              color="#1989FA"
-              size="small"
-              class="tdbtn"
-              @click="cagUser(item)"
-              >编辑</van-button
-            >
-            <van-button
-              type="danger"
-              size="small"
-              class="tdbtn"
-              @click="delUser(item.username, item.useridentity,item.state)"
-            >
+            <van-button color="#1989FA" size="small" class="tdbtn" @click="cagUser(item)">编辑</van-button>
+            <van-button type="danger" size="small" class="tdbtn"
+              @click="delUser(item.username, item.useridentity, item.state)">
               {{ item.state | btnstate(item.state) }}
             </van-button>
           </td>
         </tr>
       </tbody>
     </table>
-    <cag-user-data
-      v-if="cagUdata.cagArea"
-      :user="cagUdata.item"
-      @toge="toge"
-    ></cag-user-data>
+    <cag-user-data v-if="cagUdata.cagArea" :user="cagUdata.item" @toge="toge"></cag-user-data>
     <div class="countpage">
       <van-button @click="updo('up')">上一页</van-button>
-      <span>第{{page}}页</span>&nbsp;
-      <span>共{{ length | lengthcount(this.length)}}页</span>
+      <span>第{{ page }}页</span>&nbsp;
+      <span>共{{ length | lengthcount(this.length) }}页</span>
       <van-button @click="updo('next')">下一页</van-button>
     </div>
   </div>
@@ -114,29 +94,16 @@ export default {
         if (res.status === 403) {
           this.isg = false
           localStorage.setItem('Useridentity', '用户')
-          this.$toast({
-            message: '非法用户！请勿修改本地存储值试图变更用户身份',
-            position: 'top'
-          })
           location.reload()
         } else if (res.status === 200) {
           this.isg = true
           this.Userinfo.list = res.data
           this.length = res.length
-          this.$toast({
-            message: res.message,
-            position: 'top'
-          })
           localStorage.setItem('Useridentity', '管理员')
-        }
-        if (res.message === '404') {
+        } else {
           this.n -= 5
           this.page -= 1
           this.getUserinfo(this.n)
-          this.$toast({
-            message: '已经是最大限度了！',
-            position: 'top'
-          })
         }
       } else {
         this.$toast({
@@ -155,7 +122,7 @@ export default {
         if (state !== 1) {
           if (
             localStorage.getItem('Useridentity') === '管理员' &&
-        useridtity === '管理员'
+            useridtity === '管理员'
           ) {
             const user = localStorage.getItem('Username')
             const { data: res } = await GetUData.DelUser(user, deluser)
@@ -163,7 +130,6 @@ export default {
               message: res.message,
               position: 'top'
             })
-            location.reload()
           } else {
             this.$toast({
               message: '您不能注销管理员的账号',
@@ -231,28 +197,35 @@ export default {
 .userinfo {
   position: relative;
 }
-.countpage{
+
+.countpage {
   display: flex;
   align-content: center;
   justify-content: center;
   align-items: center;
-  button:first-child{
+
+  button:first-child {
     margin-right: 8px;
   }
-  button:last-child{
+
+  button:last-child {
     margin-left: 8px;
   }
-  > button {
+
+  >button {
     z-index: 1;
   }
 }
 
 @media only screen and (max-width: 755px) {
-  .thovs,.tdval{
+
+  .thovs,
+  .tdval {
     height: 50px !important;
     width: 50px !important;
   }
-  .countpage{
+
+  .countpage {
     position: absolute;
     right: 0;
     top: 33px;

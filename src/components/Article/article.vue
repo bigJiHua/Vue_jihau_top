@@ -123,10 +123,6 @@ export default {
       } else {
         this.goodpage = !this.goodpage
       }
-      this.$toast({
-        message: res.message,
-        position: 'top'
-      })
     },
     async goodnum (artid) {
       if (localStorage.getItem('Username') === null) {
@@ -139,7 +135,7 @@ export default {
       } else {
         if (artid === undefined) {
           this.$toast({
-            message: 'Page ID undefine',
+            message: 'Page ID is undefine',
             position: top
           })
         } else {
@@ -235,10 +231,6 @@ export default {
               comment: comtxt
             }
             const { data: res } = await UserAction.UserActive(data)
-            this.$toast({
-              message: res.message,
-              position: 'top'
-            })
             if (res.status === 200) {
               this.Active.collect = !this.Active.collect
               this.getArticle(this.$route.params.id)
@@ -309,6 +301,7 @@ export default {
 }
 .leftContent {
   overflow: hidden;
+  background-color: #fff;
 }
 .content > p > p > img {
   max-width: 350px;
@@ -321,7 +314,6 @@ export default {
     margin: 20px auto;
   }
   .leftContent {
-    background-color: rgba(243, 245, 248, 0.5);
     padding: 20px;
     border-radius: 12px;
     margin-right: 20px;
@@ -331,7 +323,6 @@ export default {
 
 @media only screen and (max-width: 755px) {
   .leftContent {
-    background-color: rgba(243, 245, 248, 0.8);
     padding: 10px;
     border-radius: 12px;
     margin-bottom: 30px;

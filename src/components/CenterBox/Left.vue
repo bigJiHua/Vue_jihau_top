@@ -6,16 +6,12 @@
         <span>最新文章</span>
         <span>New article</span>
       </p>
-    <van-pull-refresh v-model="isLoading" :disabled="finished" @refresh="onRefresh">
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-      <ArticleList
-        v-for="article in artlist"
-        :key="article.id"
-        :article="article"
-      >
-      </ArticleList>
-      </van-list>
-    </van-pull-refresh>
+      <van-pull-refresh v-model="isLoading" :disabled="finished" @refresh="onRefresh">
+        <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+          <ArticleList v-for="article in artlist" :key="article.id" :article="article">
+          </ArticleList>
+        </van-list>
+      </van-pull-refresh>
     </div>
   </div>
 </template>
@@ -50,16 +46,21 @@ export default {
   methods: {
     async getArtList (isRefresh) {
       const { data: res } = await getArtList.getArticleList(this.page)
-      if (res.status === 406) {
+      if (res.status === 204) {
         this.isLoading = false
         this.finished = true
       } else {
-        if (isRefresh) {
-          this.artlist = [...res.data, ...this.artlist]
-          this.isLoading = false
+        if (res.data !== undefined) {
+          if (isRefresh) {
+            this.artlist = [...res.data, ...this.artlist]
+            this.isLoading = false
+          } else {
+            this.artlist = [...this.artlist, ...res.data]
+            this.loading = false
+          }
         } else {
-          this.artlist = [...this.artlist, ...res.data]
-          this.loading = false
+          this.isLoading = false
+          this.finished = true
         }
       }
     },
@@ -90,18 +91,22 @@ export default {
     margin-top: 20px;
   }
 }
+
 .article_alltitle {
   font-weight: bolder;
   font-size: 3rem;
 }
+
 @media only screen and (min-width: 755px) {
-  .left_box{
+  .left_box {
     width: 100%;
   }
+
   .article_alltitle span:nth-child(2) {
     top: 18px;
   }
 }
+
 @media only screen and (max-width: 755px) {
   .article_alltitle span:nth-child(2) {
     top: 18px;

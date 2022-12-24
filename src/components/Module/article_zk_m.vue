@@ -1,13 +1,13 @@
 <template>
-  <div id="">
-    <span class="mnumber" @click="mdod()">{{ art }}月</span>
-    <ul v-for="(obj, index) in newList[index]" :key="index">
-      <li :class="{ daylists: misOpen, daylist: !misOpen }">
+  <div id="" @click="mdod()">
+    <span class="mnumber">{{ art }}月</span>
+    <ol>
+      <li :class="{ daylists: misOpen, daylist: !misOpen }" v-for="(obj, index) in newList[index]" :key="index">
         <router-link :to="'/article/' + obj.hurl">
           {{ obj.title }}
         </router-link>
       </li>
-    </ul>
+    </ol>
   </div>
 </template>
 
@@ -34,15 +34,9 @@ export default {
       misOpen: false
     }
   },
-  method () {
-    this.gettt()
-  },
   methods: {
     mdod () {
       this.misOpen = !this.misOpen
-    },
-    gettt () {
-      console.log(this)
     }
   },
   name: 'articleListZk',
@@ -59,19 +53,26 @@ export default {
   font-weight: 600;
   color: rgb(0, 0, 0);
 }
+
 /* 日历和现在时间 */
 .daylist {
   display: none;
 }
+
 .daylists a {
   text-decoration: none;
-  color: rgb(38, 130, 221);
+  color: rgb(11, 133, 255);
   font-weight: bolder;
 }
+
 .daylists:hover {
-  background-color: rgb(148, 171, 194);
-  color: white;
+  background-color: rgb(200, 227, 255);
+
+  >a {
+    color: rgb(108, 174, 240);
+  }
 }
+
 .daylist {
   display: none;
 }
@@ -85,7 +86,7 @@ export default {
   padding: 0;
 }
 
-.daylists li a {
+.daylists ol a {
   text-decoration: none;
   color: rgb(38, 130, 221);
   font-weight: bolder;

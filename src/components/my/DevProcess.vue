@@ -52,10 +52,6 @@ export default {
           if (res.status !== 404) {
             this.isEdicks = true
           } else {
-            this.$toast({
-              message: res.message,
-              position: 'top'
-            })
             localStorage.setItem('Useridentity', '用户')
           }
         }
@@ -93,7 +89,7 @@ export default {
 @media only screen and (min-width: 755px) {
   .Tree_dome {
     padding: 15px 30px;
-    border-radius: 60px;
+    border-radius: 8px;
     margin: 5px;
     position: relative;
   }
@@ -124,31 +120,34 @@ export default {
   .check-btn{
     position: absolute;
     right: 30px;
-    top: 8vh;
+    top: 2vh;
   }
   .edit_btn{
     font-size: 2rem;
     position: absolute;
-    right: 0;
-    top: 15px;
+    right: 7px;
+    top: 13px;
+    border: 0;
+    background-color: rgba(0,0,0,0);
   }
 }
 
 @media only screen and (max-width: 755px) {
   .Tree{
-    margin: 50px 0;
   }
   .Tree_dome {
-    padding: 15px;
-    border-radius: 60px;
+    padding: 25px;
+    border-radius: 8px;
     margin-top: 15px;
     position: relative;
   }
   .Tree_Area{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
   .set_title{
     font-weight: bolder;
@@ -170,7 +169,7 @@ export default {
   .check-btn{
     position: absolute;
     right: 30px;
-    top: 12vh;
+    top: 16vh;
     right: 2vw;
     z-index: 999;
     background-color: rgb(#C9D5E9);
@@ -178,8 +177,10 @@ export default {
   .edit_btn{
     font-size: 2rem;
     position: absolute;
-    right: 0;
-    top: -13px;
+    right: 7px;
+    top: 3px;
+    border: 0;
+    background-color: rgba(0,0,0,0);
   }
 }
 </style>

@@ -1,19 +1,8 @@
 <template>
-  <div
-    :class="['navbar-default', 'Ctrldemo', { header: istop, nheader: !istop }]"
-    id="indexHeader"
-    ref="headertotop"
-  >
+  <div :class="['navbar-default', 'Ctrldemo', { header: istop, nheader: !istop }]" id="indexHeader" ref="headertotop">
     <div class="navbar-header coker">
-      <button
-        type="button"
-        class="navbar-toggle collapsed"
-        data-toggle="collapse"
-        data-target="#navbar"
-        aria-expanded="false"
-        aria-controls="navbar"
-        ref="btn_list"
-      >
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+        aria-expanded="false" aria-controls="navbar" ref="btn_list">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -21,9 +10,7 @@
       <router-link class="navbar-brand headerTitle" to="/">
         <h1>JiHua的web和js开发数据</h1>
       </router-link>
-      <a href="https://jihau.top"
-        ><img src="https://www.jihau.top/img/logo.png" class="logo" alt="logo"
-      /></a>
+      <a href="https://jihau.top"><img src="https://www.jihau.top/img/logo.png" class="logo" alt="logo" /></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox">
       <ul class="nav navbar-nav">
@@ -37,31 +24,19 @@
           <router-link to="/DevProcess">发展历程</router-link>
         </li>
         <li @click="closeMenu">
-          <router-link to="/SpsList">赞助·友链</router-link>
+          <router-link to="/SpsList">友链</router-link>
         </li>
         <li class="dropdown">
-          <a
-            class="dropdown-toggle"
-            data-toggle="dropdown"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            @mousemove.once="listMenu"
-            ref="more_something"
-            >更多<span class="caret"></span
-          ></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+            @mousemove.once="listMenu" ref="more_something">更多<span class="caret"></span></a>
           <ul class="dropdown-menu" ref="dropdown_menu">
             <li>
-              <router-link to="/checkver"
-                ><span @click="closeMenu">激活账户</span></router-link
-              >
+              <router-link to="/checkver"><span @click="closeMenu">激活账户</span></router-link>
             </li>
             <li><a href="https://www.jihau.com">主站博客页面</a></li>
             <li><a href="https://d0tc.com">C语言程序与设计</a></li>
             <li>
-              <router-link to="/page/YSZC"
-                ><span @click="closeMenu">隐私政策</span></router-link
-              >
+              <router-link to="/page/YSZC"><span @click="closeMenu">隐私政策</span></router-link>
             </li>
             <li><a href="https://jihau.com/POP/">测试</a></li>
           </ul>
@@ -70,25 +45,17 @@
       <ul class="nav navbar-nav navbar-right right_btn">
         <li @click="closeMenu">
           <router-link to="/Search">
-            <span
-              class="glyphicon glyphicon-search"
-              style="font-size: 20px"
-              @click="closeMenu"
-            ></span>
+            <span class="glyphicon glyphicon-search" style="font-size: 20px" @click="closeMenu"></span>
           </router-link>
         </li>
-        <li @click="closeMenu">
-          <router-link to="/CtrlView" v-show="token"
-            >欢迎{{ User }}{{ Useridentity }}</router-link
-          >
+        <li @click="closeMenu" class="UserNL" v-if="token">
+          <img v-if="$store.state.Userdata.user_pic" :src="$store.state.Userdata.user_pic" class="author_logo" alt="logo" />
+          <router-link to="/CtrlView">{{ User }}{{ Useridentity }}</router-link>
         </li>
         <li>
           <button @click="login" class="btn" v-if="!token">登录</button>
           <button @click="outlogin" class="btn" v-if="token">
             <a>退出登录</a>
-          </button>
-          <button v-if="token" class="btn" @click="closeMenu">
-            <router-link to="/CtrlView">后台</router-link>
           </button>
         </li>
       </ul>
@@ -234,44 +201,65 @@ export default {
   font-weight: bolder;
   background-color: rgba(255, 255, 255, 0);
 }
+
 #indexHeader {
   max-width: 1200px;
 }
+
+.UserNL {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.author_logo {
+  width: 30px;
+  height: 30px;
+}
+
 @media only screen and (min-width: 755px) {
   #indexHeader {
     transition: all 0.5s;
   }
+
   .logo {
     width: 45px;
     height: 40px;
     margin: 5px 0 10px 0;
   }
-  .coker > a > h1 {
+
+  .coker>a>h1 {
     font-size: 3rem !important;
     padding: 0;
     margin: 0;
   }
+
   .right_btn {
     display: flex !important;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
+
   .nheader {
-    background-color: rgba(255, 255, 255, 0);
     width: 98vw;
     margin: 0 auto;
   }
+
   .header {
     position: fixed;
-    top: -1px;
+    top: 0;
     z-index: 999;
     height: 50px;
-    left: 9.5vw;
-    width: 80vw;
-    background-color: #f8f8f8;
+    left: 5.5vw;
+    max-width: 100vw;
+    min-width: 89vw;
   }
 }
+
 @media only screen and (max-width: 755px) {
   #indexHeader {
     position: fixed;
@@ -280,22 +268,26 @@ export default {
     top: 0;
     left: 0;
   }
+
   .logo {
     width: 34px;
     height: 28px;
     margin: 10px 0 10px 0;
   }
-  .coker > a > h1 {
+
+  .coker>a>h1 {
     font-size: 2.5rem;
     padding: 0;
     margin: 0;
   }
+
   #navbar {
     position: absolute;
     z-index: 999;
     background-color: rgba(255, 255, 255, 0.9);
     width: 100%;
   }
+
   .header {
     position: fixed;
     top: -1px;
@@ -305,16 +297,19 @@ export default {
     width: 100vw;
   }
 }
+
 @media only screen and (max-width: 370px) {
-  .coker > a > h1{
+  .coker>a>h1 {
     font-size: 2rem;
   }
 }
+
 @media only screen and (max-width: 280px) {
-  .logo{
+  .logo {
     display: none;
   }
-  .coker > a > h1{
+
+  .coker>a>h1 {
     font-size: 1.6rem;
   }
 }
