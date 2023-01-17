@@ -137,7 +137,7 @@ export default {
 
 .article_doc_txt {
   text-indent: 3.6rem;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   overflow: hidden;
 }
 

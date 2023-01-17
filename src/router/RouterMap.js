@@ -103,5 +103,19 @@ export default [
       { path: 'Collection', component: Collection },
       { path: 'Setting', component: Setting }
     ]
+  },
+  {
+    name: '404',
+    path: '/404',
+    component: () => import('@/components/Page/404.vue')
+  },
+  {
+    name: '10010.html',
+    path: '/html/goods/10010.html',
+    component: () => import('@/components/Page/10010.vue')
+  },
+  {
+    path: '*', // 此处需特别注意至于最底部
+    redirect: '/404'
   }
 ]

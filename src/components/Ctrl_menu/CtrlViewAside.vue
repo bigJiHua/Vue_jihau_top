@@ -54,7 +54,11 @@ export default {
       }
     },
     to_top () {
-      this.isup = !this.isup
+      if (this.isup) {
+        this.isup = false
+      } else {
+        this.isup = true
+      }
     },
     dbcagList (e) {
       const cage = e.target

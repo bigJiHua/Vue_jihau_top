@@ -38,6 +38,9 @@
             <li>
               <router-link to="/page/YSZC"><span @click="closeMenu">隐私政策</span></router-link>
             </li>
+            <li>
+              <router-link to="/html/goods/10010.html"><span @click="closeMenu">物品寻求页面</span></router-link>
+            </li>
             <li><a href="https://jihau.com/POP/">测试</a></li>
           </ul>
         </li>
@@ -49,10 +52,10 @@
           </router-link>
         </li>
         <li @click="closeMenu" class="UserNL" v-if="token">
-          <img v-if="$store.state.Userdata.user_pic" :src="$store.state.Userdata.user_pic" class="author_logo" alt="logo" />
+          <img :src="this.$store.state.Userdata.user_pic" class="author_logo" alt="logo" />
           <router-link to="/CtrlView">{{ User }}{{ Useridentity }}</router-link>
         </li>
-        <li>
+        <li class="HeaderbtnArea">
           <button @click="login" class="btn" v-if="!token">登录</button>
           <button @click="outlogin" class="btn" v-if="token">
             <a>退出登录</a>
@@ -64,11 +67,12 @@
 </template>
 
 <script>
+import GetUData from '@/components/api/Ctrl_menuAPI/UserData'
 export default {
   props: [],
   data () {
     return {
-      token: localStorage.getItem('token'),
+      token: this.$store.state.token !== null,
       User: localStorage.getItem('Username'),
       Useridentity: localStorage.getItem('Useridentity'),
       istop: false
@@ -118,6 +122,11 @@ export default {
         }
       }, 200)
     }, 200)
+  },
+  created () {
+    if (localStorage.getItem('UserData') === null && localStorage.getItem('token') !== null) {
+      this.getUsersdata()
+    }
   },
   // 方法
   methods: {
@@ -188,7 +197,15 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('Username')
       localStorage.removeItem('Useridentity')
+      localStorage.removeItem('UserData')
+      this.$store.commit('cagUserData', [])
       location.reload()
+    },
+    async getUsersdata () {
+      if (localStorage.getItem('Username') !== null) {
+        const { data: res } = await GetUData.GetUserData()
+        this.$store.commit('cagUserData', res.data.Users)
+      }
     }
   },
   name: 'HeaderM'
@@ -295,6 +312,11 @@ export default {
     z-index: 999;
     height: 50px;
     width: 100vw;
+  }
+
+  .HeaderbtnArea {
+    text-align: right;
+    margin-right: 20px;
   }
 }
 

@@ -5,7 +5,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // 状态 全局数据 调用this.$store.state.***
   state: {
-    Userdata: JSON.parse(localStorage.getItem('UserData')) === '' ? [] : JSON.parse(localStorage.getItem('UserData')),
+    Userdata: JSON.parse(localStorage.getItem('UserData')),
     ArticleData: [],
     bgc: '',
     token: localStorage.getItem('token'),

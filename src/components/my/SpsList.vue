@@ -14,16 +14,18 @@
           fill="currentColor" class="octo-body"></path>
       </svg>
     </a>
-    <div class="ThanksT">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <strong>友链 · 鸣谢赞助</strong>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="ThanksTBox">
+      <div class="ThanksT">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <strong>友链 · 鸣谢赞助</strong>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
     <div id="" class="SpsListBox">
       <div class="document_author_introduce" v-for="(item, index) in item" :key="index">
@@ -89,7 +91,7 @@ export default {
 .SpsListBox {
   display: flex;
   flex-wrap: wrap;
-  width: 95vw;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -153,7 +155,7 @@ export default {
 
 @media only screen and (min-width: 755px) {
   .document_author_introduce {
-    width: 30vw;
+    width: 30%;
     min-height: 180px;
     background-color: rgba(240, 243, 246, 0.4);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
@@ -196,10 +198,11 @@ export default {
   }
 
   .ThanksT {
-    width: 25vw;
-    margin: 0 auto;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: flex-end;
+    justify-content: center;
 
     >span {
       display: block;
@@ -297,10 +300,11 @@ export default {
   }
 
   .ThanksT {
-    width: 72vw;
-    margin: 15px auto;
     display: flex;
     align-items: flex-end;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 
     >span {
       display: block;

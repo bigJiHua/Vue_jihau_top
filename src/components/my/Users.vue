@@ -2,7 +2,7 @@
   <div id="" class="UserArea">
     <!-- 用户头像区域 用户名 -->
     <div class="phone_Viewset">
-      <div class="author_logobox">
+      <div class="author_logobox" v-if="token">
         <img :src="$store.state.Userdata.user_pic" class="author_logo" alt="logo" />
       </div>
       <div class="author_name coker">
@@ -41,6 +41,7 @@ export default {
   props: [],
   data () {
     return {
+      token: localStorage.getItem('token') !== null
     }
   },
   created () {

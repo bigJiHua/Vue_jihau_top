@@ -1,3 +1,5 @@
 /node_modules
 /.idea
 /.vscode
+/dist
+src/components/Page/10010.vue

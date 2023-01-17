@@ -1,49 +1,27 @@
 <template>
   <div id="" class="showLogin">
-    <div id="logonCon" class="container">
-      <div class="close" @click="close">
-        <i class="glyphicon glyphicon-remove"></i>
-      </div>
-      <div class="login_conten_box">
-        <img
-          class="login_img"
-          src="https://jihau.top/api/public/uploads/undraw_Login_re_4vu2.png"
-        />
-        <div class="user_input_eara">
-          <h2>登录 <small>Login</small></h2>
-          <form class="form-horizontal">
-            <label for="al_title" class="login_lable"> 用户名:</label>
-            <input
-              type="text"
-              v-model="username"
-              class="form-control login_input"
-              placeholder="请输入用户名"
-              require
-            />
-            <label for="al_title" class="login_lable"> 密码:</label>
-            <input
-              type="password"
-              class="form-control login_input"
-              placeholder="请输入密码"
-              required
-              v-model="password"
-              @keydown.enter="login"
-            />
-          </form>
-          <div class="btnmenu">
-            <van-button @click="login" v-show="!loading">登录</van-button>
-            <van-button
-              loading
-              type="primary"
-              loading-text="登录中..."
-              v-show="loading"
-            />
-            <van-button @click="register">注册</van-button>
-          </div>
+    <div class="close" @click="close">
+      <i class="glyphicon glyphicon-remove"></i>
+    </div>
+    <div class="login_conten_box">
+      <img class="login_img" src="https://jihau.top/api/public/uploads/undraw_Login_re_4vu2.png" />
+      <div class="user_input_eara">
+        <h2>登录 <small>Login</small></h2>
+        <form class="form-horizontal">
+          <label for="al_title" class="login_lable"> 用户名:</label>
+          <input type="text" v-model="username" class="form-control login_input" placeholder="请输入用户名" require />
+          <label for="al_title" class="login_lable"> 密码:</label>
+          <input type="password" class="form-control login_input" placeholder="请输入密码" required v-model="password"
+            @keydown.enter="login" />
+        </form>
+        <div class="btnmenu">
+          <van-button @click="login" v-show="!loading">登录</van-button>
+          <van-button loading type="primary" loading-text="登录中..." v-show="loading" />
+          <van-button @click="register">注册</van-button>
         </div>
       </div>
-      <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
     </div>
+    <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
   </div>
 </template>
 
@@ -101,6 +79,7 @@ export default {
                 this.show = false
                 this.loading = false
                 this.close()
+                location.reload()
               }, this.setTime)
             } else {
               this.showPopup(res.message)
@@ -150,26 +129,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#logonCon {
-  padding: 0 10px;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-    to right top,
-    #caf8ec,
-    #94e1e2,
-    #5ac7df,
-    #18acdf,
-    #008dd9,
-    #5f80dd,
-    #966dd3,
-    #c254b9,
-    #ff5495,
-    #ff7468,
-    #ffa63c,
-    #f6d92a
-  );
-}
 * {
   margin: 0;
   padding: 0;
@@ -179,20 +138,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
 }
 
 @media only screen and (min-width: 755px) {
   .showLogin {
     position: fixed;
-    top: 47%;
+    top: 50%;
     left: 50%;
+    width: 50%;
     transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 50vh;
     z-index: 9999;
+    padding: 20px;
   }
   .login_conten_box {
-    background-color: rgba(244, 244, 244, 0.4);
+    background-color: #fff;
     width: 100%;
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
@@ -210,10 +170,9 @@ export default {
     padding: 20px 25px;
   }
 
-  .user_input_eara > h2 {
+  .user_input_eara>h2 {
     margin-bottom: 15px;
     font-weight: bolder;
-    color: rgb(240, 239, 244);
   }
 
   .login_lable:first-child {
@@ -224,7 +183,7 @@ export default {
     margin: 5px 0 20px 0;
   }
 
-  .user_input_eara > form > [name='button'] {
+  .user_input_eara>form>[name='button'] {
     float: right;
   }
 }
@@ -232,12 +191,12 @@ export default {
 @media only screen and (max-width: 755px) {
   .showLogin {
     position: fixed;
-    top: 47%;
+    top: 50%;
     left: 50%;
+    width: 100%;
     transform: translate(-50%, -50%);
-    width: 90vw;
-    height: 50vh;
     z-index: 9999;
+    padding: 20px;
   }
   .login_conten_box {
     background-color: rgba(244, 244, 244, 0.4);
@@ -246,18 +205,19 @@ export default {
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
+
   .login_img {
     display: none;
   }
+
   .user_input_eara {
     flex: 1;
     padding: 20px 25px;
   }
 
-  .user_input_eara > h2 {
+  .user_input_eara>h2 {
     margin-bottom: 15px;
     font-weight: bolder;
-    color: rgb(240, 239, 244);
   }
 
   .login_lable:first-child {
@@ -268,6 +228,7 @@ export default {
     margin: 5px 0 20px 0;
   }
 }
+
 .btnmenu {
   display: flex;
   align-items: center;
