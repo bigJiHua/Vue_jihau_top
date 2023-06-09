@@ -94,7 +94,7 @@ export default {
 
 .article_alltitle {
   font-weight: bolder;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 @media only screen and (min-width: 755px) {

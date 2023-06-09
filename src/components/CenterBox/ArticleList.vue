@@ -118,7 +118,6 @@ export default {
 <style lang="less" scoped>
 .artmethod {
   margin-top: 10px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -147,7 +146,7 @@ export default {
 }
 
 .article_doc_title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bolder;
   font-family: '微软雅黑';
   margin: 8px;
@@ -220,7 +219,6 @@ export default {
     align-items: center;
     flex-wrap: wrap;
   }
-
   .artmethod {
     padding: 0 20px;
   }

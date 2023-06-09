@@ -2,4 +2,8 @@
 /.idea
 /.vscode
 /dist
-src/components/Page/10010.vue
+/src/components/Page/10010.vue
+/src/assets/font
+/src/components/FooterBar/Footer.vue
+/public/index.html
+/dist

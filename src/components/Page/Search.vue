@@ -76,14 +76,6 @@ export default {
       }
     }
   },
-  // 监听器
-  watch: {},
-  // 当前组件的计算属性
-  computed: {},
-  // 过滤器
-  filters: {},
-  // Vue 中自定义属性
-  directives: {},
   name: 'SearchM',
   components: {
     Pageuad
@@ -102,7 +94,7 @@ export default {
     padding: 0 18vw;
     p:first-child{
       text-align: center;
-      font-size: 14rem;
+      font-size: 13rem;
       letter-spacing: 4rem;
     }
   }

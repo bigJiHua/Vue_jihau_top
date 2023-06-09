@@ -15,8 +15,8 @@
 
 <script>
 import Footer from '../FooterBar/Footer.vue'
-import AboutM from '../my/AboutM.vue'
-import Users from '../my/Users.vue'
+import AboutM from '../Page/AboutM.vue'
+import Users from '../Page/Users.vue'
 
 export default {
   props: [],

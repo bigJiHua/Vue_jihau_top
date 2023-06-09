@@ -222,7 +222,6 @@ export default {
 #indexHeader {
   max-width: 1200px;
 }
-
 .UserNL {
   display: flex;
   flex-direction: row;
@@ -276,7 +275,7 @@ export default {
     min-width: 89vw;
   }
 }
-
+// 移动端样式
 @media only screen and (max-width: 755px) {
   #indexHeader {
     position: fixed;
@@ -287,13 +286,16 @@ export default {
   }
 
   .logo {
-    width: 34px;
-    height: 28px;
-    margin: 10px 0 10px 0;
+    width: 25px;
+    height: 25px;
+    margin: 15px 0 10px 5px;
   }
 
-  .coker>a>h1 {
-    font-size: 2.5rem;
+.headerTitle {
+  padding: 15px 0 10px 5px;
+}
+  .headerTitle>h1 {
+    font-size: 1.5rem;
     padding: 0;
     margin: 0;
   }

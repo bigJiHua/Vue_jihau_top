@@ -1,14 +1,13 @@
-import Search from '@/components/Search/Search'
 import CenterBox from '@/components/ContentArticle'
 import Article from '@/components/Article/article'
 // Page
+import Search from '@/components/Page/Search'
 import Page from '@/components/Page/Page'
 import checkVer from '@/components/Page/checkVer'
-// My
-import Login from '@/components/my/Login'
-import Register from '@/components/my/Register'
-import DevProcess from '@/components/my/DevProcess'
-import SpsList from '@/components/my/SpsList'
+import Login from '@/components/Page/Login'
+import Register from '@/components/Page/Register'
+import DevProcess from '@/components/Page/DevProcess'
+import SpsList from '@/components/Page/SpsList'
 // Ctrl_menu
 import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
 import Users from '@/components/Ctrl_menu/menu/Users'

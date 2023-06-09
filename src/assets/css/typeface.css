@@ -14,26 +14,26 @@
 }
 @font-face {
   font-family: "PT Serif";
-  src: url("https://d.d0tc.com/font/PTSerif-Bold.ttf"),
-    url("https://d.d0tc.com/font/PTSerif-BoldItalic.ttf"),
-    url("https://d.d0tc.com/font/PTSerif-Italic.ttf"),
-    url("https://d.d0tc.com/font/PTSerif-Regular.ttf");
+  src: url("../font/PT_Serif/PTSerif-Bold.ttf"),
+    url("../font/PT_Serif/PTSerif-BoldItalic.ttf"),
+    url("../font/PT_Serif/PTSerif-Italic.ttf"),
+    url("../font/PT_Serif/PTSerif-Regular.ttf");
 }
 @font-face {
   font-family: "Pacifico";
-  src: url("https://d.d0tc.com/font/Pacifico-Regular.ttf");
+  src: url("../font/Pacifico/Pacifico-Regular.ttf");
 }
 @font-face {
   font-family: "Patrick Hand";
-  src: url("https://d.d0tc.com/font/PatrickHand-Regular.ttf");
+  src: url("../font/Patrick_Hand/PatrickHand-Regular.ttf");
 }
 @font-face {
   font-family: "Cookie";
-  src: url("https://d.d0tc.com/font/Cookie-Regular.ttf");
+  src: url("../font/Cookie/Cookie-Regular.ttf");
 }
 @font-face {
   font-family: 'songti';
-  src: url('https://d.d0tc.com/font/NotoSerifSC-Medium.otf');
+  src: url('../font/songti/NotoSerifSC-Medium.otf');
 }
 .pts{
 	font-family: "PT Serif"

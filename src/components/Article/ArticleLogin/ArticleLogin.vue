@@ -199,7 +199,7 @@ export default {
     padding: 20px;
   }
   .login_conten_box {
-    background-color: rgba(244, 244, 244, 0.4);
+    background-color: #fff;
     width: 100%;
     padding: 10px;
     border-radius: 12px;
