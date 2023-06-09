@@ -10,7 +10,7 @@
         />
       </router-link>
       网页所有人: <span class="coker">JiHua</span>(化名)&nbsp;邮编: 536000<br />
-      ICP备案号:<a href="https://beian.miit.gov.cn">桂ICP备2021005093号-1</a
+      ICP备案号:<a href="https://beian.miit.gov.cn"></a
       ><br />
       <p class="icp_alt">
         建议您使用Chrome、Firefox、Edge、IE10及以上版本等浏览器并把缩放倍率调整为110-125%浏览本网站
