@@ -48,8 +48,8 @@ import PostLogin from '../api/Ctrl_menuAPI/LoginAPI'
 export default {
   data () {
     return {
-      username: 'jihua',
-      password: '58239641ok.com',
+      username: '',
+      password: '',
       loading: false,
       show: false,
       msg: '正在登录',
