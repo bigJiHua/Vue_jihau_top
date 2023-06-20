@@ -6,7 +6,7 @@
           item.title
         }}</router-link>
       </p>
-      <article>{{ item.content | newcontent(item.content) }}...</article>
+      <article>{{ item.content }}...</article>
       <div class="details">
         <p>作者:{{ item.username }}</p>
         <p>标签:{{ item.lable }}</p>
@@ -28,17 +28,7 @@ export default {
     }
   },
   methods: {},
-  filters: {
-    newcontent (content) {
-      const newArr = []
-      for (const k in content) {
-        if (content[k].match(/\p{sc=Han}/gu)) {
-          newArr.push(content[k])
-        }
-      }
-      return newArr.splice(0, 30).join('')
-    }
-  },
+  filters: { },
   name: 'PageuadM'
 }
 </script>
@@ -49,33 +39,39 @@ export default {
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
+
 @media only screen and (min-width: 755px) {
   .card {
     padding: 10px;
     border-radius: 10px;
     margin: 5px;
   }
+
   .details {
     display: flex;
     justify-content: left;
     align-items: center;
+
     p {
       margin-right: 5px;
     }
   }
 }
+
 @media only screen and (max-width: 755px) {
   .card {
     border-radius: 10px;
     margin: 8px 0;
   }
+
   .details {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
-    p {
-      color: black;
-    }
+    flex-direction: row;
+    flex-wrap: wrap;
+  p {
+    color: black;
   }
 }
-</style>
+}</style>

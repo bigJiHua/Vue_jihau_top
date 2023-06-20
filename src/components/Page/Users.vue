@@ -1,12 +1,12 @@
 <template>
-  <div id="" class="UserArea">
+  <div id="" class="UserArea" v-if="JSON.stringify(this.$store.state.Userdata) !== '{}'">
     <!-- 用户头像区域 用户名 -->
     <div class="phone_Viewset">
-      <div class="author_logobox" v-if="token">
-        <img :src="$store.state.Userdata.user_pic" class="author_logo" alt="logo" />
+      <div class="author_logobox">
+        <img :src="this.$store.state.Userdata.Users.user_pic" class="author_logo" alt="logo" />
       </div>
       <div class="author_name coker">
-        <router-link to="/CtrlView/Users">{{ $store.state.Userdata.username }}</router-link>
+        <router-link to="/CtrlView/Users">{{ this.$store.state.Userdata.Users.username }}</router-link>
       </div>
     </div>
     <!-- 用户文章信息 -->
@@ -14,21 +14,21 @@
       <div>
         <div class="Articles">
           <p class="panel_item_title">文章</p>
-          <router-link to="/ArticleIndex" class="panel_Count">{{ $store.state.CountNum.articles }}</router-link>
+          <router-link to="/ArticleIndex" class="panel_Count">{{ $store.state.Userdata.articles }}</router-link>
         </div>
         <div class="Article_GN">
           <p class="panel_item_title">点赞</p>
-          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.CountNum.goodnums }}</router-link>
+          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.goodnums }}</router-link>
         </div>
       </div>
       <div>
         <div class="Article_CL">
           <p class="panel_item_title">收藏</p>
-          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.CountNum.collects }}</router-link>
+          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.collects }}</router-link>
         </div>
         <div class="Article_CM">
           <p class="panel_item_title">评论</p>
-          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.CountNum.comments }}</router-link>
+          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.comments }}</router-link>
         </div>
       </div>
     </div>
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import GetUData from '@/components/api/Ctrl_menuAPI/UserData'
 export default {
   props: [],
   data () {
@@ -45,18 +44,8 @@ export default {
     }
   },
   created () {
-    this.getUsersdata()
   },
   methods: {
-    async getUsersdata () {
-      if (this.$store.state.Userdata.length === 0 || this.$store.state.CountNum.length === 0) {
-        const { data: res } = await GetUData.GetUserData()
-        if (res.status !== 401) {
-          this.$store.commit('cagUserData', res.data.Users)
-          this.$store.commit('cagCountNum', res.data)
-        }
-      }
-    }
   },
   watch: {},
   computed: {},
@@ -71,6 +60,7 @@ export default {
   background-color: #fff;
   border-radius: 5px;
 }
+
 .phone_Viewset {
   display: flex;
   justify-content: space-around;

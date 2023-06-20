@@ -1,5 +1,5 @@
 import request from '@/components/api/request'
-
+// 核验验证码
 const checkVer = function (data) {
   const params = new URLSearchParams()
   params.append('code', data.code)

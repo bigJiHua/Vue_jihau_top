@@ -1,6 +1,6 @@
 <template>
   <div id="" class="search">
-    <div class="centerbox">
+    <div class="Content_Area">
       <p>让我康康</p>
       <div class="search_area">
         <input type="text"
@@ -56,8 +56,6 @@ export default {
             newList.push(item)
           } else if (item.content.indexOf(key) !== -1) {
             newList.push(item)
-          } else if (item.cover_img.indexOf(key) !== -1) {
-            newList.push(item)
           } else if (item.keyword.indexOf(key) !== -1) {
             newList.push(item)
           } else if (item.lable.indexOf(key) !== -1) {
@@ -90,7 +88,7 @@ export default {
     height: 87vh;
     overflow: hidden;
   }
-  .centerbox{
+  .Content_Area{
     padding: 0 18vw;
     p:first-child{
       text-align: center;
@@ -139,11 +137,10 @@ export default {
     height: 100%;
     overflow: hidden;
   }
-  .centerbox{
-    height: 100vh;
+  .Content_Area{
+    height: 100%;
     background-color: rgba(240,240,240,0.4);
     padding: 20px;
-    margin-top: 70px;
     p:first-child{
       font-weight: 600;
       text-align: center;

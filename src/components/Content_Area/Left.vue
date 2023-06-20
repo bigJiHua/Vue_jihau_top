@@ -18,7 +18,7 @@
 
 <script>
 import Lunbo from './Lunbo.vue'
-import ArticleList from './ArticleList'
+import ArticleList from './indexArticleList'
 import getArtList from '../api/getArticleList'
 
 export default {
@@ -37,10 +37,9 @@ export default {
     }
   },
   created () {
+    this.artlist = this.$store.state.indexArticleData
     if (this.artlist.length === 0) {
-      setTimeout(() => {
-        this.getArtList()
-      }, 200)
+      this.getArtList()
     }
   },
   methods: {
@@ -52,10 +51,12 @@ export default {
       } else {
         if (res.data !== undefined) {
           if (isRefresh) {
-            this.artlist = [...res.data, ...this.artlist]
+            const data = [...res.data, ...this.$store.state.indexArticleData]
+            this.$store.commit('setArticle', data)
             this.isLoading = false
           } else {
-            this.artlist = [...this.artlist, ...res.data]
+            const data = [...this.$store.state.indexArticleData, ...res.data]
+            this.$store.commit('setArticle', data)
             this.loading = false
           }
         } else {
@@ -63,6 +64,7 @@ export default {
           this.finished = true
         }
       }
+      this.artlist = this.$store.state.indexArticleData
     },
     onLoad () {
       setTimeout(() => {
@@ -110,6 +112,7 @@ export default {
 @media only screen and (max-width: 755px) {
   .article_alltitle span:nth-child(2) {
     top: 18px;
+    margin-left: 10px;
   }
 }
 </style>

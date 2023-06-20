@@ -1,8 +1,9 @@
 import request from '../request'
-
+// 获取图片
 const getImage = function (data) {
   return request.post('/article/img', data)
 }
+// 上传图片
 const upImage = function (file, user) {
   const formData = new FormData()
   formData.append('file', file)
@@ -13,6 +14,7 @@ const upImage = function (file, user) {
     }
   })
 }
+// 删除图片
 const delImage = function (data) {
   const params = new URLSearchParams()
   params.append('picusername', data.picusername)

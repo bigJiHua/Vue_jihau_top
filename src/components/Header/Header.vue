@@ -15,10 +15,7 @@
     <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox">
       <ul class="nav navbar-nav">
         <li @click="closeMenu">
-          <router-link to="/">主页</router-link>
-        </li>
-        <li @click="closeMenu">
-          <a href="http://jihua.me">关于</a>
+          <a href="http://me.jihau.top">关于</a>
         </li>
         <li @click="closeMenu">
           <router-link to="/DevProcess">发展历程</router-link>
@@ -34,7 +31,6 @@
               <router-link to="/checkver"><span @click="closeMenu">激活账户</span></router-link>
             </li>
             <li><a href="https://www.jihau.com">主站博客页面</a></li>
-            <li><a href="https://d0tc.com">C语言程序与设计</a></li>
             <li>
               <router-link to="/page/YSZC"><span @click="closeMenu">隐私政策</span></router-link>
             </li>
@@ -51,8 +47,8 @@
             <span class="glyphicon glyphicon-search" style="font-size: 20px" @click="closeMenu"></span>
           </router-link>
         </li>
-        <li @click="closeMenu" class="UserNL" v-if="token">
-          <img :src="this.$store.state.Userdata.user_pic" class="author_logo" alt="logo" />
+        <li @click="closeMenu" class="UserNL" v-if="JSON.stringify(this.$store.state.Userdata) != '{}'">
+          <img :src="this.$store.state.Userdata.Users.user_pic" class="author_logo" alt="logo" />
           <router-link to="/CtrlView">{{ User }}{{ Useridentity }}</router-link>
         </li>
         <li class="HeaderbtnArea">
@@ -124,7 +120,7 @@ export default {
     }, 200)
   },
   created () {
-    if (localStorage.getItem('UserData') === null && localStorage.getItem('token') !== null) {
+    if (JSON.stringify(this.$store.state.Userdata) === '{}' && localStorage.getItem('token') !== null) {
       this.getUsersdata()
     }
   },
@@ -204,7 +200,7 @@ export default {
     async getUsersdata () {
       if (localStorage.getItem('Username') !== null) {
         const { data: res } = await GetUData.GetUserData()
-        this.$store.commit('cagUserData', res.data.Users)
+        this.$store.commit('cagUserData', res.data)
       }
     }
   },
@@ -222,6 +218,7 @@ export default {
 #indexHeader {
   max-width: 1200px;
 }
+
 .UserNL {
   display: flex;
   flex-direction: row;
@@ -248,13 +245,13 @@ export default {
   }
 
   .coker>a>h1 {
-    font-size: 3rem !important;
+    font-size: 3rem;
     padding: 0;
     margin: 0;
   }
 
   .right_btn {
-    display: flex !important;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -275,6 +272,7 @@ export default {
     min-width: 89vw;
   }
 }
+
 // 移动端样式
 @media only screen and (max-width: 755px) {
   #indexHeader {
@@ -286,18 +284,19 @@ export default {
   }
 
   .logo {
-    width: 25px;
-    height: 25px;
-    margin: 15px 0 10px 5px;
+    width: 35px;
+    height: 27px;
+    margin: 7px 0 10px;
   }
 
-.headerTitle {
-  padding: 15px 0 10px 5px;
-}
+  .headerTitle {
+    padding: 10px;
+  }
+
   .headerTitle>h1 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     padding: 0;
-    margin: 0;
+    margin: 5px 0 0 0;
   }
 
   #navbar {

@@ -2,16 +2,19 @@
   <div id="" class="center_box">
     <Left class="left"></Left>
     <RightM class="right" :isOpen="true"></RightM>
+    <WidthAndHeight></WidthAndHeight>
   </div>
 </template>
 
 <script>
-import Left from './CenterBox/Left.vue'
+import Left from './Content_Area/Left.vue'
+import WidthAndHeight from './Module/TestModule/WidthAndHeight.vue'
 
 export default {
   name: 'Content_M',
   components: {
-    Left
+    Left,
+    WidthAndHeight
   }
 }
 </script>

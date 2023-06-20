@@ -29,7 +29,7 @@ src
 │  │  ├─ ArticleLogin
 │  │  │  └─ ArticleLogin.vue
 │  │  └─ article.vue
-│  ├─ CenterBox
+│  ├─ Content_Area
 │  │  ├─ ArticleList.vue
 │  │  ├─ Left.vue
 │  │  ├─ Lunbo.vue

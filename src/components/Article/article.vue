@@ -18,57 +18,35 @@
           </ul>
         </div>
         <div class="btn_active">
-          <van-button
-            type="info"
-            class="goodnum"
-            @click="goodnum(ArticleData.article.article_id)"
-          >
+          <van-button type="info" class="goodnum" @click="goodnum(ArticleData.article.article_id)">
             <span>点赞</span>
             <span :class="{ selg: this.Move.goodnum }">
               <i class="glyphicon glyphicon-thumbs-up"></i>
             </span>
             <span>{{ ArticleData.goodnum }}</span>
           </van-button>
-          <van-button
-            type="info"
-            class="collect"
-            @click="collect(ArticleData.article.article_id)"
-          >
+          <van-button type="info" class="collect" @click="collect(ArticleData.article.article_id)">
             <span>收藏</span>
             <span :class="{ selc: this.Move.collect }">
-              <i class="glyphicon glyphicon-star-empty"> </i
-            ></span>
+              <i class="glyphicon glyphicon-star-empty"> </i></span>
             <span>{{ ArticleData.collect }}</span>
           </van-button>
-          <van-button
-            type="info"
-            class="collect" @click="share">分享</van-button>
+          <van-button type="info" class="collect" @click="share">分享</van-button>
         </div>
         <div class="commentArea">
           <p>留言</p>
-          <div
-            class="comment"
-            v-for="(item, index) in ArticleData.commont"
-            :key="index"
-          >
+          <div class="comment" v-for="(item, index) in ArticleData.commont" :key="index">
             <p class="comment_user">
-            <router-link to="#">{{ item.username }}</router-link>
-            用户 留言：</p>
+              <router-link to="#">{{ item.username }}</router-link>
+              用户 留言：
+            </p>
             <p class="comment_text">{{ item.comment }}</p>
             <p class="comment_time">时间:{{ item.pub_date }}</p>
           </div>
           <div class="textarea">
-            <textarea
-              name=""
-              id="comtext"
-              placeholder="友善发言，留下美好瞬间   (最多输入150个字符)"
-              maxlength="150"
-              @keyup.enter="commont(ArticleData.article.article_id)"
-              v-model="Active.comTXT"
-            ></textarea>
-            <van-button @click="commont(ArticleData.article.article_id)"
-              >留言</van-button
-            >
+            <textarea name="" id="comtext" placeholder="友善发言，留下美好瞬间   (最多输入150个字符)" maxlength="150"
+              @keyup.enter="commont(ArticleData.article.article_id)" v-model="Active.comTXT"></textarea>
+            <van-button @click="commont(ArticleData.article.article_id)">留言</van-button>
           </div>
         </div>
       </div>
@@ -299,13 +277,16 @@ export default {
   word-wrap: break-word;
   position: relative;
 }
+
 .leftContent {
   overflow: hidden;
   background-color: #fff;
 }
-.content > p > p > img {
+
+.content>p>p>img {
   max-width: 350px;
 }
+
 @media only screen and (min-width: 755px) {
   .article {
     display: flex;
@@ -313,6 +294,7 @@ export default {
     width: 80vw;
     margin: 20px auto;
   }
+
   .leftContent {
     padding: 20px;
     border-radius: 12px;
@@ -322,37 +304,48 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
+  .content {
+    letter-spacing: 1px;
+  }
+
   .leftContent {
     padding: 10px;
     border-radius: 12px;
     margin-bottom: 30px;
   }
 }
+
 .tabmenu {
   display: flex;
 }
+
 .btn_active {
   button {
     margin: 10px;
   }
 }
+
 .goodnum,
 .collect {
   letter-spacing: 5px;
 }
+
 .selc,
 .selg {
   color: red;
 }
+
 .commentArea {
   margin-top: 20px;
   padding: 10px 20px 20px 20px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.9);
+
   p {
     font-size: 2rem;
     font-weight: bolder;
   }
+
   #comtext {
     border-radius: 8px;
     border: 2px rgba(243, 245, 248, 0.8) solid;
@@ -361,22 +354,27 @@ export default {
     height: 80px;
     resize: none;
   }
+
   .comment {
     background-color: rgba(201, 227, 243, 0.4);
     border-radius: 4px;
     padding: 5px;
     margin-bottom: 10px;
+
     p {
       margin: 0;
       color: rgba(6, 52, 122, 0.8);
     }
+
     .comment_user {
       font-size: 1.3rem;
     }
+
     .comment_text {
       font-size: 1.6rem;
       margin: 2px;
     }
+
     .comment_time {
       font-size: 1rem;
       text-align: right;

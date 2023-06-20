@@ -2,11 +2,7 @@
   <div class="lunbo_box">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div
-          class="swiper-slide LunboArea"
-          v-for="(image, index) in images"
-          :key="index"
-        >
+        <div class="swiper-slide LunboArea" v-for="(image, index) in images" :key="index">
           <img :src="image | setimg(image)" class="lunbo_img" />
           <a :href="image.set_url" class="Lunbo_title">{{ image.set_title }}</a>
         </div>
@@ -35,14 +31,17 @@ export default {
     }
   },
   created () {
-    this.getLunbotu()
+    this.images = this.$store.state.LunBoList
+    if (this.images.length === 0) {
+      this.getLunbotu()
+    }
   },
   updated () {
     /* eslint-disable */
     new Swiper('.swiper-container', {
       // direction: 'vertical', // 垂直切换选项
       effect: 'fade',
-      autoplay:true,
+      autoplay: true,
       loop: true, // 循环模式选项
       // 如果需要分页器
       pagination: {
@@ -63,7 +62,8 @@ export default {
     async getLunbotu() {
       const val = 'Lunbo'
       const { data: res } = await getLunbo.getSetting(val)
-      this.images = res.data
+      this.$store.commit('setLunBoList', res.data)
+      this.images = this.$store.state.LunBoList
     },
   },
   filters: {
@@ -85,36 +85,42 @@ export default {
     width: 100%;
     height: 250px;
   }
+
   .LunboArea {
     position: relative;
   }
 }
+
 @media only screen and (max-width: 755px) {
   .swiper-container {
     width: 100%;
     height: 150px;
   }
 }
+
 .lunbo_box {
   position: relative;
 }
+
 .lunbo_img {
   height: 100%;
   width: 100%;
 }
+
 .LunboArea {
   position: relative;
   background-color: #f9fafb;
   border-radius: 8px;
   overflow: hidden;
 }
+
 .Lunbo_title {
   display: block;
   position: absolute;
   top: 50%;
   left: 50%;
   font-size: 4rem;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: #e6f0fd;
 }
 </style>

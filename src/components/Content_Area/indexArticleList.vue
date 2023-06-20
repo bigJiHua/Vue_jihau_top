@@ -11,10 +11,7 @@
       </div>
       <div class="article_doc">
         <router-link class="article_doc_txt togolink" :to="{ path: '/article/' + article.article_id }">
-          {{
-              article.content
-              | newcontent(article.content, article.title, article.keyword)
-          }}
+          {{ article.content }}
         </router-link>
       </div>
     </div>
@@ -84,25 +81,7 @@ export default {
       this.isdemo = true
     }
   },
-  filters: {
-    newcontent (content) {
-      const newArr = []
-      for (const k in content) {
-        if (content[k].match(/\p{sc=Han}/gu)) {
-          newArr.push(content[k])
-        }
-      }
-      if (newArr.length === 0) {
-        newArr.push(
-          content
-            .replace(/(<([^>]+)>)/gi, '')
-            .replace(/[\r\n]/g, '')
-            .replace('&nbsp;', '')
-        )
-      }
-      return newArr.splice(0, 100).join('')
-    }
-  },
+  filters: {},
   computed: {
     ifcov () {
       if (this.article.cover_img.match(/^http/)) {
@@ -149,7 +128,6 @@ export default {
   font-size: 1.5rem;
   font-weight: bolder;
   font-family: '微软雅黑';
-  margin: 8px;
 }
 
 .article_doc {
@@ -219,6 +197,7 @@ export default {
     align-items: center;
     flex-wrap: wrap;
   }
+
   .artmethod {
     padding: 0 20px;
   }

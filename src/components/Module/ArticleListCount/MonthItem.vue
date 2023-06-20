@@ -1,9 +1,9 @@
 <template>
-  <div id="" @click="mdod()">
-    <span class="mnumber">{{ art }}月</span>
+  <div id="" class="month">
+    <span class="mnumber" @click="mdod()">{{ month }}月</span>
     <ol>
-      <li :class="{ daylists: misOpen, daylist: !misOpen }" v-for="(obj, index) in newList[index]" :key="index">
-        <router-link :to="'/article/' + obj.hurl">
+      <li :class="{ daylists: misOpen, daylist: !misOpen }" v-for="(obj, index) in data" :key="index">
+        <router-link :to="'/article/' + obj.hurl" @click="mdod()">
           {{ obj.title }}
         </router-link>
       </li>
@@ -12,25 +12,20 @@
 </template>
 
 <script>
-// 导入组件
-// import  from ''
-
 export default {
   props: {
-    index: {
+    month: {
       type: Number,
-      default: -1
+      required: true
     },
-    art: {
-      type: Number,
-      default: 0
-    },
-    newList: {
-      type: Array
+    data: {
+      type: Array,
+      required: true
     }
   },
   data () {
     return {
+      isOpen: false,
       misOpen: false
     }
   },
@@ -39,10 +34,7 @@ export default {
       this.misOpen = !this.misOpen
     }
   },
-  name: 'articleListZk',
-  components: {
-    // 导入组件
-  }
+  name: 'MonthItem'
 }
 </script>
 
@@ -52,6 +44,9 @@ export default {
   margin-left: 20px;
   font-weight: 600;
   color: rgb(0, 0, 0);
+  display: block;
+  width: 94%;
+  background-color: #a8c3ff24;
 }
 
 /* 日历和现在时间 */

@@ -41,15 +41,18 @@ export default {
   },
   // 生命周期初始化函数
   created () {
-    this.getUsersdata()
+    this.Users = this.$store.state.Userdata.Users
+    if (JSON.stringify(this.Users) === '{}') {
+      this.getUsersdata()
+    }
   },
   methods: {
     async getUsersdata () {
+      console.log(2)
       const { data: res } = await GetUData.GetUserData()
       this.cagUser = res.data.Users
-      localStorage.setItem('UserData', JSON.stringify(res.data.Users))
-      this.$store.commit('cagUserData', res.data.Users)
-      this.Users = this.$store.state.Userdata
+      this.$store.commit('cagUserData', res.data)
+      this.Users = this.$store.state.Userdata.Users
       if (localStorage.getItem('Useridentity') !== res.data.Users.useridentity) {
         localStorage.setItem('Useridentity', res.data.Users.useridentity)
       }

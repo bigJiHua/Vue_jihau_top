@@ -44,9 +44,6 @@ export default {
   data () {
     return {}
   },
-  method () {
-    console.log(typeof this.Users)
-  },
   methods: {},
   // 监听器
   watch: {},

@@ -1,4 +1,5 @@
 import request from '../request'
+// 用户登录
 const LoginMenu = function (username, password) {
   const params = new URLSearchParams()
   params.append('username', username)
