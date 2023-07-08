@@ -46,10 +46,10 @@ export default {
     UserUidState () {
       const state = localStorage.getItem('Useridentity')
       switch (state) {
-        case '用户':
+        case 'user':
           this.UidState = false
           break
-        case '管理员':
+        case 'manager':
           this.UidState = true
       }
     },
@@ -82,6 +82,7 @@ export default {
     border-right: 2px rgba(214, 210, 210, 0.9) solid;
     height: 100%;
   }
+
   .menudemo {
     display: none;
   }
@@ -89,62 +90,7 @@ export default {
 
 @media only screen and (max-width: 755px) {
   .aside {
-    width: 100vw;
-    position: relative;
-  }
-
-  .menudemo {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-  }
-
-  span.title {
-    font-size: 2rem;
-    font-weight: bolder;
-  }
-
-  .user-select-none {
-    position: absolute;
-    top: 30px;
-    background-color: rgb(240, 240, 240);
-    z-index: 999;
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .menu-item {
-    width: 30vw;
-  }
-
-  .icon_up {
-    width: 20px;
-    height: 20px;
-    border-left: 4px black solid;
-    border-top: 4px black solid;
-    transition: all 0.3s;
-    transform: rotate(45deg);
-    float: right;
-    margin: 8px 25px 0 0;
-  }
-
-  .isdn {
-    width: 20px;
-    height: 20px;
-    border-left: 4px black solid;
-    border-top: 4px black solid;
-    transition: all 0.3s;
-    transform: rotate(-135deg);
-    float: right;
-    margin: -6px 25px 0 0;
-  }
-
-  .menu {
-    transform: scaleY(0);
-    transition: transform 0.2s;
-    transform-origin: top center;
-    height: 0;
+    display: none;
   }
 }
 

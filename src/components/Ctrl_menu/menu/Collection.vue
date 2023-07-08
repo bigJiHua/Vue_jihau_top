@@ -67,9 +67,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.collection{
-  padding: 20px 5px;
-}
 #myTabContent{
   height: 100%;
   overflow: overlay;

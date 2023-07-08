@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <HeaderM></HeaderM>
-    <router-view id="Maxwidth"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -78,10 +77,5 @@ export default {
     margin: 0 auto;
     padding-top: 50px;
   }
-}
-
-#Maxwidth {
-  max-width: 1200px;
-  margin: 0 auto;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="" class="UserselfArea">
+  <div id="" class="UserselfArea" v-if="Users">
     <div class="userpic">
       <img :src="Users.user_pic" alt="头像" class="pic" />
     </div>

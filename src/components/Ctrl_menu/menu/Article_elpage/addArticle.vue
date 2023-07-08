@@ -8,13 +8,13 @@
     <div class="cagArea">
       <div class="astate" @click="cagastate">
         <i :class="{
-          'glyphicon glyphicon-chevron-left': !Asidestate.isChange,
-          'glyphicon glyphicon-resize-horizontal': Asidestate.isChange,
+          'glyphicon glyphicon-chevron-left': !isChange,
+          'glyphicon glyphicon-resize-horizontal': isChange,
         }"></i>
       </div>
       <aside :class="{
-        cagAside: !Asidestate.isChange,
-        opAside: Asidestate.isChange,
+        cagAside: !isChange,
+        opAside: isChange,
       }">
         <h1 class="title">
           标题:<input type="text" v-model="newArticleData.title" class="form-control" />
@@ -62,9 +62,7 @@ export default {
         // eslint-disable-next-line no-irregular-whitespace
         content: ''
       },
-      Asidestate: {
-        isChange: false
-      },
+      isChange: false,
       editorConfig: {
         // 编辑器设定.
         height: 500,
@@ -102,7 +100,7 @@ export default {
   // 方法
   methods: {
     cagastate () {
-      this.Asidestate.isChange = !this.Asidestate.isChange
+      this.isChange = !this.isChange
     },
     comback () {
       const cagpage = '文章管理'

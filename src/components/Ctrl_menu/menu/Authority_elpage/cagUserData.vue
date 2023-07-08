@@ -103,7 +103,7 @@ export default {
   methods: {
     async delUser (deluser) {
       if (
-        localStorage.getItem('Useridentity') === '管理员'
+        localStorage.getItem('Useridentity') === 'manager'
       ) {
         const user = localStorage.getItem('Username')
         const { data: res } = await GetUData.DelUser(user, deluser)

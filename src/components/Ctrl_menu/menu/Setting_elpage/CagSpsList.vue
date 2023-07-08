@@ -63,7 +63,7 @@ export default {
     }
   },
   created () {
-    if (localStorage.getItem('Useridentity') === '管理员') {
+    if (localStorage.getItem('Useridentity') === 'manager') {
       this.getDevP()
     }
   },
@@ -79,7 +79,7 @@ export default {
           message: res.message + '  禁止修改本地用户身份造假！',
           position: 'top'
         })
-        localStorage.setItem('Useridentity', '用户')
+        localStorage.setItem('Useridentity', 'user')
         location.reload()
       }
     },

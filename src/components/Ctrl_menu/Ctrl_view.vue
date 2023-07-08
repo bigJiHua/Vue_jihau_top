@@ -1,15 +1,19 @@
 <template>
-  <div class="CtrlView">
-    <ctrl-view-aside class="AsideMenu"></ctrl-view-aside>
-    <router-view class="rightView"></router-view>
+  <div>
+    <CtrlMenuHeader></CtrlMenuHeader>
+    <div class="CtrlView">
+      <ctrl-view-aside class="AsideMenu"></ctrl-view-aside>
+      <router-view class="rightView"></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 import CtrlViewAside from './CtrlViewAside.vue'
+import CtrlMenuHeader from '../Header/CtrlMenuHeader.vue'
 
 export default {
-  components: { CtrlViewAside },
+  components: { CtrlViewAside, CtrlMenuHeader },
   method () {
   },
   name: 'CtrlView'
@@ -39,7 +43,7 @@ export default {
 @media only screen and (min-width: 755px) {
   .CtrlView {
     display: flex;
-    width: 110vw;
+    width: 100%;
     height: 90vh;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -52,7 +56,7 @@ export default {
   }
 
   .rightView {
-    padding: 15px;
+    padding: 5px 10px;
     width: 83vw;
     height: 90vh;
     overflow: scroll;

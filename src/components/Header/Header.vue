@@ -49,13 +49,11 @@
         </li>
         <li @click="closeMenu" class="UserNL" v-if="JSON.stringify(this.$store.state.Userdata) != '{}'">
           <img :src="this.$store.state.Userdata.Users.user_pic" class="author_logo" alt="logo" />
-          <router-link to="/CtrlView">{{ User }}{{ Useridentity }}</router-link>
+          <router-link to="/CtrlView">{{ this.$store.state.Userdata.Users.username }}</router-link>
         </li>
         <li class="HeaderbtnArea">
           <button @click="login" class="btn" v-if="!token">登录</button>
-          <button @click="outlogin" class="btn" v-if="token">
-            <a>退出登录</a>
-          </button>
+          <button @click="outlogin" class="btn" v-else>退出登录 </button>
         </li>
       </ul>
     </div>
@@ -68,10 +66,8 @@ export default {
   props: [],
   data () {
     return {
-      token: this.$store.state.token !== null,
-      User: localStorage.getItem('Username'),
-      Useridentity: localStorage.getItem('Useridentity'),
-      istop: false
+      istop: false,
+      token: localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== 'undefined'
     }
   },
   mounted () {
@@ -238,10 +234,19 @@ export default {
     transition: all 0.5s;
   }
 
+  .navbar-header {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .logo {
-    width: 45px;
-    height: 40px;
-    margin: 5px 0 10px 0;
+    width: 35px;
+    height: 30px;
+    margin: 15px 0 10px 0;
   }
 
   .coker>a>h1 {

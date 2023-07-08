@@ -87,19 +87,19 @@ export default {
   // 方法
   methods: {
     async getUserinfo (n) {
-      if (localStorage.getItem('Useridentity') === '管理员') {
+      if (localStorage.getItem('Useridentity') === 'manager') {
         const { data: res } = await Userinfo.getUserinfo(
           localStorage.getItem('Username'), n
         )
         if (res.status === 403) {
           this.isg = false
-          localStorage.setItem('Useridentity', '用户')
+          localStorage.setItem('Useridentity', 'user')
           location.reload()
         } else if (res.status === 200) {
           this.isg = true
           this.Userinfo.list = res.data
           this.length = res.length
-          localStorage.setItem('Useridentity', '管理员')
+          localStorage.setItem('Useridentity', 'manager')
         } else {
           this.n -= 5
           this.page -= 1
@@ -121,8 +121,8 @@ export default {
       if (condel) {
         if (state !== 1) {
           if (
-            localStorage.getItem('Useridentity') === '管理员' &&
-            useridtity === '管理员'
+            localStorage.getItem('Useridentity') === 'manager' &&
+            useridtity === 'manager'
           ) {
             const user = localStorage.getItem('Username')
             const { data: res } = await GetUData.DelUser(user, deluser)

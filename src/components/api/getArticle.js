@@ -6,9 +6,16 @@ const getArchives = function (id) {
   if (localStorage.getItem('Username')) {
     params.append('user', localStorage.getItem('Username'))
   }
-  return request.get('/archives/', { params })
+  return request.get('/data/article/', { params })
+}
+// 获取文章内容
+const UpdatedReadNum = function (id) {
+  const params = new URLSearchParams()
+  params.append('id', id)
+  return request.get('/data/UpreadNum', { params })
 }
 
 export default {
-  getArchives
+  getArchives,
+  UpdatedReadNum
 }

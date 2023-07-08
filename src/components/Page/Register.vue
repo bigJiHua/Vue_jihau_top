@@ -1,104 +1,64 @@
 <template>
-  <div id="logonCon" class="container">
-    <div class="login_conten_box">
-      <div class="user_input_eara">
-        <h2>注册 <small>Register</small></h2>
-        <p class="newuser">用户名:<small class="wran">⚠必填</small></p>
-        <input
-          type="text"
-          v-model="newUser.username"
-          class="form-control login_input"
-          placeholder="请输入用户名 (6-12位且唯一)"
-          required
-        />
-        <p class="newuser">密码:<small class="wran">⚠必填</small></p>
-        <input
-          type="password"
-          class="form-control login_input"
-          placeholder="请输入密码 (6-12位)"
-          required
-          v-model="newUser.password"
-        />
-        <p class="newuser">确认密码:<small class="wran">⚠必填</small></p>
-        <input
-          type="password"
-          class="form-control login_input"
-          placeholder="请输重新输入确认密码"
-          required
-          v-model="elsepassword"
-        />
-        <p class="newuser">邮箱:<small class="wran">⚠必填</small></p>
-        <input
-          type="email"
-          class="form-control login_input"
-          placeholder="请输入你的邮箱"
-          required
-          v-model="newUser.email"
-        />
-        <p class="newuser">生日:</p>
-        <input type="date" class="select" v-model="newUser.birthday" />
-        <p class="newuser">性别:</p>
-        <p>
-          <label class="radio-inline selectsex">
-            <input type="radio" name="sex" value="男" v-model="newUser.sex" />男
-          </label>
-          <label class="radio-inline selectsex">
-            <input type="radio" name="sex" value="女" v-model="newUser.sex" />女
-          </label>
-        </p>
-        <p class="newuser">城市:</p>
-        <p class="selectcity">
-          <input
-            class="form-control select_city"
-            v-model="newUser.city"
-            placeholder="输入或者右方选择"
-          />
-          <select
-            name=""
-            class="form-control select_city"
-            v-model="newUser.city"
-          >
-            <option v-for="(item, index) in city" :key="index">
-              {{ item }}
-            </option>
-          </select>
-        </p>
-        <p class="newuser">个性签名:</p>
-        <textarea
-          class="usercontent form-control"
-          v-model="newUser.user_content"
-          maxlength="255"
-        ></textarea>
-        <p class="newuser" @click="up_pic">头像</p>
-        <van-button @click="up_pic">上传头像</van-button>
-        <van-overlay :show="showup" @click="showup = false">
-          <div class="wrapper" @click.stop>
-            <div class="cagarea">
-              <h1>上传头像</h1>
-              <input
-                type="file"
-                accept="image/*"
-                ref="imgfile"
-                class="fileup"
-                @click="up_pic"
-              />
-              <van-button @click="up_pic">确认上传头像</van-button>
+  <div>
+    <HeaderM></HeaderM>
+    <div id="logonCon" class="container">
+      <div class="login_conten_box">
+        <div class="user_input_eara">
+          <h2>注册 <small>Register</small></h2>
+          <p class="newuser">用户名:<small class="wran">⚠必填</small></p>
+          <input type="text" v-model="newUser.username" class="form-control login_input" placeholder="请输入用户名 (6-12位且唯一)"
+            required />
+          <p class="newuser">密码:<small class="wran">⚠必填</small></p>
+          <input type="password" class="form-control login_input" placeholder="请输入密码 (6-12位)" required
+            v-model="newUser.password" />
+          <p class="newuser">确认密码:<small class="wran">⚠必填</small></p>
+          <input type="password" class="form-control login_input" placeholder="请输重新输入确认密码" required
+            v-model="elsepassword" />
+          <p class="newuser">邮箱:<small class="wran">⚠必填</small></p>
+          <input type="email" class="form-control login_input" placeholder="请输入你的邮箱" required v-model="newUser.email" />
+          <p class="newuser">生日:</p>
+          <input type="date" class="select" v-model="newUser.birthday" />
+          <p class="newuser">性别:</p>
+          <p>
+            <label class="radio-inline selectsex">
+              <input type="radio" name="sex" value="男" v-model="newUser.sex" />男
+            </label>
+            <label class="radio-inline selectsex">
+              <input type="radio" name="sex" value="女" v-model="newUser.sex" />女
+            </label>
+          </p>
+          <p class="newuser">城市:</p>
+          <p class="selectcity">
+            <input class="form-control select_city" v-model="newUser.city" placeholder="输入或者右方选择" />
+            <select name="" class="form-control select_city" v-model="newUser.city">
+              <option v-for="(item, index) in city" :key="index">
+                {{ item }}
+              </option>
+            </select>
+          </p>
+          <p class="newuser">个性签名:</p>
+          <textarea class="usercontent form-control" v-model="newUser.user_content" maxlength="255"></textarea>
+          <p class="newuser" @click="up_pic">头像</p>
+          <van-button @click="up_pic">上传头像</van-button>
+          <van-overlay :show="showup" @click="showup = false">
+            <div class="wrapper" @click.stop>
+              <div class="cagarea">
+                <h1>上传头像</h1>
+                <input type="file" accept="image/*" ref="imgfile" class="fileup" @click="up_pic" />
+                <van-button @click="
+                up_pic">确认上传头像</van-button>
+              </div>
             </div>
+          </van-overlay>
+          <div class="btnmenu">
+            <button @click="comback" class="res-btn">返回</button>
+            <van-button loading type="primary" loading-text="注册中..." v-show="loading" />
+            <button @click="newuser" v-show="!loading" class="res-btn">注册</button>
           </div>
-        </van-overlay>
-        <div class="btnmenu">
-          <button @click="comback" class="res-btn">返回</button>
-          <van-button
-            loading
-            type="primary"
-            loading-text="注册中..."
-            v-show="loading"
-          />
-          <button @click="newuser" v-show="!loading" class="res-btn">注册</button>
         </div>
       </div>
+      <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
     </div>
-    <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
   </div>
 </template>
 
@@ -246,6 +206,7 @@ export default {
   height: 100%;
   overflow: scroll;
 }
+
 @media only screen and (min-width: 755px) {
   .login_conten_box {
     margin: 20vh auto;
@@ -260,7 +221,7 @@ export default {
     width: 100%;
   }
 
-  .user_input_eara > h2 {
+  .user_input_eara>h2 {
     margin-bottom: 15px;
     font-weight: bolder;
   }
@@ -273,12 +234,14 @@ export default {
     margin: 5px 0 20px 0;
   }
 
-  .user_input_eara > form > [name='button'] {
+  .user_input_eara>form>[name='button'] {
     float: right;
   }
+
   .select_city {
     width: 8vw;
   }
+
   .fileup {
     width: 100%;
     height: 70%;
@@ -293,54 +256,65 @@ export default {
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
+
   .user_input_eara {
     height: 100%;
     padding: 10px 25px;
   }
 
-  .user_input_eara > h2 {
+  .user_input_eara>h2 {
     margin-bottom: 15px;
     font-weight: bolder;
   }
+
   .login_input {
     margin: 5px 0 20px 0;
   }
+
   .select_city,
   .select {
     width: 35vw;
   }
+
   .fileup {
     width: 100%;
     height: 70%;
   }
 }
+
 .newuser {
   color: #0049c7;
   font-size: 2rem;
   font-weight: bolder;
 }
+
 .wran {
   color: red;
   font-size: 0.8rem;
 }
+
 .btnmenu {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
 }
+
 .selectsex {
   margin: 0 20px 0 20px;
 }
+
 .selectcity {
   display: flex;
 }
+
 .wrapper {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .cagarea {
   width: 60vw;
   height: 45vh;
@@ -348,6 +322,7 @@ export default {
   text-align: center;
   border-radius: 12px;
 }
+
 .res-btn {
   padding: 10px 15px;
   border: 0;

@@ -1,58 +1,62 @@
 <template>
-  <div id="" class="article">
-    <div class="leftContent">
-      <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
-      <div v-show="!goodpage">
-        <div class="content">
-          <p v-html="ArticleData.article.content" v-highlight></p>
-        </div>
-        <div class="tabmenu">
-          <ul>
-            <li v-for="(item, index) in tab" :key="index">{{ item }}</li>
-          </ul>
-          <ul>
-            <li>{{ ArticleData.article.title }}</li>
-            <li>{{ ArticleData.article.username }}</li>
-            <li>{{ ArticleData.article.pub_date }}</li>
-            <li>{{ ArticleData.article.lable }}</li>
-          </ul>
-        </div>
-        <div class="btn_active">
-          <van-button type="info" class="goodnum" @click="goodnum(ArticleData.article.article_id)">
-            <span>点赞</span>
-            <span :class="{ selg: this.Move.goodnum }">
-              <i class="glyphicon glyphicon-thumbs-up"></i>
-            </span>
-            <span>{{ ArticleData.goodnum }}</span>
-          </van-button>
-          <van-button type="info" class="collect" @click="collect(ArticleData.article.article_id)">
-            <span>收藏</span>
-            <span :class="{ selc: this.Move.collect }">
-              <i class="glyphicon glyphicon-star-empty"> </i></span>
-            <span>{{ ArticleData.collect }}</span>
-          </van-button>
-          <van-button type="info" class="collect" @click="share">分享</van-button>
-        </div>
-        <div class="commentArea">
-          <p>留言</p>
-          <div class="comment" v-for="(item, index) in ArticleData.commont" :key="index">
-            <p class="comment_user">
-              <router-link to="#">{{ item.username }}</router-link>
-              用户 留言：
-            </p>
-            <p class="comment_text">{{ item.comment }}</p>
-            <p class="comment_time">时间:{{ item.pub_date }}</p>
+  <div>
+    <HeaderM></HeaderM>
+    <div id="" class="article">
+      <div class="leftContent">
+        <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
+        <div v-show="!goodpage">
+          <div class="content">
+            <p v-html="ArticleData.article.content" v-highlight></p>
           </div>
-          <div class="textarea">
-            <textarea name="" id="comtext" placeholder="友善发言，留下美好瞬间   (最多输入150个字符)" maxlength="150"
-              @keyup.enter="commont(ArticleData.article.article_id)" v-model="Active.comTXT"></textarea>
-            <van-button @click="commont(ArticleData.article.article_id)">留言</van-button>
+          <div class="tabmenu">
+            <ul>
+              <li v-for="(item, index) in tab" :key="index">{{ item }}</li>
+            </ul>
+            <ul>
+              <li>{{ ArticleData.article.title }}</li>
+              <li>{{ ArticleData.article.username }}</li>
+              <li>{{ ArticleData.article.pub_date }}</li>
+              <li>{{ ArticleData.article.lable }}</li>
+              <li>{{ ArticleData.article.read_num }}</li>
+            </ul>
+          </div>
+          <div class="btn_active">
+            <van-button type="info" class="goodnum" @click="goodnum(ArticleData.article.article_id)">
+              <span>点赞</span>
+              <span :class="{ selg: this.Move.goodnum }">
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+              </span>
+              <span>{{ ArticleData.goodnum }}</span>
+            </van-button>
+            <van-button type="info" class="collect" @click="collect(ArticleData.article.article_id)">
+              <span>收藏</span>
+              <span :class="{ selc: this.Move.collect }">
+                <i class="glyphicon glyphicon-star-empty"> </i></span>
+              <span>{{ ArticleData.collect }}</span>
+            </van-button>
+            <van-button type="info" class="collect" @click="share">分享</van-button>
+          </div>
+          <div class="commentArea">
+            <p>留言</p>
+            <div class="comment" v-for="(item, index) in ArticleData.commont" :key="index">
+              <p class="comment_user">
+                <router-link to="#">{{ item.username }}</router-link>
+                用户 留言：
+              </p>
+              <p class="comment_text">{{ item.comment }}</p>
+              <p class="comment_time">时间:{{ item.pub_date }}</p>
+            </div>
+            <div class="textarea">
+              <textarea name="" id="comtext" placeholder="友善发言，留下美好瞬间   (最多输入150个字符)" maxlength="150"
+                @keyup.enter="commont(ArticleData.article.article_id)" v-model="Active.comTXT"></textarea>
+              <van-button @click="commont(ArticleData.article.article_id)">留言</van-button>
+            </div>
           </div>
         </div>
       </div>
+      <RightM></RightM>
+      <Login @close="close" v-if="this.showLogin"></Login>
     </div>
-    <RightM></RightM>
-    <Login @close="close" v-if="this.showLogin"></Login>
   </div>
 </template>
 
@@ -64,7 +68,7 @@ export default {
   props: ['isdemo'],
   data () {
     return {
-      tab: ['标题', '作者：', '时间：', '标签：'],
+      tab: ['标题', '作者：', '时间：', '标签：', '阅读数：'],
       Active: {
         goodnum: false,
         collect: false,
@@ -98,6 +102,10 @@ export default {
         this.ArticleData.commont = res.data.comment
         this.Move.goodnum = res.data.acgoodnum
         this.Move.collect = res.data.accollect
+        // 5秒后请求增加阅读数
+        setTimeout(async () => {
+          await getArticle.UpdatedReadNum(id)
+        }, 5000)
       } else {
         this.goodpage = !this.goodpage
       }
@@ -258,13 +266,6 @@ export default {
           content: this.ArticleData.article.username
         }
       ]
-    }
-  },
-  watch: {
-    $route (to, from) {
-      if (to.path !== from.path) {
-        this.getArticle(this.$route.params.id)
-      }
     }
   },
   name: 'ArticleM',

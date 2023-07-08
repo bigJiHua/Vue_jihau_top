@@ -40,7 +40,6 @@ export default {
   .Scard {
     padding: 10px;
     border-radius: 5px;
-    margin: 15px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

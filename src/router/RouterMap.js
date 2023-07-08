@@ -22,42 +22,47 @@ import addArticle from '@/components/Ctrl_menu/menu/Article_elpage/addArticle'
 export default [
   {
     path: '/',
-    component: CenterBox
+    component: CenterBox,
+    name: '主页'
   },
   {
     path: '/Search',
-    component: Search
+    component: Search,
+    name: '搜索'
   },
   {
     path: '/page/:id',
-    component: Page
+    component: Page,
+    name: '通知'
   },
   {
     path: '/checkVer/',
-    component: checkVer
+    component: checkVer,
+    name: '激活用户'
   },
   {
     path: '/article/:id',
-    component: Article
-  },
-  {
-    path: '/Login',
-    name: 'Login',
-    component: Login
+    component: Article,
+    name: '文章'
   },
   {
     path: '/DevProcess',
-    name: 'DevProcess',
+    name: '站点日志',
     component: DevProcess
   },
   {
     path: '/SpsList',
-    name: 'SpsList',
+    name: '友链列表',
     component: SpsList
   },
   {
+    path: '/Login',
+    name: '登录',
+    component: Login
+  },
+  {
     path: '/register',
-    name: 'register',
+    name: '注册',
     component: Register
   },
   {
@@ -69,38 +74,50 @@ export default [
       requireAuth: true
     },
     children: [
-      { path: 'Users', component: Users },
-      { path: 'Authority', component: Authority },
+      { path: 'Users', component: Users, name: '我的信息' },
+      { path: 'Authority', component: Authority, name: '权限管理' },
       {
         path: 'Article',
         component: Articles,
         redirect: '/ArticleIndex',
+        name: '文章',
         children: [
           {
             path: '/ArticleIndex',
             component: ArticleIndex,
             meta: {
               requireAuth: true
-            }
+            },
+            name: '我的文章'
           },
           {
             path: '/cagArticle',
             component: cagArticle,
             meta: {
               requireAuth: true
-            }
+            },
+            name: '编辑文章'
           },
           {
             path: '/addArticle',
             component: addArticle,
             meta: {
               requireAuth: true
-            }
+            },
+            name: '添加文章'
           }
         ]
       },
-      { path: 'Collection', component: Collection },
-      { path: 'Setting', component: Setting }
+      {
+        path: 'Collection',
+        component: Collection,
+        name: '我的信息'
+      },
+      {
+        path: 'Setting',
+        component: Setting,
+        name: '我的系统设置'
+      }
     ]
   },
   {

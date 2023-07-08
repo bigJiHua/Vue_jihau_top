@@ -60,7 +60,7 @@ export default {
     }
   },
   created () {
-    if (localStorage.getItem('Useridentity') === '管理员') {
+    if (localStorage.getItem('Useridentity') === 'manager') {
       this.getDevP()
     }
   },

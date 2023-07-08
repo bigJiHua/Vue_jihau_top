@@ -16,7 +16,7 @@
           <td class="tdovs">{{ item.pub_date }}</td>
           <td class="tdovs">{{ item.lable }}</td>
           <td class="tdovs">{{ item.keyword }}</td>
-          <td class="tdovs">{{ item.state }}</td>
+          <td class="tdovs">{{ isState(item.state,item.is_delete) }}</td>
           <td class="btn">
             <van-button @click="cagArticle(item.article_id)" color="#1989FA" size="small"
               >编辑</van-button
@@ -83,6 +83,14 @@ export default {
       this.getarticle(localStorage.getItem('Username'))
     }
   },
+  computed: {
+    isState () {
+      return (state, isDelete) => {
+        console.log(state, isDelete)
+        return parseInt(state) + parseInt(isDelete) === 0 ? '正常' : '已删除/被驳回'
+      }
+    }
+  },
   name: 'ArticleIndex'
 }
 </script>
@@ -93,6 +101,9 @@ export default {
     overflow: overlay;
     max-height: 70vh;
   }
+}
+.tdovs {
+  max-width: 150px;
 }
 .table_area::-webkit-scrollbar {
   display: none;

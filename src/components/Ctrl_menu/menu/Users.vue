@@ -35,24 +35,28 @@ export default {
   props: [],
   data () {
     return {
-      Users: this.$store.state.Userdata,
+      Users: this.$store.state.Userdata.Users,
       count: 0
     }
   },
   // 生命周期初始化函数
   created () {
-    this.Users = this.$store.state.Userdata.Users
     if (JSON.stringify(this.Users) === '{}') {
-      this.getUsersdata()
+      alert(1)
+    } else {
+      // 这里是因为加载Vuex中数据不能完全一致，写进Vuex后 需要一定时间再拿出来避免undefined
+      setTimeout(() => {
+        this.Users = this.$store.state.Userdata.Users
+        this.cagUser = this.$store.state.Userdata.Users
+      }, 500)
     }
   },
   methods: {
     async getUsersdata () {
-      console.log(2)
       const { data: res } = await GetUData.GetUserData()
       this.cagUser = res.data.Users
+      this.Users = res.data.Users
       this.$store.commit('cagUserData', res.data)
-      this.Users = this.$store.state.Userdata.Users
       if (localStorage.getItem('Useridentity') !== res.data.Users.useridentity) {
         localStorage.setItem('Useridentity', res.data.Users.useridentity)
       }
@@ -69,31 +73,39 @@ export default {
 
 <style lang="less" scoped>
 @media only screen and (min-width: 755px) {
-  #User,#cagUsers{
+
+  #User,
+  #cagUsers {
     position: relative;
     padding-top: 20px;
-    >p>span{
+
+    >p>span {
       font-size: 2rem;
     }
   }
-  .Users{
+
+  .Users {
     display: flex;
   }
-  #myTab{
+
+  #myTab {
     min-width: 10vw;
     margin-right: 10px;
     text-align: center;
   }
-  #myTabContent{
+
+  #myTabContent {
     padding: 15px;
     min-width: 78%;
   }
 }
+
 @media only screen and (max-width: 755px) {
-  #myTabContent{
+  #myTabContent {
     margin-top: 15px;
   }
-  #myTab{
+
+  #myTab {
     text-align: center;
     display: flex;
     justify-content: space-between;
