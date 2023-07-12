@@ -12,21 +12,21 @@
     <!-- 用户文章信息 -->
     <div class="UserArticle">
       <div>
-        <div class="Articles">
+        <div class="PageItem">
           <p class="panel_item_title">文章</p>
           <router-link to="/ArticleIndex" class="panel_Count">{{ $store.state.Userdata.articles }}</router-link>
         </div>
-        <div class="Article_GN">
+        <div class="PageItem">
           <p class="panel_item_title">点赞</p>
           <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.goodnums }}</router-link>
         </div>
       </div>
       <div>
-        <div class="Article_CL">
+        <div class="PageItem">
           <p class="panel_item_title">收藏</p>
           <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.collects }}</router-link>
         </div>
-        <div class="Article_CM">
+        <div class="PageItem">
           <p class="panel_item_title">评论</p>
           <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.comments }}</router-link>
         </div>
@@ -95,6 +95,9 @@ export default {
     color: rgb(251, 114, 153);
     text-decoration: none;
   }
+  .PageItem {
+    padding: 5px;
+  }
 }
 
 @media only screen and (max-width: 755px) {
@@ -111,12 +114,14 @@ export default {
     color: rgb(251, 114, 153);
     text-decoration: none;
   }
+  .PageItem {
+    padding: 10px;
+  }
 }
 
 .UserArticle {
   display: flex;
-
-  >div>div {
+  .PageItem {
     margin: 10px;
     display: flex;
     flex-direction: row;
@@ -125,13 +130,11 @@ export default {
     align-items: center;
     height: 65px;
     flex: 1;
-    padding: 10px 15px;
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
       rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     border-radius: 8px;
   }
-
   .panel_item_title {
     text-align: center;
     font-size: 2.4rem;

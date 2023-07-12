@@ -80,7 +80,7 @@ export default [
         path: 'Article',
         component: Articles,
         redirect: '/ArticleIndex',
-        name: '文章',
+        name: '文章列表',
         children: [
           {
             path: '/ArticleIndex',
@@ -111,7 +111,7 @@ export default [
       {
         path: 'Collection',
         component: Collection,
-        name: '我的信息'
+        name: '我的消息'
       },
       {
         path: 'Setting',

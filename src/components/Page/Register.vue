@@ -38,7 +38,7 @@
           </p>
           <p class="newuser">个性签名:</p>
           <textarea class="usercontent form-control" v-model="newUser.user_content" maxlength="255"></textarea>
-          <p class="newuser" @click="up_pic">头像</p>
+          <!-- <p class="newuser" @click="up_pic">头像</p>
           <van-button @click="up_pic">上传头像</van-button>
           <van-overlay :show="showup" @click="showup = false">
             <div class="wrapper" @click.stop>
@@ -49,7 +49,7 @@
                 up_pic">确认上传头像</van-button>
               </div>
             </div>
-          </van-overlay>
+          </van-overlay> -->
           <div class="btnmenu">
             <button @click="comback" class="res-btn">返回</button>
             <van-button loading type="primary" loading-text="注册中..." v-show="loading" />

@@ -291,7 +291,7 @@ export default {
   .logo {
     width: 35px;
     height: 27px;
-    margin: 7px 0 10px;
+    margin: 12px 0;
   }
 
   .headerTitle {

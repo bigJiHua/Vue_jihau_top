@@ -49,4 +49,27 @@ export default {
   .center_box {
     padding: 0;
   }
-}</style>
+}
+// Ipad样式测试
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 755px) and (max-height: 768px) {
+  .center_box {
+    margin-top: 20px;
+    padding: 0;
+    display: flex;
+    position: relative;
+    width: 80vw;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .left {
+    width: 53vw;
+    margin-right: 2vw;
+    max-width: 700px;
+  }
+
+  .right {
+    width: 27vw;
+  }
+}
+</style>

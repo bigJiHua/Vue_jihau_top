@@ -3,7 +3,7 @@ import { app } from '@/main'
 import { Toast } from 'vant'
 
 const request = axios.create({
-  baseURL: 'http://127.0.0.1/api'
+  baseURL: 'http://192.168.0.110/api'
 })
 
 request.interceptors.request.use((config) => {
