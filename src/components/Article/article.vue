@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import getArticle from '@/components/api/getArticle'
-import UserAction from '@/components/api/UserActionAPI/UserActiveGet'
+import getArticle from '@/API/indexAPI/getArticle'
+import UserAction from '@/API/UserActionAPI/UserActiveGet'
 import Login from './ArticleLogin/ArticleLogin.vue'
 export default {
   props: ['isdemo'],

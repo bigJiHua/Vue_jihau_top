@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import PostLogin from '@/components/api/Ctrl_menuAPI/LoginAPI'
+import PostLogin from '@/API/Ctrl_menuAPI/LoginAPI'
 
 export default {
   data () {

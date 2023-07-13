@@ -1,23 +1,23 @@
-import CenterBox from '@/components/ContentArticle'
+import CenterBox from '@/Views/index/ContentArticle'
 import Article from '@/components/Article/article'
 // Page
-import Search from '@/components/Page/Search'
-import Page from '@/components/Page/Page'
-import checkVer from '@/components/Page/checkVer'
-import Login from '@/components/Page/Login'
-import Register from '@/components/Page/Register'
-import DevProcess from '@/components/Page/DevProcess'
-import SpsList from '@/components/Page/SpsList'
+import Search from '@/Views/Page/Search'
+import Page from '@/Views/Page/Page'
+import checkVer from '@/Views/Page/checkVer'
+import Login from '@/Views/Page/Login'
+import Register from '@/Views/Page/Register'
+import DevProcess from '@/components/Index/DevProcess'
+import SpsList from '@/Views/Page/SpsList'
 // Ctrl_menu
-import CtrlView from '@/components/Ctrl_menu/Ctrl_view'
-import Users from '@/components/Ctrl_menu/menu/Users'
-import Authority from '@/components/Ctrl_menu/menu/Authority'
-import Articles from '@/components/Ctrl_menu/menu/Article'
-import Setting from '@/components/Ctrl_menu/menu/Setting'
-import Collection from '@/components/Ctrl_menu/menu/Collection'
-import ArticleIndex from '@/components/Ctrl_menu/menu/Article_elpage/Article_index'
-import cagArticle from '@/components/Ctrl_menu/menu/Article_elpage/cagArticle'
-import addArticle from '@/components/Ctrl_menu/menu/Article_elpage/addArticle'
+import CtrlView from '@/Views/Ctrl_menu/Ctrl_view'
+import Users from '@/Views/Ctrl_menu/menu/Users'
+import Authority from '@/Views/Ctrl_menu/menu/Authority'
+import Articles from '@/Views/Ctrl_menu/menu/Article'
+import Setting from '@/Views/Ctrl_menu/menu/Setting'
+import Collection from '@/Views/Ctrl_menu/menu/Collection'
+import ArticleIndex from '@/Views/Ctrl_menu/menu/Article_elpage/Article_index'
+import cagArticle from '@/Views/Ctrl_menu/menu/Article_elpage/cagArticle'
+import addArticle from '@/Views/Ctrl_menu/menu/Article_elpage/addArticle'
 
 export default [
   {
@@ -123,12 +123,12 @@ export default [
   {
     name: '404',
     path: '/404',
-    component: () => import('@/components/Page/404.vue')
+    component: () => import('@/Views/Page/404.vue')
   },
   {
     name: '10010.html',
     path: '/html/goods/10010.html',
-    component: () => import('@/components/Page/10010.vue')
+    component: () => import('@/Views/Page/10010.vue')
   },
   {
     path: '*', // 此处需特别注意至于最底部
