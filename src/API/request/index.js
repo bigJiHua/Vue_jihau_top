@@ -29,13 +29,15 @@ request.interceptors.response.use(response => {
   Toast({ position: 'top', message: res.message })
   return response
 }, function (error) {
+  Toast({ position: 'top', message: error.message })
   if (error.request.status === 401 || error.request.statusText === 'Unauthorized') {
     localStorage.removeItem('token')
     localStorage.removeItem('UserData')
     app.$router.push('/Login')
     location.reload()
+  } else if (error.request.status === 404) {
+    app.$router.push('/404')
   }
-  Toast({ position: 'top', message: error.message })
   return Promise.reject(error)
 })
 

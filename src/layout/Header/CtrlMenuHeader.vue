@@ -66,9 +66,11 @@ export default {
     closeMenu () {
       const btnList = this.$refs.btn_list
       const menubox = this.$refs.menubox
-      btnList.setAttribute('aria-expanded', 'flase')
-      btnList.setAttribute('class', 'navbar-toggle collapsed')
-      menubox.setAttribute('class', 'navbar-collapse collapse')
+      if (btnList && menubox) {
+        btnList.setAttribute('aria-expanded', 'flase')
+        btnList.setAttribute('class', 'navbar-toggle collapsed')
+        menubox.setAttribute('class', 'navbar-collapse collapse')
+      }
     },
     HeaderTop () {
       const indexHeader = this.$refs.headertotop
@@ -173,7 +175,7 @@ export default {
   #indexHeader {
     position: fixed;
     width: 100vw;
-    z-index: 999;
+    z-index: 100;
     top: 0;
     left: 0;
   }

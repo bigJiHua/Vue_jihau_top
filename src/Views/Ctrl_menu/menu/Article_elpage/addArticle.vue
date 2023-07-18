@@ -1,9 +1,8 @@
 <template>
   <div id="" class="cagArticle">
     <div class="btn">
-      <van-button @click="comback" type="danger" size="small">取消编辑</van-button>
-      <van-button color="#1989FA" size="small" @click="saveArticle">确认发布</van-button>
       <van-button @click="getimg">获取图库</van-button>
+      <van-button color="#1989FA" size="small" @click="saveArticle">确认发布</van-button>
     </div>
     <div class="cagArea">
       <div class="astate" @click="cagastate">
@@ -119,12 +118,6 @@ export default {
   methods: {
     cagastate () {
       this.isChange = !this.isChange
-    },
-    comback () {
-      const cagpage = '文章管理'
-      this.$emit('cagpage', cagpage)
-      this.$router.push('/ArticleIndex')
-      this.$store.commit('cagArtData', '')
     },
     async saveArticle () {
       // const data = this.newArticleData

@@ -4,20 +4,21 @@
     <HeaderM></HeaderM>
     <div id="" class="article">
       <div class="leftContent">
-        <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
-        <div v-show="!goodpage">
+        <h1 v-if="goodpage" style="text-align: center">很抱歉，您没有查看的权限</h1>
+        <div v-else>
           <div class="content">
-            <p v-html="ArticleData.article.content" v-highlight></p>
+            <p v-html="ArticleData.content" v-highlight></p>
           </div>
           <div class="tabmenu">
             <ul>
-              <li v-for="(item, index) in tab" :key="index">{{ item }}</li>
+              <li v-for="(item, index) in tab" :key="index">{{ item }}：</li>
             </ul>
             <ul>
-              <li>{{ ArticleData.article.title }}</li>
-              <li>{{ ArticleData.article.username }}</li>
-              <li>{{ ArticleData.article.pub_date }}</li>
-              <li>{{ ArticleData.article.lable }}</li>
+              <li>{{ ArticleData.title }}</li>
+              <li>{{ ArticleData.username }}</li>
+              <li>{{ ArticleData.pub_date }}</li>
+              <li>{{ ArticleData.lable }}</li>
+              <li>{{ ArticleData.read_num }}</li>
             </ul>
           </div>
         </div>
@@ -32,13 +33,9 @@ import getArticle from '@/API/indexAPI/getArticle'
 export default {
   data () {
     return {
-      ArticleData: {
-        article: '',
-        goodnum: '',
-        collect: '',
-        commont: []
-      },
-      goodpage: false
+      ArticleData: [],
+      goodpage: true,
+      tab: ['标题', '管理员', '发布日期', '标签', '浏览数']
     }
   },
   created () {
@@ -46,11 +43,12 @@ export default {
   },
   methods: {
     async getArticle (id) {
-      const { data: res } = await getArticle.getArchives(id)
+      const { data: res } = await getArticle.getPageData(id)
       if (res.status !== 404) {
-        this.ArticleData.article = res.data.article
+        this.goodpage = false
+        this.ArticleData = res.data
       } else {
-        this.goodpage = !this.goodpage
+        this.goodpage = true
       }
     }
   },
@@ -91,19 +89,19 @@ export default {
 <style lang="less" scoped>
 .article {
   word-wrap: break-word;
-  width: 80vw;
   margin: 0 auto;
+  background-color: #fff;
 }
 
 @media only screen and (min-width: 755px) {
   .article {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    width: 80vw;
   }
 
   .leftContent {
-    background-color: rgba(243, 245, 248, 0.5);
+    background-color: #fff;
     padding: 20px;
     border-radius: 12px;
     margin-right: 20px;
@@ -112,15 +110,11 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
-  .article {
-    margin-top: 20px;
-  }
-
   .leftContent {
     background-color: rgba(243, 245, 248, 0.8);
-    padding: 20px;
-    border-radius: 12px;
+    border-radius: 5px;
     margin-bottom: 30px;
+    padding: 10px;
   }
 }
 
@@ -134,59 +128,4 @@ export default {
   }
 }
 
-.goodnum,
-.collect {
-  letter-spacing: 5px;
-}
-
-.selc,
-.selg {
-  color: red;
-}
-
-.commentArea {
-  margin-top: 20px;
-  padding: 10px 20px 20px 20px;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9);
-
-  p {
-    font-size: 2rem;
-    font-weight: bolder;
-  }
-
-  #comtext {
-    border-radius: 8px;
-    border: 2px rgba(243, 245, 248, 0.8) solid;
-    padding: 5px;
-    width: 100%;
-    height: 80px;
-    resize: none;
-  }
-
-  .comment {
-    background-color: rgba(201, 227, 243, .4);
-    border-radius: 4px;
-    padding: 5px;
-    margin-bottom: 10px;
-
-    p {
-      margin: 0;
-      color: rgba(6, 52, 122, 0.8);
-    }
-
-    .comment_user {
-      font-size: 1.3rem;
-    }
-
-    .comment_text {
-      font-size: 1.6rem;
-      margin: 2px;
-    }
-
-    .comment_time {
-      font-size: 1rem;
-      text-align: right;
-    }
-  }
-}</style>
+</style>

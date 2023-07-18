@@ -7,6 +7,7 @@
       <Users></Users>
     </div>
     <div :class="['icpArea', { icpAreatop: istop }]" ref="RightArea">
+      <Notify></Notify>
       <ArtList></ArtList>
       <Footer></Footer>
     </div>
@@ -14,9 +15,10 @@
 </template>
 
 <script>
-import Footer from '../../../layout/FooterBar/Footer.vue'
-import AboutM from '../../../components/Index/AboutM.vue'
-import Users from '../../../components/Index/Users.vue'
+import Footer from '@/layout/FooterBar/Footer.vue'
+import AboutM from '@/components/Index/AboutM.vue'
+import Users from '@/components/Index/Users.vue'
+import Notify from '@/components/Index/Notify.vue'
 
 export default {
   props: [],
@@ -52,7 +54,8 @@ export default {
   components: {
     Footer,
     AboutM,
-    Users
+    Users,
+    Notify
   }
 }
 </script>
@@ -77,9 +80,14 @@ export default {
   .icpAreatop {
     position: fixed;
     top: 56px;
-    z-index: 999;
-    width: 24vw;
+    z-index: 99;
+    width: 25vw;
     max-width: 439px;
+    max-height: 100vh;
+    overflow: scroll;
+  }
+  .icpAreatop::-webkit-scrollbar {
+    display: none;
   }
 }
 </style>

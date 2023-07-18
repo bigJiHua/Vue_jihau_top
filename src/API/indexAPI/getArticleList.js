@@ -8,8 +8,16 @@ const getArticleList = function (page) {
 const getArchive = function () {
   return request.get('/data/archive')
 }
-
+// 通知列表
+const getNotifyList = function () {
+  const user = localStorage.getItem('Username')
+  if (user) {
+    return request.get('/data/notify?user=' + user)
+  }
+  return request.get('/data/notify')
+}
 export default {
   getArticleList,
-  getArchive
+  getArchive,
+  getNotifyList
 }

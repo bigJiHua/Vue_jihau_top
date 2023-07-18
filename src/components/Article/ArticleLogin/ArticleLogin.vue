@@ -1,11 +1,13 @@
 <template>
   <div id="" class="showLogin">
-    <div class="close" @click="close">
-      <i class="glyphicon glyphicon-remove"></i>
-    </div>
+    <!-- 遮罩层 -->
+    <div class="overlay" @click="close"></div>
     <div class="login_conten_box">
       <img class="login_img" src="https://jihau.top/api/public/uploads/undraw_Login_re_4vu2.png" />
       <div class="user_input_eara">
+        <div class="close" @click="close">
+          <i class="glyphicon glyphicon-remove"></i>
+        </div>
         <h2>登录 <small>Login</small></h2>
         <form class="form-horizontal">
           <label for="al_title" class="login_lable"> 用户名:</label>
@@ -15,9 +17,9 @@
             @keydown.enter="login" />
         </form>
         <div class="btnmenu">
+          <van-button @click="register">注册</van-button>
           <van-button @click="login" v-show="!loading">登录</van-button>
           <van-button loading type="primary" loading-text="登录中..." v-show="loading" />
-          <van-button @click="register">注册</van-button>
         </div>
       </div>
     </div>
@@ -139,25 +141,31 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.showLogin {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.user_input_eara {
+  position: relative;
 }
 
 @media only screen and (min-width: 755px) {
-  .showLogin {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    padding: 20px;
-  }
+
   .login_conten_box {
-    background-color: #fff;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
+    width: 50%;
   }
 
   .login_img {
@@ -189,21 +197,9 @@ export default {
 }
 
 @media only screen and (max-width: 755px) {
-  .showLogin {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    padding: 20px;
-  }
+
   .login_conten_box {
-    background-color: #fff;
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    width: 90%;
   }
 
   .login_img {
@@ -234,4 +230,12 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
-</style>
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}</style>

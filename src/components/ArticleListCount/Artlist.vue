@@ -87,11 +87,13 @@ export default {
   border-radius: 5px;
   border-radius: 5px;
   padding: 10px;
+  max-height: 250px;
+  overflow: scroll;
 }
 
 .ararc_title {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bolder;
   font-family: 'songti';
 }
@@ -100,12 +102,14 @@ export default {
   margin-top: 10px;
   background-color: rgb(231 243 255 / 60%);
   border-radius: 11px;
-  padding: 10px;
-  max-height: 265px;
-  overflow-y: auto;
+  padding: 0 10px;
+  overflow: scroll;
 }
 
 .ararc_list::-webkit-scrollbar {
+  display: none;
+}
+.ararc::-webkit-scrollbar {
   display: none;
 }
 </style>

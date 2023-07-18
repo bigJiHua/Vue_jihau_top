@@ -43,7 +43,7 @@ export default {
 
 <style lang="less" scoped>
 span.list_year {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 600;
   font-style: oblique;
   color: rgb(34, 32, 30);

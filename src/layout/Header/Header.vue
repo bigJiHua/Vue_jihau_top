@@ -72,48 +72,6 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.HeaderTop)
-    const setcolor = (demo, color) => {
-      const demos = document.querySelectorAll(`${demo}`)
-      for (let i = 0; i < demos.length; i++) {
-        demos[i].style.color = `${color}`
-      }
-    }
-    // 设置主题样式
-    setTimeout(() => {
-      setInterval(() => {
-        const Ctrldemo = document.querySelectorAll('.Ctrldemo')
-        const style = localStorage.getItem('bgc')
-        const bgc = this.$store.state.bgc
-        if (style) {
-          for (let i = 0; i < Ctrldemo.length; i++) {
-            Ctrldemo[i].style.background = `${style}`
-            setcolor('h1', 'rgb(240,240,240)')
-            setcolor('.menu-item > a', 'rgb(240,240,240)')
-            setcolor('.article_alltitle > span', 'rgb(240,240,240)')
-            setcolor('.nav > li > a', 'rgb(240,240,240)')
-            setcolor('#User > p > span', 'rgb(240,240,240)')
-            setcolor('#cagUsers > p > span', 'rgb(240,240,240)')
-            setcolor('.ararc_title', 'rgb(240,240,240)')
-            setcolor('.UserselfArea > p', 'rgb(240,240,240)')
-            setcolor('.card > p', 'rgb(240,240,240)')
-          }
-        } else if (!style && bgc !== '' && bgc !== null) {
-          for (let i = 0; i < Ctrldemo.length; i++) {
-            Ctrldemo[i].style.background = `${bgc}`
-            setcolor('h1', 'rgb(240,240,240)')
-            setcolor('.menu-item > a', 'rgb(240,240,240)')
-            setcolor('.article_alltitle > span', 'rgb(240,240,240)')
-            setcolor('.nav > li > a', 'rgb(240,240,240)')
-            setcolor('#User > p > span', 'rgb(240,240,240)')
-            setcolor('#cagUsers > p > span', 'rgb(240,240,240)')
-            setcolor('.ararc_title', 'rgb(240,240,240)')
-            setcolor('#introduce_doc > p', 'rgb(240,240,240)')
-            setcolor('.UserselfArea > p', 'rgb(240,240,240)')
-            setcolor('.card > p', 'rgb(240,240,240)')
-          }
-        }
-      }, 200)
-    }, 200)
   },
   created () {
     if (JSON.stringify(this.$store.state.Userdata) === '{}' && localStorage.getItem('token') !== null) {
@@ -156,10 +114,12 @@ export default {
       const btnList = this.$refs.btn_list
       const menubox = this.$refs.menubox
       const moresite = this.$refs.more_something
-      btnList.setAttribute('aria-expanded', 'flase')
-      moresite.setAttribute('aria-expanded', 'flase')
-      btnList.setAttribute('class', 'navbar-toggle collapsed')
-      menubox.setAttribute('class', 'navbar-collapse collapse')
+      if (btnList && menubox && moresite) {
+        btnList.setAttribute('aria-expanded', 'flase')
+        moresite.setAttribute('aria-expanded', 'flase')
+        btnList.setAttribute('class', 'navbar-toggle collapsed')
+        menubox.setAttribute('class', 'navbar-collapse collapse')
+      }
     },
     HeaderTop () {
       const indexHeader = this.$refs.headertotop
@@ -283,7 +243,7 @@ export default {
   #indexHeader {
     position: fixed;
     width: 100vw;
-    z-index: 999;
+    z-index: 100;
     top: 0;
     left: 0;
   }

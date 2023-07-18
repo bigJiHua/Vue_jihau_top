@@ -1,10 +1,11 @@
 <template>
   <div id="" class="Article">
-  <div class="minheader">
-    <h1>{{title}}</h1>
-    <van-button @click="comback" >{{btntags}}</van-button>
-  </div>
-  <router-view @cagpage="cagtitle"></router-view>
+    <div class="minheader">
+      <h1>{{ this.$route.name }} </h1>
+      <van-button @click="comback" v-if="!isGo">{{ btntags }}</van-button>
+      <van-button @click="comback" type="danger" size="small" v-else>取消编辑</van-button>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -14,23 +15,18 @@ export default {
   props: [],
   data () {
     return {
-      title: '我的文章',
       btntags: '新增文章',
       isGo: false
     }
   },
   methods: {
-    cagtitle (val) {
-      this.title = val
-    },
     comback () {
       this.isGo = !this.isGo
       if (this.isGo) {
-        this.title = '新增文章'
         this.btntags = '返回'
         this.$router.push('/addArticle')
+        this.$store.commit('cagArtData', '')
       } else {
-        this.title = '我的文章'
         this.btntags = '新增文章'
         this.$router.push('/ArticleIndex')
       }
@@ -41,10 +37,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.Article{
+.Article {
   padding: 20px;
 }
-.minheader{
+
+.minheader {
   display: flex;
   align-items: center;
   justify-items: center;

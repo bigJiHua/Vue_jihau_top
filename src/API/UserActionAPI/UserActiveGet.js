@@ -18,7 +18,6 @@ const UserActivedata = function (user) {
 }
 // 取消 评论
 const UserActiveDel = function (data) {
-  console.log(data)
   const params = new URLSearchParams()
   params.append('id', data.id)
   params.append('username', data.username)

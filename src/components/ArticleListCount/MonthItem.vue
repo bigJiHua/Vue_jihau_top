@@ -40,7 +40,7 @@ export default {
 
 <style lang="less" scoped>
 .mnumber {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-left: 20px;
   font-weight: 600;
   color: rgb(0, 0, 0);
@@ -77,8 +77,6 @@ export default {
   list-style: none;
   line-height: 2rem;
   text-indent: 2.5rem;
-  margin: 0;
-  padding: 0;
 }
 
 .daylists ol a {

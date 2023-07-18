@@ -8,6 +8,7 @@ export default new Vuex.Store({
     Userdata: {},
     ArticleData: [],
     bgc: '',
+    imgurl: '',
     token: localStorage.getItem('token'),
     CountNum: [],
     indexArticleData: [],
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     // 改变颜色
     cagColor (state, bgc) {
       state.bgc = bgc
+    },
+    cagImgUrl (state, url) {
+      state.imgurl = url
     },
     // 首页文章
     setArticle (state, ArticleData) {

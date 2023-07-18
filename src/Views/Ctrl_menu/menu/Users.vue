@@ -28,7 +28,7 @@
 <script>
 import GetUData from '@/API/Ctrl_menuAPI/UserData'
 import Userself from './User_elpage/User_self.vue'
-import UsercagDate from './User_elpage/User_cagDate.vue'
+import UsercagDate from './User_elpage/User_cagData.vue'
 import Userdelpwd from './User_elpage/User_del_cagpwd.vue'
 
 export default {
@@ -42,20 +42,23 @@ export default {
   // 生命周期初始化函数
   created () {
     if (JSON.stringify(this.Users) === '{}') {
-      alert(1)
+      this.getUsersdata()
     } else {
       // 这里是因为加载Vuex中数据不能完全一致，写进Vuex后 需要一定时间再拿出来避免undefined
-      setTimeout(() => {
+      const upUserdata = setInterval(() => {
         this.Users = this.$store.state.Userdata.Users
         this.cagUser = this.$store.state.Userdata.Users
-      }, 500)
+      }, 100)
+      setTimeout(() => {
+        if (this.Users) {
+          clearInterval(upUserdata)
+        }
+      }, 1500)
     }
   },
   methods: {
     async getUsersdata () {
       const { data: res } = await GetUData.GetUserData()
-      this.cagUser = res.data.Users
-      this.Users = res.data.Users
       this.$store.commit('cagUserData', res.data)
       if (localStorage.getItem('Useridentity') !== res.data.Users.useridentity) {
         localStorage.setItem('Useridentity', res.data.Users.useridentity)

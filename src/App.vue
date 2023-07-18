@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'isBgc': !isBgc }">
     <router-view></router-view>
+    <WidthAndHeight></WidthAndHeight>
   </div>
 </template>
 
 <script>
+import WidthAndHeight from '@/components/TestModule/WidthAndHeight.vue'
 
 export default {
   name: 'App',
@@ -46,6 +48,14 @@ export default {
         content: '#275D2B'
       }
     ]
+  },
+  data () {
+    return {
+      isBgc: localStorage.getItem('bgc') !== null || localStorage.getItem('imgUrl') !== null
+    }
+  },
+  components: {
+    WidthAndHeight
   }
 }
 </script>
@@ -55,7 +65,8 @@ export default {
   padding: 0;
   margin: 0;
 }
-#app {
+
+.isBgc {
   background-color: #f7f7f7;
 }
 

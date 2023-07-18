@@ -16,11 +16,9 @@
           <td class="tdovs">{{ item.pub_date }}</td>
           <td class="tdovs">{{ item.lable }}</td>
           <td class="tdovs">{{ item.keyword }}</td>
-          <td class="tdovs">{{ isState(item.state,item.is_delete) }}</td>
+          <td class="tdovs">{{ isState(item.state, item.is_delete) }}</td>
           <td class="btn">
-            <van-button @click="cagArticle(item.article_id)" color="#1989FA" size="small"
-              >编辑</van-button
-            >
+            <van-button @click="cagArticle(item.article_id)" color="#1989FA" size="small">编辑</van-button>
             <van-button type="danger" size="small" @click="delArticle(item.id)">删除</van-button>
           </td>
         </tr>
@@ -86,7 +84,6 @@ export default {
   computed: {
     isState () {
       return (state, isDelete) => {
-        console.log(state, isDelete)
         return parseInt(state) + parseInt(isDelete) === 0 ? '正常' : '已删除/被驳回'
       }
     }
@@ -102,15 +99,26 @@ export default {
     max-height: 70vh;
   }
 }
+@media only screen and (max-width: 755px) {
+  .table_area {
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .tdovs {
   max-width: 150px;
 }
+
 .table_area::-webkit-scrollbar {
   display: none;
 }
+
 .thovs {
   text-align: center;
 }
+
 .btn {
   display: flex;
   justify-content: space-between;

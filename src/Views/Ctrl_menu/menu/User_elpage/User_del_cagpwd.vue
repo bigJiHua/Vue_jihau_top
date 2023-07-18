@@ -2,28 +2,18 @@
   <div id="" class="">
     <div class="cagArea">
       <div class="cagpwd cagAreabox UserselfArea">
-        <p for="oldpwd">旧密码</p>
-        <input
-          type="password"
-          id="oldpwd"
-          v-model.lazy="oldpwd"
-          class="form-control"
-        />
-        <p for="newpwd">新密码</p>
-        <input
-          type="password"
-          id="newpwd"
-          v-model="newpwd"
-          class="form-control"
-        />
+        <form>
+          <p for="oldpwd">旧密码</p>
+          <input type="password" id="oldpwd" v-model.lazy="oldpwd" class="form-control" autocomplete="new-password"/>
+          <p for="newpwd">新密码</p>
+          <input type="password" id="newpwd" v-model="newpwd" class="form-control" autocomplete="new-password" />
+        </form>
         <van-button @click="cagPwd">确认修改</van-button>
       </div>
       <div class="delUser cagAreabox">
         <van-button type="danger" @click="delUser">注销用户</van-button>
         <p style="color: red; margin-top: 10px">
-          <small
-            >⚠注销后 你的数据并不会马上删除， 可以在登录页面申请找回账号 (Beta)</small
-          >
+          <small>⚠注销后 你的数据并不会马上删除， 可以在登录页面申请找回账号 (Beta)</small>
         </p>
       </div>
     </div>
@@ -121,22 +111,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.cagpwd > input {
+.cagpwd>input {
   display: block;
   margin-bottom: 15px;
 }
+
 .colpwd {
   margin-bottom: 20px;
 }
+
 #oldpwd,
 #newpwd {
   width: 20vw;
 }
+
 .cagAreabox {
   margin-bottom: 25px;
 }
 
 @media only screen and (max-width: 755px) {
+
   #oldpwd,
   #newpwd {
     width: 100%;

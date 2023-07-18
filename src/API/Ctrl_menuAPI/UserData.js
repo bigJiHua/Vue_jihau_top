@@ -33,7 +33,6 @@ const CagUserData = function (data) {
   params.append('user_content', data.user_content)
   params.append('user_pic', data.user_pic)
   params.append('username', data.username)
-  params.append('useridentity', data.useridentity)
   return request.patch('/users/cagUser', params)
 }
 // 修改密码
