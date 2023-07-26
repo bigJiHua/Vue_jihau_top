@@ -9,7 +9,7 @@
 
 <script>
 import Articlezkm from './YearItem.vue'
-import getArc from '../../API/indexAPI/getArticleList'
+import getArc from '@/API/indexAPI/getArticleList'
 
 export default {
   props: [],

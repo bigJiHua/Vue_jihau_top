@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import getArticle from '../../API/indexAPI/getArticleList'
-import Pageuad from '../../components/Ctrl_menu/PageCad.vue'
+import getArticle from '@/API/indexAPI/getArticleList'
+import Pageuad from '@/components/Ctrl_menu/PageCad.vue'
 
 export default {
   props: [],
@@ -141,7 +141,7 @@ export default {
 
   .Content_Area {
     height: 100%;
-    background-color: rgba(240, 240, 240, 0.4);
+    // background-color: rgba(240, 240, 240, 0.4);
     padding: 20px;
 
     p:first-child {
@@ -176,11 +176,5 @@ export default {
       border-radius: 50%;
     }
   }
-
-  .value_area {
-    overflow: overlay;
-    padding: 10px 20px;
-    margin: 7px 0;
-    max-height: 70vh;
-  }
-}</style>
+}
+</style>

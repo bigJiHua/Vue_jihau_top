@@ -15,7 +15,7 @@
     <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox">
       <ul class="nav navbar-nav">
         <li @click="closeMenu">
-          <a href="http://me.jihau.top">关于</a>
+          <router-link to="/Notify">通知</router-link>
         </li>
         <li @click="closeMenu">
           <router-link to="/DevProcess">发展历程</router-link>

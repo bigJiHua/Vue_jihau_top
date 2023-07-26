@@ -68,7 +68,7 @@ export default {
   props: ['isdemo'],
   data () {
     return {
-      tab: ['标题', '作者：', '时间：', '标签：', '阅读数：'],
+      tab: ['标题：', '作者：', '时间：', '标签：', '阅读数：'],
       Active: {
         goodnum: false,
         collect: false,

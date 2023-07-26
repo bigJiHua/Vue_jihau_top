@@ -16,6 +16,7 @@
           <td class="tdovs">{{ item.pub_date }}</td>
           <td class="tdovs">{{ item.lable }}</td>
           <td class="tdovs">{{ item.keyword }}</td>
+          <td class="tdovs">{{ item.read_num }}</td>
           <td class="tdovs">{{ isState(item.state, item.is_delete) }}</td>
           <td class="btn">
             <van-button @click="cagArticle(item.article_id)" color="#1989FA" size="small">编辑</van-button>
@@ -41,6 +42,7 @@ export default {
           '发表日期',
           '标签',
           '关键词',
+          '阅读数',
           '状态',
           '操作'
         ],

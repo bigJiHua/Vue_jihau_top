@@ -24,7 +24,7 @@
 <script>
 import getDevP from '@/API/Email/getSetting'
 import DevPcagPanel from '@/components/Ctrl_menu/DevP_cagPanel'
-import Footer from '../../layout/FooterBar/Footer.vue'
+import Footer from '@/layout/FooterBar/Footer.vue'
 export default {
   props: [],
   data () {

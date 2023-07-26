@@ -4,21 +4,26 @@
     <HeaderM></HeaderM>
     <div id="" class="article">
       <div class="leftContent">
-        <h1 v-if="goodpage" style="text-align: center">很抱歉，您没有查看的权限</h1>
-        <div v-else>
+        <h1 v-show="goodpage" style="text-align: center">很抱歉，您没有查看的权限</h1>
+        <div v-show="!goodpage" >
           <div class="content">
-            <p v-html="ArticleData.content" v-highlight></p>
+          <header class="headerText">
+            <h1>{{ NotifyData.title }}</h1>
+            <p class="ContentMessage">
+              <span>管理员：{{ NotifyData.username }}</span>
+              <span>时间：{{ NotifyData.pub_date }}</span>
+            </p>
+          </header>
+            <p v-html="NotifyData.content" v-highlight></p>
           </div>
           <div class="tabmenu">
             <ul>
-              <li v-for="(item, index) in tab" :key="index">{{ item }}：</li>
+              <li>标签：</li>
+              <li>阅读次数：</li>
             </ul>
             <ul>
-              <li>{{ ArticleData.title }}</li>
-              <li>{{ ArticleData.username }}</li>
-              <li>{{ ArticleData.pub_date }}</li>
-              <li>{{ ArticleData.lable }}</li>
-              <li>{{ ArticleData.read_num }}</li>
+              <li>{{ NotifyData.lable }}</li>
+              <li>{{ NotifyData.read_num }}</li>
             </ul>
           </div>
         </div>
@@ -29,24 +34,23 @@
 </template>
 
 <script>
-import getArticle from '@/API/indexAPI/getArticle'
+import GetNotifyData from '@/API/indexAPI/getArticle'
 export default {
   data () {
     return {
-      ArticleData: [],
-      goodpage: true,
-      tab: ['标题', '管理员', '发布日期', '标签', '浏览数']
+      NotifyData: [],
+      goodpage: true
     }
   },
   created () {
-    this.getArticle(this.$route.params.id)
+    this.getNotify(this.$route.params.id)
   },
   methods: {
-    async getArticle (id) {
-      const { data: res } = await getArticle.getPageData(id)
+    async getNotify (id) {
+      const { data: res } = await GetNotifyData.getPageData(id)
       if (res.status !== 404) {
         this.goodpage = false
-        this.ArticleData = res.data
+        this.NotifyData = res.data
       } else {
         this.goodpage = true
       }
@@ -54,15 +58,15 @@ export default {
   },
   metaInfo () {
     return {
-      title: this.ArticleData.article.title,
+      title: this.NotifyData.title,
       meta: [
         {
           name: 'keywords',
-          content: this.ArticleData.article.keyword
+          content: this.NotifyData.keyword
         },
         {
           name: 'description',
-          content: this.ArticleData.article.lable
+          content: this.NotifyData.lable
         },
         {
           name: 'robots',
@@ -70,7 +74,7 @@ export default {
         },
         {
           name: 'author',
-          content: 'JiHua'
+          content: this.NotifyData.username
         }
       ]
     }
@@ -91,6 +95,13 @@ export default {
   word-wrap: break-word;
   margin: 0 auto;
   background-color: #fff;
+}
+.ContentMessage>span:first-child {
+  margin-right: 10px;
+}
+
+.headerText {
+  text-align: center;
 }
 
 @media only screen and (min-width: 755px) {
@@ -115,6 +126,10 @@ export default {
     border-radius: 5px;
     margin-bottom: 30px;
     padding: 10px;
+  }
+
+  .ContentMessage>span {
+    font-size: 1rem;
   }
 }
 

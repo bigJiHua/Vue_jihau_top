@@ -66,7 +66,7 @@
 
 <script>
 import getSpsList from '@/API/Email/getSetting'
-import Footer from '../../layout/FooterBar/Footer.vue'
+import Footer from '@/layout/FooterBar/Footer.vue'
 export default {
   data () {
     return {

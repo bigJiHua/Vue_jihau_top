@@ -6,8 +6,9 @@ import Page from '@/Views/Page/Page'
 import checkVer from '@/Views/Page/checkVer'
 import Login from '@/Views/Page/Login'
 import Register from '@/Views/Page/Register'
-import DevProcess from '@/components/Index/DevProcess'
+import DevProcess from '@/Views/Page/DevProcess'
 import SpsList from '@/Views/Page/SpsList'
+import NotifyPage from '@/Views/Page/Notify.vue'
 // Ctrl_menu
 import CtrlView from '@/Views/Ctrl_menu/Ctrl_view'
 import Users from '@/Views/Ctrl_menu/menu/Users'
@@ -54,6 +55,11 @@ export default [
     path: '/SpsList',
     name: '友链列表',
     component: SpsList
+  },
+  {
+    path: '/Notify',
+    name: '通知查询',
+    component: NotifyPage
   },
   {
     path: '/Login',

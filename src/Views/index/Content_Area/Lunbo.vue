@@ -20,7 +20,7 @@
 
 <script>
 import Swiper from 'swiper'
-import getLunbo from '../../../API/Email/getSetting'
+import getLunbo from '@//API/Email/getSetting'
 import 'swiper/css/swiper.css'
 import 'swiper/js/swiper.js'
 

@@ -7,3 +7,5 @@
 /src/layout/FooterBar/Footer.vue
 /dist
 /public
+/src/Views/Page/Login.vue
+/src/API/request/indx.js

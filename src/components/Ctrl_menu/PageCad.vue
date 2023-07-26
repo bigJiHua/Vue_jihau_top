@@ -34,7 +34,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.card {
+.itemarea {
+  border-radius: 5px;
   background-color: rgba(240, 243, 246, 0.4);
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
     rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -60,8 +61,8 @@ export default {
 
 @media only screen and (max-width: 755px) {
   .card {
-    border-radius: 10px;
     margin: 8px 0;
+    padding: 5px;
   }
 
   .details {

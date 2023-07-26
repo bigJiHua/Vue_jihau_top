@@ -3,6 +3,8 @@
     <div class="btn">
       <van-button @click="getimg">获取图库</van-button>
       <van-button color="#1989FA" size="small" @click="saveArticle">确认发布</van-button>
+      <van-button type="primary" class="HeaderItem" size="small" @click="startEditiPost">开始水文章</van-button>
+      <van-button type="danger" class="HeaderItem" size="small" @click="StopEditiPost">关闭水文章</van-button>
     </div>
     <div class="cagArea">
       <div class="astate" @click="cagastate">
@@ -58,8 +60,8 @@ export default {
         lable: '',
         keyword: '',
         cover_img: '',
-        // eslint-disable-next-line no-irregular-whitespace
-        content: ''
+        content: '',
+        OpenEditiPost: 0
       },
       isChange: false,
       editorConfig: {
@@ -120,7 +122,6 @@ export default {
       this.isChange = !this.isChange
     },
     async saveArticle () {
-      // const data = this.newArticleData
       if (this.validata('username')) {
         if (this.validata('title')) {
           if (this.validata('lable')) {
@@ -156,6 +157,43 @@ export default {
     },
     async getimg () {
       this.$refs.imageM.toge()
+    },
+    generateChineseCharacters (Num) {
+      let characters = ''
+      const totalCharacters = Num
+      while (characters.length < totalCharacters) {
+        const randomUnicode = Math.floor(Math.random() * (0x9fa5 - 0x4e00 + 1)) + 0x4e00
+        characters += String.fromCharCode(randomUnicode)
+      }
+      return characters
+    },
+    startEditiPost () {
+      this.OpenEditiPost = setInterval(async () => {
+        this.newArticleData.username = localStorage.getItem('Username')
+        this.newArticleData.title = this.generateChineseCharacters(10)
+        this.newArticleData.lable = this.generateChineseCharacters(10)
+        this.newArticleData.keyword = this.generateChineseCharacters(15)
+        this.newArticleData.content = this.generateChineseCharacters(450)
+        const { data: res } = await setArticle.UseraddArticle(this.newArticleData)
+        if (res.status === 200) {
+          this.newArticleData = {
+            title: '',
+            lable: '',
+            keyword: '',
+            content: ''
+          }
+        }
+      }, 800)
+    },
+    // 停止刷文章
+    StopEditiPost () {
+      clearInterval(this.OpenEditiPost)
+      this.newArticleData = {
+        title: '',
+        lable: '',
+        keyword: '',
+        content: ''
+      }
     },
     validata (key) {
       let bool = true

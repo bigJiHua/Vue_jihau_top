@@ -1,6 +1,8 @@
 <template>
   <div class="ararc">
-    <p class="ararc_title Cookie">通知</p>
+    <p class="ararc_title Cookie">
+      <router-link to="/Notify">通知</router-link>
+    </p>
       <van-notice-bar left-icon="volume-o" :scrollable="false">
         <van-swipe vertical class="notice-swipe" :autoplay="3000" :show-indicators="false">
           <van-swipe-item v-for="(data, index) in notifyList" :key="index">

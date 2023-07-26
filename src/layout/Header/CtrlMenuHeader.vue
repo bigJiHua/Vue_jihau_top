@@ -10,7 +10,6 @@
       <router-link class="navbar-brand headerTitle" to="/CtrlView/users">
         <h1>作者管理面板</h1>
       </router-link>
-      <a href="https://jihau.top"><img src="https://www.jihau.top/img/logo.png" class="logo" alt="logo" /></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse Ctrldemo" ref="menubox">
       <ul class="nav navbar-nav">

@@ -19,7 +19,7 @@
 <script>
 import Lunbo from './Lunbo.vue'
 import ArticleList from './indexArticleList'
-import getArtList from '../../../API/indexAPI/getArticleList'
+import getArtList from '@//API/indexAPI/getArticleList'
 
 export default {
   props: [],

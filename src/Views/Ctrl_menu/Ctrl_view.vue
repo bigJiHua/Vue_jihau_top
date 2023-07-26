@@ -10,7 +10,7 @@
 
 <script>
 import CtrlViewAside from './CtrlViewAside.vue'
-import CtrlMenuHeader from '../../layout/Header/CtrlMenuHeader.vue'
+import CtrlMenuHeader from '@/layout/Header/CtrlMenuHeader.vue'
 
 export default {
   components: { CtrlViewAside, CtrlMenuHeader },
