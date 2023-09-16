@@ -10,8 +10,8 @@
             <img :src="item.cover_img" alt="文章图片">
           </div>
           <p class="card_title">
-            <span v-if="istrue">在</span>文章：<router-link
-              :to='{ path: "/article/" + item.article_id }'>{{ item.title }}</router-link>
+            <span v-if="istrue">在</span>文章：<router-link :to='{ path: "/article/" + item.article_id }'>{{ item.title
+            }}</router-link>
           </p>
           <p v-if="!istrue">
             {{ item.content }}...
@@ -56,7 +56,7 @@ export default {
             const data = {
               username: localStorage.getItem('Username'),
               articleid: artid,
-              actmenthos: 'goodnum'
+              type: 'goodnum'
             }
             const { data: res } = await delAction.UserActive(data)
             this.$toast({
@@ -76,7 +76,7 @@ export default {
             const data = {
               username: localStorage.getItem('Username'),
               articleid: artid,
-              actmenthos: 'collect'
+              type: 'collect'
             }
             const { data: res } = await delAction.UserActive(data)
             if (res.status === 200) {
@@ -96,9 +96,10 @@ export default {
             const data = {
               id: id,
               username: localStorage.getItem('Username'),
-              article_id: artid
+              articleid: artid,
+              type: 'delcomment'
             }
-            const { data: res } = await delAction.UserActiveDel(data)
+            const { data: res } = await delAction.UserActive(data)
             if (res.status === 200) {
               this.$toast({
                 message: '删除评论成功',
@@ -181,4 +182,5 @@ export default {
   padding: 5px 5px 15px;
   border-radius: 5px;
   overflow: overlay;
-}</style>
+}
+</style>

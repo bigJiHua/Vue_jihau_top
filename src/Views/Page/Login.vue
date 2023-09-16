@@ -31,19 +31,19 @@ import PostLogin from '../../API/Ctrl_menuAPI/LoginAPI'
 export default {
   data () {
     return {
-      username: 'JiHua',
-      password: '58239641ok.com',
+      username: '',
+      password: '',
       loading: false,
       show: false,
       msg: '正在登录',
       setTime: 2000,
       rules: {
         username: {
-          rule: /^\S/,
-          msg: '用户名不能为空!且长度为6-12位'
+          rule: /^(?=(.*[a-zA-Z].*))(?=(.*\d.*))[\w]{5,12}$|^(?=(.*[a-zA-Z].*))(?=(.*_.*))[\w]{5,12}$|^(?=(.*\d.*))(?=(.*_.*))[\w]{5,12}$|^(?=.*[a-zA-Z\d_].*[a-zA-Z\d_])[\w]{5,12}$/,
+          msg: '用户名不能为空!且长度为5-12位'
         },
         password: {
-          rule: /^\S/,
+          rule: /^[^\u4e00-\u9fa5]{6,30}$/,
           msg: '密码不能为空!且长度为6-12位'
         }
       }

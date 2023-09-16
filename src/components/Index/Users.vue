@@ -70,10 +70,12 @@ export default {
 }
 
 .author_logobox {
-  width: 80px;
-  height: 80px;
+  height: 100px;
+  width: 100px;
+  padding: 15px 10px;
   border-radius: 50%;
   overflow: hidden;
+  background-color: rgba(220, 220, 220, 0.8);
 }
 
 .author_logo {

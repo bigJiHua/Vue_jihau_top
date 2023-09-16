@@ -128,7 +128,7 @@ export default {
           const data = {
             username: localStorage.getItem('Username'),
             articleid: artid,
-            actmenthos: 'goodnum'
+            type: 'goodnum'
           }
           const { data: res } = await UserAction.UserActive(data)
           this.$toast({
@@ -165,7 +165,7 @@ export default {
           const data = {
             username: localStorage.getItem('Username'),
             articleid: artid,
-            actmenthos: 'collect'
+            type: 'collect'
           }
           const { data: res } = await UserAction.UserActive(data)
           this.$toast({
@@ -213,7 +213,7 @@ export default {
             const data = {
               username: localStorage.getItem('Username'),
               articleid: artid,
-              actmenthos: 'comment',
+              type: 'comment',
               comment: comtxt
             }
             const { data: res } = await UserAction.UserActive(data)
@@ -294,6 +294,7 @@ export default {
     justify-content: space-between;
     width: 80vw;
     margin: 20px auto;
+    max-width: 1200px;
   }
 
   .leftContent {

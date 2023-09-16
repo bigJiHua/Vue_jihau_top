@@ -3,11 +3,9 @@
     <div class="document_author_introduce">
       <div class="phone_Viewset">
         <div class="author_logobox">
-          <div class="author_logoset">
-            <a href="http://me.jihau.top">
-              <img src="https://www.jihau.top/img/logo.png" class="author_logo" alt="logo" />
-            </a>
-          </div>
+          <a href="http://me.jihau.top">
+            <img src="https://www.jihau.top/img/logo.png" class="author_logo" alt="logo" />
+          </a>
         </div>
         <div class="author_name coker">
           <a href="http://me.jihau.top">JiHua</a>
@@ -41,7 +39,24 @@ export default {
 <style lang="less" scoped>
 .phone_Viewset {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.author_logobox {
+  height: 100px;
+  width: 100px;
+  padding: 15px 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: rgba(220, 220, 220, 0.8);
+}
+
+.author_logo {
+  width: 100%;
+  height: 100%;
 }
 
 @media only screen and (min-width: 755px) {
@@ -51,23 +66,6 @@ export default {
     border-radius: 11px 11px 0 0;
     background-color: rgba(240, 243, 246, 0.5);
     padding: 20px;
-  }
-
-  .author_logobox {
-    margin: 10px 0 0 1.5vw;
-  }
-
-  .author_logoset {
-    padding: 10px 8px;
-    border-radius: 50px;
-    width: 80px;
-    height: 80px;
-    background-color: rgba(220, 221, 221, 0.884);
-  }
-
-  .author_logo {
-    width: 60px;
-    height: 55px;
   }
 
   .author_name {
@@ -116,23 +114,6 @@ export default {
     padding: 20px;
   }
 
-  .author_logobox {
-    margin: 10px 0 0 1.5vw;
-  }
-
-  .author_logoset {
-    padding: 10px 8px;
-    border-radius: 50px;
-    width: 80px;
-    height: 80px;
-    background-color: rgba(220, 221, 221, 0.884);
-  }
-
-  .author_logo {
-    width: 60px;
-    height: 55px;
-  }
-
   .author_name {
     padding: 8px;
   }
@@ -168,4 +149,5 @@ export default {
   .introduce_doc>p:nth-child(3) {
     text-indent: 3.6rem;
   }
-}</style>
+}
+</style>

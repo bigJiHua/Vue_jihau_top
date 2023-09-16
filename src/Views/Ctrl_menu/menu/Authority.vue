@@ -13,7 +13,6 @@
         <tr v-for="(item, index) in Userinfo.list" :key="index">
           <td style="text-align: center;" class="tdval">{{ item.id }}</td>
           <td class="tdval">{{ item.username }}</td>
-          <td class="tdval">{{ item.nickname }}</td>
           <td class="tdval">{{ item.useridentity }}</td>
           <td class="tdval">{{ item.email }}</td>
           <td class="tdval">{{ item.sex }}</td>
@@ -26,10 +25,6 @@
           <td class="tdval">{{ item.state | state(item.state) }}</td>
           <td class="tdval">
             <van-button color="#1989FA" size="small" class="tdbtn" @click="cagUser(item)">编辑</van-button>
-            <van-button type="danger" size="small" class="tdbtn"
-              @click="delUser(item.username, item.useridentity, item.state)">
-              {{ item.state | btnstate(item.state) }}
-            </van-button>
           </td>
         </tr>
       </tbody>
@@ -46,7 +41,6 @@
 
 <script>
 import Userinfo from '@/API/main/GetUserInfo'
-import GetUData from '@/API/Ctrl_menuAPI/UserData'
 import CagUserData from '@/Views/Ctrl_menu/menu/Authority_elpage/cagUserData.vue'
 
 export default {
@@ -56,7 +50,6 @@ export default {
       Userinfo: {
         thead: [
           'id',
-          '用户',
           '用户名',
           '用户身份',
           '邮箱',
@@ -115,34 +108,6 @@ export default {
     cagUser (user) {
       this.cagUdata.cagArea = true
       this.cagUdata.item = user
-    },
-    async delUser (deluser, useridtity, state) {
-      const condel = confirm('确认注销该账户吗？')
-      if (condel) {
-        if (state !== 1) {
-          if (
-            localStorage.getItem('Useridentity') === 'manager' &&
-            useridtity === 'manager'
-          ) {
-            const user = localStorage.getItem('Username')
-            const { data: res } = await GetUData.DelUser(user, deluser)
-            this.$toast({
-              message: res.message,
-              position: 'top'
-            })
-          } else {
-            this.$toast({
-              message: '您不能注销管理员的账号',
-              position: 'top'
-            })
-          }
-        } else {
-          this.$toast({
-            message: '用户已注销，请勿重复操作',
-            position: 'top'
-          })
-        }
-      }
     },
     toge (val) {
       this.cagUdata.cagArea = val

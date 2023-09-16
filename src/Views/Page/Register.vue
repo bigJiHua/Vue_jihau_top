@@ -16,42 +16,8 @@
             v-model="elsepassword" />
           <p class="newuser">邮箱:<small class="wran">⚠必填</small></p>
           <input type="email" class="form-control login_input" placeholder="请输入你的邮箱" required v-model="newUser.email" />
-          <p class="newuser">生日:</p>
-          <input type="date" class="select" v-model="newUser.birthday" />
-          <p class="newuser">性别:</p>
-          <p>
-            <label class="radio-inline selectsex">
-              <input type="radio" name="sex" value="男" v-model="newUser.sex" />男
-            </label>
-            <label class="radio-inline selectsex">
-              <input type="radio" name="sex" value="女" v-model="newUser.sex" />女
-            </label>
-          </p>
-          <p class="newuser">城市:</p>
-          <p class="selectcity">
-            <input class="form-control select_city" v-model="newUser.city" placeholder="输入或者右方选择" />
-            <select name="" class="form-control select_city" v-model="newUser.city">
-              <option v-for="(item, index) in city" :key="index">
-                {{ item }}
-              </option>
-            </select>
-          </p>
-          <p class="newuser">个性签名:</p>
-          <textarea class="usercontent form-control" v-model="newUser.user_content" maxlength="255"></textarea>
-          <p class="newuser" @click="up_pic">头像</p>
-          <van-button @click="up_pic">上传头像</van-button>
-          <van-overlay :show="showup" @click="showup = false">
-            <div class="wrapper" @click.stop>
-              <div class="cagarea">
-                <h1>上传头像</h1>
-                <input type="file" accept="image/*" ref="imgfile" class="fileup" @click="up_pic" />
-                <van-button @click="
-                up_pic">确认上传头像</van-button>
-              </div>
-            </div>
-          </van-overlay>
           <div class="btnmenu">
-            <button @click="comback" class="res-btn">返回</button>
+            <button @click="comeback" class="res-btn">返回</button>
             <van-button loading type="primary" loading-text="注册中..." v-show="loading" />
             <button @click="newuser" v-show="!loading" class="res-btn">注册</button>
           </div>
@@ -75,22 +41,8 @@ export default {
       newUser: {
         username: '',
         password: '',
-        email: '',
-        birthday: '',
-        sex: '',
-        city: '',
-        user_content: '',
-        user_pic: ''
+        email: ''
       },
-      city: [
-        '北京',
-        '上海',
-        '天津',
-        '重庆',
-        '深圳',
-        '武汉',
-        '长沙'
-      ],
       rules: {
         username: {
           rule: /^\w{6,12}$/,
@@ -108,50 +60,31 @@ export default {
     }
   },
   methods: {
-    up_pic () {
-      this.showup = !this.showup
-      const picfile = this.$refs.imgfile
-      const _this = this
-      picfile.addEventListener(
-        'change',
-        function () {
-          // 当没选中图片时，清除预览
-          if (this.files.length === 0) {
-            _this.newUser.user_pic = ''
-            return
-          }
-          // 实例化一个FileReader
-          const reader = new FileReader()
-          reader.onload = function (e) {
-            _this.newUser.user_pic = e.target.result
-            _this.$toast({
-              message: '上传成功',
-              position: 'top'
-            })
-          }
-          reader.readAsDataURL(this.files[0])
-        },
-        false
-      )
-    },
     async newuser () {
-      this.loading = !this.loading
+      // 异步操作，设置loading为true
+      this.loading = true
+      // 如果用户名、密码、邮箱都有值，判断密码是否一致
       if (this.validata('username')) {
         if (this.validata('password')) {
           if (this.newUser.password === this.elsepassword) {
             if (this.validata('email')) {
+              // 发送post请求，更新用户信息
               const { data: res } = await PostNewUser.UpnewUser(this.newUser)
+              // 设置定时器，每100ms更新一次
               const timer = setInterval(() => {
                 this.show = true
                 this.msg = res.message
               }, 100)
+              // 设置定时器，每2秒更新一次
               setTimeout(() => {
-                this.loading = !this.loading
+                this.loading = false
                 clearInterval(timer)
                 this.show = false
                 this.loading = false
+                // 如果响应状态码为200，则跳转到登录页面
                 if (res.status === 200) {
                   this.$router.push('/Login')
+                // 如果响应状态码不为202，则设置验证码，跳转到检查验证码页面
                 } else if (res.status !== 202) {
                   localStorage.setItem('VerCode', res.data.code)
                   localStorage.setItem('Username', res.data.user)
@@ -183,7 +116,7 @@ export default {
         this.loading = false
       }, 2000)
     },
-    comback () {
+    comeback () {
       this.$dialog
         .confirm({
           message: '放弃注册吗？'
@@ -201,20 +134,18 @@ export default {
 
 <style scoped>
 #logonCon {
-  position: fixed;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  overflow: scroll;
 }
 
 @media only screen and (min-width: 755px) {
   .login_conten_box {
-    margin: 20vh auto;
     width: 60vw;
     background-color: rgba(244, 244, 244, 0.4);
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .user_input_eara {
@@ -251,11 +182,14 @@ export default {
 
 @media only screen and (max-width: 755px) {
   .login_conten_box {
-    margin: 10px 20px;
-    min-height: 1000px;
+    width: 80vw;
     background-color: rgba(244, 244, 244, 0.4);
     border-radius: 12px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top:45vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .user_input_eara {

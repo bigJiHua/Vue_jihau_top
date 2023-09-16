@@ -3,7 +3,7 @@ import { app } from '@/main'
 import { Toast } from 'vant'
 
 const request = axios.create({
-  baseURL: 'http://192.168.0.110:666/api',
+  baseURL: 'http://192.168.0.103:666/api',
   timeout: 5000
 })
 
@@ -17,14 +17,13 @@ request.interceptors.request.use((config) => {
   Toast({ position: 'top', message: error })
   return Promise.reject(error)
 })
-
 // 添加响应拦截器
 request.interceptors.response.use(response => {
   const { data: res } = response
   if (res.status === 401) {
     localStorage.removeItem('token')
     localStorage.removeItem('UserData')
-    app.$router.push('/Login')
+    app.$router.push('/')
     location.reload()
   }
   Toast({ position: 'top', message: res.message })

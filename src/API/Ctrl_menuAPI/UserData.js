@@ -22,18 +22,11 @@ const DelUser = function (user, deluser) {
   return request.get('/users/delUser?user=' + user + '&deluser=' + deluser)
 }
 // 修改用户信息
-const CagUserData = function (data) {
+const CagUserData = function (userId, data) {
   const params = new URLSearchParams()
-  params.append('id', data.id)
-  params.append('birthday', data.birthday)
-  params.append('city', data.city)
-  params.append('email', data.email)
-  params.append('nickname', data.nickname)
-  params.append('sex', data.sex)
-  params.append('user_content', data.user_content)
-  params.append('user_pic', data.user_pic)
-  params.append('username', data.username)
-  return request.patch('/users/cagUser', params)
+  params.append('user_id', userId)
+  params.append('setData', JSON.stringify(data))
+  return request.patch('/users/cagUser', params.toString())
 }
 // 修改密码
 const CagPassword = function (oldpwd, newpwd) {

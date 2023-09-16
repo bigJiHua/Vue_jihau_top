@@ -65,6 +65,8 @@ export default {
   padding: 0;
   margin: 0;
 }
+#app {
+}
 
 .isBgc {
   background-color: #f7f7f7;

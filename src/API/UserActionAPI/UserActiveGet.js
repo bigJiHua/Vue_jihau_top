@@ -1,16 +1,15 @@
 import request from '../request'
 // 进行点赞 收藏 评论
 const UserActive = function (data) {
+  console.log(data)
   const params = new URLSearchParams()
   params.append('username', data.username)
   params.append('articleid', data.articleid)
-  params.append('actmenthos', data.actmenthos)
-  if (data.comment) {
-    if (data.comment.length) {
-      params.append('comment', data.comment)
-    }
+  params.append('type', data.type)
+  if (data.comment && data.comment.length) {
+    params.append('comment', data.comment)
   }
-  return request.get('/users/action', { params })
+  return request.post('/users/action', params)
 }
 // 获取点赞 收藏 评论
 const UserActivedata = function (user) {

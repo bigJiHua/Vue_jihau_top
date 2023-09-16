@@ -44,7 +44,7 @@ export default {
   .CtrlView {
     display: flex;
     width: 100%;
-    height: 90vh;
+    height: calc(100vh - 55px);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
