@@ -10,16 +10,11 @@ const UpnewUser = function (userdata) {
   params.append('username', userdata.username)
   params.append('password', userdata.password)
   params.append('email', userdata.email)
-  params.append('birthday', userdata.birthday ? userdata.birthday : '')
-  params.append('sex', userdata.sex ? userdata.sex : '男')
-  params.append('city', userdata.city ? userdata.city : '')
-  params.append('user_content', userdata.user_content ? userdata.user_content : '')
-  params.append('user_pic', userdata.user_pic ? userdata.user_pic : '')
   return request.post('/my/reguser', params)
 }
 // 删除用户
-const DelUser = function (user, deluser) {
-  return request.get('/users/delUser?user=' + user + '&deluser=' + deluser)
+const DelUser = function () {
+  return request.get('/users/delUser')
 }
 // 修改用户信息
 const CagUserData = function (userId, data) {

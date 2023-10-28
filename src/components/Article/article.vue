@@ -5,20 +5,29 @@
       <div class="leftContent">
         <h1 v-show="goodpage" style="text-align: center">404 NOT FOUNT</h1>
         <div v-show="!goodpage">
+          <h1>{{ ArticleData.article.title }}</h1>
+          <div class="artData">
+            <div>
+              {{ ArticleData.article.username }}
+            </div>
+            <div>
+              <van-icon name="eye-o" />
+              <span style="margin-left: 5px;">{{ ArticleData.article.read_num }}</span>
+            </div>
+            <div>
+              <van-icon name="clock-o" />
+              <span style="margin-left: 5px;">{{ ArticleData.article.pub_date }}</span>
+            </div>
+          </div>
           <div class="content">
             <p v-html="ArticleData.article.content" v-highlight></p>
           </div>
           <div class="tabmenu">
-            <ul>
-              <li v-for="(item, index) in tab" :key="index">{{ item }}</li>
-            </ul>
-            <ul>
-              <li>{{ ArticleData.article.title }}</li>
-              <li>{{ ArticleData.article.username }}</li>
-              <li>{{ ArticleData.article.pub_date }}</li>
-              <li>{{ ArticleData.article.lable }}</li>
-              <li>{{ ArticleData.article.read_num }}</li>
-            </ul>
+            <div>
+              标签：
+              <van-tag plain type="primary" class="lableTag" v-for="(item, index) in ArticleData.article.lable"
+                :key="index">{{ item }}</van-tag>
+            </div>
           </div>
           <div class="btn_active">
             <van-button type="info" class="goodnum" @click="goodnum(ArticleData.article.article_id)">
@@ -54,7 +63,7 @@
           </div>
         </div>
       </div>
-      <RightM></RightM>
+      <autorPanel></autorPanel>
       <Login @close="close" v-if="this.showLogin"></Login>
     </div>
   </div>
@@ -64,11 +73,11 @@
 import getArticle from '@/API/indexAPI/getArticle'
 import UserAction from '@/API/UserActionAPI/UserActiveGet'
 import Login from './ArticleLogin/ArticleLogin.vue'
+import autorPanel from './autorPanel.vue'
 export default {
   props: ['isdemo'],
   data () {
     return {
-      tab: ['标题：', '作者：', '时间：', '标签：', '阅读数：'],
       Active: {
         goodnum: false,
         collect: false,
@@ -102,6 +111,8 @@ export default {
         this.ArticleData.commont = res.data.comment
         this.Move.goodnum = res.data.acgoodnum
         this.Move.collect = res.data.accollect
+        this.ArticleData.article.lable = res.data.article.lable.split('、')
+        this.$store.commit('setAuthorName', res.data.article.username)
         // 5秒后请求增加阅读数
         setTimeout(async () => {
           await getArticle.UpdatedReadNum(id)
@@ -269,11 +280,21 @@ export default {
     }
   },
   name: 'ArticleM',
-  components: { Login }
+  components: { Login, autorPanel }
 }
 </script>
 
 <style lang="less" scoped>
+.artData {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+
+  >div {
+    margin-left: 15px;
+  }
+}
+
 .article {
   word-wrap: break-word;
   position: relative;
@@ -295,6 +316,7 @@ export default {
     width: 80vw;
     margin: 20px auto;
     max-width: 1200px;
+    min-height: 100vh;
   }
 
   .leftContent {
@@ -382,5 +404,10 @@ export default {
       text-align: right;
     }
   }
+}
+
+.lableTag {
+  display: inline-block;
+  margin-right: 10px;
 }
 </style>

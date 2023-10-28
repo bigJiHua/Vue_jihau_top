@@ -23,9 +23,13 @@ const UserActiveDel = function (data) {
   params.append('article_id', data.article_id)
   return request.get('/users/delact', { params })
 }
-
+// 文章页面获取作者信息
+const getAuthData = function (user) {
+  return request.get('/data/authData?user=' + user)
+}
 export default {
   UserActive,
   UserActivedata,
-  UserActiveDel
+  UserActiveDel,
+  getAuthData
 }

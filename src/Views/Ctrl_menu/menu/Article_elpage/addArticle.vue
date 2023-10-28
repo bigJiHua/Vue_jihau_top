@@ -158,6 +158,7 @@ export default {
     async getimg () {
       this.$refs.imageM.toge()
     },
+    // 随机生成中文字
     generateChineseCharacters (Num) {
       let characters = ''
       const totalCharacters = Num
@@ -167,6 +168,7 @@ export default {
       }
       return characters
     },
+    // 开始刷文章
     startEditiPost () {
       this.OpenEditiPost = setInterval(async () => {
         this.newArticleData.username = localStorage.getItem('Username')

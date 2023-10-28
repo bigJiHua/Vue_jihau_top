@@ -16,7 +16,7 @@
       </ul>
       <div class="upload">
         <h3>上传文件</h3>
-        <input type="file" accept="image/*" ref="imgfile" class="fileup" @click="up_pic" />
+        <input type="file" accept="image/*" ref="imgfile" class="fileup" @change="up_pic" />
         <van-button @click="upPicrequest">上传</van-button>
         <p>
           <strong>⚠如果没反应或者未提示上传成功消息，请重新上传</strong>
@@ -28,6 +28,7 @@
 
 <script>
 import setdata from '@/API/Ctrl_menuAPI/getPicAPI'
+import Compressor from 'compressorjs'
 
 export default {
   data () {
@@ -40,6 +41,19 @@ export default {
     }
   },
   methods: {
+    // 压缩
+    async compressor (file, quality) {
+      return new Promise(resolve => {
+        // eslint-disable-next-line no-new
+        new Compressor(file, {
+          quality: quality,
+          success: resolve,
+          error (err) {
+            console.log(err.message)
+          }
+        })
+      })
+    },
     async getimg () {
       const usdata = {
         picusername: localStorage.getItem('Username')
@@ -47,13 +61,19 @@ export default {
       const { data: res } = await setdata.getImage(usdata)
       this.Article.img = res.data
     },
-    up_pic () {
+    async up_pic () {
       const picfile = this.$refs.imgfile
-      picfile.addEventListener('change', async (e) => {
-        const file = e.target.files[0]
-        this.fileData = file
+      const file = picfile.files[0]
+      let qNum = 0
+      if (file.size > 1024 * 1024) {
+        qNum = 0.4
+      } else {
+        qNum = 0.6
+      }
+      this.fileData = await this.compressor(file, qNum)
+      if (this.fileData !== '') {
         this.upPicrequest()
-      })
+      }
     },
     async upPicrequest () {
       if (!this.fileData) return
@@ -74,12 +94,10 @@ export default {
         id: id
       }
       if (condel) {
-        const { data: res } = await setdata.delImage(data)
-        if (res.status === 200) {
-          setTimeout(() => {
-            this.getimg()
-          }, 800)
-        }
+        await setdata.delImage(data)
+        setTimeout(() => {
+          this.getimg()
+        }, 1000)
       }
     },
     toge () {

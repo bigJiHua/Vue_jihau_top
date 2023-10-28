@@ -16,7 +16,8 @@ export default new Vuex.Store({
       ArchiveListData: [],
       YearListData: []
     },
-    LunBoList: []
+    LunBoList: [],
+    authorName: ''
   },
   mutations: {
     // 修改文章
@@ -33,6 +34,10 @@ export default new Vuex.Store({
     },
     cagImgUrl (state, url) {
       state.imgurl = url
+    },
+    // 设置文章作者
+    setAuthorName (state, name) {
+      state.authorName = name
     },
     // 首页文章
     setArticle (state, ArticleData) {

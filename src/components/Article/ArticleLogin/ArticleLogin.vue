@@ -81,7 +81,6 @@ export default {
                 this.show = false
                 this.loading = false
                 this.close()
-                location.reload()
               }, this.setTime)
             } else {
               this.showPopup(res.message)

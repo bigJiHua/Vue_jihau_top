@@ -1,6 +1,6 @@
 <template>
   <div id="" class="right_box">
-    <AboutM ref="RightMoudle"></AboutM>
+    <Users ref="RightMoudle"></Users>
     <div :class="['icpArea', { icpAreatop: istop }]" ref="RightArea">
       <Notify></Notify>
       <ArtList></ArtList>
@@ -11,7 +11,7 @@
 
 <script>
 import Footer from '@/layout/FooterBar/Footer.vue'
-import AboutM from '@/components/Index/AboutM.vue'
+import Users from '@/components/Index/Users.vue'
 import Notify from '@/components/Index/Notify.vue'
 
 export default {
@@ -47,7 +47,7 @@ export default {
   name: 'RightBox',
   components: {
     Footer,
-    AboutM,
+    Users,
     Notify
   }
 }

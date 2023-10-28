@@ -1,51 +1,82 @@
 <template>
-  <div id="" class="UserArea" v-if="JSON.stringify(this.$store.state.Userdata) !== '{}'">
-    <!-- 用户头像区域 用户名 -->
-    <div class="phone_Viewset">
-      <div class="author_logobox">
-        <img :src="this.$store.state.Userdata.Users.user_pic" class="author_logo" alt="logo" />
+  <div id="" class="UserArea" v-if="this.$store.state.authorName !== ''">
+    <!-- 背景板 -->
+    <div class="background">
+      <!-- 背景板 -->
+      <div class="image">
       </div>
-      <div class="author_name coker">
-        <router-link to="/CtrlView/Users">{{ this.$store.state.Userdata.Users.username }}</router-link>
+      <!-- logo -->
+      <div class="authorLogo" v-if="Users.user_pic">
+        <img :src="Users.user_pic" alt="logo" class="logo">
+      </div>
+      <div class="username">
+        <router-link :to="'/space/' + Users.username">{{ Users.username }}</router-link>
       </div>
     </div>
-    <!-- 用户文章信息 -->
-    <div class="UserArticle">
-      <div>
-        <div class="PageItem">
-          <p class="panel_item_title">文章</p>
-          <router-link to="/ArticleIndex" class="panel_Count">{{ $store.state.Userdata.articles }}</router-link>
-        </div>
-        <div class="PageItem">
-          <p class="panel_item_title">点赞</p>
-          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.goodnums }}</router-link>
-        </div>
+    <!-- 数据展示 -->
+    <div class="dataNum">
+      <div class="showNumDataItem">
+        <p class="Num">{{ Userdata.articles }}</p>
+        <p class="NumText">文章数</p>
       </div>
-      <div>
-        <div class="PageItem">
-          <p class="panel_item_title">收藏</p>
-          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.collects }}</router-link>
-        </div>
-        <div class="PageItem">
-          <p class="panel_item_title">评论</p>
-          <router-link to="/CtrlView/Collection" class="panel_Count">{{ $store.state.Userdata.comments }}</router-link>
-        </div>
+      <div class="showNumDataItem">
+        <p class="Num">{{ Userdata.collects }}</p>
+        <p class="NumText">收藏数</p>
+      </div>
+      <div class="showNumDataItem">
+        <p class="Num">{{ Users.fans }}</p>
+        <p class="NumText">粉丝数</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import getAuthorApi from '@/API/UserActionAPI/UserActiveGet'
 export default {
   props: [],
   data () {
     return {
-      token: localStorage.getItem('token') !== null
+      token: localStorage.getItem('token') !== null,
+      Users: {
+        fans: 0,
+        user_content: '',
+        user_id: '',
+        user_pic: '',
+        useridentity: '',
+        username: ''
+      },
+      Userdata: {
+        articles: 0,
+        goodnums: 0,
+        collects: 0,
+        comments: 0
+      },
+      get: ''
     }
   },
   created () {
+    this.get = setInterval(() => {
+      if (this.$store.state.authorName !== '') {
+        this.getAuthorData()
+      }
+      clearInterval(this.get)
+    }, 200)
   },
   methods: {
+    async getAuthorData () {
+      const { data: res } = await getAuthorApi.getAuthData(this.$store.state.authorName)
+      this.Users.fans = res.data.Users.fans
+      this.Users.user_content = res.data.Users.user_content
+      this.Users.user_id = res.data.Users.user_id
+      this.Users.user_pic = res.data.Users.user_pic
+      this.Users.useridentity = res.data.Users.useridentity
+      this.Users.username = res.data.Users.username
+      this.Userdata.articles = res.data.articles
+      this.Userdata.goodnums = res.data.goodnums
+      this.Userdata.collects = res.data.collects
+      this.Userdata.comments = res.data.comments
+    }
   },
   watch: {},
   computed: {},
@@ -61,109 +92,85 @@ export default {
   border-radius: 5px;
 }
 
-.phone_Viewset {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
+.background {
+  height: 250px;
+  width: 100%;
+  position: relative;
 }
 
-.author_logobox {
-  height: 100px;
-  width: 100px;
-  padding: 15px 10px;
+.image {
+  height: 60%;
+  border-radius: 5px 5px 0 0;
+  background-color: #ECF4FD;
+  color: #1c1c1c;
+  text-align: center;
+  white-space: break-spaces;
+  padding: 15px;
+}
+
+.image::after {
+  content: "⁶⁶ ⁶⁶⁶⁶⁶⁶   ⁶⁶66⁶⁶⁶⁶   ₆₆₆₆  可以啊.这 波  ₆₆₆₆ ⁶⁶⁶⁶⁶  ⁶⁶⁶⁶⁶⁶⁶  ⁶⁶⁶⁶⁶⁶⁶  66⁶⁶⁶⁶ 卧槽⁶⁶⁶⁶⁶⁶  ⁶⁶⁶⁶⁶⁶⁶ 666₆₆₆₆ ₆₆₆ 666 666 ⁶⁶⁶⁶ ⁶⁶₆₆₆ ₆₆₆₆⁶⁶⁶⁶⁶ ⁶⁶⁶⁶ ⁶⁶⁶⁶⁶⁶ ⁶⁶⁶⁶ ⁶⁶⁶⁶";
+}
+
+.authorLogo {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  padding: 30px;
   border-radius: 50%;
-  overflow: hidden;
-  background-color: rgba(220, 220, 220, 0.8);
+  background-color: #e3e3e364;
+  border: 1px gray inset;
 }
 
-.author_logo {
+.logo {
   width: 100%;
   height: 100%;
 }
 
-@media only screen and (min-width: 755px) {
-  .author_name {
-    padding: 8px;
-  }
+.username {
+  text-align: center;
+  margin-top: 65px;
+  font-size: 2.5rem;
 
-  .author_name>a {
-    color: rgb(251, 114, 153);
-    font-size: 5.5rem;
-  }
-
-  .author_name>a:hover {
-    color: rgb(251, 114, 153);
-    text-decoration: none;
-  }
-  .PageItem {
-    padding: 5px;
+  >a {
+    color: #1c1c1c;
   }
 }
 
-@media only screen and (max-width: 755px) {
-  .author_name {
-    padding: 8px;
-  }
-
-  .author_name>a {
-    color: rgb(251, 114, 153);
-    font-size: 5.5rem;
-  }
-
-  .author_name>a:hover {
-    color: rgb(251, 114, 153);
-    text-decoration: none;
-  }
-  .PageItem {
-    padding: 10px;
-  }
-}
-
-.UserArticle {
+.dataNum {
   display: flex;
-  .PageItem {
-    margin: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 65px;
-    flex: 1;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-      rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-    border-radius: 8px;
-  }
-  .panel_item_title {
-    text-align: center;
-    font-size: 2.4rem;
-    font-weight: 430;
-    margin: 8px;
-  }
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 
-  >div {
-    flex: 1;
-  }
+  .showNumDataItem {
+    margin: 0 15px;
 
-  >div>div:hover {
-    background-color: rgba(240, 243, 246, 0.7);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-      rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-    border-radius: 8px;
+    >p:first-child {
+      font-size: 2rem;
+      font-weight: 600;
+    }
 
-    >.panel_item_title {
-      font-weight: bolder;
+    >p:last-child {
+      color: rgba(146, 146, 146, 0.82);
+      font-size: 1.8rem;
+      font-weight: 300;
     }
   }
 }
 
-.panel_Count {
-  text-align: center;
-  font-size: 2.2rem;
-  display: block;
+.UserActionArea {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  >div>button {
+    margin: 25px;
+  }
 }
 </style>

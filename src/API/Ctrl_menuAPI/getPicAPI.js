@@ -6,7 +6,7 @@ const getImage = function (data) {
 // 上传图片
 const upImage = function (file, user) {
   const formData = new FormData()
-  formData.append('file', file)
+  formData.append('file', file, file.name)
   formData.append('username', user)
   return request.post('/article/upimg/', formData, {
     headers: {
