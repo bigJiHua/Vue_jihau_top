@@ -1,6 +1,8 @@
 <template>
   <div id="" class="right_box">
-    <Users ref="RightMoudle"></Users>
+    <div ref="RightMoudle">
+      <Users></Users>
+    </div>
     <div :class="['icpArea', { icpAreatop: istop }]" ref="RightArea">
       <Notify></Notify>
       <ArtList></ArtList>

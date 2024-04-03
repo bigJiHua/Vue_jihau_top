@@ -63,17 +63,20 @@ export default {
     window.removeEventListener('resize', this.updateDimensions)
   },
   methods: {
+    // 获取宽高分辨率
     updateDimensions () {
       this.viewportWidth = window.innerWidth
       this.viewportHeight = window.innerHeight
       this.pixelRatio = window.devicePixelRatio
     },
+    // 关闭组件
     hideDimensions () {
       if (this.neverShow) {
         localStorage.setItem('hideDimensions', 'true')
       }
       this.showDimensions = false
     },
+    // 永远不显示
     checkNeverShow () {
       const hideDimensions = localStorage.getItem('hideDimensions')
       if (hideDimensions === 'true') {

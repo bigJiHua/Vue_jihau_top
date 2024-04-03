@@ -11,6 +11,12 @@
           </div>
         </div>
       </div>
+      <div class="countpage">
+        <van-button @click="updo('up')">上一页</van-button>
+        <span>第{{ page }}页</span>&nbsp;
+        <span>共{{ ALLNum | lengthcount(this.ALLNum) }}页</span>
+        <van-button @click="updo('next')">下一页</van-button>
+      </div>
       <Footer></Footer>
     </div>
   </div>
@@ -23,21 +29,54 @@ export default {
   props: [],
   data () {
     return {
-      notifyList: []
+      notifyList: [],
+      page: 1,
+      ALLNum: 0,
+      n: 0
     }
   },
   created () {
-    this.getDevP()
+    this.getDevP(0)
   },
   methods: {
-    async getDevP () {
-      const { data: res } = await getNotifyAPI.getNotifyList()
+    async getDevP (num) {
+      const { data: res } = await getNotifyAPI.getNotifyList(num)
       this.notifyList = res.data
+      this.ALLNum = res.Num
+    },
+    updo (mes) {
+      if (mes === 'up') {
+        if (this.n === 0) {
+          this.$toast({
+            message: '这就是第一页！',
+            position: 'top'
+          })
+        } else {
+          this.page -= 1
+          this.n -= 20
+          this.getDevP(this.n)
+        }
+      } else if (mes === 'next') {
+        if (this.page === Math.ceil(this.ALLNum / 20)) {
+          this.$toast({
+            message: '已经是最后一页了!',
+            position: 'top'
+          })
+          return
+        }
+        this.page += 1
+        this.n += 20
+        this.getDevP(this.n)
+      }
     }
   },
   computed: {
   },
-  filters: {},
+  filters: {
+    lengthcount (le) {
+      return Math.ceil(le / 20)
+    }
+  },
   name: 'NotifyPage',
   components: {
     Footer
@@ -132,5 +171,12 @@ export default {
     background-color: rgb(#C9D5E9);
   }
 
+}
+
+.countpage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

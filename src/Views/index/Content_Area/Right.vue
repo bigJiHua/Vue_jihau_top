@@ -1,6 +1,8 @@
 <template>
   <div id="" class="right_box">
-    <AboutM ref="RightMoudle"></AboutM>
+    <div ref="RightMoudle">
+      <AboutM></AboutM>
+    </div>
     <div :class="['icpArea', { icpAreatop: istop }]" ref="RightArea">
       <Notify></Notify>
       <ArtList></ArtList>
@@ -35,9 +37,10 @@ export default {
         const docWidth = document.body.clientWidth || document.body.offsetWidth || document.body.scrollWidth
         if (docWidth > 970) {
           if (scrollTop >= boxHeight.clientHeight) {
+            console.log(1)
             this.istop = true
-          }
-          if (scrollTop <= boxHeight.clientHeight) {
+          } else if (scrollTop <= boxHeight.clientHeight) {
+            console.log(2)
             this.istop = false
           }
         }

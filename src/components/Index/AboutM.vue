@@ -51,7 +51,7 @@ export default {
   padding: 15px 10px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: rgba(220, 220, 220, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .author_logo {
@@ -64,8 +64,9 @@ export default {
   /* 右侧作者设置 */
   .document_author_introduce {
     border-radius: 11px 11px 0 0;
-    background-color: rgba(240, 243, 246, 0.5);
+    background-color: rgb(255, 255, 255);
     padding: 20px;
+    box-shadow: 1px 1px 10px 4px rgba(0,0,0,.1);
   }
 
   .author_name {
@@ -110,8 +111,9 @@ export default {
   /* 右侧作者设置 */
   .document_author_introduce {
     border-radius: 11px 11px 0 0;
-    background-color: rgba(240, 243, 246, 0.8);
+    background-color: white;
     padding: 20px;
+    box-shadow: 1px 1px 10px 4px rgba(0,0,0,.1);
   }
 
   .author_name {

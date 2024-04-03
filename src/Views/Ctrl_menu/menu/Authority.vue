@@ -97,6 +97,10 @@ export default {
           this.n -= 5
           this.page -= 1
           this.getUserinfo(this.n)
+          this.$toast({
+            message: '已经是最后一页了!',
+            position: 'top'
+          })
         }
       } else {
         this.$toast({
@@ -125,6 +129,13 @@ export default {
           this.getUserinfo(this.n)
         }
       } else if (mes === 'next') {
+        if (this.page === Math.ceil(this.length / 5)) {
+          this.$toast({
+            message: '已经是最后一页了!',
+            position: 'top'
+          })
+          return
+        }
         this.page += 1
         this.n += 5
         this.getUserinfo(this.n)

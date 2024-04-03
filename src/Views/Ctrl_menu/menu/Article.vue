@@ -38,7 +38,9 @@ export default {
 
 <style lang="less" scoped>
 .Article {
-  padding: 20px;
+  height: calc(100vh - 50px);
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .minheader {

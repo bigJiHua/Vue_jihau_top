@@ -49,7 +49,10 @@ export default {
           quality: quality,
           success: resolve,
           error (err) {
-            console.log(err.message)
+            this.$toast({
+              message: err.message,
+              position: 'top'
+            })
           }
         })
       })

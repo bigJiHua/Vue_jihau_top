@@ -20,7 +20,6 @@
           </div>
         </div>
       </div>
-      <van-popup v-model="show" round class="popup">{{ msg }}</van-popup>
     </div>
   </div>
 </template>
@@ -34,8 +33,6 @@ export default {
       username: '',
       password: '',
       loading: false,
-      show: false,
-      msg: '正在登录',
       setTime: 2000,
       rules: {
         username: {
@@ -69,12 +66,7 @@ export default {
             localStorage.setItem('Username', res.data.Users.username)
             localStorage.setItem('Useridentity', res.data.Users.useridentity)
             this.$store.commit('cagUserData', res.data)
-            const timer = setInterval(() => {
-              this.msg = res.message
-            }, 100)
             setTimeout(() => {
-              clearInterval(timer)
-              this.show = false
               this.loading = false
               localStorage.removeItem('VerCode')
               this.$router.push('/CtrlView')
@@ -107,17 +99,6 @@ export default {
         return false
       }
       return bool
-    },
-    showPopup (msg) {
-      const timer = setInterval(() => {
-        this.show = true
-        this.msg = msg
-      }, 100)
-      setTimeout(() => {
-        clearInterval(timer)
-        this.show = false
-        this.loading = false
-      }, this.setTime)
     }
   },
   name: 'LoginPage'

@@ -20,7 +20,8 @@
             </div>
           </div>
           <div class="content">
-            <p v-html="ArticleData.article.content" v-highlight></p>
+            <p v-if="!isMd" v-html="ArticleData.article.content" v-highlight></p>
+            <ViewMd v-else :content="ArticleData.article.content"></ViewMd>
           </div>
           <div class="tabmenu">
             <div>
@@ -74,6 +75,7 @@ import getArticle from '@/API/indexAPI/getArticle'
 import UserAction from '@/API/UserActionAPI/UserActiveGet'
 import Login from './ArticleLogin/ArticleLogin.vue'
 import autorPanel from './autorPanel.vue'
+import ViewMd from './ViewMd.vue'
 export default {
   props: ['isdemo'],
   data () {
@@ -95,10 +97,12 @@ export default {
         goodnum: false,
         collect: false
       },
-      showLogin: false
+      showLogin: false,
+      isMd: false
     }
   },
   created () {
+    if (/\bmd[A-Z0-9]+\b/g.test(this.$route.params.id)) this.isMd = true
     this.getArticle(this.$route.params.id)
   },
   methods: {
@@ -280,7 +284,7 @@ export default {
     }
   },
   name: 'ArticleM',
-  components: { Login, autorPanel }
+  components: { Login, autorPanel, ViewMd }
 }
 </script>
 

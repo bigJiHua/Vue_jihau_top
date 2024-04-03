@@ -34,7 +34,7 @@ export default {
   .rightView {
     min-height: 80vh;
     width: 100%;
-    padding: 15px;
+    padding: 0 10px;
     overflow: overlay;
   }
 

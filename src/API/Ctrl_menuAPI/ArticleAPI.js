@@ -1,7 +1,7 @@
 import request from '../request'
 // 获取当前用户所有文章
-const UsergetArticle = function (username) {
-  return request.get('/article/?username=' + username)
+const UsergetArticle = function (num) {
+  return request.get('/article/?page=' + num)
 }
 // 添加文章
 const UseraddArticle = function (data) {

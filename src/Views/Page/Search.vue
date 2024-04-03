@@ -5,14 +5,14 @@
       <div class="Content_Area">
         <p>让我康康</p>
         <div class="search_area">
-          <input type="text" v-model="k" id="search_input" placeholder="让我康康" @click="search">
-          <button class="search_btn" @click="search">
+          <input type="text" v-model="k" id="search_input" placeholder="让我康康">
+          <button class="search_btn" @click="SearchFunc">
             <span class="glyphicon glyphicon-search" style="font-size: 20px ;color: black"></span>
           </button>
         </div>
         <div class="value_area">
           <ul>
-            <li v-for="(item, index) in search(this.k)" :key="index">
+            <li v-for="(item, index) in Articles" :key="index">
               <Pageuad :item="item"></Pageuad>
             </li>
           </ul>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import getArticle from '@/API/indexAPI/getArticleList'
+import SearchAPI from '@/API/indexAPI/getArticleList'
 import Pageuad from '@/components/Ctrl_menu/PageCad.vue'
 
 export default {
@@ -39,34 +39,9 @@ export default {
     this.Article()
   },
   methods: {
-    async Article () {
-      const { data: res } = await getArticle.getArticleList('all')
+    async SearchFunc () {
+      const { data: res } = await SearchAPI.SearchApi(this.k, 'article')
       this.Articles = res.data
-    },
-    search (key) {
-      if (key !== '') {
-        const newList = []
-        this.Articles.forEach(item => {
-          if (item.article_id.indexOf(key) !== -1) {
-            newList.push(item)
-          } else if (item.content.indexOf(key) !== -1) {
-            newList.push(item)
-          } else if (item.keyword.indexOf(key) !== -1) {
-            newList.push(item)
-          } else if (item.lable.indexOf(key) !== -1) {
-            newList.push(item)
-          } else if (item.pub_date.indexOf(key) !== -1) {
-            newList.push(item)
-          } else if (item.title.indexOf(key) !== -1) {
-            newList.push(item)
-          } else if (item.username.indexOf(key) !== -1) {
-            newList.push(item)
-          }
-        })
-        return newList
-      } else {
-        return []
-      }
     }
   },
   name: 'SearchM',
